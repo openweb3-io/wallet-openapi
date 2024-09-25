@@ -16,16 +16,18 @@ import (
 
 // PageTransaction struct for PageTransaction
 type PageTransaction struct {
-	Items *[]Transaction `json:"items,omitempty"`
-	Total *int32 `json:"total,omitempty"`
+	Items []Transaction `json:"items"`
+	Total int32 `json:"total"`
 }
 
 // NewPageTransaction instantiates a new PageTransaction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPageTransaction() *PageTransaction {
+func NewPageTransaction(items []Transaction, total int32) *PageTransaction {
 	this := PageTransaction{}
+	this.Items = items
+	this.Total = total
 	return &this
 }
 
@@ -37,76 +39,60 @@ func NewPageTransactionWithDefaults() *PageTransaction {
 	return &this
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
+// GetItems returns the Items field value
 func (o *PageTransaction) GetItems() []Transaction {
-	if o == nil || o.Items == nil {
+	if o == nil {
 		var ret []Transaction
 		return ret
 	}
-	return *o.Items
+
+	return o.Items
 }
 
-// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
 func (o *PageTransaction) GetItemsOk() (*[]Transaction, bool) {
-	if o == nil || o.Items == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.Items, true
 }
 
-// HasItems returns a boolean if a field has been set.
-func (o *PageTransaction) HasItems() bool {
-	if o != nil && o.Items != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetItems gets a reference to the given []Transaction and assigns it to the Items field.
+// SetItems sets field value
 func (o *PageTransaction) SetItems(v []Transaction) {
-	o.Items = &v
+	o.Items = v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
+// GetTotal returns the Total field value
 func (o *PageTransaction) GetTotal() int32 {
-	if o == nil || o.Total == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Total
+
+	return o.Total
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// GetTotalOk returns a tuple with the Total field value
 // and a boolean to check if the value has been set.
 func (o *PageTransaction) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Total, true
+	return &o.Total, true
 }
 
-// HasTotal returns a boolean if a field has been set.
-func (o *PageTransaction) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
+// SetTotal sets field value
 func (o *PageTransaction) SetTotal(v int32) {
-	o.Total = &v
+	o.Total = v
 }
 
 func (o PageTransaction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Items != nil {
+	if true {
 		toSerialize["items"] = o.Items
 	}
-	if o.Total != nil {
+	if true {
 		toSerialize["total"] = o.Total
 	}
 	return json.Marshal(toSerialize)

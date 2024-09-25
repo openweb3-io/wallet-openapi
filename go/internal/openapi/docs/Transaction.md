@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** | The total amount of money involved in the transaction. | [optional] 
-**Avatar** | Pointer to **string** | A URL or path to an avatar image associated with the transaction, often used to visually represent the transaction&#39;s source or recipient. | [optional] 
-**CreatedAt** | Pointer to **string** | The date and time when the transaction was created. | [optional] 
-**Currency** | Pointer to **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | [optional] 
-**Direction** | Pointer to [**TransactionDirection**](TransactionDirection.md) | Indicates the flow of the transaction, typically whether it is incoming or outgoing. | [optional] 
-**Gateway** | Pointer to **string** | The payment gateway or platform used to process the transaction. | [optional] 
-**Id** | Pointer to **string** | A unique identifier for the transaction. | [optional] 
-**Status** | Pointer to [**TransactionStatus**](TransactionStatus.md) | The current status of the transaction. | [optional] 
+**Amount** | **string** | The total amount of money involved in the transaction. | 
+**Avatar** | **string** | A URL or path to an avatar image associated with the transaction, often used to visually represent the transaction&#39;s source or recipient. | 
+**CreatedAt** | **string** | The date and time when the transaction was created. | 
+**Currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
+**Direction** | [**TransactionDirection**](TransactionDirection.md) | Indicates the flow of the transaction, typically whether it is incoming or outgoing. | 
+**Gateway** | **string** | The payment gateway or platform used to process the transaction. | 
+**Id** | **string** | A unique identifier for the transaction. | 
+**Status** | [**TransactionStatus**](TransactionStatus.md) | The current status of the transaction. | 
 
 ## Methods
 
 ### NewTransaction
 
-`func NewTransaction() *Transaction`
+`func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, gateway string, id string, status TransactionStatus, ) *Transaction`
 
 NewTransaction instantiates a new Transaction object
 This constructor will assign default values to properties that have it defined,
@@ -51,11 +51,6 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
-### HasAmount
-
-`func (o *Transaction) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
 
 ### GetAvatar
 
@@ -76,11 +71,6 @@ and a boolean to check if the value has been set.
 
 SetAvatar sets Avatar field to given value.
 
-### HasAvatar
-
-`func (o *Transaction) HasAvatar() bool`
-
-HasAvatar returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -101,11 +91,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *Transaction) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -126,11 +111,6 @@ and a boolean to check if the value has been set.
 
 SetCurrency sets Currency field to given value.
 
-### HasCurrency
-
-`func (o *Transaction) HasCurrency() bool`
-
-HasCurrency returns a boolean if a field has been set.
 
 ### GetDirection
 
@@ -151,11 +131,6 @@ and a boolean to check if the value has been set.
 
 SetDirection sets Direction field to given value.
 
-### HasDirection
-
-`func (o *Transaction) HasDirection() bool`
-
-HasDirection returns a boolean if a field has been set.
 
 ### GetGateway
 
@@ -176,11 +151,6 @@ and a boolean to check if the value has been set.
 
 SetGateway sets Gateway field to given value.
 
-### HasGateway
-
-`func (o *Transaction) HasGateway() bool`
-
-HasGateway returns a boolean if a field has been set.
 
 ### GetId
 
@@ -201,11 +171,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Transaction) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -226,11 +191,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *Transaction) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

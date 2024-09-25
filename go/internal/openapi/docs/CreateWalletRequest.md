@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Wallet Name | [optional] 
+**Name** | **string** | Wallet Name | 
 **Uid** | Pointer to **string** | Custom ID | [optional] 
 
 ## Methods
 
 ### NewCreateWalletRequest
 
-`func NewCreateWalletRequest() *CreateWalletRequest`
+`func NewCreateWalletRequest(name string, ) *CreateWalletRequest`
 
 NewCreateWalletRequest instantiates a new CreateWalletRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *CreateWalletRequest) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetUid
 

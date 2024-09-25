@@ -17,17 +17,19 @@ import (
 // Error struct for Error
 type Error struct {
 	// error code
-	Code *int32 `json:"code,omitempty"`
+	Code int32 `json:"code"`
 	// error message
-	Msg *string `json:"msg,omitempty"`
+	Msg string `json:"msg"`
 }
 
 // NewError instantiates a new Error object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewError() *Error {
+func NewError(code int32, msg string) *Error {
 	this := Error{}
+	this.Code = code
+	this.Msg = msg
 	return &this
 }
 
@@ -39,76 +41,60 @@ func NewErrorWithDefaults() *Error {
 	return &this
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value
 func (o *Error) GetCode() int32 {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Code
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *Error) GetCodeOk() (*int32, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *Error) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given int32 and assigns it to the Code field.
+// SetCode sets field value
 func (o *Error) SetCode(v int32) {
-	o.Code = &v
+	o.Code = v
 }
 
-// GetMsg returns the Msg field value if set, zero value otherwise.
+// GetMsg returns the Msg field value
 func (o *Error) GetMsg() string {
-	if o == nil || o.Msg == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Msg
+
+	return o.Msg
 }
 
-// GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
+// GetMsgOk returns a tuple with the Msg field value
 // and a boolean to check if the value has been set.
 func (o *Error) GetMsgOk() (*string, bool) {
-	if o == nil || o.Msg == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Msg, true
+	return &o.Msg, true
 }
 
-// HasMsg returns a boolean if a field has been set.
-func (o *Error) HasMsg() bool {
-	if o != nil && o.Msg != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMsg gets a reference to the given string and assigns it to the Msg field.
+// SetMsg sets field value
 func (o *Error) SetMsg(v string) {
-	o.Msg = &v
+	o.Msg = v
 }
 
 func (o Error) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
+	if true {
 		toSerialize["code"] = o.Code
 	}
-	if o.Msg != nil {
+	if true {
 		toSerialize["msg"] = o.Msg
 	}
 	return json.Marshal(toSerialize)

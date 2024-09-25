@@ -17,21 +17,25 @@ import (
 // CreateTransferRequest struct for CreateTransferRequest
 type CreateTransferRequest struct {
 	// The amount of currency to be transferred
-	Amount *string `json:"amount,omitempty"`
+	Amount string `json:"amount"`
 	// The code of currency to be transferred
-	Currency *string `json:"currency,omitempty"`
+	Currency string `json:"currency"`
 	// The ID of the wallet from which the transfer will be made
-	From *string `json:"from,omitempty"`
+	From string `json:"from"`
 	// The ID of the wallet to which the transfer will be made
-	To *string `json:"to,omitempty"`
+	To string `json:"to"`
 }
 
 // NewCreateTransferRequest instantiates a new CreateTransferRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTransferRequest() *CreateTransferRequest {
+func NewCreateTransferRequest(amount string, currency string, from string, to string) *CreateTransferRequest {
 	this := CreateTransferRequest{}
+	this.Amount = amount
+	this.Currency = currency
+	this.From = from
+	this.To = to
 	return &this
 }
 
@@ -43,146 +47,114 @@ func NewCreateTransferRequestWithDefaults() *CreateTransferRequest {
 	return &this
 }
 
-// GetAmount returns the Amount field value if set, zero value otherwise.
+// GetAmount returns the Amount field value
 func (o *CreateTransferRequest) GetAmount() string {
-	if o == nil || o.Amount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Amount
+
+	return o.Amount
 }
 
-// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
+// GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
 func (o *CreateTransferRequest) GetAmountOk() (*string, bool) {
-	if o == nil || o.Amount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Amount, true
+	return &o.Amount, true
 }
 
-// HasAmount returns a boolean if a field has been set.
-func (o *CreateTransferRequest) HasAmount() bool {
-	if o != nil && o.Amount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAmount gets a reference to the given string and assigns it to the Amount field.
+// SetAmount sets field value
 func (o *CreateTransferRequest) SetAmount(v string) {
-	o.Amount = &v
+	o.Amount = v
 }
 
-// GetCurrency returns the Currency field value if set, zero value otherwise.
+// GetCurrency returns the Currency field value
 func (o *CreateTransferRequest) GetCurrency() string {
-	if o == nil || o.Currency == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Currency
+
+	return o.Currency
 }
 
-// GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
+// GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
 func (o *CreateTransferRequest) GetCurrencyOk() (*string, bool) {
-	if o == nil || o.Currency == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Currency, true
+	return &o.Currency, true
 }
 
-// HasCurrency returns a boolean if a field has been set.
-func (o *CreateTransferRequest) HasCurrency() bool {
-	if o != nil && o.Currency != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCurrency gets a reference to the given string and assigns it to the Currency field.
+// SetCurrency sets field value
 func (o *CreateTransferRequest) SetCurrency(v string) {
-	o.Currency = &v
+	o.Currency = v
 }
 
-// GetFrom returns the From field value if set, zero value otherwise.
+// GetFrom returns the From field value
 func (o *CreateTransferRequest) GetFrom() string {
-	if o == nil || o.From == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.From
+
+	return o.From
 }
 
-// GetFromOk returns a tuple with the From field value if set, nil otherwise
+// GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
 func (o *CreateTransferRequest) GetFromOk() (*string, bool) {
-	if o == nil || o.From == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.From, true
+	return &o.From, true
 }
 
-// HasFrom returns a boolean if a field has been set.
-func (o *CreateTransferRequest) HasFrom() bool {
-	if o != nil && o.From != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFrom gets a reference to the given string and assigns it to the From field.
+// SetFrom sets field value
 func (o *CreateTransferRequest) SetFrom(v string) {
-	o.From = &v
+	o.From = v
 }
 
-// GetTo returns the To field value if set, zero value otherwise.
+// GetTo returns the To field value
 func (o *CreateTransferRequest) GetTo() string {
-	if o == nil || o.To == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.To
+
+	return o.To
 }
 
-// GetToOk returns a tuple with the To field value if set, nil otherwise
+// GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
 func (o *CreateTransferRequest) GetToOk() (*string, bool) {
-	if o == nil || o.To == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.To, true
+	return &o.To, true
 }
 
-// HasTo returns a boolean if a field has been set.
-func (o *CreateTransferRequest) HasTo() bool {
-	if o != nil && o.To != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTo gets a reference to the given string and assigns it to the To field.
+// SetTo sets field value
 func (o *CreateTransferRequest) SetTo(v string) {
-	o.To = &v
+	o.To = v
 }
 
 func (o CreateTransferRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
+	if true {
 		toSerialize["amount"] = o.Amount
 	}
-	if o.Currency != nil {
+	if true {
 		toSerialize["currency"] = o.Currency
 	}
-	if o.From != nil {
+	if true {
 		toSerialize["from"] = o.From
 	}
-	if o.To != nil {
+	if true {
 		toSerialize["to"] = o.To
 	}
 	return json.Marshal(toSerialize)

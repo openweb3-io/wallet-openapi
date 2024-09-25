@@ -17,23 +17,28 @@ import (
 // Wallet struct for Wallet
 type Wallet struct {
 	// Accounts list
-	Account *[]Account `json:"account,omitempty"`
+	Account []Account `json:"account"`
 	// Created time
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt string `json:"created_at"`
 	// Wallet id
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Wallet name
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// External unique ID
-	Uid *string `json:"uid,omitempty"`
+	Uid string `json:"uid"`
 }
 
 // NewWallet instantiates a new Wallet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWallet() *Wallet {
+func NewWallet(account []Account, createdAt string, id string, name string, uid string) *Wallet {
 	this := Wallet{}
+	this.Account = account
+	this.CreatedAt = createdAt
+	this.Id = id
+	this.Name = name
+	this.Uid = uid
 	return &this
 }
 
@@ -45,181 +50,141 @@ func NewWalletWithDefaults() *Wallet {
 	return &this
 }
 
-// GetAccount returns the Account field value if set, zero value otherwise.
+// GetAccount returns the Account field value
 func (o *Wallet) GetAccount() []Account {
-	if o == nil || o.Account == nil {
+	if o == nil {
 		var ret []Account
 		return ret
 	}
-	return *o.Account
+
+	return o.Account
 }
 
-// GetAccountOk returns a tuple with the Account field value if set, nil otherwise
+// GetAccountOk returns a tuple with the Account field value
 // and a boolean to check if the value has been set.
 func (o *Wallet) GetAccountOk() (*[]Account, bool) {
-	if o == nil || o.Account == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Account, true
+	return &o.Account, true
 }
 
-// HasAccount returns a boolean if a field has been set.
-func (o *Wallet) HasAccount() bool {
-	if o != nil && o.Account != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAccount gets a reference to the given []Account and assigns it to the Account field.
+// SetAccount sets field value
 func (o *Wallet) SetAccount(v []Account) {
-	o.Account = &v
+	o.Account = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *Wallet) GetCreatedAt() string {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Wallet) GetCreatedAtOk() (*string, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *Wallet) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *Wallet) SetCreatedAt(v string) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *Wallet) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Wallet) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Wallet) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *Wallet) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *Wallet) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *Wallet) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *Wallet) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *Wallet) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetUid returns the Uid field value if set, zero value otherwise.
+// GetUid returns the Uid field value
 func (o *Wallet) GetUid() string {
-	if o == nil || o.Uid == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Uid
+
+	return o.Uid
 }
 
-// GetUidOk returns a tuple with the Uid field value if set, nil otherwise
+// GetUidOk returns a tuple with the Uid field value
 // and a boolean to check if the value has been set.
 func (o *Wallet) GetUidOk() (*string, bool) {
-	if o == nil || o.Uid == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Uid, true
+	return &o.Uid, true
 }
 
-// HasUid returns a boolean if a field has been set.
-func (o *Wallet) HasUid() bool {
-	if o != nil && o.Uid != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUid gets a reference to the given string and assigns it to the Uid field.
+// SetUid sets field value
 func (o *Wallet) SetUid(v string) {
-	o.Uid = &v
+	o.Uid = v
 }
 
 func (o Wallet) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Account != nil {
+	if true {
 		toSerialize["account"] = o.Account
 	}
-	if o.CreatedAt != nil {
+	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Id != nil {
+	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Uid != nil {
+	if true {
 		toSerialize["uid"] = o.Uid
 	}
 	return json.Marshal(toSerialize)

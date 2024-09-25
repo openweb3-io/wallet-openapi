@@ -16,16 +16,18 @@ import (
 
 // PageWallet struct for PageWallet
 type PageWallet struct {
-	Items *[]Wallet `json:"items,omitempty"`
-	Total *int32 `json:"total,omitempty"`
+	Items []Wallet `json:"items"`
+	Total int32 `json:"total"`
 }
 
 // NewPageWallet instantiates a new PageWallet object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPageWallet() *PageWallet {
+func NewPageWallet(items []Wallet, total int32) *PageWallet {
 	this := PageWallet{}
+	this.Items = items
+	this.Total = total
 	return &this
 }
 
@@ -37,76 +39,60 @@ func NewPageWalletWithDefaults() *PageWallet {
 	return &this
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
+// GetItems returns the Items field value
 func (o *PageWallet) GetItems() []Wallet {
-	if o == nil || o.Items == nil {
+	if o == nil {
 		var ret []Wallet
 		return ret
 	}
-	return *o.Items
+
+	return o.Items
 }
 
-// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
 func (o *PageWallet) GetItemsOk() (*[]Wallet, bool) {
-	if o == nil || o.Items == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.Items, true
 }
 
-// HasItems returns a boolean if a field has been set.
-func (o *PageWallet) HasItems() bool {
-	if o != nil && o.Items != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetItems gets a reference to the given []Wallet and assigns it to the Items field.
+// SetItems sets field value
 func (o *PageWallet) SetItems(v []Wallet) {
-	o.Items = &v
+	o.Items = v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
+// GetTotal returns the Total field value
 func (o *PageWallet) GetTotal() int32 {
-	if o == nil || o.Total == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Total
+
+	return o.Total
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// GetTotalOk returns a tuple with the Total field value
 // and a boolean to check if the value has been set.
 func (o *PageWallet) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Total, true
+	return &o.Total, true
 }
 
-// HasTotal returns a boolean if a field has been set.
-func (o *PageWallet) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
+// SetTotal sets field value
 func (o *PageWallet) SetTotal(v int32) {
-	o.Total = &v
+	o.Total = v
 }
 
 func (o PageWallet) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Items != nil {
+	if true {
 		toSerialize["items"] = o.Items
 	}
-	if o.Total != nil {
+	if true {
 		toSerialize["total"] = o.Total
 	}
 	return json.Marshal(toSerialize)

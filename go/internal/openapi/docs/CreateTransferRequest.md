@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** | The amount of currency to be transferred | [optional] 
-**Currency** | Pointer to **string** | The code of currency to be transferred | [optional] 
-**From** | Pointer to **string** | The ID of the wallet from which the transfer will be made | [optional] 
-**To** | Pointer to **string** | The ID of the wallet to which the transfer will be made | [optional] 
+**Amount** | **string** | The amount of currency to be transferred | 
+**Currency** | **string** | The code of currency to be transferred | 
+**From** | **string** | The ID of the wallet from which the transfer will be made | 
+**To** | **string** | The ID of the wallet to which the transfer will be made | 
 
 ## Methods
 
 ### NewCreateTransferRequest
 
-`func NewCreateTransferRequest() *CreateTransferRequest`
+`func NewCreateTransferRequest(amount string, currency string, from string, to string, ) *CreateTransferRequest`
 
 NewCreateTransferRequest instantiates a new CreateTransferRequest object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
-### HasAmount
-
-`func (o *CreateTransferRequest) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -72,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetCurrency sets Currency field to given value.
 
-### HasCurrency
-
-`func (o *CreateTransferRequest) HasCurrency() bool`
-
-HasCurrency returns a boolean if a field has been set.
 
 ### GetFrom
 
@@ -97,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetFrom sets From field to given value.
 
-### HasFrom
-
-`func (o *CreateTransferRequest) HasFrom() bool`
-
-HasFrom returns a boolean if a field has been set.
 
 ### GetTo
 
@@ -122,11 +107,6 @@ and a boolean to check if the value has been set.
 
 SetTo sets To field to given value.
 
-### HasTo
-
-`func (o *CreateTransferRequest) HasTo() bool`
-
-HasTo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

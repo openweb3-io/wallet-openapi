@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | Pointer to [**[]Account**](Account.md) | Accounts list | [optional] 
-**CreatedAt** | Pointer to **string** | Created time | [optional] 
-**Id** | Pointer to **string** | Wallet id | [optional] 
-**Name** | Pointer to **string** | Wallet name | [optional] 
-**Uid** | Pointer to **string** | External unique ID | [optional] 
+**Account** | [**[]Account**](Account.md) | Accounts list | 
+**CreatedAt** | **string** | Created time | 
+**Id** | **string** | Wallet id | 
+**Name** | **string** | Wallet name | 
+**Uid** | **string** | External unique ID | 
 
 ## Methods
 
 ### NewWallet
 
-`func NewWallet() *Wallet`
+`func NewWallet(account []Account, createdAt string, id string, name string, uid string, ) *Wallet`
 
 NewWallet instantiates a new Wallet object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetAccount sets Account field to given value.
 
-### HasAccount
-
-`func (o *Wallet) HasAccount() bool`
-
-HasAccount returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -73,11 +68,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *Wallet) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetId
 
@@ -98,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Wallet) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -123,11 +108,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *Wallet) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetUid
 
@@ -148,11 +128,6 @@ and a boolean to check if the value has been set.
 
 SetUid sets Uid field to given value.
 
-### HasUid
-
-`func (o *Wallet) HasUid() bool`
-
-HasUid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

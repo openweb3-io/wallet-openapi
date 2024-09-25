@@ -16,17 +16,19 @@ import (
 
 // Rate struct for Rate
 type Rate struct {
-	Pair *CurrencyPair `json:"pair,omitempty"`
+	Pair CurrencyPair `json:"pair"`
 	// The exchange rate between the `BaseCurrency` and `ToCurrency`
-	Rate *float32 `json:"rate,omitempty"`
+	Rate float32 `json:"rate"`
 }
 
 // NewRate instantiates a new Rate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRate() *Rate {
+func NewRate(pair CurrencyPair, rate float32) *Rate {
 	this := Rate{}
+	this.Pair = pair
+	this.Rate = rate
 	return &this
 }
 
@@ -38,76 +40,60 @@ func NewRateWithDefaults() *Rate {
 	return &this
 }
 
-// GetPair returns the Pair field value if set, zero value otherwise.
+// GetPair returns the Pair field value
 func (o *Rate) GetPair() CurrencyPair {
-	if o == nil || o.Pair == nil {
+	if o == nil {
 		var ret CurrencyPair
 		return ret
 	}
-	return *o.Pair
+
+	return o.Pair
 }
 
-// GetPairOk returns a tuple with the Pair field value if set, nil otherwise
+// GetPairOk returns a tuple with the Pair field value
 // and a boolean to check if the value has been set.
 func (o *Rate) GetPairOk() (*CurrencyPair, bool) {
-	if o == nil || o.Pair == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Pair, true
+	return &o.Pair, true
 }
 
-// HasPair returns a boolean if a field has been set.
-func (o *Rate) HasPair() bool {
-	if o != nil && o.Pair != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPair gets a reference to the given CurrencyPair and assigns it to the Pair field.
+// SetPair sets field value
 func (o *Rate) SetPair(v CurrencyPair) {
-	o.Pair = &v
+	o.Pair = v
 }
 
-// GetRate returns the Rate field value if set, zero value otherwise.
+// GetRate returns the Rate field value
 func (o *Rate) GetRate() float32 {
-	if o == nil || o.Rate == nil {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.Rate
+
+	return o.Rate
 }
 
-// GetRateOk returns a tuple with the Rate field value if set, nil otherwise
+// GetRateOk returns a tuple with the Rate field value
 // and a boolean to check if the value has been set.
 func (o *Rate) GetRateOk() (*float32, bool) {
-	if o == nil || o.Rate == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Rate, true
+	return &o.Rate, true
 }
 
-// HasRate returns a boolean if a field has been set.
-func (o *Rate) HasRate() bool {
-	if o != nil && o.Rate != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRate gets a reference to the given float32 and assigns it to the Rate field.
+// SetRate sets field value
 func (o *Rate) SetRate(v float32) {
-	o.Rate = &v
+	o.Rate = v
 }
 
 func (o Rate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Pair != nil {
+	if true {
 		toSerialize["pair"] = o.Pair
 	}
-	if o.Rate != nil {
+	if true {
 		toSerialize["rate"] = o.Rate
 	}
 	return json.Marshal(toSerialize)

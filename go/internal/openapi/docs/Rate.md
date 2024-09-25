@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pair** | Pointer to [**CurrencyPair**](CurrencyPair.md) |  | [optional] 
-**Rate** | Pointer to **float32** | The exchange rate between the &#x60;BaseCurrency&#x60; and &#x60;ToCurrency&#x60; | [optional] 
+**Pair** | [**CurrencyPair**](CurrencyPair.md) |  | 
+**Rate** | **float32** | The exchange rate between the &#x60;BaseCurrency&#x60; and &#x60;ToCurrency&#x60; | 
 
 ## Methods
 
 ### NewRate
 
-`func NewRate() *Rate`
+`func NewRate(pair CurrencyPair, rate float32, ) *Rate`
 
 NewRate instantiates a new Rate object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetPair sets Pair field to given value.
 
-### HasPair
-
-`func (o *Rate) HasPair() bool`
-
-HasPair returns a boolean if a field has been set.
 
 ### GetRate
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetRate sets Rate field to given value.
 
-### HasRate
-
-`func (o *Rate) HasRate() bool`
-
-HasRate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -34,7 +34,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createWalletRequest := *openapiclient.NewCreateWalletRequest() // CreateWalletRequest | Request body
+    createWalletRequest := *openapiclient.NewCreateWalletRequest("Name_example") // CreateWalletRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

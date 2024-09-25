@@ -17,17 +17,19 @@ import (
 // Address struct for Address
 type Address struct {
 	// the blockchain address.
-	Address *string `json:"address,omitempty"`
+	Address string `json:"address"`
 	// the blockchain network
-	Network *string `json:"network,omitempty"`
+	Network string `json:"network"`
 }
 
 // NewAddress instantiates a new Address object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddress() *Address {
+func NewAddress(address string, network string) *Address {
 	this := Address{}
+	this.Address = address
+	this.Network = network
 	return &this
 }
 
@@ -39,76 +41,60 @@ func NewAddressWithDefaults() *Address {
 	return &this
 }
 
-// GetAddress returns the Address field value if set, zero value otherwise.
+// GetAddress returns the Address field value
 func (o *Address) GetAddress() string {
-	if o == nil || o.Address == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Address
+
+	return o.Address
 }
 
-// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
+// GetAddressOk returns a tuple with the Address field value
 // and a boolean to check if the value has been set.
 func (o *Address) GetAddressOk() (*string, bool) {
-	if o == nil || o.Address == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Address, true
+	return &o.Address, true
 }
 
-// HasAddress returns a boolean if a field has been set.
-func (o *Address) HasAddress() bool {
-	if o != nil && o.Address != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAddress gets a reference to the given string and assigns it to the Address field.
+// SetAddress sets field value
 func (o *Address) SetAddress(v string) {
-	o.Address = &v
+	o.Address = v
 }
 
-// GetNetwork returns the Network field value if set, zero value otherwise.
+// GetNetwork returns the Network field value
 func (o *Address) GetNetwork() string {
-	if o == nil || o.Network == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Network
+
+	return o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
+// GetNetworkOk returns a tuple with the Network field value
 // and a boolean to check if the value has been set.
 func (o *Address) GetNetworkOk() (*string, bool) {
-	if o == nil || o.Network == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Network, true
+	return &o.Network, true
 }
 
-// HasNetwork returns a boolean if a field has been set.
-func (o *Address) HasNetwork() bool {
-	if o != nil && o.Network != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetwork gets a reference to the given string and assigns it to the Network field.
+// SetNetwork sets field value
 func (o *Address) SetNetwork(v string) {
-	o.Network = &v
+	o.Network = v
 }
 
 func (o Address) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Address != nil {
+	if true {
 		toSerialize["address"] = o.Address
 	}
-	if o.Network != nil {
+	if true {
 		toSerialize["network"] = o.Network
 	}
 	return json.Marshal(toSerialize)

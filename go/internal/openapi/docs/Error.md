@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **int32** | error code | [optional] 
-**Msg** | Pointer to **string** | error message | [optional] 
+**Code** | **int32** | error code | 
+**Msg** | **string** | error message | 
 
 ## Methods
 
 ### NewError
 
-`func NewError() *Error`
+`func NewError(code int32, msg string, ) *Error`
 
 NewError instantiates a new Error object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
-### HasCode
-
-`func (o *Error) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
 
 ### GetMsg
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetMsg sets Msg field to given value.
 
-### HasMsg
-
-`func (o *Error) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

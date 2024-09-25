@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CanDeposit** | Pointer to **bool** | Indicates if on-chain deposits are allowed | [optional] 
-**CanTransfer** | Pointer to **bool** | Indicates if internal transfers are permitted | [optional] 
-**CanWithdraw** | Pointer to **bool** | Indicates if on-chain withdrawals are allowed | [optional] 
-**Code** | Pointer to **string** | Currency code | [optional] 
+**CanDeposit** | **bool** | Indicates if on-chain deposits are allowed | 
+**CanTransfer** | **bool** | Indicates if internal transfers are permitted | 
+**CanWithdraw** | **bool** | Indicates if on-chain withdrawals are allowed | 
+**Code** | **string** | Currency code | 
 **ContractAddress** | Pointer to **string** | Contract address for tokens based on smart contracts, such as ERC-20 | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**MaxFee** | Pointer to **string** | Maximum transaction fee | [optional] 
-**MaxFeeForCtAddr** | Pointer to **string** | Maximum transaction fee for contract addresses | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** | Maximum amount for a single on-chain withdrawal | [optional] 
+**Id** | **string** |  | 
+**MaxFee** | **string** | Maximum transaction fee | 
+**MaxFeeForCtAddr** | **string** | Maximum transaction fee for contract addresses | 
+**MaxWithdrawAmount** | **string** | Maximum amount for a single on-chain withdrawal | 
 **MinCollectAmount** | Pointer to **string** | Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address | [optional] 
-**MinConfirmations** | Pointer to **int32** | Minimum number of confirmations required, indicating the number of block confirmations needed for a transaction to be considered valid | [optional] 
-**MinDepositAmount** | Pointer to **string** | Minimum amount for a single deposit | [optional] 
-**MinFee** | Pointer to **string** | Minimum transaction fee | [optional] 
-**MinFeeForCtAddr** | Pointer to **string** | Minimum transaction fee for contract addresses | [optional] 
-**MinWithdrawAmount** | Pointer to **string** | Minimum amount for a single on-chain withdrawal | [optional] 
-**Name** | Pointer to **string** | Name of the currency, e.g., Bitcoin, Ethereum, etc. | [optional] 
-**NeedMemo** | Pointer to **bool** | Indicates if additional Memo information is required, as needed by some currencies or exchanges | [optional] 
-**Network** | Pointer to **string** | Associated network, e.g., Bitcoin, Ethereum, etc. | [optional] 
+**MinConfirmations** | **int32** | Minimum number of confirmations required, indicating the number of block confirmations needed for a transaction to be considered valid | 
+**MinDepositAmount** | **string** | Minimum amount for a single deposit | 
+**MinFee** | **string** | Minimum transaction fee | 
+**MinFeeForCtAddr** | **string** | Minimum transaction fee for contract addresses | 
+**MinWithdrawAmount** | **string** | Minimum amount for a single on-chain withdrawal | 
+**Name** | **string** | Name of the currency, e.g., Bitcoin, Ethereum, etc. | 
+**NeedMemo** | **bool** | Indicates if additional Memo information is required, as needed by some currencies or exchanges | 
+**Network** | **string** | Associated network, e.g., Bitcoin, Ethereum, etc. | 
 
 ## Methods
 
 ### NewCurrencyNetwork
 
-`func NewCurrencyNetwork() *CurrencyNetwork`
+`func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string, ) *CurrencyNetwork`
 
 NewCurrencyNetwork instantiates a new CurrencyNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -61,11 +61,6 @@ and a boolean to check if the value has been set.
 
 SetCanDeposit sets CanDeposit field to given value.
 
-### HasCanDeposit
-
-`func (o *CurrencyNetwork) HasCanDeposit() bool`
-
-HasCanDeposit returns a boolean if a field has been set.
 
 ### GetCanTransfer
 
@@ -86,11 +81,6 @@ and a boolean to check if the value has been set.
 
 SetCanTransfer sets CanTransfer field to given value.
 
-### HasCanTransfer
-
-`func (o *CurrencyNetwork) HasCanTransfer() bool`
-
-HasCanTransfer returns a boolean if a field has been set.
 
 ### GetCanWithdraw
 
@@ -111,11 +101,6 @@ and a boolean to check if the value has been set.
 
 SetCanWithdraw sets CanWithdraw field to given value.
 
-### HasCanWithdraw
-
-`func (o *CurrencyNetwork) HasCanWithdraw() bool`
-
-HasCanWithdraw returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -136,11 +121,6 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
-### HasCode
-
-`func (o *CurrencyNetwork) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
 
 ### GetContractAddress
 
@@ -186,11 +166,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *CurrencyNetwork) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetMaxFee
 
@@ -211,11 +186,6 @@ and a boolean to check if the value has been set.
 
 SetMaxFee sets MaxFee field to given value.
 
-### HasMaxFee
-
-`func (o *CurrencyNetwork) HasMaxFee() bool`
-
-HasMaxFee returns a boolean if a field has been set.
 
 ### GetMaxFeeForCtAddr
 
@@ -236,11 +206,6 @@ and a boolean to check if the value has been set.
 
 SetMaxFeeForCtAddr sets MaxFeeForCtAddr field to given value.
 
-### HasMaxFeeForCtAddr
-
-`func (o *CurrencyNetwork) HasMaxFeeForCtAddr() bool`
-
-HasMaxFeeForCtAddr returns a boolean if a field has been set.
 
 ### GetMaxWithdrawAmount
 
@@ -261,11 +226,6 @@ and a boolean to check if the value has been set.
 
 SetMaxWithdrawAmount sets MaxWithdrawAmount field to given value.
 
-### HasMaxWithdrawAmount
-
-`func (o *CurrencyNetwork) HasMaxWithdrawAmount() bool`
-
-HasMaxWithdrawAmount returns a boolean if a field has been set.
 
 ### GetMinCollectAmount
 
@@ -311,11 +271,6 @@ and a boolean to check if the value has been set.
 
 SetMinConfirmations sets MinConfirmations field to given value.
 
-### HasMinConfirmations
-
-`func (o *CurrencyNetwork) HasMinConfirmations() bool`
-
-HasMinConfirmations returns a boolean if a field has been set.
 
 ### GetMinDepositAmount
 
@@ -336,11 +291,6 @@ and a boolean to check if the value has been set.
 
 SetMinDepositAmount sets MinDepositAmount field to given value.
 
-### HasMinDepositAmount
-
-`func (o *CurrencyNetwork) HasMinDepositAmount() bool`
-
-HasMinDepositAmount returns a boolean if a field has been set.
 
 ### GetMinFee
 
@@ -361,11 +311,6 @@ and a boolean to check if the value has been set.
 
 SetMinFee sets MinFee field to given value.
 
-### HasMinFee
-
-`func (o *CurrencyNetwork) HasMinFee() bool`
-
-HasMinFee returns a boolean if a field has been set.
 
 ### GetMinFeeForCtAddr
 
@@ -386,11 +331,6 @@ and a boolean to check if the value has been set.
 
 SetMinFeeForCtAddr sets MinFeeForCtAddr field to given value.
 
-### HasMinFeeForCtAddr
-
-`func (o *CurrencyNetwork) HasMinFeeForCtAddr() bool`
-
-HasMinFeeForCtAddr returns a boolean if a field has been set.
 
 ### GetMinWithdrawAmount
 
@@ -411,11 +351,6 @@ and a boolean to check if the value has been set.
 
 SetMinWithdrawAmount sets MinWithdrawAmount field to given value.
 
-### HasMinWithdrawAmount
-
-`func (o *CurrencyNetwork) HasMinWithdrawAmount() bool`
-
-HasMinWithdrawAmount returns a boolean if a field has been set.
 
 ### GetName
 
@@ -436,11 +371,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *CurrencyNetwork) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetNeedMemo
 
@@ -461,11 +391,6 @@ and a boolean to check if the value has been set.
 
 SetNeedMemo sets NeedMemo field to given value.
 
-### HasNeedMemo
-
-`func (o *CurrencyNetwork) HasNeedMemo() bool`
-
-HasNeedMemo returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -486,11 +411,6 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
-### HasNetwork
-
-`func (o *CurrencyNetwork) HasNetwork() bool`
-
-HasNetwork returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

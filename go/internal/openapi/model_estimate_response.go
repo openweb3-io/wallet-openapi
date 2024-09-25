@@ -17,23 +17,28 @@ import (
 // EstimateResponse struct for EstimateResponse
 type EstimateResponse struct {
 	// The amount of the base currency you want to convert
-	BaseAmount *string `json:"base_amount,omitempty"`
+	BaseAmount string `json:"base_amount"`
 	// The currency code of the base currency that you want to convert from
-	BaseCurrency *string `json:"base_currency,omitempty"`
+	BaseCurrency string `json:"base_currency"`
 	// The exchange rate from the base currency to the target currency
-	Rate *float32 `json:"rate,omitempty"`
+	Rate float32 `json:"rate"`
 	// The amount of the target currency you will receive after the conversion
-	ToAmount *string `json:"to_amount,omitempty"`
+	ToAmount string `json:"to_amount"`
 	// The currency code of the target currency that you want to convert to
-	ToCurrency *string `json:"to_currency,omitempty"`
+	ToCurrency string `json:"to_currency"`
 }
 
 // NewEstimateResponse instantiates a new EstimateResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEstimateResponse() *EstimateResponse {
+func NewEstimateResponse(baseAmount string, baseCurrency string, rate float32, toAmount string, toCurrency string) *EstimateResponse {
 	this := EstimateResponse{}
+	this.BaseAmount = baseAmount
+	this.BaseCurrency = baseCurrency
+	this.Rate = rate
+	this.ToAmount = toAmount
+	this.ToCurrency = toCurrency
 	return &this
 }
 
@@ -45,181 +50,141 @@ func NewEstimateResponseWithDefaults() *EstimateResponse {
 	return &this
 }
 
-// GetBaseAmount returns the BaseAmount field value if set, zero value otherwise.
+// GetBaseAmount returns the BaseAmount field value
 func (o *EstimateResponse) GetBaseAmount() string {
-	if o == nil || o.BaseAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.BaseAmount
+
+	return o.BaseAmount
 }
 
-// GetBaseAmountOk returns a tuple with the BaseAmount field value if set, nil otherwise
+// GetBaseAmountOk returns a tuple with the BaseAmount field value
 // and a boolean to check if the value has been set.
 func (o *EstimateResponse) GetBaseAmountOk() (*string, bool) {
-	if o == nil || o.BaseAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.BaseAmount, true
+	return &o.BaseAmount, true
 }
 
-// HasBaseAmount returns a boolean if a field has been set.
-func (o *EstimateResponse) HasBaseAmount() bool {
-	if o != nil && o.BaseAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBaseAmount gets a reference to the given string and assigns it to the BaseAmount field.
+// SetBaseAmount sets field value
 func (o *EstimateResponse) SetBaseAmount(v string) {
-	o.BaseAmount = &v
+	o.BaseAmount = v
 }
 
-// GetBaseCurrency returns the BaseCurrency field value if set, zero value otherwise.
+// GetBaseCurrency returns the BaseCurrency field value
 func (o *EstimateResponse) GetBaseCurrency() string {
-	if o == nil || o.BaseCurrency == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.BaseCurrency
+
+	return o.BaseCurrency
 }
 
-// GetBaseCurrencyOk returns a tuple with the BaseCurrency field value if set, nil otherwise
+// GetBaseCurrencyOk returns a tuple with the BaseCurrency field value
 // and a boolean to check if the value has been set.
 func (o *EstimateResponse) GetBaseCurrencyOk() (*string, bool) {
-	if o == nil || o.BaseCurrency == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.BaseCurrency, true
+	return &o.BaseCurrency, true
 }
 
-// HasBaseCurrency returns a boolean if a field has been set.
-func (o *EstimateResponse) HasBaseCurrency() bool {
-	if o != nil && o.BaseCurrency != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBaseCurrency gets a reference to the given string and assigns it to the BaseCurrency field.
+// SetBaseCurrency sets field value
 func (o *EstimateResponse) SetBaseCurrency(v string) {
-	o.BaseCurrency = &v
+	o.BaseCurrency = v
 }
 
-// GetRate returns the Rate field value if set, zero value otherwise.
+// GetRate returns the Rate field value
 func (o *EstimateResponse) GetRate() float32 {
-	if o == nil || o.Rate == nil {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.Rate
+
+	return o.Rate
 }
 
-// GetRateOk returns a tuple with the Rate field value if set, nil otherwise
+// GetRateOk returns a tuple with the Rate field value
 // and a boolean to check if the value has been set.
 func (o *EstimateResponse) GetRateOk() (*float32, bool) {
-	if o == nil || o.Rate == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Rate, true
+	return &o.Rate, true
 }
 
-// HasRate returns a boolean if a field has been set.
-func (o *EstimateResponse) HasRate() bool {
-	if o != nil && o.Rate != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRate gets a reference to the given float32 and assigns it to the Rate field.
+// SetRate sets field value
 func (o *EstimateResponse) SetRate(v float32) {
-	o.Rate = &v
+	o.Rate = v
 }
 
-// GetToAmount returns the ToAmount field value if set, zero value otherwise.
+// GetToAmount returns the ToAmount field value
 func (o *EstimateResponse) GetToAmount() string {
-	if o == nil || o.ToAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ToAmount
+
+	return o.ToAmount
 }
 
-// GetToAmountOk returns a tuple with the ToAmount field value if set, nil otherwise
+// GetToAmountOk returns a tuple with the ToAmount field value
 // and a boolean to check if the value has been set.
 func (o *EstimateResponse) GetToAmountOk() (*string, bool) {
-	if o == nil || o.ToAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ToAmount, true
+	return &o.ToAmount, true
 }
 
-// HasToAmount returns a boolean if a field has been set.
-func (o *EstimateResponse) HasToAmount() bool {
-	if o != nil && o.ToAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetToAmount gets a reference to the given string and assigns it to the ToAmount field.
+// SetToAmount sets field value
 func (o *EstimateResponse) SetToAmount(v string) {
-	o.ToAmount = &v
+	o.ToAmount = v
 }
 
-// GetToCurrency returns the ToCurrency field value if set, zero value otherwise.
+// GetToCurrency returns the ToCurrency field value
 func (o *EstimateResponse) GetToCurrency() string {
-	if o == nil || o.ToCurrency == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ToCurrency
+
+	return o.ToCurrency
 }
 
-// GetToCurrencyOk returns a tuple with the ToCurrency field value if set, nil otherwise
+// GetToCurrencyOk returns a tuple with the ToCurrency field value
 // and a boolean to check if the value has been set.
 func (o *EstimateResponse) GetToCurrencyOk() (*string, bool) {
-	if o == nil || o.ToCurrency == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.ToCurrency, true
+	return &o.ToCurrency, true
 }
 
-// HasToCurrency returns a boolean if a field has been set.
-func (o *EstimateResponse) HasToCurrency() bool {
-	if o != nil && o.ToCurrency != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetToCurrency gets a reference to the given string and assigns it to the ToCurrency field.
+// SetToCurrency sets field value
 func (o *EstimateResponse) SetToCurrency(v string) {
-	o.ToCurrency = &v
+	o.ToCurrency = v
 }
 
 func (o EstimateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.BaseAmount != nil {
+	if true {
 		toSerialize["base_amount"] = o.BaseAmount
 	}
-	if o.BaseCurrency != nil {
+	if true {
 		toSerialize["base_currency"] = o.BaseCurrency
 	}
-	if o.Rate != nil {
+	if true {
 		toSerialize["rate"] = o.Rate
 	}
-	if o.ToAmount != nil {
+	if true {
 		toSerialize["to_amount"] = o.ToAmount
 	}
-	if o.ToCurrency != nil {
+	if true {
 		toSerialize["to_currency"] = o.ToCurrency
 	}
 	return json.Marshal(toSerialize)

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rates** | Pointer to [**[]Rate**](Rate.md) |  | [optional] 
+**Rates** | [**[]Rate**](Rate.md) |  | 
 
 ## Methods
 
 ### NewGetRatesResponse
 
-`func NewGetRatesResponse() *GetRatesResponse`
+`func NewGetRatesResponse(rates []Rate, ) *GetRatesResponse`
 
 NewGetRatesResponse instantiates a new GetRatesResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetRates sets Rates field to given value.
 
-### HasRates
-
-`func (o *GetRatesResponse) HasRates() bool`
-
-HasRates returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

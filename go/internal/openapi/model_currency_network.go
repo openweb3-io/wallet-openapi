@@ -17,48 +17,64 @@ import (
 // CurrencyNetwork struct for CurrencyNetwork
 type CurrencyNetwork struct {
 	// Indicates if on-chain deposits are allowed
-	CanDeposit *bool `json:"can_deposit,omitempty"`
+	CanDeposit bool `json:"can_deposit"`
 	// Indicates if internal transfers are permitted
-	CanTransfer *bool `json:"can_transfer,omitempty"`
+	CanTransfer bool `json:"can_transfer"`
 	// Indicates if on-chain withdrawals are allowed
-	CanWithdraw *bool `json:"can_withdraw,omitempty"`
+	CanWithdraw bool `json:"can_withdraw"`
 	// Currency code
-	Code *string `json:"code,omitempty"`
+	Code string `json:"code"`
 	// Contract address for tokens based on smart contracts, such as ERC-20
 	ContractAddress *string `json:"contract_address,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Maximum transaction fee
-	MaxFee *string `json:"max_fee,omitempty"`
+	MaxFee string `json:"max_fee"`
 	// Maximum transaction fee for contract addresses
-	MaxFeeForCtAddr *string `json:"max_fee_for_ct_addr,omitempty"`
+	MaxFeeForCtAddr string `json:"max_fee_for_ct_addr"`
 	// Maximum amount for a single on-chain withdrawal
-	MaxWithdrawAmount *string `json:"max_withdraw_amount,omitempty"`
+	MaxWithdrawAmount string `json:"max_withdraw_amount"`
 	// Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address
 	MinCollectAmount *string `json:"min_collect_amount,omitempty"`
 	// Minimum number of confirmations required, indicating the number of block confirmations needed for a transaction to be considered valid
-	MinConfirmations *int32 `json:"min_confirmations,omitempty"`
+	MinConfirmations int32 `json:"min_confirmations"`
 	// Minimum amount for a single deposit
-	MinDepositAmount *string `json:"min_deposit_amount,omitempty"`
+	MinDepositAmount string `json:"min_deposit_amount"`
 	// Minimum transaction fee
-	MinFee *string `json:"min_fee,omitempty"`
+	MinFee string `json:"min_fee"`
 	// Minimum transaction fee for contract addresses
-	MinFeeForCtAddr *string `json:"min_fee_for_ct_addr,omitempty"`
+	MinFeeForCtAddr string `json:"min_fee_for_ct_addr"`
 	// Minimum amount for a single on-chain withdrawal
-	MinWithdrawAmount *string `json:"min_withdraw_amount,omitempty"`
+	MinWithdrawAmount string `json:"min_withdraw_amount"`
 	// Name of the currency, e.g., Bitcoin, Ethereum, etc.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Indicates if additional Memo information is required, as needed by some currencies or exchanges
-	NeedMemo *bool `json:"need_memo,omitempty"`
+	NeedMemo bool `json:"need_memo"`
 	// Associated network, e.g., Bitcoin, Ethereum, etc.
-	Network *string `json:"network,omitempty"`
+	Network string `json:"network"`
 }
 
 // NewCurrencyNetwork instantiates a new CurrencyNetwork object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrencyNetwork() *CurrencyNetwork {
+func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string) *CurrencyNetwork {
 	this := CurrencyNetwork{}
+	this.CanDeposit = canDeposit
+	this.CanTransfer = canTransfer
+	this.CanWithdraw = canWithdraw
+	this.Code = code
+	this.Id = id
+	this.MaxFee = maxFee
+	this.MaxFeeForCtAddr = maxFeeForCtAddr
+	this.MaxWithdrawAmount = maxWithdrawAmount
+	this.MinConfirmations = minConfirmations
+	this.MinDepositAmount = minDepositAmount
+	this.MinFee = minFee
+	this.MinFeeForCtAddr = minFeeForCtAddr
+	this.MinWithdrawAmount = minWithdrawAmount
+	this.Name = name
+	this.NeedMemo = needMemo
+	this.Network = network
 	return &this
 }
 
@@ -70,132 +86,100 @@ func NewCurrencyNetworkWithDefaults() *CurrencyNetwork {
 	return &this
 }
 
-// GetCanDeposit returns the CanDeposit field value if set, zero value otherwise.
+// GetCanDeposit returns the CanDeposit field value
 func (o *CurrencyNetwork) GetCanDeposit() bool {
-	if o == nil || o.CanDeposit == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanDeposit
+
+	return o.CanDeposit
 }
 
-// GetCanDepositOk returns a tuple with the CanDeposit field value if set, nil otherwise
+// GetCanDepositOk returns a tuple with the CanDeposit field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetCanDepositOk() (*bool, bool) {
-	if o == nil || o.CanDeposit == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CanDeposit, true
+	return &o.CanDeposit, true
 }
 
-// HasCanDeposit returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasCanDeposit() bool {
-	if o != nil && o.CanDeposit != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanDeposit gets a reference to the given bool and assigns it to the CanDeposit field.
+// SetCanDeposit sets field value
 func (o *CurrencyNetwork) SetCanDeposit(v bool) {
-	o.CanDeposit = &v
+	o.CanDeposit = v
 }
 
-// GetCanTransfer returns the CanTransfer field value if set, zero value otherwise.
+// GetCanTransfer returns the CanTransfer field value
 func (o *CurrencyNetwork) GetCanTransfer() bool {
-	if o == nil || o.CanTransfer == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanTransfer
+
+	return o.CanTransfer
 }
 
-// GetCanTransferOk returns a tuple with the CanTransfer field value if set, nil otherwise
+// GetCanTransferOk returns a tuple with the CanTransfer field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetCanTransferOk() (*bool, bool) {
-	if o == nil || o.CanTransfer == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CanTransfer, true
+	return &o.CanTransfer, true
 }
 
-// HasCanTransfer returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasCanTransfer() bool {
-	if o != nil && o.CanTransfer != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanTransfer gets a reference to the given bool and assigns it to the CanTransfer field.
+// SetCanTransfer sets field value
 func (o *CurrencyNetwork) SetCanTransfer(v bool) {
-	o.CanTransfer = &v
+	o.CanTransfer = v
 }
 
-// GetCanWithdraw returns the CanWithdraw field value if set, zero value otherwise.
+// GetCanWithdraw returns the CanWithdraw field value
 func (o *CurrencyNetwork) GetCanWithdraw() bool {
-	if o == nil || o.CanWithdraw == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanWithdraw
+
+	return o.CanWithdraw
 }
 
-// GetCanWithdrawOk returns a tuple with the CanWithdraw field value if set, nil otherwise
+// GetCanWithdrawOk returns a tuple with the CanWithdraw field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetCanWithdrawOk() (*bool, bool) {
-	if o == nil || o.CanWithdraw == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CanWithdraw, true
+	return &o.CanWithdraw, true
 }
 
-// HasCanWithdraw returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasCanWithdraw() bool {
-	if o != nil && o.CanWithdraw != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanWithdraw gets a reference to the given bool and assigns it to the CanWithdraw field.
+// SetCanWithdraw sets field value
 func (o *CurrencyNetwork) SetCanWithdraw(v bool) {
-	o.CanWithdraw = &v
+	o.CanWithdraw = v
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value
 func (o *CurrencyNetwork) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
+// SetCode sets field value
 func (o *CurrencyNetwork) SetCode(v string) {
-	o.Code = &v
+	o.Code = v
 }
 
 // GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
@@ -230,132 +214,100 @@ func (o *CurrencyNetwork) SetContractAddress(v string) {
 	o.ContractAddress = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *CurrencyNetwork) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *CurrencyNetwork) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetMaxFee returns the MaxFee field value if set, zero value otherwise.
+// GetMaxFee returns the MaxFee field value
 func (o *CurrencyNetwork) GetMaxFee() string {
-	if o == nil || o.MaxFee == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MaxFee
+
+	return o.MaxFee
 }
 
-// GetMaxFeeOk returns a tuple with the MaxFee field value if set, nil otherwise
+// GetMaxFeeOk returns a tuple with the MaxFee field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMaxFeeOk() (*string, bool) {
-	if o == nil || o.MaxFee == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MaxFee, true
+	return &o.MaxFee, true
 }
 
-// HasMaxFee returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMaxFee() bool {
-	if o != nil && o.MaxFee != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxFee gets a reference to the given string and assigns it to the MaxFee field.
+// SetMaxFee sets field value
 func (o *CurrencyNetwork) SetMaxFee(v string) {
-	o.MaxFee = &v
+	o.MaxFee = v
 }
 
-// GetMaxFeeForCtAddr returns the MaxFeeForCtAddr field value if set, zero value otherwise.
+// GetMaxFeeForCtAddr returns the MaxFeeForCtAddr field value
 func (o *CurrencyNetwork) GetMaxFeeForCtAddr() string {
-	if o == nil || o.MaxFeeForCtAddr == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MaxFeeForCtAddr
+
+	return o.MaxFeeForCtAddr
 }
 
-// GetMaxFeeForCtAddrOk returns a tuple with the MaxFeeForCtAddr field value if set, nil otherwise
+// GetMaxFeeForCtAddrOk returns a tuple with the MaxFeeForCtAddr field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMaxFeeForCtAddrOk() (*string, bool) {
-	if o == nil || o.MaxFeeForCtAddr == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MaxFeeForCtAddr, true
+	return &o.MaxFeeForCtAddr, true
 }
 
-// HasMaxFeeForCtAddr returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMaxFeeForCtAddr() bool {
-	if o != nil && o.MaxFeeForCtAddr != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxFeeForCtAddr gets a reference to the given string and assigns it to the MaxFeeForCtAddr field.
+// SetMaxFeeForCtAddr sets field value
 func (o *CurrencyNetwork) SetMaxFeeForCtAddr(v string) {
-	o.MaxFeeForCtAddr = &v
+	o.MaxFeeForCtAddr = v
 }
 
-// GetMaxWithdrawAmount returns the MaxWithdrawAmount field value if set, zero value otherwise.
+// GetMaxWithdrawAmount returns the MaxWithdrawAmount field value
 func (o *CurrencyNetwork) GetMaxWithdrawAmount() string {
-	if o == nil || o.MaxWithdrawAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MaxWithdrawAmount
+
+	return o.MaxWithdrawAmount
 }
 
-// GetMaxWithdrawAmountOk returns a tuple with the MaxWithdrawAmount field value if set, nil otherwise
+// GetMaxWithdrawAmountOk returns a tuple with the MaxWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMaxWithdrawAmountOk() (*string, bool) {
-	if o == nil || o.MaxWithdrawAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MaxWithdrawAmount, true
+	return &o.MaxWithdrawAmount, true
 }
 
-// HasMaxWithdrawAmount returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMaxWithdrawAmount() bool {
-	if o != nil && o.MaxWithdrawAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxWithdrawAmount gets a reference to the given string and assigns it to the MaxWithdrawAmount field.
+// SetMaxWithdrawAmount sets field value
 func (o *CurrencyNetwork) SetMaxWithdrawAmount(v string) {
-	o.MaxWithdrawAmount = &v
+	o.MaxWithdrawAmount = v
 }
 
 // GetMinCollectAmount returns the MinCollectAmount field value if set, zero value otherwise.
@@ -390,316 +342,252 @@ func (o *CurrencyNetwork) SetMinCollectAmount(v string) {
 	o.MinCollectAmount = &v
 }
 
-// GetMinConfirmations returns the MinConfirmations field value if set, zero value otherwise.
+// GetMinConfirmations returns the MinConfirmations field value
 func (o *CurrencyNetwork) GetMinConfirmations() int32 {
-	if o == nil || o.MinConfirmations == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.MinConfirmations
+
+	return o.MinConfirmations
 }
 
-// GetMinConfirmationsOk returns a tuple with the MinConfirmations field value if set, nil otherwise
+// GetMinConfirmationsOk returns a tuple with the MinConfirmations field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMinConfirmationsOk() (*int32, bool) {
-	if o == nil || o.MinConfirmations == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinConfirmations, true
+	return &o.MinConfirmations, true
 }
 
-// HasMinConfirmations returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMinConfirmations() bool {
-	if o != nil && o.MinConfirmations != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinConfirmations gets a reference to the given int32 and assigns it to the MinConfirmations field.
+// SetMinConfirmations sets field value
 func (o *CurrencyNetwork) SetMinConfirmations(v int32) {
-	o.MinConfirmations = &v
+	o.MinConfirmations = v
 }
 
-// GetMinDepositAmount returns the MinDepositAmount field value if set, zero value otherwise.
+// GetMinDepositAmount returns the MinDepositAmount field value
 func (o *CurrencyNetwork) GetMinDepositAmount() string {
-	if o == nil || o.MinDepositAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinDepositAmount
+
+	return o.MinDepositAmount
 }
 
-// GetMinDepositAmountOk returns a tuple with the MinDepositAmount field value if set, nil otherwise
+// GetMinDepositAmountOk returns a tuple with the MinDepositAmount field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMinDepositAmountOk() (*string, bool) {
-	if o == nil || o.MinDepositAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinDepositAmount, true
+	return &o.MinDepositAmount, true
 }
 
-// HasMinDepositAmount returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMinDepositAmount() bool {
-	if o != nil && o.MinDepositAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinDepositAmount gets a reference to the given string and assigns it to the MinDepositAmount field.
+// SetMinDepositAmount sets field value
 func (o *CurrencyNetwork) SetMinDepositAmount(v string) {
-	o.MinDepositAmount = &v
+	o.MinDepositAmount = v
 }
 
-// GetMinFee returns the MinFee field value if set, zero value otherwise.
+// GetMinFee returns the MinFee field value
 func (o *CurrencyNetwork) GetMinFee() string {
-	if o == nil || o.MinFee == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinFee
+
+	return o.MinFee
 }
 
-// GetMinFeeOk returns a tuple with the MinFee field value if set, nil otherwise
+// GetMinFeeOk returns a tuple with the MinFee field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMinFeeOk() (*string, bool) {
-	if o == nil || o.MinFee == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinFee, true
+	return &o.MinFee, true
 }
 
-// HasMinFee returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMinFee() bool {
-	if o != nil && o.MinFee != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinFee gets a reference to the given string and assigns it to the MinFee field.
+// SetMinFee sets field value
 func (o *CurrencyNetwork) SetMinFee(v string) {
-	o.MinFee = &v
+	o.MinFee = v
 }
 
-// GetMinFeeForCtAddr returns the MinFeeForCtAddr field value if set, zero value otherwise.
+// GetMinFeeForCtAddr returns the MinFeeForCtAddr field value
 func (o *CurrencyNetwork) GetMinFeeForCtAddr() string {
-	if o == nil || o.MinFeeForCtAddr == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinFeeForCtAddr
+
+	return o.MinFeeForCtAddr
 }
 
-// GetMinFeeForCtAddrOk returns a tuple with the MinFeeForCtAddr field value if set, nil otherwise
+// GetMinFeeForCtAddrOk returns a tuple with the MinFeeForCtAddr field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMinFeeForCtAddrOk() (*string, bool) {
-	if o == nil || o.MinFeeForCtAddr == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinFeeForCtAddr, true
+	return &o.MinFeeForCtAddr, true
 }
 
-// HasMinFeeForCtAddr returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMinFeeForCtAddr() bool {
-	if o != nil && o.MinFeeForCtAddr != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinFeeForCtAddr gets a reference to the given string and assigns it to the MinFeeForCtAddr field.
+// SetMinFeeForCtAddr sets field value
 func (o *CurrencyNetwork) SetMinFeeForCtAddr(v string) {
-	o.MinFeeForCtAddr = &v
+	o.MinFeeForCtAddr = v
 }
 
-// GetMinWithdrawAmount returns the MinWithdrawAmount field value if set, zero value otherwise.
+// GetMinWithdrawAmount returns the MinWithdrawAmount field value
 func (o *CurrencyNetwork) GetMinWithdrawAmount() string {
-	if o == nil || o.MinWithdrawAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinWithdrawAmount
+
+	return o.MinWithdrawAmount
 }
 
-// GetMinWithdrawAmountOk returns a tuple with the MinWithdrawAmount field value if set, nil otherwise
+// GetMinWithdrawAmountOk returns a tuple with the MinWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetMinWithdrawAmountOk() (*string, bool) {
-	if o == nil || o.MinWithdrawAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinWithdrawAmount, true
+	return &o.MinWithdrawAmount, true
 }
 
-// HasMinWithdrawAmount returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasMinWithdrawAmount() bool {
-	if o != nil && o.MinWithdrawAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinWithdrawAmount gets a reference to the given string and assigns it to the MinWithdrawAmount field.
+// SetMinWithdrawAmount sets field value
 func (o *CurrencyNetwork) SetMinWithdrawAmount(v string) {
-	o.MinWithdrawAmount = &v
+	o.MinWithdrawAmount = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CurrencyNetwork) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CurrencyNetwork) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetNeedMemo returns the NeedMemo field value if set, zero value otherwise.
+// GetNeedMemo returns the NeedMemo field value
 func (o *CurrencyNetwork) GetNeedMemo() bool {
-	if o == nil || o.NeedMemo == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.NeedMemo
+
+	return o.NeedMemo
 }
 
-// GetNeedMemoOk returns a tuple with the NeedMemo field value if set, nil otherwise
+// GetNeedMemoOk returns a tuple with the NeedMemo field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetNeedMemoOk() (*bool, bool) {
-	if o == nil || o.NeedMemo == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.NeedMemo, true
+	return &o.NeedMemo, true
 }
 
-// HasNeedMemo returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasNeedMemo() bool {
-	if o != nil && o.NeedMemo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNeedMemo gets a reference to the given bool and assigns it to the NeedMemo field.
+// SetNeedMemo sets field value
 func (o *CurrencyNetwork) SetNeedMemo(v bool) {
-	o.NeedMemo = &v
+	o.NeedMemo = v
 }
 
-// GetNetwork returns the Network field value if set, zero value otherwise.
+// GetNetwork returns the Network field value
 func (o *CurrencyNetwork) GetNetwork() string {
-	if o == nil || o.Network == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Network
+
+	return o.Network
 }
 
-// GetNetworkOk returns a tuple with the Network field value if set, nil otherwise
+// GetNetworkOk returns a tuple with the Network field value
 // and a boolean to check if the value has been set.
 func (o *CurrencyNetwork) GetNetworkOk() (*string, bool) {
-	if o == nil || o.Network == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Network, true
+	return &o.Network, true
 }
 
-// HasNetwork returns a boolean if a field has been set.
-func (o *CurrencyNetwork) HasNetwork() bool {
-	if o != nil && o.Network != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetwork gets a reference to the given string and assigns it to the Network field.
+// SetNetwork sets field value
 func (o *CurrencyNetwork) SetNetwork(v string) {
-	o.Network = &v
+	o.Network = v
 }
 
 func (o CurrencyNetwork) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CanDeposit != nil {
+	if true {
 		toSerialize["can_deposit"] = o.CanDeposit
 	}
-	if o.CanTransfer != nil {
+	if true {
 		toSerialize["can_transfer"] = o.CanTransfer
 	}
-	if o.CanWithdraw != nil {
+	if true {
 		toSerialize["can_withdraw"] = o.CanWithdraw
 	}
-	if o.Code != nil {
+	if true {
 		toSerialize["code"] = o.Code
 	}
 	if o.ContractAddress != nil {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
-	if o.Id != nil {
+	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.MaxFee != nil {
+	if true {
 		toSerialize["max_fee"] = o.MaxFee
 	}
-	if o.MaxFeeForCtAddr != nil {
+	if true {
 		toSerialize["max_fee_for_ct_addr"] = o.MaxFeeForCtAddr
 	}
-	if o.MaxWithdrawAmount != nil {
+	if true {
 		toSerialize["max_withdraw_amount"] = o.MaxWithdrawAmount
 	}
 	if o.MinCollectAmount != nil {
 		toSerialize["min_collect_amount"] = o.MinCollectAmount
 	}
-	if o.MinConfirmations != nil {
+	if true {
 		toSerialize["min_confirmations"] = o.MinConfirmations
 	}
-	if o.MinDepositAmount != nil {
+	if true {
 		toSerialize["min_deposit_amount"] = o.MinDepositAmount
 	}
-	if o.MinFee != nil {
+	if true {
 		toSerialize["min_fee"] = o.MinFee
 	}
-	if o.MinFeeForCtAddr != nil {
+	if true {
 		toSerialize["min_fee_for_ct_addr"] = o.MinFeeForCtAddr
 	}
-	if o.MinWithdrawAmount != nil {
+	if true {
 		toSerialize["min_withdraw_amount"] = o.MinWithdrawAmount
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.NeedMemo != nil {
+	if true {
 		toSerialize["need_memo"] = o.NeedMemo
 	}
-	if o.Network != nil {
+	if true {
 		toSerialize["network"] = o.Network
 	}
 	return json.Marshal(toSerialize)

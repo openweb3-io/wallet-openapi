@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to [**[]Transaction**](Transaction.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Items** | [**[]Transaction**](Transaction.md) |  | 
+**Total** | **int32** |  | 
 
 ## Methods
 
 ### NewPageTransaction
 
-`func NewPageTransaction() *PageTransaction`
+`func NewPageTransaction(items []Transaction, total int32, ) *PageTransaction`
 
 NewPageTransaction instantiates a new PageTransaction object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetItems sets Items field to given value.
 
-### HasItems
-
-`func (o *PageTransaction) HasItems() bool`
-
-HasItems returns a boolean if a field has been set.
 
 ### GetTotal
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetTotal sets Total field to given value.
 
-### HasTotal
-
-`func (o *PageTransaction) HasTotal() bool`
-
-HasTotal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

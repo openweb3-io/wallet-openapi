@@ -192,7 +192,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createTransferRequest := *openapiclient.NewCreateTransferRequest() // CreateTransferRequest | Request Body
+    createTransferRequest := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example") // CreateTransferRequest | Request Body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

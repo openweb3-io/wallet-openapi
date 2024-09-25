@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | Pointer to **string** | the blockchain address. | [optional] 
-**Network** | Pointer to **string** | the blockchain network | [optional] 
+**Address** | **string** | the blockchain address. | 
+**Network** | **string** | the blockchain network | 
 
 ## Methods
 
 ### NewAddress
 
-`func NewAddress() *Address`
+`func NewAddress(address string, network string, ) *Address`
 
 NewAddress instantiates a new Address object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetAddress sets Address field to given value.
 
-### HasAddress
-
-`func (o *Address) HasAddress() bool`
-
-HasAddress returns a boolean if a field has been set.
 
 ### GetNetwork
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetNetwork sets Network field to given value.
 
-### HasNetwork
-
-`func (o *Address) HasNetwork() bool`
-
-HasNetwork returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

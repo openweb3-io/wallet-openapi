@@ -4,32 +4,32 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CanDeposit** | Pointer to **bool** | Is it depositable on-chain | [optional] 
-**CanTransfer** | Pointer to **bool** | Is it transferable within the platform | [optional] 
-**CanWithdraw** | Pointer to **bool** | Is it withdrawable on-chain | [optional] 
-**Code** | Pointer to **string** | Id                string &#x60;json:\&quot;id\&quot;&#x60;                      // Unique identifier on the platform | [optional] 
+**CanDeposit** | **bool** | Is it depositable on-chain | 
+**CanTransfer** | **bool** | Is it transferable within the platform | 
+**CanWithdraw** | **bool** | Is it withdrawable on-chain | 
+**Code** | **string** | Currency code identifier | 
 **ContractAddress** | Pointer to **string** | Contract address (for token contracts, if applicable) | [optional] 
-**Decimals** | Pointer to **int32** | Decimal precision | [optional] 
-**Logo** | Pointer to **string** | Currency logo URL | [optional] 
-**MaxFee** | Pointer to **string** | Maximum fee | [optional] 
-**MaxFeeForCtAddr** | Pointer to **string** | Maximum fee for contract addresses | [optional] 
-**MaxWithdrawAmount** | Pointer to **string** | Maximum withdraw amount per transaction | [optional] 
-**MinDepositAmount** | Pointer to **string** | Minimum deposit amount per transaction | [optional] 
-**MinFee** | Pointer to **string** | Minimum fee | [optional] 
-**MinFeeForCtAddr** | Pointer to **string** | Minimum fee for contract addresses | [optional] 
-**MinWithdrawAmount** | Pointer to **string** | Minimum withdraw amount per transaction | [optional] 
-**Name** | Pointer to **string** | Currency name | [optional] 
-**NeedMemo** | Pointer to **bool** | Does it require a memo/note for transactions | [optional] 
-**Networks** | Pointer to [**[]CurrencyNetwork**](CurrencyNetwork.md) | Networks information | [optional] 
-**Precision** | Pointer to **int32** | The number of decimals used by the currency | [optional] 
-**Rated** | Pointer to **bool** | Participate in exchange rate calculation | [optional] 
-**Symbol** | Pointer to **string** | Currency symbol | [optional] 
+**Decimals** | **int32** | Decimal precision | 
+**Logo** | **string** | Currency logo URL | 
+**MaxFee** | **string** | Maximum fee | 
+**MaxFeeForCtAddr** | **string** | Maximum fee for contract addresses | 
+**MaxWithdrawAmount** | **string** | Maximum withdraw amount per transaction | 
+**MinDepositAmount** | **string** | Minimum deposit amount per transaction | 
+**MinFee** | **string** | Minimum fee | 
+**MinFeeForCtAddr** | **string** | Minimum fee for contract addresses | 
+**MinWithdrawAmount** | **string** | Minimum withdraw amount per transaction | 
+**Name** | **string** | Currency name | 
+**NeedMemo** | **bool** | Does it require a memo/note for transactions | 
+**Networks** | [**[]CurrencyNetwork**](CurrencyNetwork.md) | Networks information | 
+**Precision** | **int32** | The number of decimals used by the currency | 
+**Rated** | **bool** | Participate in exchange rate calculation | 
+**Symbol** | **string** | Currency symbol | 
 
 ## Methods
 
 ### NewCurrency
 
-`func NewCurrency() *Currency`
+`func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, networks []CurrencyNetwork, precision int32, rated bool, symbol string, ) *Currency`
 
 NewCurrency instantiates a new Currency object
 This constructor will assign default values to properties that have it defined,
@@ -63,11 +63,6 @@ and a boolean to check if the value has been set.
 
 SetCanDeposit sets CanDeposit field to given value.
 
-### HasCanDeposit
-
-`func (o *Currency) HasCanDeposit() bool`
-
-HasCanDeposit returns a boolean if a field has been set.
 
 ### GetCanTransfer
 
@@ -88,11 +83,6 @@ and a boolean to check if the value has been set.
 
 SetCanTransfer sets CanTransfer field to given value.
 
-### HasCanTransfer
-
-`func (o *Currency) HasCanTransfer() bool`
-
-HasCanTransfer returns a boolean if a field has been set.
 
 ### GetCanWithdraw
 
@@ -113,11 +103,6 @@ and a boolean to check if the value has been set.
 
 SetCanWithdraw sets CanWithdraw field to given value.
 
-### HasCanWithdraw
-
-`func (o *Currency) HasCanWithdraw() bool`
-
-HasCanWithdraw returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -138,11 +123,6 @@ and a boolean to check if the value has been set.
 
 SetCode sets Code field to given value.
 
-### HasCode
-
-`func (o *Currency) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
 
 ### GetContractAddress
 
@@ -188,11 +168,6 @@ and a boolean to check if the value has been set.
 
 SetDecimals sets Decimals field to given value.
 
-### HasDecimals
-
-`func (o *Currency) HasDecimals() bool`
-
-HasDecimals returns a boolean if a field has been set.
 
 ### GetLogo
 
@@ -213,11 +188,6 @@ and a boolean to check if the value has been set.
 
 SetLogo sets Logo field to given value.
 
-### HasLogo
-
-`func (o *Currency) HasLogo() bool`
-
-HasLogo returns a boolean if a field has been set.
 
 ### GetMaxFee
 
@@ -238,11 +208,6 @@ and a boolean to check if the value has been set.
 
 SetMaxFee sets MaxFee field to given value.
 
-### HasMaxFee
-
-`func (o *Currency) HasMaxFee() bool`
-
-HasMaxFee returns a boolean if a field has been set.
 
 ### GetMaxFeeForCtAddr
 
@@ -263,11 +228,6 @@ and a boolean to check if the value has been set.
 
 SetMaxFeeForCtAddr sets MaxFeeForCtAddr field to given value.
 
-### HasMaxFeeForCtAddr
-
-`func (o *Currency) HasMaxFeeForCtAddr() bool`
-
-HasMaxFeeForCtAddr returns a boolean if a field has been set.
 
 ### GetMaxWithdrawAmount
 
@@ -288,11 +248,6 @@ and a boolean to check if the value has been set.
 
 SetMaxWithdrawAmount sets MaxWithdrawAmount field to given value.
 
-### HasMaxWithdrawAmount
-
-`func (o *Currency) HasMaxWithdrawAmount() bool`
-
-HasMaxWithdrawAmount returns a boolean if a field has been set.
 
 ### GetMinDepositAmount
 
@@ -313,11 +268,6 @@ and a boolean to check if the value has been set.
 
 SetMinDepositAmount sets MinDepositAmount field to given value.
 
-### HasMinDepositAmount
-
-`func (o *Currency) HasMinDepositAmount() bool`
-
-HasMinDepositAmount returns a boolean if a field has been set.
 
 ### GetMinFee
 
@@ -338,11 +288,6 @@ and a boolean to check if the value has been set.
 
 SetMinFee sets MinFee field to given value.
 
-### HasMinFee
-
-`func (o *Currency) HasMinFee() bool`
-
-HasMinFee returns a boolean if a field has been set.
 
 ### GetMinFeeForCtAddr
 
@@ -363,11 +308,6 @@ and a boolean to check if the value has been set.
 
 SetMinFeeForCtAddr sets MinFeeForCtAddr field to given value.
 
-### HasMinFeeForCtAddr
-
-`func (o *Currency) HasMinFeeForCtAddr() bool`
-
-HasMinFeeForCtAddr returns a boolean if a field has been set.
 
 ### GetMinWithdrawAmount
 
@@ -388,11 +328,6 @@ and a boolean to check if the value has been set.
 
 SetMinWithdrawAmount sets MinWithdrawAmount field to given value.
 
-### HasMinWithdrawAmount
-
-`func (o *Currency) HasMinWithdrawAmount() bool`
-
-HasMinWithdrawAmount returns a boolean if a field has been set.
 
 ### GetName
 
@@ -413,11 +348,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *Currency) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetNeedMemo
 
@@ -438,11 +368,6 @@ and a boolean to check if the value has been set.
 
 SetNeedMemo sets NeedMemo field to given value.
 
-### HasNeedMemo
-
-`func (o *Currency) HasNeedMemo() bool`
-
-HasNeedMemo returns a boolean if a field has been set.
 
 ### GetNetworks
 
@@ -463,11 +388,6 @@ and a boolean to check if the value has been set.
 
 SetNetworks sets Networks field to given value.
 
-### HasNetworks
-
-`func (o *Currency) HasNetworks() bool`
-
-HasNetworks returns a boolean if a field has been set.
 
 ### GetPrecision
 
@@ -488,11 +408,6 @@ and a boolean to check if the value has been set.
 
 SetPrecision sets Precision field to given value.
 
-### HasPrecision
-
-`func (o *Currency) HasPrecision() bool`
-
-HasPrecision returns a boolean if a field has been set.
 
 ### GetRated
 
@@ -513,11 +428,6 @@ and a boolean to check if the value has been set.
 
 SetRated sets Rated field to given value.
 
-### HasRated
-
-`func (o *Currency) HasRated() bool`
-
-HasRated returns a boolean if a field has been set.
 
 ### GetSymbol
 
@@ -538,11 +448,6 @@ and a boolean to check if the value has been set.
 
 SetSymbol sets Symbol field to given value.
 
-### HasSymbol
-
-`func (o *Currency) HasSymbol() bool`
-
-HasSymbol returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseAmount** | Pointer to **string** | The amount of the base currency you want to convert | [optional] 
-**BaseCurrency** | Pointer to **string** | The currency code of the base currency that you want to convert from | [optional] 
-**Rate** | Pointer to **float32** | The exchange rate from the base currency to the target currency | [optional] 
-**ToAmount** | Pointer to **string** | The amount of the target currency you will receive after the conversion | [optional] 
-**ToCurrency** | Pointer to **string** | The currency code of the target currency that you want to convert to | [optional] 
+**BaseAmount** | **string** | The amount of the base currency you want to convert | 
+**BaseCurrency** | **string** | The currency code of the base currency that you want to convert from | 
+**Rate** | **float32** | The exchange rate from the base currency to the target currency | 
+**ToAmount** | **string** | The amount of the target currency you will receive after the conversion | 
+**ToCurrency** | **string** | The currency code of the target currency that you want to convert to | 
 
 ## Methods
 
 ### NewEstimateResponse
 
-`func NewEstimateResponse() *EstimateResponse`
+`func NewEstimateResponse(baseAmount string, baseCurrency string, rate float32, toAmount string, toCurrency string, ) *EstimateResponse`
 
 NewEstimateResponse instantiates a new EstimateResponse object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetBaseAmount sets BaseAmount field to given value.
 
-### HasBaseAmount
-
-`func (o *EstimateResponse) HasBaseAmount() bool`
-
-HasBaseAmount returns a boolean if a field has been set.
 
 ### GetBaseCurrency
 
@@ -73,11 +68,6 @@ and a boolean to check if the value has been set.
 
 SetBaseCurrency sets BaseCurrency field to given value.
 
-### HasBaseCurrency
-
-`func (o *EstimateResponse) HasBaseCurrency() bool`
-
-HasBaseCurrency returns a boolean if a field has been set.
 
 ### GetRate
 
@@ -98,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetRate sets Rate field to given value.
 
-### HasRate
-
-`func (o *EstimateResponse) HasRate() bool`
-
-HasRate returns a boolean if a field has been set.
 
 ### GetToAmount
 
@@ -123,11 +108,6 @@ and a boolean to check if the value has been set.
 
 SetToAmount sets ToAmount field to given value.
 
-### HasToAmount
-
-`func (o *EstimateResponse) HasToAmount() bool`
-
-HasToAmount returns a boolean if a field has been set.
 
 ### GetToCurrency
 
@@ -148,11 +128,6 @@ and a boolean to check if the value has been set.
 
 SetToCurrency sets ToCurrency field to given value.
 
-### HasToCurrency
-
-`func (o *EstimateResponse) HasToCurrency() bool`
-
-HasToCurrency returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

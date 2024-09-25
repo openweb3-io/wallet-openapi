@@ -16,8 +16,8 @@ import (
 
 // CursorPageCurrency struct for CursorPageCurrency
 type CursorPageCurrency struct {
-	HasNext *bool `json:"has_next,omitempty"`
-	Items *[]Currency `json:"items,omitempty"`
+	HasNext bool `json:"has_next"`
+	Items []Currency `json:"items"`
 	NextCursor *string `json:"next_cursor,omitempty"`
 	PrevCursor *string `json:"prev_cursor,omitempty"`
 }
@@ -26,8 +26,10 @@ type CursorPageCurrency struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCursorPageCurrency() *CursorPageCurrency {
+func NewCursorPageCurrency(hasNext bool, items []Currency) *CursorPageCurrency {
 	this := CursorPageCurrency{}
+	this.HasNext = hasNext
+	this.Items = items
 	return &this
 }
 
@@ -39,68 +41,52 @@ func NewCursorPageCurrencyWithDefaults() *CursorPageCurrency {
 	return &this
 }
 
-// GetHasNext returns the HasNext field value if set, zero value otherwise.
+// GetHasNext returns the HasNext field value
 func (o *CursorPageCurrency) GetHasNext() bool {
-	if o == nil || o.HasNext == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.HasNext
+
+	return o.HasNext
 }
 
-// GetHasNextOk returns a tuple with the HasNext field value if set, nil otherwise
+// GetHasNextOk returns a tuple with the HasNext field value
 // and a boolean to check if the value has been set.
 func (o *CursorPageCurrency) GetHasNextOk() (*bool, bool) {
-	if o == nil || o.HasNext == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.HasNext, true
+	return &o.HasNext, true
 }
 
-// HasHasNext returns a boolean if a field has been set.
-func (o *CursorPageCurrency) HasHasNext() bool {
-	if o != nil && o.HasNext != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHasNext gets a reference to the given bool and assigns it to the HasNext field.
+// SetHasNext sets field value
 func (o *CursorPageCurrency) SetHasNext(v bool) {
-	o.HasNext = &v
+	o.HasNext = v
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
+// GetItems returns the Items field value
 func (o *CursorPageCurrency) GetItems() []Currency {
-	if o == nil || o.Items == nil {
+	if o == nil {
 		var ret []Currency
 		return ret
 	}
-	return *o.Items
+
+	return o.Items
 }
 
-// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
 func (o *CursorPageCurrency) GetItemsOk() (*[]Currency, bool) {
-	if o == nil || o.Items == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.Items, true
 }
 
-// HasItems returns a boolean if a field has been set.
-func (o *CursorPageCurrency) HasItems() bool {
-	if o != nil && o.Items != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetItems gets a reference to the given []Currency and assigns it to the Items field.
+// SetItems sets field value
 func (o *CursorPageCurrency) SetItems(v []Currency) {
-	o.Items = &v
+	o.Items = v
 }
 
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
@@ -169,10 +155,10 @@ func (o *CursorPageCurrency) SetPrevCursor(v string) {
 
 func (o CursorPageCurrency) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.HasNext != nil {
+	if true {
 		toSerialize["has_next"] = o.HasNext
 	}
-	if o.Items != nil {
+	if true {
 		toSerialize["items"] = o.Items
 	}
 	if o.NextCursor != nil {

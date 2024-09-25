@@ -305,10 +305,11 @@ func (a *AddressesApiService) V1WalletsGetDepositAddressExecute(r ApiV1WalletsGe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
-	if r.currency != nil {
-		localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
+	if r.currency == nil {
+		return localVarReturnValue, nil, reportError("currency is required and must be specified")
 	}
+
+	localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
 	if r.network != nil {
 		localVarQueryParams.Add("network", parameterToString(*r.network, ""))
 	}

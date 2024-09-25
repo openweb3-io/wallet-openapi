@@ -17,53 +17,72 @@ import (
 // Currency struct for Currency
 type Currency struct {
 	// Is it depositable on-chain
-	CanDeposit *bool `json:"can_deposit,omitempty"`
+	CanDeposit bool `json:"can_deposit"`
 	// Is it transferable within the platform
-	CanTransfer *bool `json:"can_transfer,omitempty"`
+	CanTransfer bool `json:"can_transfer"`
 	// Is it withdrawable on-chain
-	CanWithdraw *bool `json:"can_withdraw,omitempty"`
-	// Id                string `json:\"id\"`                      // Unique identifier on the platform
-	Code *string `json:"code,omitempty"`
+	CanWithdraw bool `json:"can_withdraw"`
+	// Currency code identifier
+	Code string `json:"code"`
 	// Contract address (for token contracts, if applicable)
 	ContractAddress *string `json:"contract_address,omitempty"`
 	// Decimal precision
-	Decimals *int32 `json:"decimals,omitempty"`
+	Decimals int32 `json:"decimals"`
 	// Currency logo URL
-	Logo *string `json:"logo,omitempty"`
+	Logo string `json:"logo"`
 	// Maximum fee
-	MaxFee *string `json:"max_fee,omitempty"`
+	MaxFee string `json:"max_fee"`
 	// Maximum fee for contract addresses
-	MaxFeeForCtAddr *string `json:"max_fee_for_ct_addr,omitempty"`
+	MaxFeeForCtAddr string `json:"max_fee_for_ct_addr"`
 	// Maximum withdraw amount per transaction
-	MaxWithdrawAmount *string `json:"max_withdraw_amount,omitempty"`
+	MaxWithdrawAmount string `json:"max_withdraw_amount"`
 	// Minimum deposit amount per transaction
-	MinDepositAmount *string `json:"min_deposit_amount,omitempty"`
+	MinDepositAmount string `json:"min_deposit_amount"`
 	// Minimum fee
-	MinFee *string `json:"min_fee,omitempty"`
+	MinFee string `json:"min_fee"`
 	// Minimum fee for contract addresses
-	MinFeeForCtAddr *string `json:"min_fee_for_ct_addr,omitempty"`
+	MinFeeForCtAddr string `json:"min_fee_for_ct_addr"`
 	// Minimum withdraw amount per transaction
-	MinWithdrawAmount *string `json:"min_withdraw_amount,omitempty"`
+	MinWithdrawAmount string `json:"min_withdraw_amount"`
 	// Currency name
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Does it require a memo/note for transactions
-	NeedMemo *bool `json:"need_memo,omitempty"`
+	NeedMemo bool `json:"need_memo"`
 	// Networks information
-	Networks *[]CurrencyNetwork `json:"networks,omitempty"`
+	Networks []CurrencyNetwork `json:"networks"`
 	// The number of decimals used by the currency
-	Precision *int32 `json:"precision,omitempty"`
+	Precision int32 `json:"precision"`
 	// Participate in exchange rate calculation
-	Rated *bool `json:"rated,omitempty"`
+	Rated bool `json:"rated"`
 	// Currency symbol
-	Symbol *string `json:"symbol,omitempty"`
+	Symbol string `json:"symbol"`
 }
 
 // NewCurrency instantiates a new Currency object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrency() *Currency {
+func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, networks []CurrencyNetwork, precision int32, rated bool, symbol string) *Currency {
 	this := Currency{}
+	this.CanDeposit = canDeposit
+	this.CanTransfer = canTransfer
+	this.CanWithdraw = canWithdraw
+	this.Code = code
+	this.Decimals = decimals
+	this.Logo = logo
+	this.MaxFee = maxFee
+	this.MaxFeeForCtAddr = maxFeeForCtAddr
+	this.MaxWithdrawAmount = maxWithdrawAmount
+	this.MinDepositAmount = minDepositAmount
+	this.MinFee = minFee
+	this.MinFeeForCtAddr = minFeeForCtAddr
+	this.MinWithdrawAmount = minWithdrawAmount
+	this.Name = name
+	this.NeedMemo = needMemo
+	this.Networks = networks
+	this.Precision = precision
+	this.Rated = rated
+	this.Symbol = symbol
 	return &this
 }
 
@@ -75,132 +94,100 @@ func NewCurrencyWithDefaults() *Currency {
 	return &this
 }
 
-// GetCanDeposit returns the CanDeposit field value if set, zero value otherwise.
+// GetCanDeposit returns the CanDeposit field value
 func (o *Currency) GetCanDeposit() bool {
-	if o == nil || o.CanDeposit == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanDeposit
+
+	return o.CanDeposit
 }
 
-// GetCanDepositOk returns a tuple with the CanDeposit field value if set, nil otherwise
+// GetCanDepositOk returns a tuple with the CanDeposit field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetCanDepositOk() (*bool, bool) {
-	if o == nil || o.CanDeposit == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CanDeposit, true
+	return &o.CanDeposit, true
 }
 
-// HasCanDeposit returns a boolean if a field has been set.
-func (o *Currency) HasCanDeposit() bool {
-	if o != nil && o.CanDeposit != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanDeposit gets a reference to the given bool and assigns it to the CanDeposit field.
+// SetCanDeposit sets field value
 func (o *Currency) SetCanDeposit(v bool) {
-	o.CanDeposit = &v
+	o.CanDeposit = v
 }
 
-// GetCanTransfer returns the CanTransfer field value if set, zero value otherwise.
+// GetCanTransfer returns the CanTransfer field value
 func (o *Currency) GetCanTransfer() bool {
-	if o == nil || o.CanTransfer == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanTransfer
+
+	return o.CanTransfer
 }
 
-// GetCanTransferOk returns a tuple with the CanTransfer field value if set, nil otherwise
+// GetCanTransferOk returns a tuple with the CanTransfer field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetCanTransferOk() (*bool, bool) {
-	if o == nil || o.CanTransfer == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CanTransfer, true
+	return &o.CanTransfer, true
 }
 
-// HasCanTransfer returns a boolean if a field has been set.
-func (o *Currency) HasCanTransfer() bool {
-	if o != nil && o.CanTransfer != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanTransfer gets a reference to the given bool and assigns it to the CanTransfer field.
+// SetCanTransfer sets field value
 func (o *Currency) SetCanTransfer(v bool) {
-	o.CanTransfer = &v
+	o.CanTransfer = v
 }
 
-// GetCanWithdraw returns the CanWithdraw field value if set, zero value otherwise.
+// GetCanWithdraw returns the CanWithdraw field value
 func (o *Currency) GetCanWithdraw() bool {
-	if o == nil || o.CanWithdraw == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.CanWithdraw
+
+	return o.CanWithdraw
 }
 
-// GetCanWithdrawOk returns a tuple with the CanWithdraw field value if set, nil otherwise
+// GetCanWithdrawOk returns a tuple with the CanWithdraw field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetCanWithdrawOk() (*bool, bool) {
-	if o == nil || o.CanWithdraw == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CanWithdraw, true
+	return &o.CanWithdraw, true
 }
 
-// HasCanWithdraw returns a boolean if a field has been set.
-func (o *Currency) HasCanWithdraw() bool {
-	if o != nil && o.CanWithdraw != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCanWithdraw gets a reference to the given bool and assigns it to the CanWithdraw field.
+// SetCanWithdraw sets field value
 func (o *Currency) SetCanWithdraw(v bool) {
-	o.CanWithdraw = &v
+	o.CanWithdraw = v
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value
 func (o *Currency) GetCode() string {
-	if o == nil || o.Code == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *Currency) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
+// SetCode sets field value
 func (o *Currency) SetCode(v string) {
-	o.Code = &v
+	o.Code = v
 }
 
 // GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
@@ -235,546 +222,426 @@ func (o *Currency) SetContractAddress(v string) {
 	o.ContractAddress = &v
 }
 
-// GetDecimals returns the Decimals field value if set, zero value otherwise.
+// GetDecimals returns the Decimals field value
 func (o *Currency) GetDecimals() int32 {
-	if o == nil || o.Decimals == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Decimals
+
+	return o.Decimals
 }
 
-// GetDecimalsOk returns a tuple with the Decimals field value if set, nil otherwise
+// GetDecimalsOk returns a tuple with the Decimals field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetDecimalsOk() (*int32, bool) {
-	if o == nil || o.Decimals == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Decimals, true
+	return &o.Decimals, true
 }
 
-// HasDecimals returns a boolean if a field has been set.
-func (o *Currency) HasDecimals() bool {
-	if o != nil && o.Decimals != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDecimals gets a reference to the given int32 and assigns it to the Decimals field.
+// SetDecimals sets field value
 func (o *Currency) SetDecimals(v int32) {
-	o.Decimals = &v
+	o.Decimals = v
 }
 
-// GetLogo returns the Logo field value if set, zero value otherwise.
+// GetLogo returns the Logo field value
 func (o *Currency) GetLogo() string {
-	if o == nil || o.Logo == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Logo
+
+	return o.Logo
 }
 
-// GetLogoOk returns a tuple with the Logo field value if set, nil otherwise
+// GetLogoOk returns a tuple with the Logo field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetLogoOk() (*string, bool) {
-	if o == nil || o.Logo == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Logo, true
+	return &o.Logo, true
 }
 
-// HasLogo returns a boolean if a field has been set.
-func (o *Currency) HasLogo() bool {
-	if o != nil && o.Logo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLogo gets a reference to the given string and assigns it to the Logo field.
+// SetLogo sets field value
 func (o *Currency) SetLogo(v string) {
-	o.Logo = &v
+	o.Logo = v
 }
 
-// GetMaxFee returns the MaxFee field value if set, zero value otherwise.
+// GetMaxFee returns the MaxFee field value
 func (o *Currency) GetMaxFee() string {
-	if o == nil || o.MaxFee == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MaxFee
+
+	return o.MaxFee
 }
 
-// GetMaxFeeOk returns a tuple with the MaxFee field value if set, nil otherwise
+// GetMaxFeeOk returns a tuple with the MaxFee field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetMaxFeeOk() (*string, bool) {
-	if o == nil || o.MaxFee == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MaxFee, true
+	return &o.MaxFee, true
 }
 
-// HasMaxFee returns a boolean if a field has been set.
-func (o *Currency) HasMaxFee() bool {
-	if o != nil && o.MaxFee != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxFee gets a reference to the given string and assigns it to the MaxFee field.
+// SetMaxFee sets field value
 func (o *Currency) SetMaxFee(v string) {
-	o.MaxFee = &v
+	o.MaxFee = v
 }
 
-// GetMaxFeeForCtAddr returns the MaxFeeForCtAddr field value if set, zero value otherwise.
+// GetMaxFeeForCtAddr returns the MaxFeeForCtAddr field value
 func (o *Currency) GetMaxFeeForCtAddr() string {
-	if o == nil || o.MaxFeeForCtAddr == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MaxFeeForCtAddr
+
+	return o.MaxFeeForCtAddr
 }
 
-// GetMaxFeeForCtAddrOk returns a tuple with the MaxFeeForCtAddr field value if set, nil otherwise
+// GetMaxFeeForCtAddrOk returns a tuple with the MaxFeeForCtAddr field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetMaxFeeForCtAddrOk() (*string, bool) {
-	if o == nil || o.MaxFeeForCtAddr == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MaxFeeForCtAddr, true
+	return &o.MaxFeeForCtAddr, true
 }
 
-// HasMaxFeeForCtAddr returns a boolean if a field has been set.
-func (o *Currency) HasMaxFeeForCtAddr() bool {
-	if o != nil && o.MaxFeeForCtAddr != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxFeeForCtAddr gets a reference to the given string and assigns it to the MaxFeeForCtAddr field.
+// SetMaxFeeForCtAddr sets field value
 func (o *Currency) SetMaxFeeForCtAddr(v string) {
-	o.MaxFeeForCtAddr = &v
+	o.MaxFeeForCtAddr = v
 }
 
-// GetMaxWithdrawAmount returns the MaxWithdrawAmount field value if set, zero value otherwise.
+// GetMaxWithdrawAmount returns the MaxWithdrawAmount field value
 func (o *Currency) GetMaxWithdrawAmount() string {
-	if o == nil || o.MaxWithdrawAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MaxWithdrawAmount
+
+	return o.MaxWithdrawAmount
 }
 
-// GetMaxWithdrawAmountOk returns a tuple with the MaxWithdrawAmount field value if set, nil otherwise
+// GetMaxWithdrawAmountOk returns a tuple with the MaxWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetMaxWithdrawAmountOk() (*string, bool) {
-	if o == nil || o.MaxWithdrawAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MaxWithdrawAmount, true
+	return &o.MaxWithdrawAmount, true
 }
 
-// HasMaxWithdrawAmount returns a boolean if a field has been set.
-func (o *Currency) HasMaxWithdrawAmount() bool {
-	if o != nil && o.MaxWithdrawAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxWithdrawAmount gets a reference to the given string and assigns it to the MaxWithdrawAmount field.
+// SetMaxWithdrawAmount sets field value
 func (o *Currency) SetMaxWithdrawAmount(v string) {
-	o.MaxWithdrawAmount = &v
+	o.MaxWithdrawAmount = v
 }
 
-// GetMinDepositAmount returns the MinDepositAmount field value if set, zero value otherwise.
+// GetMinDepositAmount returns the MinDepositAmount field value
 func (o *Currency) GetMinDepositAmount() string {
-	if o == nil || o.MinDepositAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinDepositAmount
+
+	return o.MinDepositAmount
 }
 
-// GetMinDepositAmountOk returns a tuple with the MinDepositAmount field value if set, nil otherwise
+// GetMinDepositAmountOk returns a tuple with the MinDepositAmount field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetMinDepositAmountOk() (*string, bool) {
-	if o == nil || o.MinDepositAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinDepositAmount, true
+	return &o.MinDepositAmount, true
 }
 
-// HasMinDepositAmount returns a boolean if a field has been set.
-func (o *Currency) HasMinDepositAmount() bool {
-	if o != nil && o.MinDepositAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinDepositAmount gets a reference to the given string and assigns it to the MinDepositAmount field.
+// SetMinDepositAmount sets field value
 func (o *Currency) SetMinDepositAmount(v string) {
-	o.MinDepositAmount = &v
+	o.MinDepositAmount = v
 }
 
-// GetMinFee returns the MinFee field value if set, zero value otherwise.
+// GetMinFee returns the MinFee field value
 func (o *Currency) GetMinFee() string {
-	if o == nil || o.MinFee == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinFee
+
+	return o.MinFee
 }
 
-// GetMinFeeOk returns a tuple with the MinFee field value if set, nil otherwise
+// GetMinFeeOk returns a tuple with the MinFee field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetMinFeeOk() (*string, bool) {
-	if o == nil || o.MinFee == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinFee, true
+	return &o.MinFee, true
 }
 
-// HasMinFee returns a boolean if a field has been set.
-func (o *Currency) HasMinFee() bool {
-	if o != nil && o.MinFee != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinFee gets a reference to the given string and assigns it to the MinFee field.
+// SetMinFee sets field value
 func (o *Currency) SetMinFee(v string) {
-	o.MinFee = &v
+	o.MinFee = v
 }
 
-// GetMinFeeForCtAddr returns the MinFeeForCtAddr field value if set, zero value otherwise.
+// GetMinFeeForCtAddr returns the MinFeeForCtAddr field value
 func (o *Currency) GetMinFeeForCtAddr() string {
-	if o == nil || o.MinFeeForCtAddr == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinFeeForCtAddr
+
+	return o.MinFeeForCtAddr
 }
 
-// GetMinFeeForCtAddrOk returns a tuple with the MinFeeForCtAddr field value if set, nil otherwise
+// GetMinFeeForCtAddrOk returns a tuple with the MinFeeForCtAddr field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetMinFeeForCtAddrOk() (*string, bool) {
-	if o == nil || o.MinFeeForCtAddr == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinFeeForCtAddr, true
+	return &o.MinFeeForCtAddr, true
 }
 
-// HasMinFeeForCtAddr returns a boolean if a field has been set.
-func (o *Currency) HasMinFeeForCtAddr() bool {
-	if o != nil && o.MinFeeForCtAddr != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinFeeForCtAddr gets a reference to the given string and assigns it to the MinFeeForCtAddr field.
+// SetMinFeeForCtAddr sets field value
 func (o *Currency) SetMinFeeForCtAddr(v string) {
-	o.MinFeeForCtAddr = &v
+	o.MinFeeForCtAddr = v
 }
 
-// GetMinWithdrawAmount returns the MinWithdrawAmount field value if set, zero value otherwise.
+// GetMinWithdrawAmount returns the MinWithdrawAmount field value
 func (o *Currency) GetMinWithdrawAmount() string {
-	if o == nil || o.MinWithdrawAmount == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MinWithdrawAmount
+
+	return o.MinWithdrawAmount
 }
 
-// GetMinWithdrawAmountOk returns a tuple with the MinWithdrawAmount field value if set, nil otherwise
+// GetMinWithdrawAmountOk returns a tuple with the MinWithdrawAmount field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetMinWithdrawAmountOk() (*string, bool) {
-	if o == nil || o.MinWithdrawAmount == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.MinWithdrawAmount, true
+	return &o.MinWithdrawAmount, true
 }
 
-// HasMinWithdrawAmount returns a boolean if a field has been set.
-func (o *Currency) HasMinWithdrawAmount() bool {
-	if o != nil && o.MinWithdrawAmount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMinWithdrawAmount gets a reference to the given string and assigns it to the MinWithdrawAmount field.
+// SetMinWithdrawAmount sets field value
 func (o *Currency) SetMinWithdrawAmount(v string) {
-	o.MinWithdrawAmount = &v
+	o.MinWithdrawAmount = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *Currency) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *Currency) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *Currency) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetNeedMemo returns the NeedMemo field value if set, zero value otherwise.
+// GetNeedMemo returns the NeedMemo field value
 func (o *Currency) GetNeedMemo() bool {
-	if o == nil || o.NeedMemo == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.NeedMemo
+
+	return o.NeedMemo
 }
 
-// GetNeedMemoOk returns a tuple with the NeedMemo field value if set, nil otherwise
+// GetNeedMemoOk returns a tuple with the NeedMemo field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetNeedMemoOk() (*bool, bool) {
-	if o == nil || o.NeedMemo == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.NeedMemo, true
+	return &o.NeedMemo, true
 }
 
-// HasNeedMemo returns a boolean if a field has been set.
-func (o *Currency) HasNeedMemo() bool {
-	if o != nil && o.NeedMemo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNeedMemo gets a reference to the given bool and assigns it to the NeedMemo field.
+// SetNeedMemo sets field value
 func (o *Currency) SetNeedMemo(v bool) {
-	o.NeedMemo = &v
+	o.NeedMemo = v
 }
 
-// GetNetworks returns the Networks field value if set, zero value otherwise.
+// GetNetworks returns the Networks field value
 func (o *Currency) GetNetworks() []CurrencyNetwork {
-	if o == nil || o.Networks == nil {
+	if o == nil {
 		var ret []CurrencyNetwork
 		return ret
 	}
-	return *o.Networks
+
+	return o.Networks
 }
 
-// GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
+// GetNetworksOk returns a tuple with the Networks field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetNetworksOk() (*[]CurrencyNetwork, bool) {
-	if o == nil || o.Networks == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Networks, true
+	return &o.Networks, true
 }
 
-// HasNetworks returns a boolean if a field has been set.
-func (o *Currency) HasNetworks() bool {
-	if o != nil && o.Networks != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNetworks gets a reference to the given []CurrencyNetwork and assigns it to the Networks field.
+// SetNetworks sets field value
 func (o *Currency) SetNetworks(v []CurrencyNetwork) {
-	o.Networks = &v
+	o.Networks = v
 }
 
-// GetPrecision returns the Precision field value if set, zero value otherwise.
+// GetPrecision returns the Precision field value
 func (o *Currency) GetPrecision() int32 {
-	if o == nil || o.Precision == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Precision
+
+	return o.Precision
 }
 
-// GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
+// GetPrecisionOk returns a tuple with the Precision field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetPrecisionOk() (*int32, bool) {
-	if o == nil || o.Precision == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Precision, true
+	return &o.Precision, true
 }
 
-// HasPrecision returns a boolean if a field has been set.
-func (o *Currency) HasPrecision() bool {
-	if o != nil && o.Precision != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPrecision gets a reference to the given int32 and assigns it to the Precision field.
+// SetPrecision sets field value
 func (o *Currency) SetPrecision(v int32) {
-	o.Precision = &v
+	o.Precision = v
 }
 
-// GetRated returns the Rated field value if set, zero value otherwise.
+// GetRated returns the Rated field value
 func (o *Currency) GetRated() bool {
-	if o == nil || o.Rated == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Rated
+
+	return o.Rated
 }
 
-// GetRatedOk returns a tuple with the Rated field value if set, nil otherwise
+// GetRatedOk returns a tuple with the Rated field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetRatedOk() (*bool, bool) {
-	if o == nil || o.Rated == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Rated, true
+	return &o.Rated, true
 }
 
-// HasRated returns a boolean if a field has been set.
-func (o *Currency) HasRated() bool {
-	if o != nil && o.Rated != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRated gets a reference to the given bool and assigns it to the Rated field.
+// SetRated sets field value
 func (o *Currency) SetRated(v bool) {
-	o.Rated = &v
+	o.Rated = v
 }
 
-// GetSymbol returns the Symbol field value if set, zero value otherwise.
+// GetSymbol returns the Symbol field value
 func (o *Currency) GetSymbol() string {
-	if o == nil || o.Symbol == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Symbol
+
+	return o.Symbol
 }
 
-// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
+// GetSymbolOk returns a tuple with the Symbol field value
 // and a boolean to check if the value has been set.
 func (o *Currency) GetSymbolOk() (*string, bool) {
-	if o == nil || o.Symbol == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Symbol, true
+	return &o.Symbol, true
 }
 
-// HasSymbol returns a boolean if a field has been set.
-func (o *Currency) HasSymbol() bool {
-	if o != nil && o.Symbol != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
+// SetSymbol sets field value
 func (o *Currency) SetSymbol(v string) {
-	o.Symbol = &v
+	o.Symbol = v
 }
 
 func (o Currency) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.CanDeposit != nil {
+	if true {
 		toSerialize["can_deposit"] = o.CanDeposit
 	}
-	if o.CanTransfer != nil {
+	if true {
 		toSerialize["can_transfer"] = o.CanTransfer
 	}
-	if o.CanWithdraw != nil {
+	if true {
 		toSerialize["can_withdraw"] = o.CanWithdraw
 	}
-	if o.Code != nil {
+	if true {
 		toSerialize["code"] = o.Code
 	}
 	if o.ContractAddress != nil {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
-	if o.Decimals != nil {
+	if true {
 		toSerialize["decimals"] = o.Decimals
 	}
-	if o.Logo != nil {
+	if true {
 		toSerialize["logo"] = o.Logo
 	}
-	if o.MaxFee != nil {
+	if true {
 		toSerialize["max_fee"] = o.MaxFee
 	}
-	if o.MaxFeeForCtAddr != nil {
+	if true {
 		toSerialize["max_fee_for_ct_addr"] = o.MaxFeeForCtAddr
 	}
-	if o.MaxWithdrawAmount != nil {
+	if true {
 		toSerialize["max_withdraw_amount"] = o.MaxWithdrawAmount
 	}
-	if o.MinDepositAmount != nil {
+	if true {
 		toSerialize["min_deposit_amount"] = o.MinDepositAmount
 	}
-	if o.MinFee != nil {
+	if true {
 		toSerialize["min_fee"] = o.MinFee
 	}
-	if o.MinFeeForCtAddr != nil {
+	if true {
 		toSerialize["min_fee_for_ct_addr"] = o.MinFeeForCtAddr
 	}
-	if o.MinWithdrawAmount != nil {
+	if true {
 		toSerialize["min_withdraw_amount"] = o.MinWithdrawAmount
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.NeedMemo != nil {
+	if true {
 		toSerialize["need_memo"] = o.NeedMemo
 	}
-	if o.Networks != nil {
+	if true {
 		toSerialize["networks"] = o.Networks
 	}
-	if o.Precision != nil {
+	if true {
 		toSerialize["precision"] = o.Precision
 	}
-	if o.Rated != nil {
+	if true {
 		toSerialize["rated"] = o.Rated
 	}
-	if o.Symbol != nil {
+	if true {
 		toSerialize["symbol"] = o.Symbol
 	}
 	return json.Marshal(toSerialize)

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasNext** | Pointer to **bool** |  | [optional] 
-**Items** | Pointer to [**[]Currency**](Currency.md) |  | [optional] 
+**HasNext** | **bool** |  | 
+**Items** | [**[]Currency**](Currency.md) |  | 
 **NextCursor** | Pointer to **string** |  | [optional] 
 **PrevCursor** | Pointer to **string** |  | [optional] 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewCursorPageCurrency
 
-`func NewCursorPageCurrency() *CursorPageCurrency`
+`func NewCursorPageCurrency(hasNext bool, items []Currency, ) *CursorPageCurrency`
 
 NewCursorPageCurrency instantiates a new CursorPageCurrency object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetHasNext sets HasNext field to given value.
 
-### HasHasNext
-
-`func (o *CursorPageCurrency) HasHasNext() bool`
-
-HasHasNext returns a boolean if a field has been set.
 
 ### GetItems
 
@@ -72,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetItems sets Items field to given value.
 
-### HasItems
-
-`func (o *CursorPageCurrency) HasItems() bool`
-
-HasItems returns a boolean if a field has been set.
 
 ### GetNextCursor
 

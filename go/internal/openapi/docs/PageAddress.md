@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to [**[]Address**](Address.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Items** | [**[]Address**](Address.md) |  | 
+**Total** | **int32** |  | 
 
 ## Methods
 
 ### NewPageAddress
 
-`func NewPageAddress() *PageAddress`
+`func NewPageAddress(items []Address, total int32, ) *PageAddress`
 
 NewPageAddress instantiates a new PageAddress object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetItems sets Items field to given value.
 
-### HasItems
-
-`func (o *PageAddress) HasItems() bool`
-
-HasItems returns a boolean if a field has been set.
 
 ### GetTotal
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetTotal sets Total field to given value.
 
-### HasTotal
-
-`func (o *PageAddress) HasTotal() bool`
-
-HasTotal returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

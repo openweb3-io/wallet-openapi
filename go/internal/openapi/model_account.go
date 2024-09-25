@@ -17,25 +17,31 @@ import (
 // Account struct for Account
 type Account struct {
 	// The current balance of the wallet
-	Balance *string `json:"balance,omitempty"`
+	Balance string `json:"balance"`
 	// The currency associated with the wallet
-	Currency *string `json:"currency,omitempty"`
+	Currency string `json:"currency"`
 	// Account id
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// The amount of the balance that is in transit
-	InTransitBalance *string `json:"in_transit_balance,omitempty"`
+	InTransitBalance string `json:"in_transit_balance"`
 	// The amount of the balance that is locked
-	LockedBalance *string `json:"locked_balance,omitempty"`
+	LockedBalance string `json:"locked_balance"`
 	// The wallet's ID
-	WalletId *string `json:"wallet_id,omitempty"`
+	WalletId string `json:"wallet_id"`
 }
 
 // NewAccount instantiates a new Account object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccount() *Account {
+func NewAccount(balance string, currency string, id string, inTransitBalance string, lockedBalance string, walletId string) *Account {
 	this := Account{}
+	this.Balance = balance
+	this.Currency = currency
+	this.Id = id
+	this.InTransitBalance = inTransitBalance
+	this.LockedBalance = lockedBalance
+	this.WalletId = walletId
 	return &this
 }
 
@@ -47,216 +53,168 @@ func NewAccountWithDefaults() *Account {
 	return &this
 }
 
-// GetBalance returns the Balance field value if set, zero value otherwise.
+// GetBalance returns the Balance field value
 func (o *Account) GetBalance() string {
-	if o == nil || o.Balance == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Balance
+
+	return o.Balance
 }
 
-// GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
+// GetBalanceOk returns a tuple with the Balance field value
 // and a boolean to check if the value has been set.
 func (o *Account) GetBalanceOk() (*string, bool) {
-	if o == nil || o.Balance == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Balance, true
+	return &o.Balance, true
 }
 
-// HasBalance returns a boolean if a field has been set.
-func (o *Account) HasBalance() bool {
-	if o != nil && o.Balance != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBalance gets a reference to the given string and assigns it to the Balance field.
+// SetBalance sets field value
 func (o *Account) SetBalance(v string) {
-	o.Balance = &v
+	o.Balance = v
 }
 
-// GetCurrency returns the Currency field value if set, zero value otherwise.
+// GetCurrency returns the Currency field value
 func (o *Account) GetCurrency() string {
-	if o == nil || o.Currency == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Currency
+
+	return o.Currency
 }
 
-// GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
+// GetCurrencyOk returns a tuple with the Currency field value
 // and a boolean to check if the value has been set.
 func (o *Account) GetCurrencyOk() (*string, bool) {
-	if o == nil || o.Currency == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Currency, true
+	return &o.Currency, true
 }
 
-// HasCurrency returns a boolean if a field has been set.
-func (o *Account) HasCurrency() bool {
-	if o != nil && o.Currency != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCurrency gets a reference to the given string and assigns it to the Currency field.
+// SetCurrency sets field value
 func (o *Account) SetCurrency(v string) {
-	o.Currency = &v
+	o.Currency = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *Account) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Account) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Account) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *Account) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetInTransitBalance returns the InTransitBalance field value if set, zero value otherwise.
+// GetInTransitBalance returns the InTransitBalance field value
 func (o *Account) GetInTransitBalance() string {
-	if o == nil || o.InTransitBalance == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.InTransitBalance
+
+	return o.InTransitBalance
 }
 
-// GetInTransitBalanceOk returns a tuple with the InTransitBalance field value if set, nil otherwise
+// GetInTransitBalanceOk returns a tuple with the InTransitBalance field value
 // and a boolean to check if the value has been set.
 func (o *Account) GetInTransitBalanceOk() (*string, bool) {
-	if o == nil || o.InTransitBalance == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.InTransitBalance, true
+	return &o.InTransitBalance, true
 }
 
-// HasInTransitBalance returns a boolean if a field has been set.
-func (o *Account) HasInTransitBalance() bool {
-	if o != nil && o.InTransitBalance != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInTransitBalance gets a reference to the given string and assigns it to the InTransitBalance field.
+// SetInTransitBalance sets field value
 func (o *Account) SetInTransitBalance(v string) {
-	o.InTransitBalance = &v
+	o.InTransitBalance = v
 }
 
-// GetLockedBalance returns the LockedBalance field value if set, zero value otherwise.
+// GetLockedBalance returns the LockedBalance field value
 func (o *Account) GetLockedBalance() string {
-	if o == nil || o.LockedBalance == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LockedBalance
+
+	return o.LockedBalance
 }
 
-// GetLockedBalanceOk returns a tuple with the LockedBalance field value if set, nil otherwise
+// GetLockedBalanceOk returns a tuple with the LockedBalance field value
 // and a boolean to check if the value has been set.
 func (o *Account) GetLockedBalanceOk() (*string, bool) {
-	if o == nil || o.LockedBalance == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.LockedBalance, true
+	return &o.LockedBalance, true
 }
 
-// HasLockedBalance returns a boolean if a field has been set.
-func (o *Account) HasLockedBalance() bool {
-	if o != nil && o.LockedBalance != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLockedBalance gets a reference to the given string and assigns it to the LockedBalance field.
+// SetLockedBalance sets field value
 func (o *Account) SetLockedBalance(v string) {
-	o.LockedBalance = &v
+	o.LockedBalance = v
 }
 
-// GetWalletId returns the WalletId field value if set, zero value otherwise.
+// GetWalletId returns the WalletId field value
 func (o *Account) GetWalletId() string {
-	if o == nil || o.WalletId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.WalletId
+
+	return o.WalletId
 }
 
-// GetWalletIdOk returns a tuple with the WalletId field value if set, nil otherwise
+// GetWalletIdOk returns a tuple with the WalletId field value
 // and a boolean to check if the value has been set.
 func (o *Account) GetWalletIdOk() (*string, bool) {
-	if o == nil || o.WalletId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.WalletId, true
+	return &o.WalletId, true
 }
 
-// HasWalletId returns a boolean if a field has been set.
-func (o *Account) HasWalletId() bool {
-	if o != nil && o.WalletId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWalletId gets a reference to the given string and assigns it to the WalletId field.
+// SetWalletId sets field value
 func (o *Account) SetWalletId(v string) {
-	o.WalletId = &v
+	o.WalletId = v
 }
 
 func (o Account) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Balance != nil {
+	if true {
 		toSerialize["balance"] = o.Balance
 	}
-	if o.Currency != nil {
+	if true {
 		toSerialize["currency"] = o.Currency
 	}
-	if o.Id != nil {
+	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.InTransitBalance != nil {
+	if true {
 		toSerialize["in_transit_balance"] = o.InTransitBalance
 	}
-	if o.LockedBalance != nil {
+	if true {
 		toSerialize["locked_balance"] = o.LockedBalance
 	}
-	if o.WalletId != nil {
+	if true {
 		toSerialize["wallet_id"] = o.WalletId
 	}
 	return json.Marshal(toSerialize)

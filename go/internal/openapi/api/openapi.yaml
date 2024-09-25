@@ -1023,7 +1023,7 @@ paths:
         explode: true
         in: query
         name: currency
-        required: false
+        required: true
         schema:
           type: string
         style: form
@@ -1178,6 +1178,13 @@ components:
         wallet_id:
           description: The wallet's ID
           type: string
+      required:
+      - balance
+      - currency
+      - id
+      - in_transit_balance
+      - locked_balance
+      - wallet_id
       type: object
     Address:
       example:
@@ -1190,6 +1197,9 @@ components:
         network:
           description: the blockchain network
           type: string
+      required:
+      - address
+      - network
       type: object
     AddressType:
       enum:
@@ -1218,6 +1228,11 @@ components:
         to:
           description: The ID of the wallet to which the transfer will be made
           type: string
+      required:
+      - amount
+      - currency
+      - from
+      - to
       type: object
     CreateTransferResponse:
       example:
@@ -1225,6 +1240,8 @@ components:
       properties:
         transaction_id:
           type: string
+      required:
+      - transaction_id
       type: object
     CreateWalletRequest:
       example:
@@ -1237,6 +1254,8 @@ components:
         uid:
           description: Custom ID
           type: string
+      required:
+      - name
       type: object
     CreateWithdrawReply:
       example:
@@ -1244,6 +1263,8 @@ components:
       properties:
         transaction_id:
           type: string
+      required:
+      - transaction_id
       type: object
     CreateWithdrawRequest:
       example:
@@ -1345,8 +1366,7 @@ components:
           description: Is it withdrawable on-chain
           type: boolean
         code:
-          description: "Id                string `json:\"id\"`                  \t\
-            \t  // Unique identifier on the platform"
+          description: Currency code identifier
           type: string
         contract_address:
           description: Contract address (for token contracts, if applicable)
@@ -1398,6 +1418,26 @@ components:
         symbol:
           description: Currency symbol
           type: string
+      required:
+      - can_deposit
+      - can_transfer
+      - can_withdraw
+      - code
+      - decimals
+      - logo
+      - max_fee
+      - max_fee_for_ct_addr
+      - max_withdraw_amount
+      - min_deposit_amount
+      - min_fee
+      - min_fee_for_ct_addr
+      - min_withdraw_amount
+      - name
+      - need_memo
+      - networks
+      - precision
+      - rated
+      - symbol
       type: object
     CurrencyNetwork:
       example:
@@ -1477,6 +1517,23 @@ components:
         network:
           description: Associated network, e.g., Bitcoin, Ethereum, etc.
           type: string
+      required:
+      - can_deposit
+      - can_transfer
+      - can_withdraw
+      - code
+      - id
+      - max_fee
+      - max_fee_for_ct_addr
+      - max_withdraw_amount
+      - min_confirmations
+      - min_deposit_amount
+      - min_fee
+      - min_fee_for_ct_addr
+      - min_withdraw_amount
+      - name
+      - need_memo
+      - network
       type: object
     CurrencyPair:
       example:
@@ -1626,6 +1683,9 @@ components:
           type: string
         prev_cursor:
           type: string
+      required:
+      - has_next
+      - items
       type: object
     Error:
       properties:
@@ -1635,6 +1695,9 @@ components:
         msg:
           description: error message
           type: string
+      required:
+      - code
+      - msg
       type: object
     EstimateResponse:
       example:
@@ -1662,6 +1725,12 @@ components:
           description: The currency code of the target currency that you want to convert
             to
           type: string
+      required:
+      - base_amount
+      - base_currency
+      - rate
+      - to_amount
+      - to_currency
       type: object
     GetRatesRequest:
       example:
@@ -1702,6 +1771,8 @@ components:
           items:
             $ref: '#/components/schemas/Rate'
           type: array
+      required:
+      - rates
       type: object
     Page-Account:
       example:
@@ -1726,6 +1797,9 @@ components:
           type: array
         total:
           type: integer
+      required:
+      - items
+      - total
       type: object
     Page-Address:
       example:
@@ -1742,6 +1816,9 @@ components:
           type: array
         total:
           type: integer
+      required:
+      - items
+      - total
       type: object
     Page-Transaction:
       example:
@@ -1770,6 +1847,9 @@ components:
           type: array
         total:
           type: integer
+      required:
+      - items
+      - total
       type: object
     Page-Wallet:
       example:
@@ -1816,6 +1896,9 @@ components:
           type: array
         total:
           type: integer
+      required:
+      - items
+      - total
       type: object
     Rate:
       example:
@@ -1829,6 +1912,9 @@ components:
         rate:
           description: The exchange rate between the `BaseCurrency` and `ToCurrency`
           type: number
+      required:
+      - pair
+      - rate
       type: object
     Transaction:
       example:
@@ -1870,6 +1956,15 @@ components:
           allOf:
           - $ref: '#/components/schemas/TransactionStatus'
           description: The current status of the transaction.
+      required:
+      - amount
+      - avatar
+      - created_at
+      - currency
+      - direction
+      - gateway
+      - id
+      - status
       type: object
     TransactionDirection:
       enum:
@@ -1942,6 +2037,12 @@ components:
         uid:
           description: External unique ID
           type: string
+      required:
+      - account
+      - created_at
+      - id
+      - name
+      - uid
       type: object
   securitySchemes:
     ApiKeyAuth:

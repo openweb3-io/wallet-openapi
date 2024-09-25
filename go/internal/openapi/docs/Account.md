@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Balance** | Pointer to **string** | The current balance of the wallet | [optional] 
-**Currency** | Pointer to **string** | The currency associated with the wallet | [optional] 
-**Id** | Pointer to **string** | Account id | [optional] 
-**InTransitBalance** | Pointer to **string** | The amount of the balance that is in transit | [optional] 
-**LockedBalance** | Pointer to **string** | The amount of the balance that is locked | [optional] 
-**WalletId** | Pointer to **string** | The wallet&#39;s ID | [optional] 
+**Balance** | **string** | The current balance of the wallet | 
+**Currency** | **string** | The currency associated with the wallet | 
+**Id** | **string** | Account id | 
+**InTransitBalance** | **string** | The amount of the balance that is in transit | 
+**LockedBalance** | **string** | The amount of the balance that is locked | 
+**WalletId** | **string** | The wallet&#39;s ID | 
 
 ## Methods
 
 ### NewAccount
 
-`func NewAccount() *Account`
+`func NewAccount(balance string, currency string, id string, inTransitBalance string, lockedBalance string, walletId string, ) *Account`
 
 NewAccount instantiates a new Account object
 This constructor will assign default values to properties that have it defined,
@@ -49,11 +49,6 @@ and a boolean to check if the value has been set.
 
 SetBalance sets Balance field to given value.
 
-### HasBalance
-
-`func (o *Account) HasBalance() bool`
-
-HasBalance returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -74,11 +69,6 @@ and a boolean to check if the value has been set.
 
 SetCurrency sets Currency field to given value.
 
-### HasCurrency
-
-`func (o *Account) HasCurrency() bool`
-
-HasCurrency returns a boolean if a field has been set.
 
 ### GetId
 
@@ -99,11 +89,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Account) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetInTransitBalance
 
@@ -124,11 +109,6 @@ and a boolean to check if the value has been set.
 
 SetInTransitBalance sets InTransitBalance field to given value.
 
-### HasInTransitBalance
-
-`func (o *Account) HasInTransitBalance() bool`
-
-HasInTransitBalance returns a boolean if a field has been set.
 
 ### GetLockedBalance
 
@@ -149,11 +129,6 @@ and a boolean to check if the value has been set.
 
 SetLockedBalance sets LockedBalance field to given value.
 
-### HasLockedBalance
-
-`func (o *Account) HasLockedBalance() bool`
-
-HasLockedBalance returns a boolean if a field has been set.
 
 ### GetWalletId
 
@@ -174,11 +149,6 @@ and a boolean to check if the value has been set.
 
 SetWalletId sets WalletId field to given value.
 
-### HasWalletId
-
-`func (o *Account) HasWalletId() bool`
-
-HasWalletId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

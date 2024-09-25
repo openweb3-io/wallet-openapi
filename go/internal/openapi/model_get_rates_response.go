@@ -16,15 +16,16 @@ import (
 
 // GetRatesResponse struct for GetRatesResponse
 type GetRatesResponse struct {
-	Rates *[]Rate `json:"rates,omitempty"`
+	Rates []Rate `json:"rates"`
 }
 
 // NewGetRatesResponse instantiates a new GetRatesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetRatesResponse() *GetRatesResponse {
+func NewGetRatesResponse(rates []Rate) *GetRatesResponse {
 	this := GetRatesResponse{}
+	this.Rates = rates
 	return &this
 }
 
@@ -36,41 +37,33 @@ func NewGetRatesResponseWithDefaults() *GetRatesResponse {
 	return &this
 }
 
-// GetRates returns the Rates field value if set, zero value otherwise.
+// GetRates returns the Rates field value
 func (o *GetRatesResponse) GetRates() []Rate {
-	if o == nil || o.Rates == nil {
+	if o == nil {
 		var ret []Rate
 		return ret
 	}
-	return *o.Rates
+
+	return o.Rates
 }
 
-// GetRatesOk returns a tuple with the Rates field value if set, nil otherwise
+// GetRatesOk returns a tuple with the Rates field value
 // and a boolean to check if the value has been set.
 func (o *GetRatesResponse) GetRatesOk() (*[]Rate, bool) {
-	if o == nil || o.Rates == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Rates, true
+	return &o.Rates, true
 }
 
-// HasRates returns a boolean if a field has been set.
-func (o *GetRatesResponse) HasRates() bool {
-	if o != nil && o.Rates != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRates gets a reference to the given []Rate and assigns it to the Rates field.
+// SetRates sets field value
 func (o *GetRatesResponse) SetRates(v []Rate) {
-	o.Rates = &v
+	o.Rates = v
 }
 
 func (o GetRatesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Rates != nil {
+	if true {
 		toSerialize["rates"] = o.Rates
 	}
 	return json.Marshal(toSerialize)

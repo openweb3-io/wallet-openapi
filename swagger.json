@@ -1210,7 +1210,8 @@
                         "type": "string",
                         "description": "The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).",
                         "name": "currency",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     },
                     {
                         "type": "string",
@@ -1341,6 +1342,14 @@
     "definitions": {
         "Account": {
             "type": "object",
+            "required": [
+                "balance",
+                "currency",
+                "id",
+                "in_transit_balance",
+                "locked_balance",
+                "wallet_id"
+            ],
             "properties": {
                 "balance": {
                     "description": "The current balance of the wallet",
@@ -1370,6 +1379,10 @@
         },
         "Address": {
             "type": "object",
+            "required": [
+                "address",
+                "network"
+            ],
             "properties": {
                 "address": {
                     "description": "the blockchain address.",
@@ -1394,6 +1407,12 @@
         },
         "CreateTransferRequest": {
             "type": "object",
+            "required": [
+                "amount",
+                "currency",
+                "from",
+                "to"
+            ],
             "properties": {
                 "amount": {
                     "description": "The amount of currency to be transferred",
@@ -1415,6 +1434,9 @@
         },
         "CreateTransferResponse": {
             "type": "object",
+            "required": [
+                "transaction_id"
+            ],
             "properties": {
                 "transaction_id": {
                     "type": "string"
@@ -1423,6 +1445,9 @@
         },
         "CreateWalletRequest": {
             "type": "object",
+            "required": [
+                "name"
+            ],
             "properties": {
                 "name": {
                     "description": "Wallet Name",
@@ -1436,6 +1461,9 @@
         },
         "CreateWithdrawReply": {
             "type": "object",
+            "required": [
+                "transaction_id"
+            ],
             "properties": {
                 "transaction_id": {
                     "type": "string"
@@ -1476,6 +1504,27 @@
         },
         "Currency": {
             "type": "object",
+            "required": [
+                "can_deposit",
+                "can_transfer",
+                "can_withdraw",
+                "code",
+                "decimals",
+                "logo",
+                "max_fee",
+                "max_fee_for_ct_addr",
+                "max_withdraw_amount",
+                "min_deposit_amount",
+                "min_fee",
+                "min_fee_for_ct_addr",
+                "min_withdraw_amount",
+                "name",
+                "need_memo",
+                "networks",
+                "precision",
+                "rated",
+                "symbol"
+            ],
             "properties": {
                 "can_deposit": {
                     "description": "Is it depositable on-chain",
@@ -1490,7 +1539,7 @@
                     "type": "boolean"
                 },
                 "code": {
-                    "description": "Id                string `json:\"id\"`                  \t\t  // Unique identifier on the platform",
+                    "description": "Currency code identifier",
                     "type": "string"
                 },
                 "contract_address": {
@@ -1564,6 +1613,24 @@
         },
         "CurrencyNetwork": {
             "type": "object",
+            "required": [
+                "can_deposit",
+                "can_transfer",
+                "can_withdraw",
+                "code",
+                "id",
+                "max_fee",
+                "max_fee_for_ct_addr",
+                "max_withdraw_amount",
+                "min_confirmations",
+                "min_deposit_amount",
+                "min_fee",
+                "min_fee_for_ct_addr",
+                "min_withdraw_amount",
+                "name",
+                "need_memo",
+                "network"
+            ],
             "properties": {
                 "can_deposit": {
                     "description": "Indicates if on-chain deposits are allowed",
@@ -1661,6 +1728,10 @@
         },
         "CursorPage-Currency": {
             "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
             "properties": {
                 "has_next": {
                     "type": "boolean"
@@ -1681,6 +1752,10 @@
         },
         "Error": {
             "type": "object",
+            "required": [
+                "code",
+                "msg"
+            ],
             "properties": {
                 "code": {
                     "description": "error code",
@@ -1694,6 +1769,13 @@
         },
         "EstimateResponse": {
             "type": "object",
+            "required": [
+                "base_amount",
+                "base_currency",
+                "rate",
+                "to_amount",
+                "to_currency"
+            ],
             "properties": {
                 "base_amount": {
                     "description": "The amount of the base currency you want to convert",
@@ -1735,6 +1817,9 @@
         },
         "GetRatesResponse": {
             "type": "object",
+            "required": [
+                "rates"
+            ],
             "properties": {
                 "rates": {
                     "type": "array",
@@ -1746,6 +1831,10 @@
         },
         "Page-Account": {
             "type": "object",
+            "required": [
+                "items",
+                "total"
+            ],
             "properties": {
                 "items": {
                     "type": "array",
@@ -1760,6 +1849,10 @@
         },
         "Page-Address": {
             "type": "object",
+            "required": [
+                "items",
+                "total"
+            ],
             "properties": {
                 "items": {
                     "type": "array",
@@ -1774,6 +1867,10 @@
         },
         "Page-Transaction": {
             "type": "object",
+            "required": [
+                "items",
+                "total"
+            ],
             "properties": {
                 "items": {
                     "type": "array",
@@ -1788,6 +1885,10 @@
         },
         "Page-Wallet": {
             "type": "object",
+            "required": [
+                "items",
+                "total"
+            ],
             "properties": {
                 "items": {
                     "type": "array",
@@ -1802,6 +1903,10 @@
         },
         "Rate": {
             "type": "object",
+            "required": [
+                "pair",
+                "rate"
+            ],
             "properties": {
                 "pair": {
                     "$ref": "#/definitions/CurrencyPair"
@@ -1814,6 +1919,16 @@
         },
         "Transaction": {
             "type": "object",
+            "required": [
+                "amount",
+                "avatar",
+                "created_at",
+                "currency",
+                "direction",
+                "gateway",
+                "id",
+                "status"
+            ],
             "properties": {
                 "amount": {
                     "description": "The total amount of money involved in the transaction.",
@@ -1900,6 +2015,13 @@
         },
         "Wallet": {
             "type": "object",
+            "required": [
+                "account",
+                "created_at",
+                "id",
+                "name",
+                "uid"
+            ],
             "properties": {
                 "account": {
                     "description": "Accounts list",
