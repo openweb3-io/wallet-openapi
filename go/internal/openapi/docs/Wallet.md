@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | [**[]Account**](Account.md) | Accounts list | 
+**Accounts** | [**[]Account**](Account.md) | Accounts list | 
 **CreatedAt** | **string** | Created time | 
 **Id** | **string** | Wallet id | 
 **Name** | **string** | Wallet name | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewWallet
 
-`func NewWallet(account []Account, createdAt string, id string, name string, uid string, ) *Wallet`
+`func NewWallet(accounts []Account, createdAt string, id string, name string, uid string, ) *Wallet`
 
 NewWallet instantiates a new Wallet object
 This constructor will assign default values to properties that have it defined,
@@ -29,24 +29,24 @@ NewWalletWithDefaults instantiates a new Wallet object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAccount
+### GetAccounts
 
-`func (o *Wallet) GetAccount() []Account`
+`func (o *Wallet) GetAccounts() []Account`
 
-GetAccount returns the Account field if non-nil, zero value otherwise.
+GetAccounts returns the Accounts field if non-nil, zero value otherwise.
 
-### GetAccountOk
+### GetAccountsOk
 
-`func (o *Wallet) GetAccountOk() (*[]Account, bool)`
+`func (o *Wallet) GetAccountsOk() (*[]Account, bool)`
 
-GetAccountOk returns a tuple with the Account field if it's non-nil, zero value otherwise
+GetAccountsOk returns a tuple with the Accounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccount
+### SetAccounts
 
-`func (o *Wallet) SetAccount(v []Account)`
+`func (o *Wallet) SetAccounts(v []Account)`
 
-SetAccount sets Account field to given value.
+SetAccounts sets Accounts field to given value.
 
 
 ### GetCreatedAt

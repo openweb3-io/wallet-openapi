@@ -2368,14 +2368,14 @@
             "Wallet": {
                 "type": "object",
                 "required": [
-                    "account",
+                    "accounts",
                     "created_at",
                     "id",
                     "name",
                     "uid"
                 ],
                 "properties": {
-                    "account": {
+                    "accounts": {
                         "description": "Accounts list",
                         "type": "array",
                         "items": {

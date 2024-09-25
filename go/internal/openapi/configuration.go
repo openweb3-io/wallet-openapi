@@ -109,7 +109,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "",
+				URL: "https://api.wallet.openweb3.io",
 				Description: "No description provided",
 			},
 		},

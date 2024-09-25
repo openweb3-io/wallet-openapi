@@ -2,8 +2,6 @@
 
 set -ex
 
-yarn swagger2openapi --outfile openapi.json swagger.json
-
 yarn openapi-generator-cli generate -i openapi.json -g go -o go/internal/openapi -c go/openapi-generator-config.json -t go/templates
 rm -rf go/internal/openapi/go.mod
 rm -rf go/internal/openapi/go.sum

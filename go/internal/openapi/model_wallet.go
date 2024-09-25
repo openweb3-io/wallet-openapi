@@ -17,7 +17,7 @@ import (
 // Wallet struct for Wallet
 type Wallet struct {
 	// Accounts list
-	Account []Account `json:"account"`
+	Accounts []Account `json:"accounts"`
 	// Created time
 	CreatedAt string `json:"created_at"`
 	// Wallet id
@@ -32,9 +32,9 @@ type Wallet struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWallet(account []Account, createdAt string, id string, name string, uid string) *Wallet {
+func NewWallet(accounts []Account, createdAt string, id string, name string, uid string) *Wallet {
 	this := Wallet{}
-	this.Account = account
+	this.Accounts = accounts
 	this.CreatedAt = createdAt
 	this.Id = id
 	this.Name = name
@@ -50,28 +50,28 @@ func NewWalletWithDefaults() *Wallet {
 	return &this
 }
 
-// GetAccount returns the Account field value
-func (o *Wallet) GetAccount() []Account {
+// GetAccounts returns the Accounts field value
+func (o *Wallet) GetAccounts() []Account {
 	if o == nil {
 		var ret []Account
 		return ret
 	}
 
-	return o.Account
+	return o.Accounts
 }
 
-// GetAccountOk returns a tuple with the Account field value
+// GetAccountsOk returns a tuple with the Accounts field value
 // and a boolean to check if the value has been set.
-func (o *Wallet) GetAccountOk() (*[]Account, bool) {
+func (o *Wallet) GetAccountsOk() (*[]Account, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Account, true
+	return &o.Accounts, true
 }
 
-// SetAccount sets field value
-func (o *Wallet) SetAccount(v []Account) {
-	o.Account = v
+// SetAccounts sets field value
+func (o *Wallet) SetAccounts(v []Account) {
+	o.Accounts = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -173,7 +173,7 @@ func (o *Wallet) SetUid(v string) {
 func (o Wallet) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["account"] = o.Account
+		toSerialize["accounts"] = o.Accounts
 	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
