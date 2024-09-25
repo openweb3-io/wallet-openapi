@@ -2016,20 +2016,12 @@
         "Wallet": {
             "type": "object",
             "required": [
-                "accounts",
                 "created_at",
                 "id",
                 "name",
                 "uid"
             ],
             "properties": {
-                "accounts": {
-                    "description": "Accounts list",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Account"
-                    }
-                },
                 "created_at": {
                     "description": "Created time",
                     "type": "string"

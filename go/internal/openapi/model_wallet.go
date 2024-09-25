@@ -16,8 +16,6 @@ import (
 
 // Wallet struct for Wallet
 type Wallet struct {
-	// Accounts list
-	Accounts []Account `json:"accounts"`
 	// Created time
 	CreatedAt string `json:"created_at"`
 	// Wallet id
@@ -32,9 +30,8 @@ type Wallet struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWallet(accounts []Account, createdAt string, id string, name string, uid string) *Wallet {
+func NewWallet(createdAt string, id string, name string, uid string) *Wallet {
 	this := Wallet{}
-	this.Accounts = accounts
 	this.CreatedAt = createdAt
 	this.Id = id
 	this.Name = name
@@ -48,30 +45,6 @@ func NewWallet(accounts []Account, createdAt string, id string, name string, uid
 func NewWalletWithDefaults() *Wallet {
 	this := Wallet{}
 	return &this
-}
-
-// GetAccounts returns the Accounts field value
-func (o *Wallet) GetAccounts() []Account {
-	if o == nil {
-		var ret []Account
-		return ret
-	}
-
-	return o.Accounts
-}
-
-// GetAccountsOk returns a tuple with the Accounts field value
-// and a boolean to check if the value has been set.
-func (o *Wallet) GetAccountsOk() (*[]Account, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Accounts, true
-}
-
-// SetAccounts sets field value
-func (o *Wallet) SetAccounts(v []Account) {
-	o.Accounts = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -172,9 +145,6 @@ func (o *Wallet) SetUid(v string) {
 
 func (o Wallet) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["accounts"] = o.Accounts
-	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}

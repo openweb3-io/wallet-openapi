@@ -1858,36 +1858,10 @@ components:
         - uid: uid
           name: name
           created_at: created_at
-          accounts:
-          - locked_balance: locked_balance
-            wallet_id: wallet_id
-            in_transit_balance: in_transit_balance
-            balance: balance
-            currency: currency
-            id: id
-          - locked_balance: locked_balance
-            wallet_id: wallet_id
-            in_transit_balance: in_transit_balance
-            balance: balance
-            currency: currency
-            id: id
           id: id
         - uid: uid
           name: name
           created_at: created_at
-          accounts:
-          - locked_balance: locked_balance
-            wallet_id: wallet_id
-            in_transit_balance: in_transit_balance
-            balance: balance
-            currency: currency
-            id: id
-          - locked_balance: locked_balance
-            wallet_id: wallet_id
-            in_transit_balance: in_transit_balance
-            balance: balance
-            currency: currency
-            id: id
           id: id
       properties:
         items:
@@ -2005,26 +1979,8 @@ components:
         uid: uid
         name: name
         created_at: created_at
-        accounts:
-        - locked_balance: locked_balance
-          wallet_id: wallet_id
-          in_transit_balance: in_transit_balance
-          balance: balance
-          currency: currency
-          id: id
-        - locked_balance: locked_balance
-          wallet_id: wallet_id
-          in_transit_balance: in_transit_balance
-          balance: balance
-          currency: currency
-          id: id
         id: id
       properties:
-        accounts:
-          description: Accounts list
-          items:
-            $ref: '#/components/schemas/Account'
-          type: array
         created_at:
           description: Created time
           type: string
@@ -2038,7 +1994,6 @@ components:
           description: External unique ID
           type: string
       required:
-      - accounts
       - created_at
       - id
       - name
