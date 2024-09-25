@@ -1,0 +1,7 @@
+#test
+vendor
+.idea
+node_modules
+
+.vscode
+.DS_Store

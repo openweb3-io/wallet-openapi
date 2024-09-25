@@ -1,0 +1,1561 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  description: This is a custody wallet service openapi server.
+  title: Wallet OpenAPI Documentation
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /api/v1/apps/{appId}/addresses:
+    get:
+      description: List of all available addresses.
+      operationId: v1.addresses.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The code of currency used in the transaction (e.g., TON, USDT,
+          USD, EUR, etc.).
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The cursor to use for pagination.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: 'The number of records to return default: 20'
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The type of address to retrieve.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - COLLECT
+          - DEPOSIT
+          type: string
+        style: form
+        x-enum-varnames:
+        - AddressTypeCollect
+        - AddressTypeDeposit
+      - description: Unique system generated identifier of the wallet
+        explode: true
+        in: query
+        name: walletId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page-Address'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List all addresses
+      tags:
+      - addresses
+  /api/v1/apps/{appId}/currencies:
+    get:
+      description: Retrieve a list of all available currencies.
+      operationId: v1.currencies.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: rated
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Currency'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List currencies
+      tags:
+      - currencies
+  /api/v1/apps/{appId}/currencies/{code}:
+    get:
+      description: Get currency info by currency code
+      operationId: v1.currencies.retrieve
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Currency code
+        explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Currency'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Get Currency
+      tags:
+      - currencies
+  /api/v1/apps/{appId}/rates:
+    post:
+      description: Query the latest exchange rates between different currencies.
+      operationId: v1.rates.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetRatesRequest'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRatesResponse'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List rates
+      tags:
+      - rates
+  /api/v1/apps/{appId}/rates/estimate:
+    get:
+      description: Estimates currency exchange amounts.
+      operationId: v1.rates.estimate
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The amount of the base currency you want to convert
+        explode: true
+        in: query
+        name: base_amount
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The currency code of the base currency that you want to convert
+          from
+        explode: true
+        in: query
+        name: base_currency
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: The currency code of the target currency that you want to convert
+          to
+        explode: true
+        in: query
+        name: to_currency
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Estimates
+      tags:
+      - rates
+  /api/v1/apps/{appId}/transactions:
+    get:
+      description: List transactions
+      operationId: v1.transactions.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The type of currency involved in the transaction.
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A cursor value for pagination purposes.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The direction of the transaction (e.g., incoming or outgoing).
+        explode: true
+        in: query
+        name: direction
+        required: false
+        schema:
+          enum:
+          - UNKNOWN
+          - OUT
+          - IN
+          type: string
+        style: form
+        x-enum-varnames:
+        - TransactionDirectionUnknown
+        - TransactionDirectionOut
+        - TransactionDirectionIn
+      - description: 'The number of records to return default: 20'
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The blockchain network on which the transaction takes place.
+        explode: true
+        in: query
+        name: network
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The status of the transaction.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - PROCESSING
+          - CANCELED
+          - FAILED
+          - SUCCEED
+          type: string
+        style: form
+        x-enum-varnames:
+        - TransactionStatusProcessing
+        - TransactionStatusCanceled
+        - TransactionStatusFailed
+        - TransactionStatusSucceed
+      - description: The transaction hash, which uniquely identifies a transaction
+          on the blockchain.
+        explode: true
+        in: query
+        name: txhash
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Unique system generated identifier of the wallet
+        explode: true
+        in: query
+        name: wallet_id
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page-Transaction'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List transactions
+      tags:
+      - transactions
+  /api/v1/apps/{appId}/transactions/transfer:
+    post:
+      description: Create a transfer transaction
+      operationId: v1.transactions.transfer
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransferRequest'
+        description: Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransferResponse'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Transfer token
+      tags:
+      - transactions
+  /api/v1/apps/{appId}/transactions/withdraw:
+    post:
+      description: Create a new withdrawal request for a specified currency
+      operationId: v1.wallets.withdraw
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWithdrawRequest'
+        description: withdraw
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateWithdrawReply'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Withdraw
+      tags:
+      - transactions
+  /api/v1/apps/{appId}/transactions/{transactionId}:
+    get:
+      description: Get a transaction by ID
+      operationId: v1.transactions.retrieve
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Transaction ID
+        explode: false
+        in: path
+        name: transactionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Get transaction
+      tags:
+      - transactions
+  /api/v1/apps/{appId}/wallets:
+    get:
+      description: List all wallets
+      operationId: v1.wallets.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The page number to return.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+        style: form
+      - description: The number of items to return per page.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page-Wallet'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List wallets
+      tags:
+      - wallets
+    post:
+      description: Create a Wallet
+      operationId: v1.wallets.create
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWalletRequest'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Create wallet
+      tags:
+      - wallets
+  /api/v1/apps/{appId}/wallets/{walletId}:
+    get:
+      description: Get a wallet by ID
+      operationId: v1.wallets.retrieve
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Wallet ID
+        explode: false
+        in: path
+        name: walletId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Get wallet
+      tags:
+      - wallets
+    patch:
+      description: Update a Wallet
+      operationId: v1.wallets.update
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Wallet ID
+        explode: false
+        in: path
+        name: walletId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWalletRequest'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Update wallet
+      tags:
+      - wallets
+  /api/v1/apps/{appId}/wallets/{walletId}/accounts:
+    get:
+      description: List wallet accounts
+      operationId: v1.wallets.listAccounts
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Wallet ID
+        explode: false
+        in: path
+        name: walletId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The page number to return.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+        style: form
+      - description: The number of items to return per page.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page-Account'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List wallet accounts
+      tags:
+      - wallets
+  /api/v1/apps/{appId}/wallets/{walletId}/deposit_address:
+    get:
+      description: Get wallet's deposit address
+      operationId: v1.wallets.getDepositAddress
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Wallet ID
+        explode: false
+        in: path
+        name: walletId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The code of currency used in the transaction (e.g., TON, USDT,
+          USD, EUR, etc.).
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: chain network, if not specified, the default network of the currency
+          will be used.
+        explode: true
+        in: query
+        name: network
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Get deposit address
+      tags:
+      - addresses
+  /api/v1/apps/{appId}/wallets/{walletId}/deposit_addresses:
+    get:
+      description: List wallet's deposit addresses
+      operationId: v1.wallets.listDepositAddresses
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Wallet ID
+        explode: false
+        in: path
+        name: walletId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The code of currency used in the transaction (e.g., TON, USDT,
+          USD, EUR, etc.).
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: chain network, if not specified, the default network of the currency
+          will be used.
+        explode: true
+        in: query
+        name: network
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page-Address'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List deposit addresses
+      tags:
+      - addresses
+components:
+  schemas:
+    Account:
+      example:
+        locked_balance: locked_balance
+        wallet_id: wallet_id
+        in_transit_balance: in_transit_balance
+        balance: balance
+        currency: currency
+        id: id
+      properties:
+        balance:
+          description: The current balance of the wallet
+          type: string
+        currency:
+          description: The currency associated with the wallet
+          type: string
+        id:
+          description: Account id
+          type: string
+        in_transit_balance:
+          description: The amount of the balance that is in transit
+          type: string
+        locked_balance:
+          description: The amount of the balance that is locked
+          type: string
+        wallet_id:
+          description: The wallet's ID
+          type: string
+      type: object
+    Address:
+      example:
+        address: address
+        network: network
+      properties:
+        address:
+          description: the blockchain address.
+          type: string
+        network:
+          description: the blockchain network
+          type: string
+      type: object
+    AddressType:
+      enum:
+      - COLLECT
+      - DEPOSIT
+      type: string
+      x-enum-varnames:
+      - AddressTypeCollect
+      - AddressTypeDeposit
+    CreateTransferRequest:
+      example:
+        amount: amount
+        currency: currency
+        from: from
+        to: to
+      properties:
+        amount:
+          description: The amount of currency to be transferred
+          type: string
+        currency:
+          description: The code of currency to be transferred
+          type: string
+        from:
+          description: The ID of the wallet from which the transfer will be made
+          type: string
+        to:
+          description: The ID of the wallet to which the transfer will be made
+          type: string
+      type: object
+    CreateTransferResponse:
+      example:
+        transaction_id: transaction_id
+      properties:
+        transaction_id:
+          type: string
+      type: object
+    CreateWalletRequest:
+      example:
+        uid: uid
+        name: name
+      properties:
+        name:
+          description: Wallet Name
+          type: string
+        uid:
+          description: Custom ID
+          type: string
+      type: object
+    CreateWithdrawReply:
+      example:
+        transaction_id: transaction_id
+      properties:
+        transaction_id:
+          type: string
+      type: object
+    CreateWithdrawRequest:
+      example:
+        walletId: walletId
+        amount: amount
+        currency: currency
+        toAddress: toAddress
+        network: network
+      properties:
+        amount:
+          description: The amount of currency to be withdrawn
+          type: string
+        currency:
+          description: The code of currency to be withdrawn.
+          type: string
+        network:
+          description: The network of the currency to be withdrawn.
+          type: string
+        toAddress:
+          description: The recipient address where the withdrawn funds will be sent.
+            This is usually a wallet address specific to the chosen network.
+          type: string
+        walletId:
+          description: The ID of the wallet from which the withdrawal will be made.
+          type: string
+      required:
+      - amount
+      - currency
+      - network
+      - toAddress
+      - walletId
+      type: object
+    Currency:
+      example:
+        symbol: symbol
+        code: code
+        need_memo: true
+        precision: 1
+        can_deposit: true
+        contract_address: contract_address
+        networks:
+        - code: code
+          need_memo: true
+          can_deposit: true
+          contract_address: contract_address
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          network: network
+          max_withdraw_amount: max_withdraw_amount
+          min_collect_amount: min_collect_amount
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          can_withdraw: true
+          id: id
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
+          min_confirmations: 6
+        - code: code
+          need_memo: true
+          can_deposit: true
+          contract_address: contract_address
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          network: network
+          max_withdraw_amount: max_withdraw_amount
+          min_collect_amount: min_collect_amount
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          can_withdraw: true
+          id: id
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
+          min_confirmations: 6
+        min_fee_for_ct_addr: min_fee_for_ct_addr
+        min_withdraw_amount: min_withdraw_amount
+        max_withdraw_amount: max_withdraw_amount
+        rated: true
+        decimals: 0
+        max_fee_for_ct_addr: max_fee_for_ct_addr
+        min_fee: min_fee
+        name: name
+        logo: logo
+        can_withdraw: true
+        can_transfer: true
+        min_deposit_amount: min_deposit_amount
+        max_fee: max_fee
+      properties:
+        can_deposit:
+          description: Is it depositable on-chain
+          type: boolean
+        can_transfer:
+          description: Is it transferable within the platform
+          type: boolean
+        can_withdraw:
+          description: Is it withdrawable on-chain
+          type: boolean
+        code:
+          description: "Id                string `json:\"id\"`                  \t\
+            \t  // Unique identifier on the platform"
+          type: string
+        contract_address:
+          description: Contract address (for token contracts, if applicable)
+          type: string
+        decimals:
+          description: Decimal precision
+          type: integer
+        logo:
+          description: Currency logo URL
+          type: string
+        max_fee:
+          description: Maximum fee
+          type: string
+        max_fee_for_ct_addr:
+          description: Maximum fee for contract addresses
+          type: string
+        max_withdraw_amount:
+          description: Maximum withdraw amount per transaction
+          type: string
+        min_deposit_amount:
+          description: Minimum deposit amount per transaction
+          type: string
+        min_fee:
+          description: Minimum fee
+          type: string
+        min_fee_for_ct_addr:
+          description: Minimum fee for contract addresses
+          type: string
+        min_withdraw_amount:
+          description: Minimum withdraw amount per transaction
+          type: string
+        name:
+          description: Currency name
+          type: string
+        need_memo:
+          description: Does it require a memo/note for transactions
+          type: boolean
+        networks:
+          description: Networks information
+          items:
+            $ref: '#/components/schemas/CurrencyNetwork'
+          type: array
+        precision:
+          description: The number of decimals used by the currency
+          type: integer
+        rated:
+          description: Participate in exchange rate calculation
+          type: boolean
+        symbol:
+          description: Currency symbol
+          type: string
+      type: object
+    CurrencyNetwork:
+      example:
+        code: code
+        need_memo: true
+        can_deposit: true
+        contract_address: contract_address
+        min_fee_for_ct_addr: min_fee_for_ct_addr
+        min_withdraw_amount: min_withdraw_amount
+        network: network
+        max_withdraw_amount: max_withdraw_amount
+        min_collect_amount: min_collect_amount
+        max_fee_for_ct_addr: max_fee_for_ct_addr
+        min_fee: min_fee
+        name: name
+        can_withdraw: true
+        id: id
+        can_transfer: true
+        min_deposit_amount: min_deposit_amount
+        max_fee: max_fee
+        min_confirmations: 6
+      properties:
+        can_deposit:
+          description: Indicates if on-chain deposits are allowed
+          type: boolean
+        can_transfer:
+          description: Indicates if internal transfers are permitted
+          type: boolean
+        can_withdraw:
+          description: Indicates if on-chain withdrawals are allowed
+          type: boolean
+        code:
+          description: Currency code
+          type: string
+        contract_address:
+          description: Contract address for tokens based on smart contracts, such
+            as ERC-20
+          type: string
+        id:
+          type: string
+        max_fee:
+          description: Maximum transaction fee
+          type: string
+        max_fee_for_ct_addr:
+          description: Maximum transaction fee for contract addresses
+          type: string
+        max_withdraw_amount:
+          description: Maximum amount for a single on-chain withdrawal
+          type: string
+        min_collect_amount:
+          description: Minimum amount for collection, i.e., the minimum amount to
+            aggregate small balances to a single address
+          type: string
+        min_confirmations:
+          description: Minimum number of confirmations required, indicating the number
+            of block confirmations needed for a transaction to be considered valid
+          type: integer
+        min_deposit_amount:
+          description: Minimum amount for a single deposit
+          type: string
+        min_fee:
+          description: Minimum transaction fee
+          type: string
+        min_fee_for_ct_addr:
+          description: Minimum transaction fee for contract addresses
+          type: string
+        min_withdraw_amount:
+          description: Minimum amount for a single on-chain withdrawal
+          type: string
+        name:
+          description: Name of the currency, e.g., Bitcoin, Ethereum, etc.
+          type: string
+        need_memo:
+          description: Indicates if additional Memo information is required, as needed
+            by some currencies or exchanges
+          type: boolean
+        network:
+          description: Associated network, e.g., Bitcoin, Ethereum, etc.
+          type: string
+      type: object
+    CurrencyPair:
+      example:
+        base_currency: base_currency
+        to_currency: to_currency
+      properties:
+        base_currency:
+          description: The currency to be converted from
+          maxLength: 100
+          minLength: 1
+          type: string
+        to_currency:
+          description: The currency to be converted to.
+          maxLength: 100
+          minLength: 1
+          type: string
+      required:
+      - base_currency
+      - to_currency
+      type: object
+    CursorPage-Currency:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - symbol: symbol
+          code: code
+          need_memo: true
+          precision: 1
+          can_deposit: true
+          contract_address: contract_address
+          networks:
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          max_withdraw_amount: max_withdraw_amount
+          rated: true
+          decimals: 0
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          logo: logo
+          can_withdraw: true
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
+        - symbol: symbol
+          code: code
+          need_memo: true
+          precision: 1
+          can_deposit: true
+          contract_address: contract_address
+          networks:
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          max_withdraw_amount: max_withdraw_amount
+          rated: true
+          decimals: 0
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          logo: logo
+          can_withdraw: true
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Currency'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      type: object
+    EstimateResponse:
+      example:
+        base_currency: base_currency
+        to_amount: to_amount
+        rate: 0.8008281904610115
+        base_amount: base_amount
+        to_currency: to_currency
+      properties:
+        base_amount:
+          description: The amount of the base currency you want to convert
+          type: string
+        base_currency:
+          description: The currency code of the base currency that you want to convert
+            from
+          type: string
+        rate:
+          description: The exchange rate from the base currency to the target currency
+          type: number
+        to_amount:
+          description: The amount of the target currency you will receive after the
+            conversion
+          type: string
+        to_currency:
+          description: The currency code of the target currency that you want to convert
+            to
+          type: string
+      type: object
+    GetRatesRequest:
+      example:
+        pairs:
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+      properties:
+        pairs:
+          items:
+            $ref: '#/components/schemas/CurrencyPair'
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - pairs
+      type: object
+    GetRatesResponse:
+      example:
+        rates:
+        - rate: 0.8008281904610115
+          pair:
+            base_currency: base_currency
+            to_currency: to_currency
+        - rate: 0.8008281904610115
+          pair:
+            base_currency: base_currency
+            to_currency: to_currency
+      properties:
+        rates:
+          items:
+            $ref: '#/components/schemas/Rate'
+          type: array
+      type: object
+    Page-Account:
+      example:
+        total: 0
+        items:
+        - locked_balance: locked_balance
+          wallet_id: wallet_id
+          in_transit_balance: in_transit_balance
+          balance: balance
+          currency: currency
+          id: id
+        - locked_balance: locked_balance
+          wallet_id: wallet_id
+          in_transit_balance: in_transit_balance
+          balance: balance
+          currency: currency
+          id: id
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Account'
+          type: array
+        total:
+          type: integer
+      type: object
+    Page-Address:
+      example:
+        total: 0
+        items:
+        - address: address
+          network: network
+        - address: address
+          network: network
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Address'
+          type: array
+        total:
+          type: integer
+      type: object
+    Page-Transaction:
+      example:
+        total: 0
+        items:
+        - amount: amount
+          created_at: created_at
+          currency: currency
+          avatar: avatar
+          id: id
+          gateway: gateway
+          direction: ""
+          status: ""
+        - amount: amount
+          created_at: created_at
+          currency: currency
+          avatar: avatar
+          id: id
+          gateway: gateway
+          direction: ""
+          status: ""
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Transaction'
+          type: array
+        total:
+          type: integer
+      type: object
+    Page-Wallet:
+      example:
+        total: 0
+        items:
+        - uid: uid
+          name: name
+          created_at: created_at
+          id: id
+          account:
+          - locked_balance: locked_balance
+            wallet_id: wallet_id
+            in_transit_balance: in_transit_balance
+            balance: balance
+            currency: currency
+            id: id
+          - locked_balance: locked_balance
+            wallet_id: wallet_id
+            in_transit_balance: in_transit_balance
+            balance: balance
+            currency: currency
+            id: id
+        - uid: uid
+          name: name
+          created_at: created_at
+          id: id
+          account:
+          - locked_balance: locked_balance
+            wallet_id: wallet_id
+            in_transit_balance: in_transit_balance
+            balance: balance
+            currency: currency
+            id: id
+          - locked_balance: locked_balance
+            wallet_id: wallet_id
+            in_transit_balance: in_transit_balance
+            balance: balance
+            currency: currency
+            id: id
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Wallet'
+          type: array
+        total:
+          type: integer
+      type: object
+    Rate:
+      example:
+        rate: 0.8008281904610115
+        pair:
+          base_currency: base_currency
+          to_currency: to_currency
+      properties:
+        pair:
+          $ref: '#/components/schemas/CurrencyPair'
+        rate:
+          description: The exchange rate between the `BaseCurrency` and `ToCurrency`
+          type: number
+      type: object
+    Transaction:
+      example:
+        amount: amount
+        created_at: created_at
+        currency: currency
+        avatar: avatar
+        id: id
+        gateway: gateway
+        direction: ""
+        status: ""
+      properties:
+        amount:
+          description: The total amount of money involved in the transaction.
+          type: string
+        avatar:
+          description: A URL or path to an avatar image associated with the transaction,
+            often used to visually represent the transaction's source or recipient.
+          type: string
+        created_at:
+          description: The date and time when the transaction was created.
+          type: string
+        currency:
+          description: The code of currency used in the transaction (e.g., TON, USDT,
+            USD, EUR, etc.).
+          type: string
+        direction:
+          allOf:
+          - $ref: '#/components/schemas/TransactionDirection'
+          description: Indicates the flow of the transaction, typically whether it
+            is incoming or outgoing.
+        gateway:
+          description: The payment gateway or platform used to process the transaction.
+          type: string
+        id:
+          description: A unique identifier for the transaction.
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/TransactionStatus'
+          description: The current status of the transaction.
+      type: object
+    TransactionDirection:
+      enum:
+      - UNKNOWN
+      - OUT
+      - IN
+      type: string
+      x-enum-varnames:
+      - TransactionDirectionUnknown
+      - TransactionDirectionOut
+      - TransactionDirectionIn
+    TransactionStatus:
+      enum:
+      - PROCESSING
+      - CANCELED
+      - FAILED
+      - SUCCEED
+      type: string
+      x-enum-varnames:
+      - TransactionStatusProcessing
+      - TransactionStatusCanceled
+      - TransactionStatusFailed
+      - TransactionStatusSucceed
+    UpdateWalletRequest:
+      example:
+        uid: uid
+        name: name
+      properties:
+        name:
+          description: Wallet Name
+          type: string
+        uid:
+          description: Custom ID
+          type: string
+      type: object
+    Wallet:
+      example:
+        uid: uid
+        name: name
+        created_at: created_at
+        id: id
+        account:
+        - locked_balance: locked_balance
+          wallet_id: wallet_id
+          in_transit_balance: in_transit_balance
+          balance: balance
+          currency: currency
+          id: id
+        - locked_balance: locked_balance
+          wallet_id: wallet_id
+          in_transit_balance: in_transit_balance
+          balance: balance
+          currency: currency
+          id: id
+      properties:
+        account:
+          description: Accounts list
+          items:
+            $ref: '#/components/schemas/Account'
+          type: array
+        created_at:
+          description: Created time
+          type: string
+        id:
+          description: Wallet id
+          type: string
+        name:
+          description: Wallet name
+          type: string
+        uid:
+          description: External unique ID
+          type: string
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: X-Api-Key
+      type: apiKey
+    SignatureAuth:
+      in: header
+      name: X-Signature
+      type: apiKey
