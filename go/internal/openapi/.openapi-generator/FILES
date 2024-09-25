@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -23,6 +24,7 @@ docs/Currency.md
 docs/CurrencyNetwork.md
 docs/CurrencyPair.md
 docs/CursorPageCurrency.md
+docs/Error.md
 docs/EstimateResponse.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
@@ -54,6 +56,7 @@ model_currency.go
 model_currency_network.go
 model_currency_pair.go
 model_cursor_page_currency.go
+model_error.go
 model_estimate_response.go
 model_get_rates_request.go
 model_get_rates_response.go

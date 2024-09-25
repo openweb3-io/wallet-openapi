@@ -4,13 +4,12 @@ set -ex
 
 yarn swagger2openapi --outfile openapi.json swagger.json
 
-yarn openapi-generator-cli generate -i openapi.json -g typescript -o javascript/src/openapi -c javascript/openapi-generator-config.json -t javascript/templates --type-mappings=set=Array
-
 yarn openapi-generator-cli generate -i openapi.json -g go -o go/internal/openapi -c go/openapi-generator-config.json -t go/templates
 rm -rf go/internal/openapi/go.mod
 rm -rf go/internal/openapi/go.sum
 
-yarn openapi-generator-cli generate -i openapi.json -g java -o java/lib -c java/openapi-generator-config.json -t java/templates
+# yarn openapi-generator-cli generate -i openapi.json -g typescript -o javascript/src/openapi -c javascript/openapi-generator-config.json -t javascript/templates --type-mappings=set=Array
+# yarn openapi-generator-cli generate -i openapi.json -g java -o java/lib -c java/openapi-generator-config.json -t java/templates
 
 # yarn openapi-generator-cli generate -i openapi.json -g kotlin -o kotlin/lib/generated/openapi -c kotlin/openapi-generator-config.json -t kotlin/templates
 

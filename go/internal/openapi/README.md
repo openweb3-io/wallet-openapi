@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
  - [CurrencyNetwork](docs/CurrencyNetwork.md)
  - [CurrencyPair](docs/CurrencyPair.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
+ - [Error](docs/Error.md)
  - [EstimateResponse](docs/EstimateResponse.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
