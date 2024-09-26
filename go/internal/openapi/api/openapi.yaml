@@ -1149,6 +1149,239 @@ paths:
       summary: Estimates
       tags:
       - rates
+  /api/v1/apps/{appId}/endpoints:
+    get:
+      description: List webhook endpoints
+      operationId: v1.webhooks.list
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Webhook'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List webhook endpoints
+      tags:
+      - webhook endpoints
+    post:
+      description: Create a webhook endpoint
+      operationId: v1.webhooks.create
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWebhook'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Create webhook endpoint
+      tags:
+      - webhook endpoints
+  /api/v1/apps/{appId}/endpoints/{endpointId}:
+    delete:
+      description: Delete specific webhook endpoint
+      operationId: v1.webhooks.delete
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Endpoint ID
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Delete webhook endpoint
+      tags:
+      - webhook endpoints
+    get:
+      description: Get specific webhook endpoint
+      operationId: v1.webhooks.retrieve
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Endpoint ID
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Get webhook endpoint
+      tags:
+      - webhook endpoints
+    patch:
+      description: Update specific webhook endpoint
+      operationId: v1.webhooks.update
+      parameters:
+      - description: App ID
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Endpoint ID
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWebhook'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+          description: OK
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Update webhook endpoint
+      tags:
+      - webhook endpoints
 components:
   schemas:
     Account:
@@ -1256,6 +1489,52 @@ components:
           type: string
       required:
       - name
+      type: object
+    CreateWebhook:
+      example:
+        headers:
+          key: headers
+        uid: uid
+        metadata:
+          key: ""
+        description: description
+        disabled: true
+        eventTypes:
+        - null
+        - null
+        url: url
+      properties:
+        description:
+          description: The description of the webhook
+          type: string
+        disabled:
+          description: The disabled of the webhook
+          type: boolean
+        eventTypes:
+          description: The event types of the webhook
+          items:
+            $ref: '#/components/schemas/EventType'
+          type: array
+        headers:
+          additionalProperties:
+            type: string
+          description: The headers of the webhook
+          type: object
+        metadata:
+          additionalProperties: {}
+          description: The metadata of the webhook
+          type: object
+        uid:
+          description: The uid of the webhook
+          type: string
+        url:
+          description: The url of the webhook
+          type: string
+      required:
+      - eventTypes
+      - headers
+      - metadata
+      - url
       type: object
     CreateWithdrawReply:
       example:
@@ -1687,6 +1966,55 @@ components:
       - has_next
       - items
       type: object
+    CursorPage-Webhook:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - filter: filter
+          createdAt: createdAt
+          headers:
+            key: headers
+          uid: uid
+          metadata:
+            key: ""
+          description: description
+          disabled: true
+          id: id
+          eventTypes:
+          - null
+          - null
+          url: url
+        - filter: filter
+          createdAt: createdAt
+          headers:
+            key: headers
+          uid: uid
+          metadata:
+            key: ""
+          description: description
+          disabled: true
+          id: id
+          eventTypes:
+          - null
+          - null
+          url: url
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Webhook'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      required:
+      - has_next
+      - items
+      type: object
     Error:
       properties:
         code:
@@ -1732,6 +2060,24 @@ components:
       - to_amount
       - to_currency
       type: object
+    EventType:
+      enum:
+      - deposit_success
+      - withdraw_approved
+      - withdraw_success
+      - withdraw_failed
+      - transfer_approved
+      - transfer_success
+      - transfer_failed
+      type: string
+      x-enum-varnames:
+      - EventTypeDepositSuccess
+      - EventTypeWithdrawApproved
+      - EventTypeWithdrawSuccess
+      - EventTypeWithdrawFailed
+      - EventTypeTransferApproved
+      - EventTypeTransferSuccess
+      - EventTypeTransferFailed
     GetRatesRequest:
       example:
         pairs:
@@ -1974,6 +2320,44 @@ components:
           description: Custom ID
           type: string
       type: object
+    UpdateWebhook:
+      example:
+        headers:
+          key: headers
+        uid: uid
+        metadata:
+          key: ""
+        description: description
+        disabled: true
+        eventTypes:
+        - null
+        - null
+        url: url
+      properties:
+        description:
+          type: string
+        disabled:
+          type: boolean
+        eventTypes:
+          items:
+            $ref: '#/components/schemas/EventType'
+          type: array
+        headers:
+          additionalProperties:
+            type: string
+          type: object
+        metadata:
+          additionalProperties: {}
+          type: object
+        uid:
+          type: string
+        url:
+          type: string
+      required:
+      - eventTypes
+      - headers
+      - metadata
+      type: object
     Wallet:
       example:
         uid: uid
@@ -1998,6 +2382,59 @@ components:
       - id
       - name
       - uid
+      type: object
+    Webhook:
+      example:
+        filter: filter
+        createdAt: createdAt
+        headers:
+          key: headers
+        uid: uid
+        metadata:
+          key: ""
+        description: description
+        disabled: true
+        id: id
+        eventTypes:
+        - null
+        - null
+        url: url
+      properties:
+        createdAt:
+          type: string
+        description:
+          type: string
+        disabled:
+          type: boolean
+        eventTypes:
+          items:
+            $ref: '#/components/schemas/EventType'
+          type: array
+        filter:
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          type: object
+        id:
+          type: string
+        metadata:
+          additionalProperties: {}
+          type: object
+        uid:
+          type: string
+        url:
+          type: string
+      required:
+      - createdAt
+      - description
+      - disabled
+      - eventTypes
+      - filter
+      - headers
+      - id
+      - metadata
+      - url
       type: object
   securitySchemes:
     ApiKeyAuth:

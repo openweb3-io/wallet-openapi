@@ -1676,6 +1676,358 @@
                     }
                 }
             }
+        },
+        "/api/v1/apps/{appId}/endpoints": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List webhook endpoints",
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "List webhook endpoints",
+                "operationId": "v1.webhooks.list",
+                "parameters": [
+                    {
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CursorPage-Webhook"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Create a webhook endpoint",
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Create webhook endpoint",
+                "operationId": "v1.webhooks.create",
+                "parameters": [
+                    {
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateWebhook"
+                            }
+                        }
+                    },
+                    "description": "Request body",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Webhook"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/endpoints/{endpointId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Get specific webhook endpoint",
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Get webhook endpoint",
+                "operationId": "v1.webhooks.retrieve",
+                "parameters": [
+                    {
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Webhook"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Delete specific webhook endpoint",
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Delete webhook endpoint",
+                "operationId": "v1.webhooks.delete",
+                "parameters": [
+                    {
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Webhook"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Update specific webhook endpoint",
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Update webhook endpoint",
+                "operationId": "v1.webhooks.update",
+                "parameters": [
+                    {
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateWebhook"
+                            }
+                        }
+                    },
+                    "description": "Request body",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Webhook"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1807,6 +2159,52 @@
                     },
                     "uid": {
                         "description": "Custom ID",
+                        "type": "string"
+                    }
+                }
+            },
+            "CreateWebhook": {
+                "type": "object",
+                "required": [
+                    "eventTypes",
+                    "headers",
+                    "metadata",
+                    "url"
+                ],
+                "properties": {
+                    "description": {
+                        "description": "The description of the webhook",
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "description": "The disabled of the webhook",
+                        "type": "boolean"
+                    },
+                    "eventTypes": {
+                        "description": "The event types of the webhook",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EventType"
+                        }
+                    },
+                    "headers": {
+                        "description": "The headers of the webhook",
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "metadata": {
+                        "description": "The metadata of the webhook",
+                        "type": "object",
+                        "additionalProperties": {}
+                    },
+                    "uid": {
+                        "description": "The uid of the webhook",
+                        "type": "string"
+                    },
+                    "url": {
+                        "description": "The url of the webhook",
                         "type": "string"
                     }
                 }
@@ -2102,6 +2500,30 @@
                     }
                 }
             },
+            "CursorPage-Webhook": {
+                "type": "object",
+                "required": [
+                    "has_next",
+                    "items"
+                ],
+                "properties": {
+                    "has_next": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Webhook"
+                        }
+                    },
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    }
+                }
+            },
             "Error": {
                 "type": "object",
                 "required": [
@@ -2150,6 +2572,27 @@
                         "type": "string"
                     }
                 }
+            },
+            "EventType": {
+                "type": "string",
+                "enum": [
+                    "deposit_success",
+                    "withdraw_approved",
+                    "withdraw_success",
+                    "withdraw_failed",
+                    "transfer_approved",
+                    "transfer_success",
+                    "transfer_failed"
+                ],
+                "x-enum-varnames": [
+                    "EventTypeDepositSuccess",
+                    "EventTypeWithdrawApproved",
+                    "EventTypeWithdrawSuccess",
+                    "EventTypeWithdrawFailed",
+                    "EventTypeTransferApproved",
+                    "EventTypeTransferSuccess",
+                    "EventTypeTransferFailed"
+                ]
             },
             "GetRatesRequest": {
                 "type": "object",
@@ -2365,6 +2808,44 @@
                     }
                 }
             },
+            "UpdateWebhook": {
+                "type": "object",
+                "required": [
+                    "eventTypes",
+                    "headers",
+                    "metadata"
+                ],
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "type": "boolean"
+                    },
+                    "eventTypes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EventType"
+                        }
+                    },
+                    "headers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "additionalProperties": {}
+                    },
+                    "uid": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                }
+            },
             "Wallet": {
                 "type": "object",
                 "required": [
@@ -2388,6 +2869,59 @@
                     },
                     "uid": {
                         "description": "External unique ID",
+                        "type": "string"
+                    }
+                }
+            },
+            "Webhook": {
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "description",
+                    "disabled",
+                    "eventTypes",
+                    "filter",
+                    "headers",
+                    "id",
+                    "metadata",
+                    "url"
+                ],
+                "properties": {
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "disabled": {
+                        "type": "boolean"
+                    },
+                    "eventTypes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EventType"
+                        }
+                    },
+                    "filter": {
+                        "type": "string"
+                    },
+                    "headers": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "additionalProperties": {}
+                    },
+                    "uid": {
+                        "type": "string"
+                    },
+                    "url": {
                         "type": "string"
                     }
                 }

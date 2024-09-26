@@ -61,6 +61,8 @@ type APIClient struct {
 	TransactionsApi *TransactionsApiService
 
 	WalletsApi *WalletsApiService
+
+	WebhookEndpointsApi *WebhookEndpointsApiService
 }
 
 type service struct {
@@ -84,6 +86,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RatesApi = (*RatesApiService)(&c.common)
 	c.TransactionsApi = (*TransactionsApiService)(&c.common)
 	c.WalletsApi = (*WalletsApiService)(&c.common)
+	c.WebhookEndpointsApi = (*WebhookEndpointsApiService)(&c.common)
 
 	return c
 }

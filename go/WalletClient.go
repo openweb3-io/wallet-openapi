@@ -31,6 +31,7 @@ type (
 		Address     *Address
 		Transaction *Transaction
 		Wallet      *Wallet
+		Webhook     *Webhook
 	}
 )
 
@@ -101,6 +102,9 @@ func New(options *WalletClientOptions) *WalletClient {
 			api: apiClient,
 		},
 		Wallet: &Wallet{
+			api: apiClient,
+		},
+		Webhook: &Webhook{
 			api: apiClient,
 		},
 	}

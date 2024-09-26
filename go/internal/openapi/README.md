@@ -94,6 +94,11 @@ Class | Method | HTTP request | Description
 *WalletsApi* | [**V1WalletsListAccounts**](docs/WalletsApi.md#v1walletslistaccounts) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/accounts | List wallet accounts
 *WalletsApi* | [**V1WalletsRetrieve**](docs/WalletsApi.md#v1walletsretrieve) | **Get** /api/v1/apps/{appId}/wallets/{walletId} | Get wallet
 *WalletsApi* | [**V1WalletsUpdate**](docs/WalletsApi.md#v1walletsupdate) | **Patch** /api/v1/apps/{appId}/wallets/{walletId} | Update wallet
+*WebhookEndpointsApi* | [**V1WebhooksCreate**](docs/WebhookEndpointsApi.md#v1webhookscreate) | **Post** /api/v1/apps/{appId}/endpoints | Create webhook endpoint
+*WebhookEndpointsApi* | [**V1WebhooksDelete**](docs/WebhookEndpointsApi.md#v1webhooksdelete) | **Delete** /api/v1/apps/{appId}/endpoints/{endpointId} | Delete webhook endpoint
+*WebhookEndpointsApi* | [**V1WebhooksList**](docs/WebhookEndpointsApi.md#v1webhookslist) | **Get** /api/v1/apps/{appId}/endpoints | List webhook endpoints
+*WebhookEndpointsApi* | [**V1WebhooksRetrieve**](docs/WebhookEndpointsApi.md#v1webhooksretrieve) | **Get** /api/v1/apps/{appId}/endpoints/{endpointId} | Get webhook endpoint
+*WebhookEndpointsApi* | [**V1WebhooksUpdate**](docs/WebhookEndpointsApi.md#v1webhooksupdate) | **Patch** /api/v1/apps/{appId}/endpoints/{endpointId} | Update webhook endpoint
 
 
 ## Documentation For Models
@@ -104,14 +109,17 @@ Class | Method | HTTP request | Description
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
  - [CreateWalletRequest](docs/CreateWalletRequest.md)
+ - [CreateWebhook](docs/CreateWebhook.md)
  - [CreateWithdrawReply](docs/CreateWithdrawReply.md)
  - [CreateWithdrawRequest](docs/CreateWithdrawRequest.md)
  - [Currency](docs/Currency.md)
  - [CurrencyNetwork](docs/CurrencyNetwork.md)
  - [CurrencyPair](docs/CurrencyPair.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
+ - [CursorPageWebhook](docs/CursorPageWebhook.md)
  - [Error](docs/Error.md)
  - [EstimateResponse](docs/EstimateResponse.md)
+ - [EventType](docs/EventType.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [PageAccount](docs/PageAccount.md)
@@ -123,7 +131,9 @@ Class | Method | HTTP request | Description
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)
  - [UpdateWalletRequest](docs/UpdateWalletRequest.md)
+ - [UpdateWebhook](docs/UpdateWebhook.md)
  - [Wallet](docs/Wallet.md)
+ - [Webhook](docs/Webhook.md)
 
 
 ## Documentation For Authorization
