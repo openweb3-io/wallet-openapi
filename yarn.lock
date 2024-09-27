@@ -1478,7 +1478,7 @@ oas@^20.10.2:
     memoizee "^0.4.14"
     oas-normalize "^8.4.0"
     openapi-types "^12.1.1"
-    path-to-regexp "^6.2.0"
+    path-to-regexp "^6.3.0"
     remove-undefined-objects "^3.0.0"
 
 once@^1.3.0:
