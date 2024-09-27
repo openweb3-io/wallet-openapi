@@ -8,7 +8,7 @@ import (
 
 type (
 	AddressOut     = openapi.Address
-	PageAddressOut = openapi.PageAddress
+	PageAddressOut = openapi.CursorPageAddress
 )
 
 type Address struct {
@@ -18,6 +18,18 @@ type Address struct {
 type ListAddressOptions struct {
 	Cursor string
 	Limit  int
+}
+
+type GetDepositAddressOptions struct {
+	Currency string
+	Network  *string
+}
+
+type ListDepositAddressesOptions struct {
+	Currency *string
+	Network  *string
+	Cursor   *string
+	Limit    int
 }
 
 func (e *Address) List(ctx context.Context, appId string, options *ListAddressOptions) (*PageAddressOut, error) {

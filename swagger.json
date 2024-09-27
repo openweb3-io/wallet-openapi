@@ -80,7 +80,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Page-Address"
+                            "$ref": "#/definitions/CursorPage-Address"
                         }
                     },
                     "400": {
@@ -1112,18 +1112,15 @@
                         "required": true
                     },
                     {
-                        "minimum": 0,
-                        "type": "integer",
-                        "description": "The page number to return.",
-                        "name": "page",
+                        "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
                         "in": "query"
                     },
                     {
-                        "maximum": 100,
-                        "minimum": 1,
                         "type": "integer",
-                        "description": "The number of items to return per page.",
-                        "name": "size",
+                        "description": "Limit",
+                        "name": "limit",
                         "in": "query"
                     }
                 ],
@@ -1131,7 +1128,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Page-Wallet"
+                            "$ref": "#/definitions/CursorPage-Wallet"
                         }
                     },
                     "400": {
@@ -1422,18 +1419,15 @@
                         "required": true
                     },
                     {
-                        "minimum": 0,
-                        "type": "integer",
-                        "description": "The page number to return.",
-                        "name": "page",
+                        "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
                         "in": "query"
                     },
                     {
-                        "maximum": 100,
-                        "minimum": 1,
                         "type": "integer",
-                        "description": "The number of items to return per page.",
-                        "name": "size",
+                        "description": "Limit",
+                        "name": "limit",
                         "in": "query"
                     }
                 ],
@@ -1441,7 +1435,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Page-Account"
+                            "$ref": "#/definitions/CursorPage-Account"
                         }
                     },
                     "400": {
@@ -1601,6 +1595,18 @@
                     },
                     {
                         "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit, default is 20",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
                         "description": "chain network, if not specified, the default network of the currency will be used.",
                         "name": "network",
                         "in": "query"
@@ -1610,7 +1616,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Page-Address"
+                            "$ref": "#/definitions/CursorPage-Address"
                         }
                     },
                     "400": {
@@ -2074,6 +2080,54 @@
                 }
             }
         },
+        "CursorPage-Account": {
+            "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
+            "properties": {
+                "has_next": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Account"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
+        "CursorPage-Address": {
+            "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
+            "properties": {
+                "has_next": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Address"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
         "CursorPage-Currency": {
             "type": "object",
             "required": [
@@ -2088,6 +2142,30 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Currency"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
+        "CursorPage-Wallet": {
+            "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
+            "properties": {
+                "has_next": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Wallet"
                     }
                 },
                 "next_cursor": {
@@ -2222,42 +2300,6 @@
                 }
             }
         },
-        "Page-Account": {
-            "type": "object",
-            "required": [
-                "items",
-                "total"
-            ],
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Account"
-                    }
-                },
-                "total": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Page-Address": {
-            "type": "object",
-            "required": [
-                "items",
-                "total"
-            ],
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Address"
-                    }
-                },
-                "total": {
-                    "type": "integer"
-                }
-            }
-        },
         "Page-Transaction": {
             "type": "object",
             "required": [
@@ -2269,24 +2311,6 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Transaction"
-                    }
-                },
-                "total": {
-                    "type": "integer"
-                }
-            }
-        },
-        "Page-Wallet": {
-            "type": "object",
-            "required": [
-                "items",
-                "total"
-            ],
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Wallet"
                     }
                 },
                 "total": {

@@ -59,7 +59,7 @@ func (r ApiV1AddressesListRequest) WalletId(walletId string) ApiV1AddressesListR
 	return r
 }
 
-func (r ApiV1AddressesListRequest) Execute() (PageAddress, *_nethttp.Response, error) {
+func (r ApiV1AddressesListRequest) Execute() (CursorPageAddress, *_nethttp.Response, error) {
 	return r.ApiService.V1AddressesListExecute(r)
 }
 
@@ -80,16 +80,16 @@ func (a *AddressesApiService) V1AddressesList(ctx _context.Context, appId string
 
 /*
  * Execute executes the request
- * @return PageAddress
+ * @return CursorPageAddress
  */
-func (a *AddressesApiService) V1AddressesListExecute(r ApiV1AddressesListRequest) (PageAddress, *_nethttp.Response, error) {
+func (a *AddressesApiService) V1AddressesListExecute(r ApiV1AddressesListRequest) (CursorPageAddress, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PageAddress
+		localVarReturnValue  CursorPageAddress
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesApiService.V1AddressesList")
@@ -440,6 +440,8 @@ type ApiV1WalletsListDepositAddressesRequest struct {
 	appId string
 	walletId string
 	currency *string
+	cursor *string
+	limit *int32
 	network *string
 }
 
@@ -447,12 +449,20 @@ func (r ApiV1WalletsListDepositAddressesRequest) Currency(currency string) ApiV1
 	r.currency = &currency
 	return r
 }
+func (r ApiV1WalletsListDepositAddressesRequest) Cursor(cursor string) ApiV1WalletsListDepositAddressesRequest {
+	r.cursor = &cursor
+	return r
+}
+func (r ApiV1WalletsListDepositAddressesRequest) Limit(limit int32) ApiV1WalletsListDepositAddressesRequest {
+	r.limit = &limit
+	return r
+}
 func (r ApiV1WalletsListDepositAddressesRequest) Network(network string) ApiV1WalletsListDepositAddressesRequest {
 	r.network = &network
 	return r
 }
 
-func (r ApiV1WalletsListDepositAddressesRequest) Execute() (PageAddress, *_nethttp.Response, error) {
+func (r ApiV1WalletsListDepositAddressesRequest) Execute() (CursorPageAddress, *_nethttp.Response, error) {
 	return r.ApiService.V1WalletsListDepositAddressesExecute(r)
 }
 
@@ -475,16 +485,16 @@ func (a *AddressesApiService) V1WalletsListDepositAddresses(ctx _context.Context
 
 /*
  * Execute executes the request
- * @return PageAddress
+ * @return CursorPageAddress
  */
-func (a *AddressesApiService) V1WalletsListDepositAddressesExecute(r ApiV1WalletsListDepositAddressesRequest) (PageAddress, *_nethttp.Response, error) {
+func (a *AddressesApiService) V1WalletsListDepositAddressesExecute(r ApiV1WalletsListDepositAddressesRequest) (CursorPageAddress, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PageAddress
+		localVarReturnValue  CursorPageAddress
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressesApiService.V1WalletsListDepositAddresses")
@@ -502,6 +512,12 @@ func (a *AddressesApiService) V1WalletsListDepositAddressesExecute(r ApiV1Wallet
 
 	if r.currency != nil {
 		localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
+	}
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	if r.network != nil {
 		localVarQueryParams.Add("network", parameterToString(*r.network, ""))

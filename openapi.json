@@ -39,22 +39,19 @@
                         }
                     },
                     {
-                        "description": "The page number to return.",
-                        "name": "page",
+                        "description": "Cursor",
+                        "name": "cursor",
                         "in": "query",
                         "schema": {
-                            "type": "integer",
-                            "minimum": 0
+                            "type": "string"
                         }
                     },
                     {
-                        "description": "The number of items to return per page.",
-                        "name": "size",
+                        "description": "Limit",
+                        "name": "limit",
                         "in": "query",
                         "schema": {
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 100
+                            "type": "integer"
                         }
                     }
                 ],
@@ -64,7 +61,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Page-Wallet"
+                                    "$ref": "#/components/schemas/CursorPage-Wallet"
                                 }
                             }
                         }
@@ -427,22 +424,19 @@
                         }
                     },
                     {
-                        "description": "The page number to return.",
-                        "name": "page",
+                        "description": "Cursor",
+                        "name": "cursor",
                         "in": "query",
                         "schema": {
-                            "type": "integer",
-                            "minimum": 0
+                            "type": "string"
                         }
                     },
                     {
-                        "description": "The number of items to return per page.",
-                        "name": "size",
+                        "description": "Limit",
+                        "name": "limit",
                         "in": "query",
                         "schema": {
-                            "type": "integer",
-                            "minimum": 1,
-                            "maximum": 100
+                            "type": "integer"
                         }
                     }
                 ],
@@ -452,7 +446,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Page-Account"
+                                    "$ref": "#/components/schemas/CursorPage-Account"
                                 }
                             }
                         }
@@ -651,6 +645,22 @@
                         }
                     },
                     {
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Limit, default is 20",
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "description": "chain network, if not specified, the default network of the currency will be used.",
                         "name": "network",
                         "in": "query",
@@ -665,7 +675,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Page-Address"
+                                    "$ref": "#/components/schemas/CursorPage-Address"
                                 }
                             }
                         }
@@ -794,7 +804,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Page-Address"
+                                    "$ref": "#/components/schemas/CursorPage-Address"
                                 }
                             }
                         }
@@ -2476,6 +2486,54 @@
                     }
                 }
             },
+            "CursorPage-Account": {
+                "type": "object",
+                "required": [
+                    "has_next",
+                    "items"
+                ],
+                "properties": {
+                    "has_next": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Account"
+                        }
+                    },
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CursorPage-Address": {
+                "type": "object",
+                "required": [
+                    "has_next",
+                    "items"
+                ],
+                "properties": {
+                    "has_next": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Address"
+                        }
+                    },
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    }
+                }
+            },
             "CursorPage-Currency": {
                 "type": "object",
                 "required": [
@@ -2490,6 +2548,30 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Currency"
+                        }
+                    },
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CursorPage-Wallet": {
+                "type": "object",
+                "required": [
+                    "has_next",
+                    "items"
+                ],
+                "properties": {
+                    "has_next": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Wallet"
                         }
                     },
                     "next_cursor": {
@@ -2624,42 +2706,6 @@
                     }
                 }
             },
-            "Page-Account": {
-                "type": "object",
-                "required": [
-                    "items",
-                    "total"
-                ],
-                "properties": {
-                    "items": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Account"
-                        }
-                    },
-                    "total": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "Page-Address": {
-                "type": "object",
-                "required": [
-                    "items",
-                    "total"
-                ],
-                "properties": {
-                    "items": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Address"
-                        }
-                    },
-                    "total": {
-                        "type": "integer"
-                    }
-                }
-            },
             "Page-Transaction": {
                 "type": "object",
                 "required": [
@@ -2671,24 +2717,6 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Transaction"
-                        }
-                    },
-                    "total": {
-                        "type": "integer"
-                    }
-                }
-            },
-            "Page-Wallet": {
-                "type": "object",
-                "required": [
-                    "items",
-                    "total"
-                ],
-                "properties": {
-                    "items": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Wallet"
                         }
                     },
                     "total": {

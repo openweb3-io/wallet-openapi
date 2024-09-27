@@ -20,23 +20,20 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The page number to return.
+      - description: Cursor
         explode: true
         in: query
-        name: page
+        name: cursor
         required: false
         schema:
-          minimum: 0
-          type: integer
+          type: string
         style: form
-      - description: The number of items to return per page.
+      - description: Limit
         explode: true
         in: query
-        name: size
+        name: limit
         required: false
         schema:
-          maximum: 100
-          minimum: 1
           type: integer
         style: form
       responses:
@@ -44,7 +41,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Page-Wallet'
+                $ref: '#/components/schemas/CursorPage-Wallet'
           description: OK
         "400":
           content:
@@ -275,23 +272,20 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The page number to return.
+      - description: Cursor
         explode: true
         in: query
-        name: page
+        name: cursor
         required: false
         schema:
-          minimum: 0
-          type: integer
+          type: string
         style: form
-      - description: The number of items to return per page.
+      - description: Limit
         explode: true
         in: query
-        name: size
+        name: limit
         required: false
         schema:
-          maximum: 100
-          minimum: 1
           type: integer
         style: form
       responses:
@@ -299,7 +293,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Page-Account'
+                $ref: '#/components/schemas/CursorPage-Account'
           description: OK
         "400":
           content:
@@ -437,6 +431,22 @@ paths:
         schema:
           type: string
         style: form
+      - description: Cursor
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit, default is 20
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
       - description: chain network, if not specified, the default network of the currency
           will be used.
         explode: true
@@ -451,7 +461,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Page-Address'
+                $ref: '#/components/schemas/CursorPage-Address'
           description: OK
         "400":
           content:
@@ -548,7 +558,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Page-Address'
+                $ref: '#/components/schemas/CursorPage-Address'
           description: OK
         "400":
           content:
@@ -1833,6 +1843,64 @@ components:
       - base_currency
       - to_currency
       type: object
+    CursorPage-Account:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - locked_balance: locked_balance
+          wallet_id: wallet_id
+          in_transit_balance: in_transit_balance
+          balance: balance
+          currency: currency
+          id: id
+        - locked_balance: locked_balance
+          wallet_id: wallet_id
+          in_transit_balance: in_transit_balance
+          balance: balance
+          currency: currency
+          id: id
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Account'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      required:
+      - has_next
+      - items
+      type: object
+    CursorPage-Address:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - address: address
+          network: network
+        - address: address
+          network: network
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Address'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      required:
+      - has_next
+      - items
+      type: object
     CursorPage-Currency:
       example:
         prev_cursor: prev_cursor
@@ -1957,6 +2025,35 @@ components:
         items:
           items:
             $ref: '#/components/schemas/Currency'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      required:
+      - has_next
+      - items
+      type: object
+    CursorPage-Wallet:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - uid: uid
+          name: name
+          created_at: created_at
+          id: id
+        - uid: uid
+          name: name
+          created_at: created_at
+          id: id
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Wallet'
           type: array
         next_cursor:
           type: string
@@ -2120,52 +2217,6 @@ components:
       required:
       - rates
       type: object
-    Page-Account:
-      example:
-        total: 0
-        items:
-        - locked_balance: locked_balance
-          wallet_id: wallet_id
-          in_transit_balance: in_transit_balance
-          balance: balance
-          currency: currency
-          id: id
-        - locked_balance: locked_balance
-          wallet_id: wallet_id
-          in_transit_balance: in_transit_balance
-          balance: balance
-          currency: currency
-          id: id
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/Account'
-          type: array
-        total:
-          type: integer
-      required:
-      - items
-      - total
-      type: object
-    Page-Address:
-      example:
-        total: 0
-        items:
-        - address: address
-          network: network
-        - address: address
-          network: network
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/Address'
-          type: array
-        total:
-          type: integer
-      required:
-      - items
-      - total
-      type: object
     Page-Transaction:
       example:
         total: 0
@@ -2190,29 +2241,6 @@ components:
         items:
           items:
             $ref: '#/components/schemas/Transaction'
-          type: array
-        total:
-          type: integer
-      required:
-      - items
-      - total
-      type: object
-    Page-Wallet:
-      example:
-        total: 0
-        items:
-        - uid: uid
-          name: name
-          created_at: created_at
-          id: id
-        - uid: uid
-          name: name
-          created_at: created_at
-          id: id
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/Wallet'
           type: array
         total:
           type: integer

@@ -7,11 +7,11 @@ import (
 )
 
 type (
-	PageWalletOut  = openapi.PageWallet
+	PageWalletOut  = openapi.CursorPageWallet
 	WalletOut      = openapi.Wallet
 	CreateWalletIn = openapi.CreateWalletRequest
 	UpdateWalletIn = openapi.UpdateWalletRequest
-	PageAccountOut = openapi.PageAccount
+	PageAccountOut = openapi.CursorPageAccount
 )
 
 type Wallet struct {
@@ -19,29 +19,24 @@ type Wallet struct {
 }
 
 type ListWalletOptions struct {
-	Page int
-	Size int
+	Cursor *string
+	Limit  int
 }
 
 type ListAccountsOptions struct {
-	Page int
-	Size int
+	Cursor *string
+	Limit  int
 }
 
-type GetDepositAddressOptions struct {
-	Currency string
-	Network  *string
-}
-
-type ListDepositAddressesOptions struct {
-	Currency *string
-	Network  *string
-}
 
 func (e *Wallet) List(ctx context.Context, appId string, options *ListWalletOptions) (*PageWalletOut, error) {
 	req := e.api.WalletsApi.V1WalletsList(ctx, appId)
-	req = req.Page(int32(options.Page))
-	req = req.Size(int32(options.Size))
+	if options.Cursor != nil {
+		req = req.Cursor(*options.Cursor)
+	}
+	if options.Limit != 0 {
+		req = req.Limit(int32(options.Limit))
+	}
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -80,8 +75,12 @@ func (e *Wallet) Update(ctx context.Context, appId string, walletId string, upda
 
 func (e *Wallet) ListAccounts(ctx context.Context, appId string, walletId string, options *ListAccountsOptions) (*PageAccountOut, error) {
 	req := e.api.WalletsApi.V1WalletsListAccounts(ctx, appId, walletId)
-	req = req.Page(int32(options.Page))
-	req = req.Size(int32(options.Size))
+	if options.Cursor != nil {
+		req = req.Cursor(*options.Cursor)
+	}
+	if options.Limit != 0 {
+		req = req.Limit(int32(options.Limit))
+	}
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

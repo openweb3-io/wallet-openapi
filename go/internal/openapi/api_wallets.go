@@ -214,20 +214,20 @@ type ApiV1WalletsListRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
 	appId string
-	page *int32
-	size *int32
+	cursor *string
+	limit *int32
 }
 
-func (r ApiV1WalletsListRequest) Page(page int32) ApiV1WalletsListRequest {
-	r.page = &page
+func (r ApiV1WalletsListRequest) Cursor(cursor string) ApiV1WalletsListRequest {
+	r.cursor = &cursor
 	return r
 }
-func (r ApiV1WalletsListRequest) Size(size int32) ApiV1WalletsListRequest {
-	r.size = &size
+func (r ApiV1WalletsListRequest) Limit(limit int32) ApiV1WalletsListRequest {
+	r.limit = &limit
 	return r
 }
 
-func (r ApiV1WalletsListRequest) Execute() (PageWallet, *_nethttp.Response, error) {
+func (r ApiV1WalletsListRequest) Execute() (CursorPageWallet, *_nethttp.Response, error) {
 	return r.ApiService.V1WalletsListExecute(r)
 }
 
@@ -248,16 +248,16 @@ func (a *WalletsApiService) V1WalletsList(ctx _context.Context, appId string) Ap
 
 /*
  * Execute executes the request
- * @return PageWallet
+ * @return CursorPageWallet
  */
-func (a *WalletsApiService) V1WalletsListExecute(r ApiV1WalletsListRequest) (PageWallet, *_nethttp.Response, error) {
+func (a *WalletsApiService) V1WalletsListExecute(r ApiV1WalletsListRequest) (CursorPageWallet, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PageWallet
+		localVarReturnValue  CursorPageWallet
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletsApiService.V1WalletsList")
@@ -272,11 +272,11 @@ func (a *WalletsApiService) V1WalletsListExecute(r ApiV1WalletsListRequest) (Pag
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.size != nil {
-		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -404,20 +404,20 @@ type ApiV1WalletsListAccountsRequest struct {
 	ApiService *WalletsApiService
 	appId string
 	walletId string
-	page *int32
-	size *int32
+	cursor *string
+	limit *int32
 }
 
-func (r ApiV1WalletsListAccountsRequest) Page(page int32) ApiV1WalletsListAccountsRequest {
-	r.page = &page
+func (r ApiV1WalletsListAccountsRequest) Cursor(cursor string) ApiV1WalletsListAccountsRequest {
+	r.cursor = &cursor
 	return r
 }
-func (r ApiV1WalletsListAccountsRequest) Size(size int32) ApiV1WalletsListAccountsRequest {
-	r.size = &size
+func (r ApiV1WalletsListAccountsRequest) Limit(limit int32) ApiV1WalletsListAccountsRequest {
+	r.limit = &limit
 	return r
 }
 
-func (r ApiV1WalletsListAccountsRequest) Execute() (PageAccount, *_nethttp.Response, error) {
+func (r ApiV1WalletsListAccountsRequest) Execute() (CursorPageAccount, *_nethttp.Response, error) {
 	return r.ApiService.V1WalletsListAccountsExecute(r)
 }
 
@@ -440,16 +440,16 @@ func (a *WalletsApiService) V1WalletsListAccounts(ctx _context.Context, appId st
 
 /*
  * Execute executes the request
- * @return PageAccount
+ * @return CursorPageAccount
  */
-func (a *WalletsApiService) V1WalletsListAccountsExecute(r ApiV1WalletsListAccountsRequest) (PageAccount, *_nethttp.Response, error) {
+func (a *WalletsApiService) V1WalletsListAccountsExecute(r ApiV1WalletsListAccountsRequest) (CursorPageAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PageAccount
+		localVarReturnValue  CursorPageAccount
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletsApiService.V1WalletsListAccounts")
@@ -465,11 +465,11 @@ func (a *WalletsApiService) V1WalletsListAccountsExecute(r ApiV1WalletsListAccou
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.size != nil {
-		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsList
 
-> PageWallet V1WalletsList(ctx, appId).Page(page).Size(size).Execute()
+> CursorPageWallet V1WalletsList(ctx, appId).Cursor(cursor).Limit(limit).Execute()
 
 List wallets
 
@@ -106,17 +106,17 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    page := int32(56) // int32 | The page number to return. (optional)
-    size := int32(56) // int32 | The number of items to return per page. (optional)
+    cursor := "cursor_example" // string | Cursor (optional)
+    limit := int32(56) // int32 | Limit (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsList(context.Background(), appId).Page(page).Size(size).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsList(context.Background(), appId).Cursor(cursor).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1WalletsList`: PageWallet
+    // response from `V1WalletsList`: CursorPageWallet
     fmt.Fprintf(os.Stdout, "Response from `WalletsApi.V1WalletsList`: %v\n", resp)
 }
 ```
@@ -137,12 +137,12 @@ Other parameters are passed through a pointer to a apiV1WalletsListRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **page** | **int32** | The page number to return. | 
- **size** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | Cursor | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
-[**PageWallet**](PageWallet.md)
+[**CursorPageWallet**](CursorPageWallet.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsListAccounts
 
-> PageAccount V1WalletsListAccounts(ctx, appId, walletId).Page(page).Size(size).Execute()
+> CursorPageAccount V1WalletsListAccounts(ctx, appId, walletId).Cursor(cursor).Limit(limit).Execute()
 
 List wallet accounts
 
@@ -181,17 +181,17 @@ import (
 func main() {
     appId := "appId_example" // string | App ID
     walletId := "walletId_example" // string | Wallet ID
-    page := int32(56) // int32 | The page number to return. (optional)
-    size := int32(56) // int32 | The number of items to return per page. (optional)
+    cursor := "cursor_example" // string | Cursor (optional)
+    limit := int32(56) // int32 | Limit (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsListAccounts(context.Background(), appId, walletId).Page(page).Size(size).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsListAccounts(context.Background(), appId, walletId).Cursor(cursor).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsListAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1WalletsListAccounts`: PageAccount
+    // response from `V1WalletsListAccounts`: CursorPageAccount
     fmt.Fprintf(os.Stdout, "Response from `WalletsApi.V1WalletsListAccounts`: %v\n", resp)
 }
 ```
@@ -214,12 +214,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **page** | **int32** | The page number to return. | 
- **size** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | Cursor | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
-[**PageAccount**](PageAccount.md)
+[**CursorPageAccount**](CursorPageAccount.md)
 
 ### Authorization
 
