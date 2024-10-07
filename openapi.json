@@ -1615,15 +1615,6 @@
                         "schema": {
                             "type": "string"
                         }
-                    },
-                    {
-                        "description": "Wallet ID",
-                        "name": "walletId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
                     }
                 ],
                 "requestBody": {

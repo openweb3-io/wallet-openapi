@@ -1115,14 +1115,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Wallet ID
-        explode: false
-        in: path
-        name: walletId
-        required: true
-        schema:
-          type: string
-        style: simple
       requestBody:
         content:
           application/json:

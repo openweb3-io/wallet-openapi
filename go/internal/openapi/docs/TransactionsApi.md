@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## V1TransactionsWithdraw
 
-> CreateWithdrawReply V1TransactionsWithdraw(ctx, appId, walletId).CreateWithdrawRequest(createWithdrawRequest).Execute()
+> CreateWithdrawReply V1TransactionsWithdraw(ctx, appId).CreateWithdrawRequest(createWithdrawRequest).Execute()
 
 Withdraw
 
@@ -264,12 +264,11 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    walletId := "walletId_example" // string | Wallet ID
     createWithdrawRequest := *openapiclient.NewCreateWithdrawRequest("Amount_example", "Currency_example", "Network_example", "ToAddress_example", "WalletId_example") // CreateWithdrawRequest | withdraw
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsWithdraw(context.Background(), appId, walletId).CreateWithdrawRequest(createWithdrawRequest).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsWithdraw(context.Background(), appId).CreateWithdrawRequest(createWithdrawRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsWithdraw``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -286,7 +285,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **appId** | **string** | App ID | 
-**walletId** | **string** | Wallet ID | 
 
 ### Other Parameters
 
@@ -295,7 +293,6 @@ Other parameters are passed through a pointer to a apiV1TransactionsWithdrawRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **createWithdrawRequest** | [**CreateWithdrawRequest**](CreateWithdrawRequest.md) | withdraw | 
 

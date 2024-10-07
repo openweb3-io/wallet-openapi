@@ -73,8 +73,8 @@ func (e *Transaction) Retrieve(ctx context.Context, appId string, transactionId 
 	return &out, nil
 }
 
-func (e *Transaction) Withdraw(ctx context.Context, appId string, walletId string, withdrawIn *WithdrawIn) (*WithdrawOut, error) {
-	req := e.api.TransactionsApi.V1TransactionsWithdraw(ctx, appId, walletId)
+func (e *Transaction) Withdraw(ctx context.Context, appId string, withdrawIn *WithdrawIn) (*WithdrawOut, error) {
+	req := e.api.TransactionsApi.V1TransactionsWithdraw(ctx, appId)
 	req = req.CreateWithdrawRequest(*withdrawIn)
 	out, res, err := req.Execute()
 	if err != nil {

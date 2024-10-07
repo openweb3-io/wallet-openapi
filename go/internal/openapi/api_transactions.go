@@ -628,7 +628,6 @@ type ApiV1TransactionsWithdrawRequest struct {
 	ctx _context.Context
 	ApiService *TransactionsApiService
 	appId string
-	walletId string
 	createWithdrawRequest *CreateWithdrawRequest
 }
 
@@ -646,15 +645,13 @@ func (r ApiV1TransactionsWithdrawRequest) Execute() (CreateWithdrawReply, *_neth
  * Create a new withdrawal request for a specified currency
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
- * @param walletId Wallet ID
  * @return ApiV1TransactionsWithdrawRequest
  */
-func (a *TransactionsApiService) V1TransactionsWithdraw(ctx _context.Context, appId string, walletId string) ApiV1TransactionsWithdrawRequest {
+func (a *TransactionsApiService) V1TransactionsWithdraw(ctx _context.Context, appId string) ApiV1TransactionsWithdrawRequest {
 	return ApiV1TransactionsWithdrawRequest{
 		ApiService: a,
 		ctx: ctx,
 		appId: appId,
-		walletId: walletId,
 	}
 }
 
@@ -679,7 +676,6 @@ func (a *TransactionsApiService) V1TransactionsWithdrawExecute(r ApiV1Transactio
 
 	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/withdraw"
 	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
