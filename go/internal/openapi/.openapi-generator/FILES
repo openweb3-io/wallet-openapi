@@ -27,6 +27,7 @@ docs/CurrencyPair.md
 docs/CursorPageAccount.md
 docs/CursorPageAddress.md
 docs/CursorPageCurrency.md
+docs/CursorPageTransaction.md
 docs/CursorPageWallet.md
 docs/CursorPageWebhook.md
 docs/Error.md
@@ -34,7 +35,6 @@ docs/EstimateResponse.md
 docs/EventType.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
-docs/PageTransaction.md
 docs/Rate.md
 docs/RatesApi.md
 docs/Transaction.md
@@ -65,6 +65,7 @@ model_currency_pair.go
 model_cursor_page_account.go
 model_cursor_page_address.go
 model_cursor_page_currency.go
+model_cursor_page_transaction.go
 model_cursor_page_wallet.go
 model_cursor_page_webhook.go
 model_error.go
@@ -72,7 +73,6 @@ model_estimate_response.go
 model_event_type.go
 model_get_rates_request.go
 model_get_rates_response.go
-model_page_transaction.go
 model_rate.go
 model_transaction.go
 model_transaction_direction.go

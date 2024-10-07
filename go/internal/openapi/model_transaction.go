@@ -26,28 +26,40 @@ type Transaction struct {
 	Currency string `json:"currency"`
 	// Indicates the flow of the transaction, typically whether it is incoming or outgoing.
 	Direction TransactionDirection `json:"direction"`
+	// The address of the sender.
+	FromAddress string `json:"from_address"`
 	// The payment gateway or platform used to process the transaction.
 	Gateway string `json:"gateway"`
 	// A unique identifier for the transaction.
 	Id string `json:"id"`
+	// The blockchain network on which the transaction takes place.
+	Network string `json:"network"`
 	// The current status of the transaction.
 	Status TransactionStatus `json:"status"`
+	// The address of the recipient.
+	ToAddress string `json:"to_address"`
+	// The ID of the wallet associated with the transaction.
+	WalletId string `json:"wallet_id"`
 }
 
 // NewTransaction instantiates a new Transaction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, gateway string, id string, status TransactionStatus) *Transaction {
+func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, fromAddress string, gateway string, id string, network string, status TransactionStatus, toAddress string, walletId string) *Transaction {
 	this := Transaction{}
 	this.Amount = amount
 	this.Avatar = avatar
 	this.CreatedAt = createdAt
 	this.Currency = currency
 	this.Direction = direction
+	this.FromAddress = fromAddress
 	this.Gateway = gateway
 	this.Id = id
+	this.Network = network
 	this.Status = status
+	this.ToAddress = toAddress
+	this.WalletId = walletId
 	return &this
 }
 
@@ -179,6 +191,30 @@ func (o *Transaction) SetDirection(v TransactionDirection) {
 	o.Direction = v
 }
 
+// GetFromAddress returns the FromAddress field value
+func (o *Transaction) GetFromAddress() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FromAddress
+}
+
+// GetFromAddressOk returns a tuple with the FromAddress field value
+// and a boolean to check if the value has been set.
+func (o *Transaction) GetFromAddressOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FromAddress, true
+}
+
+// SetFromAddress sets field value
+func (o *Transaction) SetFromAddress(v string) {
+	o.FromAddress = v
+}
+
 // GetGateway returns the Gateway field value
 func (o *Transaction) GetGateway() string {
 	if o == nil {
@@ -227,6 +263,30 @@ func (o *Transaction) SetId(v string) {
 	o.Id = v
 }
 
+// GetNetwork returns the Network field value
+func (o *Transaction) GetNetwork() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Network
+}
+
+// GetNetworkOk returns a tuple with the Network field value
+// and a boolean to check if the value has been set.
+func (o *Transaction) GetNetworkOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Network, true
+}
+
+// SetNetwork sets field value
+func (o *Transaction) SetNetwork(v string) {
+	o.Network = v
+}
+
 // GetStatus returns the Status field value
 func (o *Transaction) GetStatus() TransactionStatus {
 	if o == nil {
@@ -251,6 +311,54 @@ func (o *Transaction) SetStatus(v TransactionStatus) {
 	o.Status = v
 }
 
+// GetToAddress returns the ToAddress field value
+func (o *Transaction) GetToAddress() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ToAddress
+}
+
+// GetToAddressOk returns a tuple with the ToAddress field value
+// and a boolean to check if the value has been set.
+func (o *Transaction) GetToAddressOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.ToAddress, true
+}
+
+// SetToAddress sets field value
+func (o *Transaction) SetToAddress(v string) {
+	o.ToAddress = v
+}
+
+// GetWalletId returns the WalletId field value
+func (o *Transaction) GetWalletId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.WalletId
+}
+
+// GetWalletIdOk returns a tuple with the WalletId field value
+// and a boolean to check if the value has been set.
+func (o *Transaction) GetWalletIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WalletId, true
+}
+
+// SetWalletId sets field value
+func (o *Transaction) SetWalletId(v string) {
+	o.WalletId = v
+}
+
 func (o Transaction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -269,13 +377,25 @@ func (o Transaction) MarshalJSON() ([]byte, error) {
 		toSerialize["direction"] = o.Direction
 	}
 	if true {
+		toSerialize["from_address"] = o.FromAddress
+	}
+	if true {
 		toSerialize["gateway"] = o.Gateway
 	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
 	if true {
+		toSerialize["network"] = o.Network
+	}
+	if true {
 		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["to_address"] = o.ToAddress
+	}
+	if true {
+		toSerialize["wallet_id"] = o.WalletId
 	}
 	return json.Marshal(toSerialize)
 }

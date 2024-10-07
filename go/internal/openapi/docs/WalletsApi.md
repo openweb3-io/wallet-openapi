@@ -1,6 +1,6 @@
 # \WalletsApi
 
-All URIs are relative to *https://api.wallet.openweb3.io*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

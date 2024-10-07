@@ -74,7 +74,7 @@ ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.wallet.openweb3.io*
+All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -88,7 +88,7 @@ Class | Method | HTTP request | Description
 *TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/apps/{appId}/transactions | List transactions
 *TransactionsApi* | [**V1TransactionsRetrieve**](docs/TransactionsApi.md#v1transactionsretrieve) | **Get** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
 *TransactionsApi* | [**V1TransactionsTransfer**](docs/TransactionsApi.md#v1transactionstransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer token
-*TransactionsApi* | [**V1WalletsWithdraw**](docs/TransactionsApi.md#v1walletswithdraw) | **Post** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
+*TransactionsApi* | [**V1TransactionsWithdraw**](docs/TransactionsApi.md#v1transactionswithdraw) | **Post** /api/v1/apps/{appId}/transactions/{walletId}/withdraw | Withdraw
 *WalletsApi* | [**V1WalletsCreate**](docs/WalletsApi.md#v1walletscreate) | **Post** /api/v1/apps/{appId}/wallets | Create wallet
 *WalletsApi* | [**V1WalletsList**](docs/WalletsApi.md#v1walletslist) | **Get** /api/v1/apps/{appId}/wallets | List wallets
 *WalletsApi* | [**V1WalletsListAccounts**](docs/WalletsApi.md#v1walletslistaccounts) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/accounts | List wallet accounts
@@ -118,6 +118,7 @@ Class | Method | HTTP request | Description
  - [CursorPageAccount](docs/CursorPageAccount.md)
  - [CursorPageAddress](docs/CursorPageAddress.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
+ - [CursorPageTransaction](docs/CursorPageTransaction.md)
  - [CursorPageWallet](docs/CursorPageWallet.md)
  - [CursorPageWebhook](docs/CursorPageWebhook.md)
  - [Error](docs/Error.md)
@@ -125,7 +126,6 @@ Class | Method | HTTP request | Description
  - [EventType](docs/EventType.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
- - [PageTransaction](docs/PageTransaction.md)
  - [Rate](docs/Rate.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionDirection](docs/TransactionDirection.md)

@@ -9,15 +9,19 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** | The date and time when the transaction was created. | 
 **Currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
 **Direction** | [**TransactionDirection**](TransactionDirection.md) | Indicates the flow of the transaction, typically whether it is incoming or outgoing. | 
+**FromAddress** | **string** | The address of the sender. | 
 **Gateway** | **string** | The payment gateway or platform used to process the transaction. | 
 **Id** | **string** | A unique identifier for the transaction. | 
+**Network** | **string** | The blockchain network on which the transaction takes place. | 
 **Status** | [**TransactionStatus**](TransactionStatus.md) | The current status of the transaction. | 
+**ToAddress** | **string** | The address of the recipient. | 
+**WalletId** | **string** | The ID of the wallet associated with the transaction. | 
 
 ## Methods
 
 ### NewTransaction
 
-`func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, gateway string, id string, status TransactionStatus, ) *Transaction`
+`func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, fromAddress string, gateway string, id string, network string, status TransactionStatus, toAddress string, walletId string, ) *Transaction`
 
 NewTransaction instantiates a new Transaction object
 This constructor will assign default values to properties that have it defined,
@@ -132,6 +136,26 @@ and a boolean to check if the value has been set.
 SetDirection sets Direction field to given value.
 
 
+### GetFromAddress
+
+`func (o *Transaction) GetFromAddress() string`
+
+GetFromAddress returns the FromAddress field if non-nil, zero value otherwise.
+
+### GetFromAddressOk
+
+`func (o *Transaction) GetFromAddressOk() (*string, bool)`
+
+GetFromAddressOk returns a tuple with the FromAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFromAddress
+
+`func (o *Transaction) SetFromAddress(v string)`
+
+SetFromAddress sets FromAddress field to given value.
+
+
 ### GetGateway
 
 `func (o *Transaction) GetGateway() string`
@@ -172,6 +196,26 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetNetwork
+
+`func (o *Transaction) GetNetwork() string`
+
+GetNetwork returns the Network field if non-nil, zero value otherwise.
+
+### GetNetworkOk
+
+`func (o *Transaction) GetNetworkOk() (*string, bool)`
+
+GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetwork
+
+`func (o *Transaction) SetNetwork(v string)`
+
+SetNetwork sets Network field to given value.
+
+
 ### GetStatus
 
 `func (o *Transaction) GetStatus() TransactionStatus`
@@ -190,6 +234,46 @@ and a boolean to check if the value has been set.
 `func (o *Transaction) SetStatus(v TransactionStatus)`
 
 SetStatus sets Status field to given value.
+
+
+### GetToAddress
+
+`func (o *Transaction) GetToAddress() string`
+
+GetToAddress returns the ToAddress field if non-nil, zero value otherwise.
+
+### GetToAddressOk
+
+`func (o *Transaction) GetToAddressOk() (*string, bool)`
+
+GetToAddressOk returns a tuple with the ToAddress field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetToAddress
+
+`func (o *Transaction) SetToAddress(v string)`
+
+SetToAddress sets ToAddress field to given value.
+
+
+### GetWalletId
+
+`func (o *Transaction) GetWalletId() string`
+
+GetWalletId returns the WalletId field if non-nil, zero value otherwise.
+
+### GetWalletIdOk
+
+`func (o *Transaction) GetWalletIdOk() (*string, bool)`
+
+GetWalletIdOk returns a tuple with the WalletId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWalletId
+
+`func (o *Transaction) SetWalletId(v string)`
+
+SetWalletId sets WalletId field to given value.
 
 
 

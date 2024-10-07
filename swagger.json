@@ -831,7 +831,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Page-Transaction"
+                            "$ref": "#/definitions/CursorPage-Transaction"
                         }
                     },
                     "400": {
@@ -935,80 +935,6 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/transactions/withdraw": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Create a new withdrawal request for a specified currency",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "transactions"
-                ],
-                "summary": "Withdraw",
-                "operationId": "v1.wallets.withdraw",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "withdraw",
-                        "name": "req",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/CreateWithdrawRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/CreateWithdrawReply"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
         "/api/v1/apps/{appId}/transactions/{transactionId}": {
             "get": {
                 "security": [
@@ -1052,6 +978,87 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Transaction"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/apps/{appId}/transactions/{walletId}/withdraw": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Create a new withdrawal request for a specified currency",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Withdraw",
+                "operationId": "v1.transactions.withdraw",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "App ID",
+                        "name": "appId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Wallet ID",
+                        "name": "walletId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "withdraw",
+                        "name": "req",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateWithdrawRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CreateWithdrawReply"
                         }
                     },
                     "400": {
@@ -2152,6 +2159,30 @@
                 }
             }
         },
+        "CursorPage-Transaction": {
+            "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
+            "properties": {
+                "has_next": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Transaction"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
         "CursorPage-Wallet": {
             "type": "object",
             "required": [
@@ -2300,24 +2331,6 @@
                 }
             }
         },
-        "Page-Transaction": {
-            "type": "object",
-            "required": [
-                "items",
-                "total"
-            ],
-            "properties": {
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Transaction"
-                    }
-                },
-                "total": {
-                    "type": "integer"
-                }
-            }
-        },
         "Rate": {
             "type": "object",
             "required": [
@@ -2342,9 +2355,13 @@
                 "created_at",
                 "currency",
                 "direction",
+                "from_address",
                 "gateway",
                 "id",
-                "status"
+                "network",
+                "status",
+                "to_address",
+                "wallet_id"
             ],
             "properties": {
                 "amount": {
@@ -2371,12 +2388,20 @@
                         }
                     ]
                 },
+                "from_address": {
+                    "description": "The address of the sender.",
+                    "type": "string"
+                },
                 "gateway": {
                     "description": "The payment gateway or platform used to process the transaction.",
                     "type": "string"
                 },
                 "id": {
                     "description": "A unique identifier for the transaction.",
+                    "type": "string"
+                },
+                "network": {
+                    "description": "The blockchain network on which the transaction takes place.",
                     "type": "string"
                 },
                 "status": {
@@ -2386,6 +2411,14 @@
                             "$ref": "#/definitions/TransactionStatus"
                         }
                     ]
+                },
+                "to_address": {
+                    "description": "The address of the recipient.",
+                    "type": "string"
+                },
+                "wallet_id": {
+                    "description": "The ID of the wallet associated with the transaction.",
+                    "type": "string"
                 }
             }
         },

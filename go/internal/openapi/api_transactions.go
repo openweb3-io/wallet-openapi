@@ -74,7 +74,7 @@ func (r ApiV1TransactionsListRequest) WalletId(walletId string) ApiV1Transaction
 	return r
 }
 
-func (r ApiV1TransactionsListRequest) Execute() (PageTransaction, *_nethttp.Response, error) {
+func (r ApiV1TransactionsListRequest) Execute() (CursorPageTransaction, *_nethttp.Response, error) {
 	return r.ApiService.V1TransactionsListExecute(r)
 }
 
@@ -95,16 +95,16 @@ func (a *TransactionsApiService) V1TransactionsList(ctx _context.Context, appId 
 
 /*
  * Execute executes the request
- * @return PageTransaction
+ * @return CursorPageTransaction
  */
-func (a *TransactionsApiService) V1TransactionsListExecute(r ApiV1TransactionsListRequest) (PageTransaction, *_nethttp.Response, error) {
+func (a *TransactionsApiService) V1TransactionsListExecute(r ApiV1TransactionsListRequest) (CursorPageTransaction, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  PageTransaction
+		localVarReturnValue  CursorPageTransaction
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsApiService.V1TransactionsList")
@@ -624,34 +624,37 @@ func (a *TransactionsApiService) V1TransactionsTransferExecute(r ApiV1Transactio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiV1WalletsWithdrawRequest struct {
+type ApiV1TransactionsWithdrawRequest struct {
 	ctx _context.Context
 	ApiService *TransactionsApiService
 	appId string
+	walletId string
 	createWithdrawRequest *CreateWithdrawRequest
 }
 
-func (r ApiV1WalletsWithdrawRequest) CreateWithdrawRequest(createWithdrawRequest CreateWithdrawRequest) ApiV1WalletsWithdrawRequest {
+func (r ApiV1TransactionsWithdrawRequest) CreateWithdrawRequest(createWithdrawRequest CreateWithdrawRequest) ApiV1TransactionsWithdrawRequest {
 	r.createWithdrawRequest = &createWithdrawRequest
 	return r
 }
 
-func (r ApiV1WalletsWithdrawRequest) Execute() (CreateWithdrawReply, *_nethttp.Response, error) {
-	return r.ApiService.V1WalletsWithdrawExecute(r)
+func (r ApiV1TransactionsWithdrawRequest) Execute() (CreateWithdrawReply, *_nethttp.Response, error) {
+	return r.ApiService.V1TransactionsWithdrawExecute(r)
 }
 
 /*
- * V1WalletsWithdraw Withdraw
+ * V1TransactionsWithdraw Withdraw
  * Create a new withdrawal request for a specified currency
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID
- * @return ApiV1WalletsWithdrawRequest
+ * @param walletId Wallet ID
+ * @return ApiV1TransactionsWithdrawRequest
  */
-func (a *TransactionsApiService) V1WalletsWithdraw(ctx _context.Context, appId string) ApiV1WalletsWithdrawRequest {
-	return ApiV1WalletsWithdrawRequest{
+func (a *TransactionsApiService) V1TransactionsWithdraw(ctx _context.Context, appId string, walletId string) ApiV1TransactionsWithdrawRequest {
+	return ApiV1TransactionsWithdrawRequest{
 		ApiService: a,
 		ctx: ctx,
 		appId: appId,
+		walletId: walletId,
 	}
 }
 
@@ -659,7 +662,7 @@ func (a *TransactionsApiService) V1WalletsWithdraw(ctx _context.Context, appId s
  * Execute executes the request
  * @return CreateWithdrawReply
  */
-func (a *TransactionsApiService) V1WalletsWithdrawExecute(r ApiV1WalletsWithdrawRequest) (CreateWithdrawReply, *_nethttp.Response, error) {
+func (a *TransactionsApiService) V1TransactionsWithdrawExecute(r ApiV1TransactionsWithdrawRequest) (CreateWithdrawReply, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -669,13 +672,14 @@ func (a *TransactionsApiService) V1WalletsWithdrawExecute(r ApiV1WalletsWithdraw
 		localVarReturnValue  CreateWithdrawReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsApiService.V1WalletsWithdraw")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionsApiService.V1TransactionsWithdraw")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/withdraw"
+	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/{walletId}/withdraw"
 	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

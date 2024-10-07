@@ -6,11 +6,6 @@
         "contact": {},
         "version": "1.0"
     },
-    "servers": [
-        {
-            "url": "https://api.wallet.openweb3.io"
-        }
-    ],
     "paths": {
         "/api/v1/apps/{appId}/wallets": {
             "get": {
@@ -1163,7 +1158,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Page-Transaction"
+                                    "$ref": "#/components/schemas/CursorPage-Transaction"
                                 }
                             }
                         }
@@ -1393,7 +1388,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/transactions/withdraw": {
+        "/api/v1/apps/{appId}/transactions/{walletId}/withdraw": {
             "post": {
                 "security": [
                     {
@@ -1408,11 +1403,20 @@
                     "transactions"
                 ],
                 "summary": "Withdraw",
-                "operationId": "v1.wallets.withdraw",
+                "operationId": "v1.transactions.withdraw",
                 "parameters": [
                     {
                         "description": "App ID",
                         "name": "appId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Wallet ID",
+                        "name": "walletId",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -2558,6 +2562,30 @@
                     }
                 }
             },
+            "CursorPage-Transaction": {
+                "type": "object",
+                "required": [
+                    "has_next",
+                    "items"
+                ],
+                "properties": {
+                    "has_next": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Transaction"
+                        }
+                    },
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    }
+                }
+            },
             "CursorPage-Wallet": {
                 "type": "object",
                 "required": [
@@ -2706,24 +2734,6 @@
                     }
                 }
             },
-            "Page-Transaction": {
-                "type": "object",
-                "required": [
-                    "items",
-                    "total"
-                ],
-                "properties": {
-                    "items": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Transaction"
-                        }
-                    },
-                    "total": {
-                        "type": "integer"
-                    }
-                }
-            },
             "Rate": {
                 "type": "object",
                 "required": [
@@ -2748,9 +2758,13 @@
                     "created_at",
                     "currency",
                     "direction",
+                    "from_address",
                     "gateway",
                     "id",
-                    "status"
+                    "network",
+                    "status",
+                    "to_address",
+                    "wallet_id"
                 ],
                 "properties": {
                     "amount": {
@@ -2777,12 +2791,20 @@
                             }
                         ]
                     },
+                    "from_address": {
+                        "description": "The address of the sender.",
+                        "type": "string"
+                    },
                     "gateway": {
                         "description": "The payment gateway or platform used to process the transaction.",
                         "type": "string"
                     },
                     "id": {
                         "description": "A unique identifier for the transaction.",
+                        "type": "string"
+                    },
+                    "network": {
+                        "description": "The blockchain network on which the transaction takes place.",
                         "type": "string"
                     },
                     "status": {
@@ -2792,6 +2814,14 @@
                                 "$ref": "#/components/schemas/TransactionStatus"
                             }
                         ]
+                    },
+                    "to_address": {
+                        "description": "The address of the recipient.",
+                        "type": "string"
+                    },
+                    "wallet_id": {
+                        "description": "The ID of the wallet associated with the transaction.",
+                        "type": "string"
                     }
                 }
             },

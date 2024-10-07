@@ -5,7 +5,7 @@ info:
   title: Wallet OpenAPI Documentation
   version: "1.0"
 servers:
-- url: https://api.wallet.openweb3.io
+- url: /
 paths:
   /api/v1/apps/{appId}/wallets:
     get:
@@ -820,7 +820,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Page-Transaction'
+                $ref: '#/components/schemas/CursorPage-Transaction'
           description: OK
         "400":
           content:
@@ -967,15 +967,23 @@ paths:
       summary: Transfer token
       tags:
       - transactions
-  /api/v1/apps/{appId}/transactions/withdraw:
+  /api/v1/apps/{appId}/transactions/{walletId}/withdraw:
     post:
       description: Create a new withdrawal request for a specified currency
-      operationId: v1.wallets.withdraw
+      operationId: v1.transactions.withdraw
       parameters:
       - description: App ID
         explode: false
         in: path
         name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Wallet ID
+        explode: false
+        in: path
+        name: walletId
         required: true
         schema:
           type: string
@@ -2034,6 +2042,51 @@ components:
       - has_next
       - items
       type: object
+    CursorPage-Transaction:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - amount: amount
+          wallet_id: wallet_id
+          created_at: created_at
+          currency: currency
+          to_address: to_address
+          avatar: avatar
+          id: id
+          from_address: from_address
+          gateway: gateway
+          direction: ""
+          network: network
+          status: ""
+        - amount: amount
+          wallet_id: wallet_id
+          created_at: created_at
+          currency: currency
+          to_address: to_address
+          avatar: avatar
+          id: id
+          from_address: from_address
+          gateway: gateway
+          direction: ""
+          network: network
+          status: ""
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Transaction'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      required:
+      - has_next
+      - items
+      type: object
     CursorPage-Wallet:
       example:
         prev_cursor: prev_cursor
@@ -2217,37 +2270,6 @@ components:
       required:
       - rates
       type: object
-    Page-Transaction:
-      example:
-        total: 0
-        items:
-        - amount: amount
-          created_at: created_at
-          currency: currency
-          avatar: avatar
-          id: id
-          gateway: gateway
-          direction: ""
-          status: ""
-        - amount: amount
-          created_at: created_at
-          currency: currency
-          avatar: avatar
-          id: id
-          gateway: gateway
-          direction: ""
-          status: ""
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/Transaction'
-          type: array
-        total:
-          type: integer
-      required:
-      - items
-      - total
-      type: object
     Rate:
       example:
         rate: 0.8008281904610115
@@ -2267,12 +2289,16 @@ components:
     Transaction:
       example:
         amount: amount
+        wallet_id: wallet_id
         created_at: created_at
         currency: currency
+        to_address: to_address
         avatar: avatar
         id: id
+        from_address: from_address
         gateway: gateway
         direction: ""
+        network: network
         status: ""
       properties:
         amount:
@@ -2294,25 +2320,41 @@ components:
           - $ref: '#/components/schemas/TransactionDirection'
           description: Indicates the flow of the transaction, typically whether it
             is incoming or outgoing.
+        from_address:
+          description: The address of the sender.
+          type: string
         gateway:
           description: The payment gateway or platform used to process the transaction.
           type: string
         id:
           description: A unique identifier for the transaction.
           type: string
+        network:
+          description: The blockchain network on which the transaction takes place.
+          type: string
         status:
           allOf:
           - $ref: '#/components/schemas/TransactionStatus'
           description: The current status of the transaction.
+        to_address:
+          description: The address of the recipient.
+          type: string
+        wallet_id:
+          description: The ID of the wallet associated with the transaction.
+          type: string
       required:
       - amount
       - avatar
       - created_at
       - currency
       - direction
+      - from_address
       - gateway
       - id
+      - network
       - status
+      - to_address
+      - wallet_id
       type: object
     TransactionDirection:
       enum:

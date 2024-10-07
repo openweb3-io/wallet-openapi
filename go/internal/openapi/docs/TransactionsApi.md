@@ -1,19 +1,19 @@
 # \TransactionsApi
 
-All URIs are relative to *https://api.wallet.openweb3.io*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**V1TransactionsList**](TransactionsApi.md#V1TransactionsList) | **Get** /api/v1/apps/{appId}/transactions | List transactions
 [**V1TransactionsRetrieve**](TransactionsApi.md#V1TransactionsRetrieve) | **Get** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
 [**V1TransactionsTransfer**](TransactionsApi.md#V1TransactionsTransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer token
-[**V1WalletsWithdraw**](TransactionsApi.md#V1WalletsWithdraw) | **Post** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
+[**V1TransactionsWithdraw**](TransactionsApi.md#V1TransactionsWithdraw) | **Post** /api/v1/apps/{appId}/transactions/{walletId}/withdraw | Withdraw
 
 
 
 ## V1TransactionsList
 
-> PageTransaction V1TransactionsList(ctx, appId).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
+> CursorPageTransaction V1TransactionsList(ctx, appId).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
 
 List transactions
 
@@ -49,7 +49,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1TransactionsList`: PageTransaction
+    // response from `V1TransactionsList`: CursorPageTransaction
     fmt.Fprintf(os.Stdout, "Response from `TransactionsApi.V1TransactionsList`: %v\n", resp)
 }
 ```
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PageTransaction**](PageTransaction.md)
+[**CursorPageTransaction**](CursorPageTransaction.md)
 
 ### Authorization
 
@@ -242,9 +242,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## V1WalletsWithdraw
+## V1TransactionsWithdraw
 
-> CreateWithdrawReply V1WalletsWithdraw(ctx, appId).CreateWithdrawRequest(createWithdrawRequest).Execute()
+> CreateWithdrawReply V1TransactionsWithdraw(ctx, appId, walletId).CreateWithdrawRequest(createWithdrawRequest).Execute()
 
 Withdraw
 
@@ -264,17 +264,18 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
+    walletId := "walletId_example" // string | Wallet ID
     createWithdrawRequest := *openapiclient.NewCreateWithdrawRequest("Amount_example", "Currency_example", "Network_example", "ToAddress_example", "WalletId_example") // CreateWithdrawRequest | withdraw
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1WalletsWithdraw(context.Background(), appId).CreateWithdrawRequest(createWithdrawRequest).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsWithdraw(context.Background(), appId, walletId).CreateWithdrawRequest(createWithdrawRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1WalletsWithdraw``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsWithdraw``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1WalletsWithdraw`: CreateWithdrawReply
-    fmt.Fprintf(os.Stdout, "Response from `TransactionsApi.V1WalletsWithdraw`: %v\n", resp)
+    // response from `V1TransactionsWithdraw`: CreateWithdrawReply
+    fmt.Fprintf(os.Stdout, "Response from `TransactionsApi.V1TransactionsWithdraw`: %v\n", resp)
 }
 ```
 
@@ -285,14 +286,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **appId** | **string** | App ID | 
+**walletId** | **string** | Wallet ID | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiV1WalletsWithdrawRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiV1TransactionsWithdrawRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **createWithdrawRequest** | [**CreateWithdrawRequest**](CreateWithdrawRequest.md) | withdraw | 
 
