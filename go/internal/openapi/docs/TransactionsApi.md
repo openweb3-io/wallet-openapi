@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**V1TransactionsList**](TransactionsApi.md#V1TransactionsList) | **Get** /api/v1/apps/{appId}/transactions | List transactions
 [**V1TransactionsRetrieve**](TransactionsApi.md#V1TransactionsRetrieve) | **Get** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
 [**V1TransactionsTransfer**](TransactionsApi.md#V1TransactionsTransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer token
-[**V1TransactionsWithdraw**](TransactionsApi.md#V1TransactionsWithdraw) | **Post** /api/v1/apps/{appId}/transactions/{walletId}/withdraw | Withdraw
+[**V1TransactionsWithdraw**](TransactionsApi.md#V1TransactionsWithdraw) | **Post** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
 
 
 
@@ -192,7 +192,7 @@ import (
 
 func main() {
     appId := "appId_example" // string | App ID
-    createTransferRequest := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example") // CreateTransferRequest | Request Body
+    createTransferRequest := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example", "WalletId_example") // CreateTransferRequest | Request Body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

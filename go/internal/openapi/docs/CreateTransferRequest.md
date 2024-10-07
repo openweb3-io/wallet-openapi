@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Currency** | **string** | The code of currency to be transferred | 
 **From** | **string** | The ID of the wallet from which the transfer will be made | 
 **To** | **string** | The ID of the wallet to which the transfer will be made | 
+**WalletId** | **string** | The ID of the wallet from which the transfer will be made | 
 
 ## Methods
 
 ### NewCreateTransferRequest
 
-`func NewCreateTransferRequest(amount string, currency string, from string, to string, ) *CreateTransferRequest`
+`func NewCreateTransferRequest(amount string, currency string, from string, to string, walletId string, ) *CreateTransferRequest`
 
 NewCreateTransferRequest instantiates a new CreateTransferRequest object
 This constructor will assign default values to properties that have it defined,
@@ -106,6 +107,26 @@ and a boolean to check if the value has been set.
 `func (o *CreateTransferRequest) SetTo(v string)`
 
 SetTo sets To field to given value.
+
+
+### GetWalletId
+
+`func (o *CreateTransferRequest) GetWalletId() string`
+
+GetWalletId returns the WalletId field if non-nil, zero value otherwise.
+
+### GetWalletIdOk
+
+`func (o *CreateTransferRequest) GetWalletIdOk() (*string, bool)`
+
+GetWalletIdOk returns a tuple with the WalletId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWalletId
+
+`func (o *CreateTransferRequest) SetWalletId(v string)`
+
+SetWalletId sets WalletId field to given value.
 
 
 

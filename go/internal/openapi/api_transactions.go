@@ -677,7 +677,7 @@ func (a *TransactionsApiService) V1TransactionsWithdrawExecute(r ApiV1Transactio
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/{walletId}/withdraw"
+	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/withdraw"
 	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 

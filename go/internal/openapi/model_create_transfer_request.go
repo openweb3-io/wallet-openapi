@@ -24,18 +24,21 @@ type CreateTransferRequest struct {
 	From string `json:"from"`
 	// The ID of the wallet to which the transfer will be made
 	To string `json:"to"`
+	// The ID of the wallet from which the transfer will be made
+	WalletId string `json:"wallet_id"`
 }
 
 // NewCreateTransferRequest instantiates a new CreateTransferRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTransferRequest(amount string, currency string, from string, to string) *CreateTransferRequest {
+func NewCreateTransferRequest(amount string, currency string, from string, to string, walletId string) *CreateTransferRequest {
 	this := CreateTransferRequest{}
 	this.Amount = amount
 	this.Currency = currency
 	this.From = from
 	this.To = to
+	this.WalletId = walletId
 	return &this
 }
 
@@ -143,6 +146,30 @@ func (o *CreateTransferRequest) SetTo(v string) {
 	o.To = v
 }
 
+// GetWalletId returns the WalletId field value
+func (o *CreateTransferRequest) GetWalletId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.WalletId
+}
+
+// GetWalletIdOk returns a tuple with the WalletId field value
+// and a boolean to check if the value has been set.
+func (o *CreateTransferRequest) GetWalletIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.WalletId, true
+}
+
+// SetWalletId sets field value
+func (o *CreateTransferRequest) SetWalletId(v string) {
+	o.WalletId = v
+}
+
 func (o CreateTransferRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -156,6 +183,9 @@ func (o CreateTransferRequest) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["to"] = o.To
+	}
+	if true {
+		toSerialize["wallet_id"] = o.WalletId
 	}
 	return json.Marshal(toSerialize)
 }
