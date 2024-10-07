@@ -188,9 +188,19 @@ func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 
 	var resp *http.Response
 	var err error
+
+	// read and reset request body
+	var requestBody []byte
+	if request.Body != nil {
+		requestBody, err = io.ReadAll(request.Body)
+		if err != nil {
+			return nil, err
+		}
+	}
 	sleepTime := time.Millisecond * 50
 	retryCount := 0
 	for try := 0; try < NumTries; try++ {
+		request.Body = io.NopCloser(bytes.NewReader(requestBody))
 		resp, err = c.cfg.HTTPClient.Do(request)
 		if err == nil && resp.StatusCode < 500 {
 			break
@@ -352,7 +362,7 @@ func (c *APIClient) prepareRequest(
 	// Add the user agent to the request.
 	localVarRequest.Header.Add("User-Agent", c.cfg.UserAgent)
 	rand.Seed(time.Now().UnixNano())
-	localVarRequest.Header.Add("wallet-req-id", strconv.FormatUint(rand.Uint64(), 10))
+	localVarRequest.Header.Add("walletpay-req-id", strconv.FormatUint(rand.Uint64(), 10))
 
 	if ctx != nil {
 		// add context to the request
