@@ -540,11 +540,13 @@ paths:
           enum:
           - COLLECT
           - DEPOSIT
+          - GAS
           type: string
         style: form
         x-enum-varnames:
         - AddressTypeCollect
         - AddressTypeDeposit
+        - AddressTypeGas
       - description: Unique system generated identifier of the wallet
         explode: true
         in: query
@@ -1099,7 +1101,7 @@ paths:
       security:
       - ApiKeyAuth: []
       - SignatureAuth: []
-      summary: Transfer token
+      summary: Transfer(internal)
       tags:
       - transactions
   /api/v1/apps/{appId}/transactions/withdraw:
@@ -1432,6 +1434,7 @@ components:
     Address:
       example:
         address: address
+        type: type
         network: network
       properties:
         address:
@@ -1440,18 +1443,24 @@ components:
         network:
           description: the blockchain network
           type: string
+        type:
+          description: the type of address.
+          type: string
       required:
       - address
       - network
+      - type
       type: object
     AddressType:
       enum:
       - COLLECT
       - DEPOSIT
+      - GAS
       type: string
       x-enum-varnames:
       - AddressTypeCollect
       - AddressTypeDeposit
+      - AddressTypeGas
     CreateTransferRequest:
       example:
         amount: amount
@@ -1888,8 +1897,10 @@ components:
         has_next: true
         items:
         - address: address
+          type: type
           network: network
         - address: address
+          type: type
           network: network
       properties:
         has_next:

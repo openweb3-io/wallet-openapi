@@ -5,3 +5,15 @@ node_modules
 
 .vscode
 .DS_Store
+
+.env
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.p8
+*.p12
+*.p8
+*.p12
+*.p8

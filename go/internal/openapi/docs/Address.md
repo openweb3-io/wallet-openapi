@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | the blockchain address. | 
 **Network** | **string** | the blockchain network | 
+**Type** | **string** | the type of address. | 
 
 ## Methods
 
 ### NewAddress
 
-`func NewAddress(address string, network string, ) *Address`
+`func NewAddress(address string, network string, type_ string, ) *Address`
 
 NewAddress instantiates a new Address object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *Address) SetNetwork(v string)`
 
 SetNetwork sets Network field to given value.
+
+
+### GetType
+
+`func (o *Address) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Address) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Address) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 

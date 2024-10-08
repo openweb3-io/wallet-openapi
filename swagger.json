@@ -58,12 +58,14 @@
                     {
                         "enum": [
                             "COLLECT",
-                            "DEPOSIT"
+                            "DEPOSIT",
+                            "GAS"
                         ],
                         "type": "string",
                         "x-enum-varnames": [
                             "AddressTypeCollect",
-                            "AddressTypeDeposit"
+                            "AddressTypeDeposit",
+                            "AddressTypeGas"
                         ],
                         "description": "The type of address to retrieve.",
                         "name": "type",
@@ -881,7 +883,7 @@
                 "tags": [
                     "transactions"
                 ],
-                "summary": "Transfer token",
+                "summary": "Transfer(internal)",
                 "operationId": "v1.transactions.transfer",
                 "parameters": [
                     {
@@ -962,13 +964,6 @@
                         "type": "string",
                         "description": "App ID",
                         "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Wallet ID",
-                        "name": "walletId",
                         "in": "path",
                         "required": true
                     },
@@ -1696,7 +1691,8 @@
             "type": "object",
             "required": [
                 "address",
-                "network"
+                "network",
+                "type"
             ],
             "properties": {
                 "address": {
@@ -1706,6 +1702,10 @@
                 "network": {
                     "description": "the blockchain network",
                     "type": "string"
+                },
+                "type": {
+                    "description": "the type of address.",
+                    "type": "string"
                 }
             }
         },
@@ -1713,11 +1713,13 @@
             "type": "string",
             "enum": [
                 "COLLECT",
-                "DEPOSIT"
+                "DEPOSIT",
+                "GAS"
             ],
             "x-enum-varnames": [
                 "AddressTypeCollect",
-                "AddressTypeDeposit"
+                "AddressTypeDeposit",
+                "AddressTypeGas"
             ]
         },
         "CreateTransferRequest": {

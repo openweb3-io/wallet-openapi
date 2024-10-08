@@ -22,11 +22,13 @@ type AddressType string
 const (
 	ADDRESSTYPE_AddressTypeCollect AddressType = "COLLECT"
 	ADDRESSTYPE_AddressTypeDeposit AddressType = "DEPOSIT"
+	ADDRESSTYPE_AddressTypeGas AddressType = "GAS"
 )
 
 var allowedAddressTypeEnumValues = []AddressType{
 	"COLLECT",
 	"DEPOSIT",
+	"GAS",
 }
 
 func (v *AddressType) UnmarshalJSON(src []byte) error {

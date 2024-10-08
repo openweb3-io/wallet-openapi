@@ -87,7 +87,7 @@ Class | Method | HTTP request | Description
 *RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/apps/{appId}/rates | List rates
 *TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/apps/{appId}/transactions | List transactions
 *TransactionsApi* | [**V1TransactionsRetrieve**](docs/TransactionsApi.md#v1transactionsretrieve) | **Get** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
-*TransactionsApi* | [**V1TransactionsTransfer**](docs/TransactionsApi.md#v1transactionstransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer token
+*TransactionsApi* | [**V1TransactionsTransfer**](docs/TransactionsApi.md#v1transactionstransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer(internal)
 *TransactionsApi* | [**V1TransactionsWithdraw**](docs/TransactionsApi.md#v1transactionswithdraw) | **Post** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
 *WalletsApi* | [**V1WalletsCreate**](docs/WalletsApi.md#v1walletscreate) | **Post** /api/v1/apps/{appId}/wallets | Create wallet
 *WalletsApi* | [**V1WalletsList**](docs/WalletsApi.md#v1walletslist) | **Get** /api/v1/apps/{appId}/wallets | List wallets

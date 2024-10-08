@@ -458,7 +458,7 @@ func (r ApiV1TransactionsTransferRequest) Execute() (CreateTransferResponse, *_n
 }
 
 /*
- * V1TransactionsTransfer Transfer token
+ * V1TransactionsTransfer Transfer(internal)
  * Create a transfer transaction
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appId App ID

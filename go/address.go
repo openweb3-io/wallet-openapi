@@ -9,6 +9,7 @@ import (
 type (
 	AddressOut     = openapi.Address
 	PageAddressOut = openapi.CursorPageAddress
+	AddressType    = openapi.AddressType
 )
 
 type Address struct {
@@ -16,8 +17,11 @@ type Address struct {
 }
 
 type ListAddressOptions struct {
-	Cursor string
-	Limit  int
+	Currency *string
+	Type     *AddressType
+	WalletId *string
+	Cursor   string
+	Limit    int
 }
 
 type GetDepositAddressOptions struct {
@@ -34,6 +38,16 @@ type ListDepositAddressesOptions struct {
 
 func (e *Address) List(ctx context.Context, appId string, options *ListAddressOptions) (*PageAddressOut, error) {
 	req := e.api.AddressesApi.V1AddressesList(ctx, appId)
+	if options.Currency != nil {
+		req = req.Currency(*options.Currency)
+	}
+	if options.Type != nil {
+		req = req.Type_(string(*options.Type))
+	}
+	if options.WalletId != nil {
+		req = req.WalletId(*options.WalletId)
+	}
+
 	req = req.Cursor(options.Cursor)
 	req = req.Limit(int32(options.Limit))
 	out, res, err := req.Execute()

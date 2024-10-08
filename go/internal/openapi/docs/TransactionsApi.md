@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**V1TransactionsList**](TransactionsApi.md#V1TransactionsList) | **Get** /api/v1/apps/{appId}/transactions | List transactions
 [**V1TransactionsRetrieve**](TransactionsApi.md#V1TransactionsRetrieve) | **Get** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
-[**V1TransactionsTransfer**](TransactionsApi.md#V1TransactionsTransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer token
+[**V1TransactionsTransfer**](TransactionsApi.md#V1TransactionsTransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer(internal)
 [**V1TransactionsWithdraw**](TransactionsApi.md#V1TransactionsWithdraw) | **Post** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
 
 
@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 > CreateTransferResponse V1TransactionsTransfer(ctx, appId).CreateTransferRequest(createTransferRequest).Execute()
 
-Transfer token
+Transfer(internal)
 
 
 

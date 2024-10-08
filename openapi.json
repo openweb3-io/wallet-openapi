@@ -771,7 +771,8 @@
                     {
                         "x-enum-varnames": [
                             "AddressTypeCollect",
-                            "AddressTypeDeposit"
+                            "AddressTypeDeposit",
+                            "AddressTypeGas"
                         ],
                         "description": "The type of address to retrieve.",
                         "name": "type",
@@ -780,7 +781,8 @@
                             "type": "string",
                             "enum": [
                                 "COLLECT",
-                                "DEPOSIT"
+                                "DEPOSIT",
+                                "GAS"
                             ]
                         }
                     },
@@ -1512,7 +1514,7 @@
                 "tags": [
                     "transactions"
                 ],
-                "summary": "Transfer token",
+                "summary": "Transfer(internal)",
                 "operationId": "v1.transactions.transfer",
                 "parameters": [
                     {
@@ -2090,7 +2092,8 @@
                 "type": "object",
                 "required": [
                     "address",
-                    "network"
+                    "network",
+                    "type"
                 ],
                 "properties": {
                     "address": {
@@ -2100,6 +2103,10 @@
                     "network": {
                         "description": "the blockchain network",
                         "type": "string"
+                    },
+                    "type": {
+                        "description": "the type of address.",
+                        "type": "string"
                     }
                 }
             },
@@ -2107,11 +2114,13 @@
                 "type": "string",
                 "enum": [
                     "COLLECT",
-                    "DEPOSIT"
+                    "DEPOSIT",
+                    "GAS"
                 ],
                 "x-enum-varnames": [
                     "AddressTypeCollect",
-                    "AddressTypeDeposit"
+                    "AddressTypeDeposit",
+                    "AddressTypeGas"
                 ]
             },
             "CreateTransferRequest": {

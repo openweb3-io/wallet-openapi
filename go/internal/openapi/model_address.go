@@ -20,16 +20,19 @@ type Address struct {
 	Address string `json:"address"`
 	// the blockchain network
 	Network string `json:"network"`
+	// the type of address.
+	Type string `json:"type"`
 }
 
 // NewAddress instantiates a new Address object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddress(address string, network string) *Address {
+func NewAddress(address string, network string, type_ string) *Address {
 	this := Address{}
 	this.Address = address
 	this.Network = network
+	this.Type = type_
 	return &this
 }
 
@@ -89,6 +92,30 @@ func (o *Address) SetNetwork(v string) {
 	o.Network = v
 }
 
+// GetType returns the Type field value
+func (o *Address) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *Address) GetTypeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *Address) SetType(v string) {
+	o.Type = v
+}
+
 func (o Address) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -96,6 +123,9 @@ func (o Address) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["network"] = o.Network
+	}
+	if true {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }
