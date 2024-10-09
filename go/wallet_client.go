@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/openweb3-io/wallet-openapi/go/internal/crypto"
 	"github.com/openweb3-io/wallet-openapi/go/internal/openapi"
-	"github.com/openweb3-io/wallet-openapi/go/internal/signature"
 	"github.com/openweb3-io/wallet-openapi/go/internal/version"
 )
 
@@ -20,8 +20,8 @@ type (
 	WalletClientOptions struct {
 		Debug bool
 
-		ApiKey     string
-		PrivateKey string
+		ApiKey string
+		Secret string
 
 		// Overrides the base URL (protocol + hostname) used for all requests sent by this wallet client. (Useful for testing)
 		ServerUrl  *url.URL
@@ -68,17 +68,14 @@ func New(options *WalletClientOptions) *WalletClient {
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
 
-		signer := signature.Get(signature.SigningMethodEd25519)
-		priKey, err := hex.DecodeString(options.PrivateKey + options.ApiKey)
-		if err != nil {
-			log.Printf("Error decoding private key: %v", err)
-		}
-		signature, err := signer.Sign(priKey, []byte(dataToBeSignature))
+		signer := &crypto.Ed25519Signer{Secret: options.Secret}
+		hash := crypto.Hash256([]byte(dataToBeSignature))
+		sig, err := signer.Sign(hash)
 		if err != nil {
 			log.Printf("Error generating signature: %v", err)
 		}
 
-		req.Header.Set("X-Signature", hex.EncodeToString(signature))
+		req.Header.Set("X-Signature", hex.EncodeToString(sig))
 	}
 
 	if options != nil {

@@ -1,26 +1,27 @@
-package signature
+package crypto
 
 import (
 	"crypto"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
+	"encoding/hex"
 	"encoding/pem"
 	"errors"
 )
 
 const SigningMethodPKCS1 SigningMethodType = "pkcs1"
 
-func init() {
-	defaultSignatureManager.register(SigningMethodPKCS1, &PKCS1{})
-}
-
 type PKCS1 struct {
+	pk string
+	sk string
 }
 
 // verify
-func (*PKCS1) Verify(publicKey []byte, data []byte, sign []byte) (err error) {
-	block, _ := pem.Decode(publicKey)
+func (signer *PKCS1) Verify(data []byte, sign []byte) (err error) {
+	pkBytes, _ := hex.DecodeString(signer.pk)
+
+	block, _ := pem.Decode(pkBytes)
 	if block == nil {
 		return errors.New("public key error")
 	}
@@ -37,8 +38,10 @@ func (*PKCS1) Verify(publicKey []byte, data []byte, sign []byte) (err error) {
 }
 
 // sign
-func (*PKCS1) Sign(privateKey []byte, data []byte) (sign []byte, err error) {
-	block, _ := pem.Decode(privateKey)
+func (signer *PKCS1) Sign(data []byte) ([]byte, error) {
+	skBytes, _ := hex.DecodeString(signer.sk)
+
+	block, _ := pem.Decode(skBytes)
 	if block == nil {
 		return nil, errors.New("private key error")
 	}
