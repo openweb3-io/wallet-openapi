@@ -4,6 +4,10 @@ import io.openweb3.wallet.exceptions.ApiException;
 import io.openweb3.wallet.exceptions.SigningException;
 import org.bouncycastle.asn1.ASN1Integer;
 import org.bouncycastle.asn1.ASN1Sequence;
+import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters;
+import org.bouncycastle.crypto.signers.Ed25519Signer;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.util.encoders.Hex;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -60,7 +64,7 @@ final class Utils {
         try {
             Signature sign = Signature.getInstance("SHA256withRSA");
 
-            // 开头行和结束行，以及所有换行字符
+            // replace all the new line characters and begin header and end header
             String stripPrivateKey = privateKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", "");
 
             Base64.Decoder decoder = Base64.getDecoder();
@@ -74,18 +78,15 @@ final class Utils {
             sign.update(content.getBytes(StandardCharsets.UTF_8));
             byte[] data = sign.sign();
             return Base64.getEncoder().encodeToString(data);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return null;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new SigningException(e.getMessage());
         }
     }
 
     public static boolean verify(String dataString, String signature, String publicKey)
             throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SignatureException {
-        // 开头行和结束行，以及所有换行字符
 
+        // replace all the new line characters and begin header and end header
         String stripPublicKey = publicKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", "");
 
         Base64.Decoder decoder = Base64.getDecoder();
@@ -107,17 +108,17 @@ final class Utils {
     }
 
     /**
-     * 将 PKCS#1 格式的私钥字节数组转换为 PKCS#8 格式
-     * 
-     * @param pkcs1Bytes PKCS#1 格式的私钥字节数组
-     * @return PKCS#8 格式的私钥字节数组
+     * convert PKCS#1 format private key byte array to PKCS#8 format
+     *
+     * @param pkcs1Bytes PKCS#1 format private key byte array
+     * @return PKCS#8 format private key byte array
      * @throws GeneralSecurityException
      */
     private static byte[] convertPkcs1ToPkcs8(byte[] pkcs1Bytes) throws GeneralSecurityException {
-        // PKCS#1 格式的私钥字节数组转换为 PKCS#8 格式
+        // convert PKCS#1 format private key byte array to PKCS#8 format
         int pkcs1Length = pkcs1Bytes.length;
         int totalLength = pkcs1Length + 22;
-        byte[] pkcs8Header = new byte[] {
+        byte[] pkcs8Header = new byte[]{
                 0x30, (byte) 0x82, (byte) ((totalLength >> 8) & 0xff), (byte) (totalLength & 0xff),
                 0x2, 0x1, 0x0, 0x30, 0xd, 0x6, 0x9, 0x2a, (byte) 0x86, 0x48, (byte) 0x86, (byte) 0xf7, 0xd, 0x1, 0x1,
                 0x1, 0x5, 0x0, 0x4, (byte) 0x82, (byte) ((pkcs1Length >> 8) & 0xff), (byte) (pkcs1Length & 0xff)
@@ -128,4 +129,28 @@ final class Utils {
         return pkcs8Bytes;
     }
 
+    public static String signWithEd25519(final String hexPrivateKey, final String content) throws SigningException {
+
+        try {
+            // add BouncyCastle security provider
+            Security.addProvider(new BouncyCastleProvider());
+
+            // from OpenSSL hexadecimal private key string
+            byte[] privateKeyBytes = Hex.decode(hexPrivateKey);
+
+            var digest = MessageDigest.getInstance("SHA-256");
+            digest.update(content.getBytes(StandardCharsets.UTF_8));
+            var contentBytes = digest.digest();
+
+            Ed25519PrivateKeyParameters keyParameters = new Ed25519PrivateKeyParameters(privateKeyBytes, 0);
+            Ed25519Signer signer = new Ed25519Signer();
+            signer.init(true, keyParameters);
+            signer.update(contentBytes, 0, contentBytes.length);
+            var signedData = signer.generateSignature();
+
+            return Hex.toHexString(signedData);
+        } catch (Exception e) {
+            throw new SigningException(e.getMessage());
+        }
+    }
 }

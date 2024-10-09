@@ -48,7 +48,6 @@ public class TransactionsApiTest {
      */
     @Test
     public void v1TransactionsListTest() throws ApiException {
-        String appId = null;
         String currency = null;
         String cursor = null;
         String direction = null;
@@ -57,7 +56,7 @@ public class TransactionsApiTest {
         String status = null;
         String txhash = null;
         String walletId = null;
-        CursorPageTransaction response = api.v1TransactionsList(appId, currency, cursor, direction, limit, network, status, txhash, walletId);
+        CursorPageTransaction response = api.v1TransactionsList(currency, cursor, direction, limit, network, status, txhash, walletId);
 
         // TODO: test validations
     }
@@ -72,9 +71,8 @@ public class TransactionsApiTest {
      */
     @Test
     public void v1TransactionsRetrieveTest() throws ApiException {
-        String appId = null;
         String transactionId = null;
-        Transaction response = api.v1TransactionsRetrieve(appId, transactionId);
+        Transaction response = api.v1TransactionsRetrieve(transactionId);
 
         // TODO: test validations
     }
@@ -89,9 +87,8 @@ public class TransactionsApiTest {
      */
     @Test
     public void v1TransactionsTransferTest() throws ApiException {
-        String appId = null;
         CreateTransferRequest createTransferRequest = null;
-        CreateTransferResponse response = api.v1TransactionsTransfer(appId, createTransferRequest);
+        CreateTransferResponse response = api.v1TransactionsTransfer(createTransferRequest);
 
         // TODO: test validations
     }
@@ -106,9 +103,8 @@ public class TransactionsApiTest {
      */
     @Test
     public void v1TransactionsWithdrawTest() throws ApiException {
-        String appId = null;
         CreateWithdrawRequest createWithdrawRequest = null;
-        CreateWithdrawReply response = api.v1TransactionsWithdraw(appId, createWithdrawRequest);
+        CreateWithdrawReply response = api.v1TransactionsWithdraw(createWithdrawRequest);
 
         // TODO: test validations
     }

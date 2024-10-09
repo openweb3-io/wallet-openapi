@@ -58,7 +58,6 @@ public class CurrenciesApi {
 
     /**
      * Build call for v1CurrenciesList
-     * @param appId App ID (required)
      * @param cursor  (optional)
      * @param limit  (optional)
      * @param rated  (optional)
@@ -75,12 +74,11 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrenciesListCall(String appId, String cursor, Integer limit, Boolean rated, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1CurrenciesListCall(String cursor, Integer limit, Boolean rated, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/currencies"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/currencies";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -119,15 +117,10 @@ public class CurrenciesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1CurrenciesListValidateBeforeCall(String appId, String cursor, Integer limit, Boolean rated, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1CurrenciesList(Async)");
-        }
+    private okhttp3.Call v1CurrenciesListValidateBeforeCall(String cursor, Integer limit, Boolean rated, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = v1CurrenciesListCall(appId, cursor, limit, rated, _callback);
+        okhttp3.Call localVarCall = v1CurrenciesListCall(cursor, limit, rated, _callback);
         return localVarCall;
 
     }
@@ -135,7 +128,6 @@ public class CurrenciesApi {
     /**
      * List currencies
      * Retrieve a list of all available currencies.
-     * @param appId App ID (required)
      * @param cursor  (optional)
      * @param limit  (optional)
      * @param rated  (optional)
@@ -151,15 +143,14 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageCurrency v1CurrenciesList(String appId, String cursor, Integer limit, Boolean rated) throws ApiException {
-        ApiResponse<CursorPageCurrency> localVarResp = v1CurrenciesListWithHttpInfo(appId, cursor, limit, rated);
+    public CursorPageCurrency v1CurrenciesList(String cursor, Integer limit, Boolean rated) throws ApiException {
+        ApiResponse<CursorPageCurrency> localVarResp = v1CurrenciesListWithHttpInfo(cursor, limit, rated);
         return localVarResp.getData();
     }
 
     /**
      * List currencies
      * Retrieve a list of all available currencies.
-     * @param appId App ID (required)
      * @param cursor  (optional)
      * @param limit  (optional)
      * @param rated  (optional)
@@ -175,8 +166,8 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageCurrency> v1CurrenciesListWithHttpInfo(String appId, String cursor, Integer limit, Boolean rated) throws ApiException {
-        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(appId, cursor, limit, rated, null);
+    public ApiResponse<CursorPageCurrency> v1CurrenciesListWithHttpInfo(String cursor, Integer limit, Boolean rated) throws ApiException {
+        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(cursor, limit, rated, null);
         Type localVarReturnType = new TypeToken<CursorPageCurrency>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -184,7 +175,6 @@ public class CurrenciesApi {
     /**
      * List currencies (asynchronously)
      * Retrieve a list of all available currencies.
-     * @param appId App ID (required)
      * @param cursor  (optional)
      * @param limit  (optional)
      * @param rated  (optional)
@@ -201,16 +191,15 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrenciesListAsync(String appId, String cursor, Integer limit, Boolean rated, final ApiCallback<CursorPageCurrency> _callback) throws ApiException {
+    public okhttp3.Call v1CurrenciesListAsync(String cursor, Integer limit, Boolean rated, final ApiCallback<CursorPageCurrency> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(appId, cursor, limit, rated, _callback);
+        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(cursor, limit, rated, _callback);
         Type localVarReturnType = new TypeToken<CursorPageCurrency>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1CurrenciesRetrieve
-     * @param appId App ID (required)
      * @param code Currency code (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -225,12 +214,11 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrenciesRetrieveCall(String appId, String code, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1CurrenciesRetrieveCall(String code, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/currencies/{code}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
+        String localVarPath = "/api/v1/currencies/{code}"
             .replaceAll("\\{" + "code" + "\\}", localVarApiClient.escapeString(code.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -258,12 +246,7 @@ public class CurrenciesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1CurrenciesRetrieveValidateBeforeCall(String appId, String code, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1CurrenciesRetrieve(Async)");
-        }
+    private okhttp3.Call v1CurrenciesRetrieveValidateBeforeCall(String code, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'code' is set
         if (code == null) {
@@ -271,7 +254,7 @@ public class CurrenciesApi {
         }
         
 
-        okhttp3.Call localVarCall = v1CurrenciesRetrieveCall(appId, code, _callback);
+        okhttp3.Call localVarCall = v1CurrenciesRetrieveCall(code, _callback);
         return localVarCall;
 
     }
@@ -279,7 +262,6 @@ public class CurrenciesApi {
     /**
      * Get Currency
      * Get currency info by currency code
-     * @param appId App ID (required)
      * @param code Currency code (required)
      * @return Currency
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -293,15 +275,14 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public Currency v1CurrenciesRetrieve(String appId, String code) throws ApiException {
-        ApiResponse<Currency> localVarResp = v1CurrenciesRetrieveWithHttpInfo(appId, code);
+    public Currency v1CurrenciesRetrieve(String code) throws ApiException {
+        ApiResponse<Currency> localVarResp = v1CurrenciesRetrieveWithHttpInfo(code);
         return localVarResp.getData();
     }
 
     /**
      * Get Currency
      * Get currency info by currency code
-     * @param appId App ID (required)
      * @param code Currency code (required)
      * @return ApiResponse&lt;Currency&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -315,8 +296,8 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Currency> v1CurrenciesRetrieveWithHttpInfo(String appId, String code) throws ApiException {
-        okhttp3.Call localVarCall = v1CurrenciesRetrieveValidateBeforeCall(appId, code, null);
+    public ApiResponse<Currency> v1CurrenciesRetrieveWithHttpInfo(String code) throws ApiException {
+        okhttp3.Call localVarCall = v1CurrenciesRetrieveValidateBeforeCall(code, null);
         Type localVarReturnType = new TypeToken<Currency>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -324,7 +305,6 @@ public class CurrenciesApi {
     /**
      * Get Currency (asynchronously)
      * Get currency info by currency code
-     * @param appId App ID (required)
      * @param code Currency code (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -339,9 +319,9 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrenciesRetrieveAsync(String appId, String code, final ApiCallback<Currency> _callback) throws ApiException {
+    public okhttp3.Call v1CurrenciesRetrieveAsync(String code, final ApiCallback<Currency> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1CurrenciesRetrieveValidateBeforeCall(appId, code, _callback);
+        okhttp3.Call localVarCall = v1CurrenciesRetrieveValidateBeforeCall(code, _callback);
         Type localVarReturnType = new TypeToken<Currency>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

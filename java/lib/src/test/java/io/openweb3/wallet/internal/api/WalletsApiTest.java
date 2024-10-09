@@ -47,9 +47,8 @@ public class WalletsApiTest {
      */
     @Test
     public void v1WalletsCreateTest() throws ApiException {
-        String appId = null;
         CreateWalletRequest createWalletRequest = null;
-        Wallet response = api.v1WalletsCreate(appId, createWalletRequest);
+        Wallet response = api.v1WalletsCreate(createWalletRequest);
 
         // TODO: test validations
     }
@@ -64,10 +63,9 @@ public class WalletsApiTest {
      */
     @Test
     public void v1WalletsListTest() throws ApiException {
-        String appId = null;
         String cursor = null;
         Integer limit = null;
-        CursorPageWallet response = api.v1WalletsList(appId, cursor, limit);
+        CursorPageWallet response = api.v1WalletsList(cursor, limit);
 
         // TODO: test validations
     }
@@ -82,11 +80,10 @@ public class WalletsApiTest {
      */
     @Test
     public void v1WalletsListAccountsTest() throws ApiException {
-        String appId = null;
         String walletId = null;
         String cursor = null;
         Integer limit = null;
-        CursorPageAccount response = api.v1WalletsListAccounts(appId, walletId, cursor, limit);
+        CursorPageAccount response = api.v1WalletsListAccounts(walletId, cursor, limit);
 
         // TODO: test validations
     }
@@ -101,9 +98,8 @@ public class WalletsApiTest {
      */
     @Test
     public void v1WalletsRetrieveTest() throws ApiException {
-        String appId = null;
         String walletId = null;
-        Wallet response = api.v1WalletsRetrieve(appId, walletId);
+        Wallet response = api.v1WalletsRetrieve(walletId);
 
         // TODO: test validations
     }
@@ -118,10 +114,9 @@ public class WalletsApiTest {
      */
     @Test
     public void v1WalletsUpdateTest() throws ApiException {
-        String appId = null;
         String walletId = null;
         UpdateWalletRequest updateWalletRequest = null;
-        Wallet response = api.v1WalletsUpdate(appId, walletId, updateWalletRequest);
+        Wallet response = api.v1WalletsUpdate(walletId, updateWalletRequest);
 
         // TODO: test validations
     }

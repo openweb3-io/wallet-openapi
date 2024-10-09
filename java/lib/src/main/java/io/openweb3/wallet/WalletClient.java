@@ -16,12 +16,12 @@ import java.io.IOException;
 
 public final class WalletClient {
 	public static final String VERSION = "0.0.1";
-	private final WebhookEndpointAPI webhookEndpoint;
-	private final CurrencyAPI currency;
-	private final RateAPI rate;
-	private final TransactionAPI transaction;
-	private final WalletAPI wallet;
-	private final AddressAPI address;
+	private final WebhookEndpointsAPI webhookEndpoint;
+	private final CurrenciesAPI currency;
+	private final RatesAPI rate;
+	private final TransactionsAPI transaction;
+	private final WalletsAPI wallet;
+	private final AddressesAPI address;
 
 	public WalletClient(final String apikey, final String privateKeyPath) throws Exception {
 		this(new WalletClientOptions().apiKey(apikey).privateKey(privateKeyPath));
@@ -58,23 +58,22 @@ public final class WalletClient {
 					oldBody.writeTo(buffer);
 					body = buffer.readUtf8();
 
-					// 重新构建 RequestBody
+					// rebuild RequestBody
 					RequestBody newRequestBody = RequestBody.create(body, oldBody.contentType());
 					builder.method(originalRequest.method(), newRequestBody);
 				}
 
-				// 计算请求的 SHA-256 签名
+				// sign
 				String signature = null;
 				try {
 					String content = String.format("%s%s%s", body, uri, timestamp);
-					signature = Utils.calculateSignature(options.getPrivateKey(), content);
+//					signature = Utils.calculateSignature(options.getPrivateKey(), content);
+					signature = Utils.signWithEd25519(options.getPrivateKey(), content);
 				} catch (SigningException e) {
 					throw new RuntimeException(e);
 				}
-				if (signature != null) {
-					// 将签名添加到请求头
-					builder.header("x-signature", signature);
-				}
+
+				builder.header("x-signature", signature);
 
 				Request newRequest = builder.build();
 				return chain.proceed(newRequest);
@@ -91,12 +90,12 @@ public final class WalletClient {
 
 		Configuration.setDefaultApiClient(apiClient);
 
-		this.wallet = new WalletAPI();
-		this.address = new AddressAPI();
-		this.transaction = new TransactionAPI();
-		this.currency = new CurrencyAPI();
-		this.rate = new RateAPI();
-		this.webhookEndpoint = new WebhookEndpointAPI();
+		this.wallet = new WalletsAPI();
+		this.address = new AddressesAPI();
+		this.transaction = new TransactionsAPI();
+		this.currency = new CurrenciesAPI();
+		this.rate = new RatesAPI();
+		this.webhookEndpoint = new WebhookEndpointsAPI();
 	}
 
 	private Interceptor getProgressInterceptor() {
@@ -117,27 +116,27 @@ public final class WalletClient {
 		};
 	}
 
-	public WalletAPI getWallet() {
+	public WalletsAPI getWallet() {
 		return wallet;
 	}
 
-	public AddressAPI getAddress() {
+	public AddressesAPI getAddress() {
 		return address;
 	}
 
-	public TransactionAPI getTransaction() {
+	public TransactionsAPI getTransaction() {
 		return transaction;
 	}
 
-	public CurrencyAPI getCurrency() {
+	public CurrenciesAPI getCurrency() {
 		return currency;
 	}
 
-	public RateAPI getRate() {
+	public RatesAPI getRate() {
 		return rate;
 	}
 
-	public WebhookEndpointAPI getEndpoint() {
+	public WebhookEndpointsAPI getEndpoint() {
 		return webhookEndpoint;
 	}
 }

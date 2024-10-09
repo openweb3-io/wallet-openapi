@@ -59,7 +59,6 @@ public class RatesApi {
 
     /**
      * Build call for v1RatesEstimate
-     * @param appId App ID (required)
      * @param baseAmount The amount of the base currency you want to convert (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
@@ -76,12 +75,11 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RatesEstimateCall(String appId, String baseAmount, String baseCurrency, String toCurrency, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1RatesEstimateCall(String baseAmount, String baseCurrency, String toCurrency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/rates/estimate"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/rates/estimate";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -120,12 +118,7 @@ public class RatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1RatesEstimateValidateBeforeCall(String appId, String baseAmount, String baseCurrency, String toCurrency, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1RatesEstimate(Async)");
-        }
+    private okhttp3.Call v1RatesEstimateValidateBeforeCall(String baseAmount, String baseCurrency, String toCurrency, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'baseAmount' is set
         if (baseAmount == null) {
@@ -143,7 +136,7 @@ public class RatesApi {
         }
         
 
-        okhttp3.Call localVarCall = v1RatesEstimateCall(appId, baseAmount, baseCurrency, toCurrency, _callback);
+        okhttp3.Call localVarCall = v1RatesEstimateCall(baseAmount, baseCurrency, toCurrency, _callback);
         return localVarCall;
 
     }
@@ -151,7 +144,6 @@ public class RatesApi {
     /**
      * Estimates
      * Estimates currency exchange amounts.
-     * @param appId App ID (required)
      * @param baseAmount The amount of the base currency you want to convert (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
@@ -167,15 +159,14 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public EstimateResponse v1RatesEstimate(String appId, String baseAmount, String baseCurrency, String toCurrency) throws ApiException {
-        ApiResponse<EstimateResponse> localVarResp = v1RatesEstimateWithHttpInfo(appId, baseAmount, baseCurrency, toCurrency);
+    public EstimateResponse v1RatesEstimate(String baseAmount, String baseCurrency, String toCurrency) throws ApiException {
+        ApiResponse<EstimateResponse> localVarResp = v1RatesEstimateWithHttpInfo(baseAmount, baseCurrency, toCurrency);
         return localVarResp.getData();
     }
 
     /**
      * Estimates
      * Estimates currency exchange amounts.
-     * @param appId App ID (required)
      * @param baseAmount The amount of the base currency you want to convert (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
@@ -191,8 +182,8 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EstimateResponse> v1RatesEstimateWithHttpInfo(String appId, String baseAmount, String baseCurrency, String toCurrency) throws ApiException {
-        okhttp3.Call localVarCall = v1RatesEstimateValidateBeforeCall(appId, baseAmount, baseCurrency, toCurrency, null);
+    public ApiResponse<EstimateResponse> v1RatesEstimateWithHttpInfo(String baseAmount, String baseCurrency, String toCurrency) throws ApiException {
+        okhttp3.Call localVarCall = v1RatesEstimateValidateBeforeCall(baseAmount, baseCurrency, toCurrency, null);
         Type localVarReturnType = new TypeToken<EstimateResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -200,7 +191,6 @@ public class RatesApi {
     /**
      * Estimates (asynchronously)
      * Estimates currency exchange amounts.
-     * @param appId App ID (required)
      * @param baseAmount The amount of the base currency you want to convert (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
@@ -217,16 +207,15 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RatesEstimateAsync(String appId, String baseAmount, String baseCurrency, String toCurrency, final ApiCallback<EstimateResponse> _callback) throws ApiException {
+    public okhttp3.Call v1RatesEstimateAsync(String baseAmount, String baseCurrency, String toCurrency, final ApiCallback<EstimateResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1RatesEstimateValidateBeforeCall(appId, baseAmount, baseCurrency, toCurrency, _callback);
+        okhttp3.Call localVarCall = v1RatesEstimateValidateBeforeCall(baseAmount, baseCurrency, toCurrency, _callback);
         Type localVarReturnType = new TypeToken<EstimateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1RatesList
-     * @param appId App ID (required)
      * @param getRatesRequest Request body (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -241,12 +230,11 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RatesListCall(String appId, GetRatesRequest getRatesRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1RatesListCall(GetRatesRequest getRatesRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = getRatesRequest;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/rates"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/rates";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -273,12 +261,7 @@ public class RatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1RatesListValidateBeforeCall(String appId, GetRatesRequest getRatesRequest, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1RatesList(Async)");
-        }
+    private okhttp3.Call v1RatesListValidateBeforeCall(GetRatesRequest getRatesRequest, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'getRatesRequest' is set
         if (getRatesRequest == null) {
@@ -286,7 +269,7 @@ public class RatesApi {
         }
         
 
-        okhttp3.Call localVarCall = v1RatesListCall(appId, getRatesRequest, _callback);
+        okhttp3.Call localVarCall = v1RatesListCall(getRatesRequest, _callback);
         return localVarCall;
 
     }
@@ -294,7 +277,6 @@ public class RatesApi {
     /**
      * List rates
      * Query the latest exchange rates between different currencies.
-     * @param appId App ID (required)
      * @param getRatesRequest Request body (required)
      * @return GetRatesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -308,15 +290,14 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public GetRatesResponse v1RatesList(String appId, GetRatesRequest getRatesRequest) throws ApiException {
-        ApiResponse<GetRatesResponse> localVarResp = v1RatesListWithHttpInfo(appId, getRatesRequest);
+    public GetRatesResponse v1RatesList(GetRatesRequest getRatesRequest) throws ApiException {
+        ApiResponse<GetRatesResponse> localVarResp = v1RatesListWithHttpInfo(getRatesRequest);
         return localVarResp.getData();
     }
 
     /**
      * List rates
      * Query the latest exchange rates between different currencies.
-     * @param appId App ID (required)
      * @param getRatesRequest Request body (required)
      * @return ApiResponse&lt;GetRatesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -330,8 +311,8 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetRatesResponse> v1RatesListWithHttpInfo(String appId, GetRatesRequest getRatesRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(appId, getRatesRequest, null);
+    public ApiResponse<GetRatesResponse> v1RatesListWithHttpInfo(GetRatesRequest getRatesRequest) throws ApiException {
+        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(getRatesRequest, null);
         Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -339,7 +320,6 @@ public class RatesApi {
     /**
      * List rates (asynchronously)
      * Query the latest exchange rates between different currencies.
-     * @param appId App ID (required)
      * @param getRatesRequest Request body (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -354,9 +334,9 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RatesListAsync(String appId, GetRatesRequest getRatesRequest, final ApiCallback<GetRatesResponse> _callback) throws ApiException {
+    public okhttp3.Call v1RatesListAsync(GetRatesRequest getRatesRequest, final ApiCallback<GetRatesResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(appId, getRatesRequest, _callback);
+        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(getRatesRequest, _callback);
         Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

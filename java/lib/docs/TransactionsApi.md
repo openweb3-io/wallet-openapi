@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1TransactionsList**](TransactionsApi.md#v1TransactionsList) | **GET** /api/v1/apps/{appId}/transactions | List transactions
-[**v1TransactionsRetrieve**](TransactionsApi.md#v1TransactionsRetrieve) | **GET** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
-[**v1TransactionsTransfer**](TransactionsApi.md#v1TransactionsTransfer) | **POST** /api/v1/apps/{appId}/transactions/transfer | Transfer(internal)
-[**v1TransactionsWithdraw**](TransactionsApi.md#v1TransactionsWithdraw) | **POST** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
+[**v1TransactionsList**](TransactionsApi.md#v1TransactionsList) | **GET** /api/v1/transactions | List transactions
+[**v1TransactionsRetrieve**](TransactionsApi.md#v1TransactionsRetrieve) | **GET** /api/v1/transactions/{transactionId} | Get transaction
+[**v1TransactionsTransfer**](TransactionsApi.md#v1TransactionsTransfer) | **POST** /api/v1/transactions/transfer | Transfer(internal)
+[**v1TransactionsWithdraw**](TransactionsApi.md#v1TransactionsWithdraw) | **POST** /api/v1/transactions/withdraw | Withdraw
 
 
 <a name="v1TransactionsList"></a>
 # **v1TransactionsList**
-> CursorPageTransaction v1TransactionsList(appId, currency, cursor, direction, limit, network, status, txhash, walletId)
+> CursorPageTransaction v1TransactionsList(currency, cursor, direction, limit, network, status, txhash, walletId)
 
 List transactions
 
@@ -46,7 +46,6 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     TransactionsApi apiInstance = new TransactionsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String currency = "currency_example"; // String | The type of currency involved in the transaction.
     String cursor = "cursor_example"; // String | A cursor value for pagination purposes.
     String direction = "direction_example"; // String | The direction of the transaction (e.g., incoming or outgoing).
@@ -56,7 +55,7 @@ public class Example {
     String txhash = "txhash_example"; // String | The transaction hash, which uniquely identifies a transaction on the blockchain.
     String walletId = "walletId_example"; // String | Unique system generated identifier of the wallet
     try {
-      CursorPageTransaction result = apiInstance.v1TransactionsList(appId, currency, cursor, direction, limit, network, status, txhash, walletId);
+      CursorPageTransaction result = apiInstance.v1TransactionsList(currency, cursor, direction, limit, network, status, txhash, walletId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TransactionsApi#v1TransactionsList");
@@ -73,7 +72,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **currency** | **String**| The type of currency involved in the transaction. | [optional]
  **cursor** | **String**| A cursor value for pagination purposes. | [optional]
  **direction** | **String**| The direction of the transaction (e.g., incoming or outgoing). | [optional] [enum: UNKNOWN, OUT, IN]
@@ -107,7 +105,7 @@ Name | Type | Description  | Notes
 
 <a name="v1TransactionsRetrieve"></a>
 # **v1TransactionsRetrieve**
-> Transaction v1TransactionsRetrieve(appId, transactionId)
+> Transaction v1TransactionsRetrieve(transactionId)
 
 Get transaction
 
@@ -141,10 +139,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     TransactionsApi apiInstance = new TransactionsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String transactionId = "transactionId_example"; // String | Transaction ID
     try {
-      Transaction result = apiInstance.v1TransactionsRetrieve(appId, transactionId);
+      Transaction result = apiInstance.v1TransactionsRetrieve(transactionId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TransactionsApi#v1TransactionsRetrieve");
@@ -161,7 +158,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **transactionId** | **String**| Transaction ID |
 
 ### Return type
@@ -188,7 +184,7 @@ Name | Type | Description  | Notes
 
 <a name="v1TransactionsTransfer"></a>
 # **v1TransactionsTransfer**
-> CreateTransferResponse v1TransactionsTransfer(appId, createTransferRequest)
+> CreateTransferResponse v1TransactionsTransfer(createTransferRequest)
 
 Transfer(internal)
 
@@ -222,10 +218,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     TransactionsApi apiInstance = new TransactionsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     CreateTransferRequest createTransferRequest = new CreateTransferRequest(); // CreateTransferRequest | Request Body
     try {
-      CreateTransferResponse result = apiInstance.v1TransactionsTransfer(appId, createTransferRequest);
+      CreateTransferResponse result = apiInstance.v1TransactionsTransfer(createTransferRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TransactionsApi#v1TransactionsTransfer");
@@ -242,7 +237,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **createTransferRequest** | [**CreateTransferRequest**](CreateTransferRequest.md)| Request Body |
 
 ### Return type
@@ -269,7 +263,7 @@ Name | Type | Description  | Notes
 
 <a name="v1TransactionsWithdraw"></a>
 # **v1TransactionsWithdraw**
-> CreateWithdrawReply v1TransactionsWithdraw(appId, createWithdrawRequest)
+> CreateWithdrawReply v1TransactionsWithdraw(createWithdrawRequest)
 
 Withdraw
 
@@ -303,10 +297,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     TransactionsApi apiInstance = new TransactionsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     CreateWithdrawRequest createWithdrawRequest = new CreateWithdrawRequest(); // CreateWithdrawRequest | withdraw
     try {
-      CreateWithdrawReply result = apiInstance.v1TransactionsWithdraw(appId, createWithdrawRequest);
+      CreateWithdrawReply result = apiInstance.v1TransactionsWithdraw(createWithdrawRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TransactionsApi#v1TransactionsWithdraw");
@@ -323,7 +316,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **createWithdrawRequest** | [**CreateWithdrawRequest**](CreateWithdrawRequest.md)| withdraw |
 
 ### Return type

@@ -45,11 +45,10 @@ public class RatesApiTest {
      */
     @Test
     public void v1RatesEstimateTest() throws ApiException {
-        String appId = null;
         String baseAmount = null;
         String baseCurrency = null;
         String toCurrency = null;
-        EstimateResponse response = api.v1RatesEstimate(appId, baseAmount, baseCurrency, toCurrency);
+        EstimateResponse response = api.v1RatesEstimate(baseAmount, baseCurrency, toCurrency);
 
         // TODO: test validations
     }
@@ -64,9 +63,8 @@ public class RatesApiTest {
      */
     @Test
     public void v1RatesListTest() throws ApiException {
-        String appId = null;
         GetRatesRequest getRatesRequest = null;
-        GetRatesResponse response = api.v1RatesList(appId, getRatesRequest);
+        GetRatesResponse response = api.v1RatesList(getRatesRequest);
 
         // TODO: test validations
     }

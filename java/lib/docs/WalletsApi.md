@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1WalletsCreate**](WalletsApi.md#v1WalletsCreate) | **POST** /api/v1/apps/{appId}/wallets | Create wallet
-[**v1WalletsList**](WalletsApi.md#v1WalletsList) | **GET** /api/v1/apps/{appId}/wallets | List wallets
-[**v1WalletsListAccounts**](WalletsApi.md#v1WalletsListAccounts) | **GET** /api/v1/apps/{appId}/wallets/{walletId}/accounts | List wallet accounts
-[**v1WalletsRetrieve**](WalletsApi.md#v1WalletsRetrieve) | **GET** /api/v1/apps/{appId}/wallets/{walletId} | Get wallet
-[**v1WalletsUpdate**](WalletsApi.md#v1WalletsUpdate) | **PATCH** /api/v1/apps/{appId}/wallets/{walletId} | Update wallet
+[**v1WalletsCreate**](WalletsApi.md#v1WalletsCreate) | **POST** /api/v1/wallets | Create wallet
+[**v1WalletsList**](WalletsApi.md#v1WalletsList) | **GET** /api/v1/wallets | List wallets
+[**v1WalletsListAccounts**](WalletsApi.md#v1WalletsListAccounts) | **GET** /api/v1/wallets/{walletId}/accounts | List wallet accounts
+[**v1WalletsRetrieve**](WalletsApi.md#v1WalletsRetrieve) | **GET** /api/v1/wallets/{walletId} | Get wallet
+[**v1WalletsUpdate**](WalletsApi.md#v1WalletsUpdate) | **PATCH** /api/v1/wallets/{walletId} | Update wallet
 
 
 <a name="v1WalletsCreate"></a>
 # **v1WalletsCreate**
-> Wallet v1WalletsCreate(appId, createWalletRequest)
+> Wallet v1WalletsCreate(createWalletRequest)
 
 Create wallet
 
@@ -47,10 +47,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     CreateWalletRequest createWalletRequest = new CreateWalletRequest(); // CreateWalletRequest | Request body
     try {
-      Wallet result = apiInstance.v1WalletsCreate(appId, createWalletRequest);
+      Wallet result = apiInstance.v1WalletsCreate(createWalletRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsCreate");
@@ -67,7 +66,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **createWalletRequest** | [**CreateWalletRequest**](CreateWalletRequest.md)| Request body |
 
 ### Return type
@@ -94,7 +92,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WalletsList"></a>
 # **v1WalletsList**
-> CursorPageWallet v1WalletsList(appId, cursor, limit)
+> CursorPageWallet v1WalletsList(cursor, limit)
 
 List wallets
 
@@ -128,11 +126,10 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String cursor = "cursor_example"; // String | Cursor
     Integer limit = 56; // Integer | Limit
     try {
-      CursorPageWallet result = apiInstance.v1WalletsList(appId, cursor, limit);
+      CursorPageWallet result = apiInstance.v1WalletsList(cursor, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsList");
@@ -149,7 +146,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **cursor** | **String**| Cursor | [optional]
  **limit** | **Integer**| Limit | [optional]
 
@@ -177,7 +173,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WalletsListAccounts"></a>
 # **v1WalletsListAccounts**
-> CursorPageAccount v1WalletsListAccounts(appId, walletId, cursor, limit)
+> CursorPageAccount v1WalletsListAccounts(walletId, cursor, limit)
 
 List wallet accounts
 
@@ -211,12 +207,11 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String walletId = "walletId_example"; // String | Wallet ID
     String cursor = "cursor_example"; // String | Cursor
     Integer limit = 56; // Integer | Limit
     try {
-      CursorPageAccount result = apiInstance.v1WalletsListAccounts(appId, walletId, cursor, limit);
+      CursorPageAccount result = apiInstance.v1WalletsListAccounts(walletId, cursor, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsListAccounts");
@@ -233,7 +228,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **walletId** | **String**| Wallet ID |
  **cursor** | **String**| Cursor | [optional]
  **limit** | **Integer**| Limit | [optional]
@@ -262,7 +256,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WalletsRetrieve"></a>
 # **v1WalletsRetrieve**
-> Wallet v1WalletsRetrieve(appId, walletId)
+> Wallet v1WalletsRetrieve(walletId)
 
 Get wallet
 
@@ -296,10 +290,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String walletId = "walletId_example"; // String | Wallet ID
     try {
-      Wallet result = apiInstance.v1WalletsRetrieve(appId, walletId);
+      Wallet result = apiInstance.v1WalletsRetrieve(walletId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsRetrieve");
@@ -316,7 +309,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **walletId** | **String**| Wallet ID |
 
 ### Return type
@@ -343,7 +335,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WalletsUpdate"></a>
 # **v1WalletsUpdate**
-> Wallet v1WalletsUpdate(appId, walletId, updateWalletRequest)
+> Wallet v1WalletsUpdate(walletId, updateWalletRequest)
 
 Update wallet
 
@@ -377,11 +369,10 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String walletId = "walletId_example"; // String | Wallet ID
     UpdateWalletRequest updateWalletRequest = new UpdateWalletRequest(); // UpdateWalletRequest | Request body
     try {
-      Wallet result = apiInstance.v1WalletsUpdate(appId, walletId, updateWalletRequest);
+      Wallet result = apiInstance.v1WalletsUpdate(walletId, updateWalletRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsUpdate");
@@ -398,7 +389,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **walletId** | **String**| Wallet ID |
  **updateWalletRequest** | [**UpdateWalletRequest**](UpdateWalletRequest.md)| Request body |
 

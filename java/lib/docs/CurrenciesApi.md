@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1CurrenciesList**](CurrenciesApi.md#v1CurrenciesList) | **GET** /api/v1/apps/{appId}/currencies | List currencies
-[**v1CurrenciesRetrieve**](CurrenciesApi.md#v1CurrenciesRetrieve) | **GET** /api/v1/apps/{appId}/currencies/{code} | Get Currency
+[**v1CurrenciesList**](CurrenciesApi.md#v1CurrenciesList) | **GET** /api/v1/currencies | List currencies
+[**v1CurrenciesRetrieve**](CurrenciesApi.md#v1CurrenciesRetrieve) | **GET** /api/v1/currencies/{code} | Get Currency
 
 
 <a name="v1CurrenciesList"></a>
 # **v1CurrenciesList**
-> CursorPageCurrency v1CurrenciesList(appId, cursor, limit, rated)
+> CursorPageCurrency v1CurrenciesList(cursor, limit, rated)
 
 List currencies
 
@@ -44,12 +44,11 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     CurrenciesApi apiInstance = new CurrenciesApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String cursor = "cursor_example"; // String | 
     Integer limit = 56; // Integer | 
     Boolean rated = true; // Boolean | 
     try {
-      CursorPageCurrency result = apiInstance.v1CurrenciesList(appId, cursor, limit, rated);
+      CursorPageCurrency result = apiInstance.v1CurrenciesList(cursor, limit, rated);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrenciesApi#v1CurrenciesList");
@@ -66,7 +65,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **cursor** | **String**|  | [optional]
  **limit** | **Integer**|  | [optional]
  **rated** | **Boolean**|  | [optional]
@@ -95,7 +93,7 @@ Name | Type | Description  | Notes
 
 <a name="v1CurrenciesRetrieve"></a>
 # **v1CurrenciesRetrieve**
-> Currency v1CurrenciesRetrieve(appId, code)
+> Currency v1CurrenciesRetrieve(code)
 
 Get Currency
 
@@ -129,10 +127,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     CurrenciesApi apiInstance = new CurrenciesApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String code = "code_example"; // String | Currency code
     try {
-      Currency result = apiInstance.v1CurrenciesRetrieve(appId, code);
+      Currency result = apiInstance.v1CurrenciesRetrieve(code);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrenciesApi#v1CurrenciesRetrieve");
@@ -149,7 +146,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **code** | **String**| Currency code |
 
 ### Return type

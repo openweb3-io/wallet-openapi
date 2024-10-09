@@ -46,9 +46,8 @@ public class WebhookEndpointsApiTest {
      */
     @Test
     public void v1WebhooksCreateTest() throws ApiException {
-        String appId = null;
         CreateWebhook createWebhook = null;
-        Webhook response = api.v1WebhooksCreate(appId, createWebhook);
+        Webhook response = api.v1WebhooksCreate(createWebhook);
 
         // TODO: test validations
     }
@@ -63,9 +62,8 @@ public class WebhookEndpointsApiTest {
      */
     @Test
     public void v1WebhooksDeleteTest() throws ApiException {
-        String appId = null;
         String endpointId = null;
-        Webhook response = api.v1WebhooksDelete(appId, endpointId);
+        Webhook response = api.v1WebhooksDelete(endpointId);
 
         // TODO: test validations
     }
@@ -80,10 +78,9 @@ public class WebhookEndpointsApiTest {
      */
     @Test
     public void v1WebhooksListTest() throws ApiException {
-        String appId = null;
         String cursor = null;
         Integer limit = null;
-        CursorPageWebhook response = api.v1WebhooksList(appId, cursor, limit);
+        CursorPageWebhook response = api.v1WebhooksList(cursor, limit);
 
         // TODO: test validations
     }
@@ -98,9 +95,8 @@ public class WebhookEndpointsApiTest {
      */
     @Test
     public void v1WebhooksRetrieveTest() throws ApiException {
-        String appId = null;
         String endpointId = null;
-        Webhook response = api.v1WebhooksRetrieve(appId, endpointId);
+        Webhook response = api.v1WebhooksRetrieve(endpointId);
 
         // TODO: test validations
     }
@@ -115,10 +111,9 @@ public class WebhookEndpointsApiTest {
      */
     @Test
     public void v1WebhooksUpdateTest() throws ApiException {
-        String appId = null;
         String endpointId = null;
         UpdateWebhook updateWebhook = null;
-        Webhook response = api.v1WebhooksUpdate(appId, endpointId, updateWebhook);
+        Webhook response = api.v1WebhooksUpdate(endpointId, updateWebhook);
 
         // TODO: test validations
     }

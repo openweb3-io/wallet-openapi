@@ -7,19 +7,11 @@ info:
 servers:
 - url: /
 paths:
-  /api/v1/apps/{appId}/wallets:
+  /api/v1/wallets:
     get:
       description: List all wallets
       operationId: v1.wallets.list
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Cursor
         explode: true
         in: query
@@ -77,15 +69,6 @@ paths:
     post:
       description: Create a Wallet
       operationId: v1.wallets.create
-      parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -132,19 +115,11 @@ paths:
       - wallets
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/apps/{appId}/wallets/{walletId}:
+  /api/v1/wallets/{walletId}:
     get:
       description: Get a wallet by ID
       operationId: v1.wallets.retrieve
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Wallet ID
         explode: false
         in: path
@@ -195,14 +170,6 @@ paths:
       description: Update a Wallet
       operationId: v1.wallets.update
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Wallet ID
         explode: false
         in: path
@@ -257,19 +224,11 @@ paths:
       - wallets
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/apps/{appId}/wallets/{walletId}/accounts:
+  /api/v1/wallets/{walletId}/accounts:
     get:
       description: List wallet accounts
       operationId: v1.wallets.listAccounts
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Wallet ID
         explode: false
         in: path
@@ -332,19 +291,11 @@ paths:
       tags:
       - wallets
       x-accepts: application/json
-  /api/v1/apps/{appId}/wallets/{walletId}/deposit_address:
+  /api/v1/wallets/{walletId}/deposit_address:
     get:
       description: Get wallet's deposit address
       operationId: v1.wallets.getDepositAddress
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Wallet ID
         explode: false
         in: path
@@ -409,19 +360,11 @@ paths:
       tags:
       - addresses
       x-accepts: application/json
-  /api/v1/apps/{appId}/wallets/{walletId}/deposit_addresses:
+  /api/v1/wallets/{walletId}/deposit_addresses:
     get:
       description: List wallet's deposit addresses
       operationId: v1.wallets.listDepositAddresses
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Wallet ID
         explode: false
         in: path
@@ -502,19 +445,11 @@ paths:
       tags:
       - addresses
       x-accepts: application/json
-  /api/v1/apps/{appId}/addresses:
+  /api/v1/addresses:
     get:
       description: List of all available addresses.
       operationId: v1.addresses.list
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: The code of currency used in the transaction (e.g., TON, USDT,
           USD, EUR, etc.).
         explode: true
@@ -602,19 +537,11 @@ paths:
       tags:
       - addresses
       x-accepts: application/json
-  /api/v1/apps/{appId}/currencies:
+  /api/v1/currencies:
     get:
       description: Retrieve a list of all available currencies.
       operationId: v1.currencies.list
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - explode: true
         in: query
         name: cursor
@@ -674,19 +601,11 @@ paths:
       tags:
       - currencies
       x-accepts: application/json
-  /api/v1/apps/{appId}/currencies/{code}:
+  /api/v1/currencies/{code}:
     get:
       description: Get currency info by currency code
       operationId: v1.currencies.retrieve
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Currency code
         explode: false
         in: path
@@ -733,19 +652,11 @@ paths:
       tags:
       - currencies
       x-accepts: application/json
-  /api/v1/apps/{appId}/rates:
+  /api/v1/rates:
     post:
       description: Query the latest exchange rates between different currencies.
       operationId: v1.rates.list
-      parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -792,19 +703,11 @@ paths:
       - rates
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/apps/{appId}/rates/estimate:
+  /api/v1/rates/estimate:
     get:
       description: Estimates currency exchange amounts.
       operationId: v1.rates.estimate
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: The amount of the base currency you want to convert
         explode: true
         in: query
@@ -871,19 +774,11 @@ paths:
       tags:
       - rates
       x-accepts: application/json
-  /api/v1/apps/{appId}/transactions:
+  /api/v1/transactions:
     get:
       description: List transactions
       operationId: v1.transactions.list
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: The type of currency involved in the transaction.
         explode: true
         in: query
@@ -1005,19 +900,11 @@ paths:
       tags:
       - transactions
       x-accepts: application/json
-  /api/v1/apps/{appId}/transactions/{transactionId}:
+  /api/v1/transactions/{transactionId}:
     get:
       description: Get a transaction by ID
       operationId: v1.transactions.retrieve
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Transaction ID
         explode: false
         in: path
@@ -1064,19 +951,11 @@ paths:
       tags:
       - transactions
       x-accepts: application/json
-  /api/v1/apps/{appId}/transactions/transfer:
+  /api/v1/transactions/transfer:
     post:
       description: Create a transfer transaction
       operationId: v1.transactions.transfer
-      parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -1123,19 +1002,11 @@ paths:
       - transactions
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/apps/{appId}/transactions/withdraw:
+  /api/v1/transactions/withdraw:
     post:
       description: Create a new withdrawal request for a specified currency
       operationId: v1.transactions.withdraw
-      parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -1182,19 +1053,11 @@ paths:
       - transactions
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/apps/{appId}/endpoints:
+  /api/v1/endpoints:
     get:
       description: List webhook endpoints
       operationId: v1.webhooks.list
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - explode: true
         in: query
         name: cursor
@@ -1238,15 +1101,7 @@ paths:
     post:
       description: Create a webhook endpoint
       operationId: v1.webhooks.create
-      parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
+      parameters: []
       requestBody:
         content:
           application/json:
@@ -1281,19 +1136,11 @@ paths:
       - webhook endpoints
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/apps/{appId}/endpoints/{endpointId}:
+  /api/v1/endpoints/{endpointId}:
     delete:
       description: Delete specific webhook endpoint
       operationId: v1.webhooks.delete
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Endpoint ID
         explode: false
         in: path
@@ -1332,14 +1179,6 @@ paths:
       description: Get specific webhook endpoint
       operationId: v1.webhooks.retrieve
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Endpoint ID
         explode: false
         in: path
@@ -1384,14 +1223,6 @@ paths:
       description: Update specific webhook endpoint
       operationId: v1.webhooks.update
       parameters:
-      - description: App ID
-        explode: false
-        in: path
-        name: appId
-        required: true
-        schema:
-          type: string
-        style: simple
       - description: Endpoint ID
         explode: false
         in: path

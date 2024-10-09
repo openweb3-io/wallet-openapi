@@ -56,4 +56,12 @@ public class AddressTest {
         // TODO: test network
     }
 
+    /**
+     * Test the property 'type'
+     */
+    @Test
+    public void typeTest() {
+        // TODO: test type
+    }
+
 }

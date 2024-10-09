@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1WebhooksCreate**](WebhookEndpointsApi.md#v1WebhooksCreate) | **POST** /api/v1/apps/{appId}/endpoints | Create webhook endpoint
-[**v1WebhooksDelete**](WebhookEndpointsApi.md#v1WebhooksDelete) | **DELETE** /api/v1/apps/{appId}/endpoints/{endpointId} | Delete webhook endpoint
-[**v1WebhooksList**](WebhookEndpointsApi.md#v1WebhooksList) | **GET** /api/v1/apps/{appId}/endpoints | List webhook endpoints
-[**v1WebhooksRetrieve**](WebhookEndpointsApi.md#v1WebhooksRetrieve) | **GET** /api/v1/apps/{appId}/endpoints/{endpointId} | Get webhook endpoint
-[**v1WebhooksUpdate**](WebhookEndpointsApi.md#v1WebhooksUpdate) | **PATCH** /api/v1/apps/{appId}/endpoints/{endpointId} | Update webhook endpoint
+[**v1WebhooksCreate**](WebhookEndpointsApi.md#v1WebhooksCreate) | **POST** /api/v1/endpoints | Create webhook endpoint
+[**v1WebhooksDelete**](WebhookEndpointsApi.md#v1WebhooksDelete) | **DELETE** /api/v1/endpoints/{endpointId} | Delete webhook endpoint
+[**v1WebhooksList**](WebhookEndpointsApi.md#v1WebhooksList) | **GET** /api/v1/endpoints | List webhook endpoints
+[**v1WebhooksRetrieve**](WebhookEndpointsApi.md#v1WebhooksRetrieve) | **GET** /api/v1/endpoints/{endpointId} | Get webhook endpoint
+[**v1WebhooksUpdate**](WebhookEndpointsApi.md#v1WebhooksUpdate) | **PATCH** /api/v1/endpoints/{endpointId} | Update webhook endpoint
 
 
 <a name="v1WebhooksCreate"></a>
 # **v1WebhooksCreate**
-> Webhook v1WebhooksCreate(appId, createWebhook)
+> Webhook v1WebhooksCreate(createWebhook)
 
 Create webhook endpoint
 
@@ -47,10 +47,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     CreateWebhook createWebhook = new CreateWebhook(); // CreateWebhook | Request body
     try {
-      Webhook result = apiInstance.v1WebhooksCreate(appId, createWebhook);
+      Webhook result = apiInstance.v1WebhooksCreate(createWebhook);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksCreate");
@@ -67,7 +66,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **createWebhook** | [**CreateWebhook**](CreateWebhook.md)| Request body |
 
 ### Return type
@@ -92,7 +90,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksDelete"></a>
 # **v1WebhooksDelete**
-> Webhook v1WebhooksDelete(appId, endpointId)
+> Webhook v1WebhooksDelete(endpointId)
 
 Delete webhook endpoint
 
@@ -126,10 +124,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String endpointId = "endpointId_example"; // String | Endpoint ID
     try {
-      Webhook result = apiInstance.v1WebhooksDelete(appId, endpointId);
+      Webhook result = apiInstance.v1WebhooksDelete(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksDelete");
@@ -146,7 +143,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **endpointId** | **String**| Endpoint ID |
 
 ### Return type
@@ -171,7 +167,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksList"></a>
 # **v1WebhooksList**
-> CursorPageWebhook v1WebhooksList(appId, cursor, limit)
+> CursorPageWebhook v1WebhooksList(cursor, limit)
 
 List webhook endpoints
 
@@ -205,11 +201,10 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String cursor = "cursor_example"; // String | 
     Integer limit = 56; // Integer | 
     try {
-      CursorPageWebhook result = apiInstance.v1WebhooksList(appId, cursor, limit);
+      CursorPageWebhook result = apiInstance.v1WebhooksList(cursor, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksList");
@@ -226,7 +221,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **cursor** | **String**|  | [optional]
  **limit** | **Integer**|  | [optional]
 
@@ -252,7 +246,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksRetrieve"></a>
 # **v1WebhooksRetrieve**
-> Webhook v1WebhooksRetrieve(appId, endpointId)
+> Webhook v1WebhooksRetrieve(endpointId)
 
 Get webhook endpoint
 
@@ -286,10 +280,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String endpointId = "endpointId_example"; // String | Endpoint ID
     try {
-      Webhook result = apiInstance.v1WebhooksRetrieve(appId, endpointId);
+      Webhook result = apiInstance.v1WebhooksRetrieve(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksRetrieve");
@@ -306,7 +299,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **endpointId** | **String**| Endpoint ID |
 
 ### Return type
@@ -332,7 +324,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksUpdate"></a>
 # **v1WebhooksUpdate**
-> Webhook v1WebhooksUpdate(appId, endpointId, updateWebhook)
+> Webhook v1WebhooksUpdate(endpointId, updateWebhook)
 
 Update webhook endpoint
 
@@ -366,11 +358,10 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String endpointId = "endpointId_example"; // String | Endpoint ID
     UpdateWebhook updateWebhook = new UpdateWebhook(); // UpdateWebhook | Request body
     try {
-      Webhook result = apiInstance.v1WebhooksUpdate(appId, endpointId, updateWebhook);
+      Webhook result = apiInstance.v1WebhooksUpdate(endpointId, updateWebhook);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksUpdate");
@@ -387,7 +378,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **endpointId** | **String**| Endpoint ID |
  **updateWebhook** | [**UpdateWebhook**](UpdateWebhook.md)| Request body |
 

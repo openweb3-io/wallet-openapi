@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1RatesEstimate**](RatesApi.md#v1RatesEstimate) | **GET** /api/v1/apps/{appId}/rates/estimate | Estimates
-[**v1RatesList**](RatesApi.md#v1RatesList) | **POST** /api/v1/apps/{appId}/rates | List rates
+[**v1RatesEstimate**](RatesApi.md#v1RatesEstimate) | **GET** /api/v1/rates/estimate | Estimates
+[**v1RatesList**](RatesApi.md#v1RatesList) | **POST** /api/v1/rates | List rates
 
 
 <a name="v1RatesEstimate"></a>
 # **v1RatesEstimate**
-> EstimateResponse v1RatesEstimate(appId, baseAmount, baseCurrency, toCurrency)
+> EstimateResponse v1RatesEstimate(baseAmount, baseCurrency, toCurrency)
 
 Estimates
 
@@ -44,12 +44,11 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     RatesApi apiInstance = new RatesApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     String baseAmount = "baseAmount_example"; // String | The amount of the base currency you want to convert
     String baseCurrency = "baseCurrency_example"; // String | The currency code of the base currency that you want to convert from
     String toCurrency = "toCurrency_example"; // String | The currency code of the target currency that you want to convert to
     try {
-      EstimateResponse result = apiInstance.v1RatesEstimate(appId, baseAmount, baseCurrency, toCurrency);
+      EstimateResponse result = apiInstance.v1RatesEstimate(baseAmount, baseCurrency, toCurrency);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RatesApi#v1RatesEstimate");
@@ -66,7 +65,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **baseAmount** | **String**| The amount of the base currency you want to convert |
  **baseCurrency** | **String**| The currency code of the base currency that you want to convert from |
  **toCurrency** | **String**| The currency code of the target currency that you want to convert to |
@@ -95,7 +93,7 @@ Name | Type | Description  | Notes
 
 <a name="v1RatesList"></a>
 # **v1RatesList**
-> GetRatesResponse v1RatesList(appId, getRatesRequest)
+> GetRatesResponse v1RatesList(getRatesRequest)
 
 List rates
 
@@ -129,10 +127,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     RatesApi apiInstance = new RatesApi(defaultClient);
-    String appId = "appId_example"; // String | App ID
     GetRatesRequest getRatesRequest = new GetRatesRequest(); // GetRatesRequest | Request body
     try {
-      GetRatesResponse result = apiInstance.v1RatesList(appId, getRatesRequest);
+      GetRatesResponse result = apiInstance.v1RatesList(getRatesRequest);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RatesApi#v1RatesList");
@@ -149,7 +146,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| App ID |
  **getRatesRequest** | [**GetRatesRequest**](GetRatesRequest.md)| Request body |
 
 ### Return type

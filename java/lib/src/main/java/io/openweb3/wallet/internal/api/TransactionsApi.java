@@ -62,7 +62,6 @@ public class TransactionsApi {
 
     /**
      * Build call for v1TransactionsList
-     * @param appId App ID (required)
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
@@ -84,12 +83,11 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsListCall(String appId, String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsListCall(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/transactions"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/transactions";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -148,15 +146,10 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1TransactionsListValidateBeforeCall(String appId, String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1TransactionsList(Async)");
-        }
+    private okhttp3.Call v1TransactionsListValidateBeforeCall(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = v1TransactionsListCall(appId, currency, cursor, direction, limit, network, status, txhash, walletId, _callback);
+        okhttp3.Call localVarCall = v1TransactionsListCall(currency, cursor, direction, limit, network, status, txhash, walletId, _callback);
         return localVarCall;
 
     }
@@ -164,7 +157,6 @@ public class TransactionsApi {
     /**
      * List transactions
      * List transactions
-     * @param appId App ID (required)
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
@@ -185,15 +177,14 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageTransaction v1TransactionsList(String appId, String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
-        ApiResponse<CursorPageTransaction> localVarResp = v1TransactionsListWithHttpInfo(appId, currency, cursor, direction, limit, network, status, txhash, walletId);
+    public CursorPageTransaction v1TransactionsList(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
+        ApiResponse<CursorPageTransaction> localVarResp = v1TransactionsListWithHttpInfo(currency, cursor, direction, limit, network, status, txhash, walletId);
         return localVarResp.getData();
     }
 
     /**
      * List transactions
      * List transactions
-     * @param appId App ID (required)
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
@@ -214,8 +205,8 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageTransaction> v1TransactionsListWithHttpInfo(String appId, String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
-        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(appId, currency, cursor, direction, limit, network, status, txhash, walletId, null);
+    public ApiResponse<CursorPageTransaction> v1TransactionsListWithHttpInfo(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
+        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(currency, cursor, direction, limit, network, status, txhash, walletId, null);
         Type localVarReturnType = new TypeToken<CursorPageTransaction>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -223,7 +214,6 @@ public class TransactionsApi {
     /**
      * List transactions (asynchronously)
      * List transactions
-     * @param appId App ID (required)
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
@@ -245,16 +235,15 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsListAsync(String appId, String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback<CursorPageTransaction> _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsListAsync(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback<CursorPageTransaction> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(appId, currency, cursor, direction, limit, network, status, txhash, walletId, _callback);
+        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(currency, cursor, direction, limit, network, status, txhash, walletId, _callback);
         Type localVarReturnType = new TypeToken<CursorPageTransaction>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1TransactionsRetrieve
-     * @param appId App ID (required)
      * @param transactionId Transaction ID (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -269,12 +258,11 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsRetrieveCall(String appId, String transactionId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsRetrieveCall(String transactionId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/transactions/{transactionId}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
+        String localVarPath = "/api/v1/transactions/{transactionId}"
             .replaceAll("\\{" + "transactionId" + "\\}", localVarApiClient.escapeString(transactionId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -302,12 +290,7 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1TransactionsRetrieveValidateBeforeCall(String appId, String transactionId, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1TransactionsRetrieve(Async)");
-        }
+    private okhttp3.Call v1TransactionsRetrieveValidateBeforeCall(String transactionId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'transactionId' is set
         if (transactionId == null) {
@@ -315,7 +298,7 @@ public class TransactionsApi {
         }
         
 
-        okhttp3.Call localVarCall = v1TransactionsRetrieveCall(appId, transactionId, _callback);
+        okhttp3.Call localVarCall = v1TransactionsRetrieveCall(transactionId, _callback);
         return localVarCall;
 
     }
@@ -323,7 +306,6 @@ public class TransactionsApi {
     /**
      * Get transaction
      * Get a transaction by ID
-     * @param appId App ID (required)
      * @param transactionId Transaction ID (required)
      * @return Transaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -337,15 +319,14 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public Transaction v1TransactionsRetrieve(String appId, String transactionId) throws ApiException {
-        ApiResponse<Transaction> localVarResp = v1TransactionsRetrieveWithHttpInfo(appId, transactionId);
+    public Transaction v1TransactionsRetrieve(String transactionId) throws ApiException {
+        ApiResponse<Transaction> localVarResp = v1TransactionsRetrieveWithHttpInfo(transactionId);
         return localVarResp.getData();
     }
 
     /**
      * Get transaction
      * Get a transaction by ID
-     * @param appId App ID (required)
      * @param transactionId Transaction ID (required)
      * @return ApiResponse&lt;Transaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -359,8 +340,8 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Transaction> v1TransactionsRetrieveWithHttpInfo(String appId, String transactionId) throws ApiException {
-        okhttp3.Call localVarCall = v1TransactionsRetrieveValidateBeforeCall(appId, transactionId, null);
+    public ApiResponse<Transaction> v1TransactionsRetrieveWithHttpInfo(String transactionId) throws ApiException {
+        okhttp3.Call localVarCall = v1TransactionsRetrieveValidateBeforeCall(transactionId, null);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -368,7 +349,6 @@ public class TransactionsApi {
     /**
      * Get transaction (asynchronously)
      * Get a transaction by ID
-     * @param appId App ID (required)
      * @param transactionId Transaction ID (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -383,16 +363,15 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsRetrieveAsync(String appId, String transactionId, final ApiCallback<Transaction> _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsRetrieveAsync(String transactionId, final ApiCallback<Transaction> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1TransactionsRetrieveValidateBeforeCall(appId, transactionId, _callback);
+        okhttp3.Call localVarCall = v1TransactionsRetrieveValidateBeforeCall(transactionId, _callback);
         Type localVarReturnType = new TypeToken<Transaction>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1TransactionsTransfer
-     * @param appId App ID (required)
      * @param createTransferRequest Request Body (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -407,12 +386,11 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsTransferCall(String appId, CreateTransferRequest createTransferRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsTransferCall(CreateTransferRequest createTransferRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = createTransferRequest;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/transactions/transfer"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/transactions/transfer";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -439,12 +417,7 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1TransactionsTransferValidateBeforeCall(String appId, CreateTransferRequest createTransferRequest, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1TransactionsTransfer(Async)");
-        }
+    private okhttp3.Call v1TransactionsTransferValidateBeforeCall(CreateTransferRequest createTransferRequest, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'createTransferRequest' is set
         if (createTransferRequest == null) {
@@ -452,7 +425,7 @@ public class TransactionsApi {
         }
         
 
-        okhttp3.Call localVarCall = v1TransactionsTransferCall(appId, createTransferRequest, _callback);
+        okhttp3.Call localVarCall = v1TransactionsTransferCall(createTransferRequest, _callback);
         return localVarCall;
 
     }
@@ -460,7 +433,6 @@ public class TransactionsApi {
     /**
      * Transfer(internal)
      * Create a transfer transaction
-     * @param appId App ID (required)
      * @param createTransferRequest Request Body (required)
      * @return CreateTransferResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -474,15 +446,14 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CreateTransferResponse v1TransactionsTransfer(String appId, CreateTransferRequest createTransferRequest) throws ApiException {
-        ApiResponse<CreateTransferResponse> localVarResp = v1TransactionsTransferWithHttpInfo(appId, createTransferRequest);
+    public CreateTransferResponse v1TransactionsTransfer(CreateTransferRequest createTransferRequest) throws ApiException {
+        ApiResponse<CreateTransferResponse> localVarResp = v1TransactionsTransferWithHttpInfo(createTransferRequest);
         return localVarResp.getData();
     }
 
     /**
      * Transfer(internal)
      * Create a transfer transaction
-     * @param appId App ID (required)
      * @param createTransferRequest Request Body (required)
      * @return ApiResponse&lt;CreateTransferResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -496,8 +467,8 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateTransferResponse> v1TransactionsTransferWithHttpInfo(String appId, CreateTransferRequest createTransferRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1TransactionsTransferValidateBeforeCall(appId, createTransferRequest, null);
+    public ApiResponse<CreateTransferResponse> v1TransactionsTransferWithHttpInfo(CreateTransferRequest createTransferRequest) throws ApiException {
+        okhttp3.Call localVarCall = v1TransactionsTransferValidateBeforeCall(createTransferRequest, null);
         Type localVarReturnType = new TypeToken<CreateTransferResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -505,7 +476,6 @@ public class TransactionsApi {
     /**
      * Transfer(internal) (asynchronously)
      * Create a transfer transaction
-     * @param appId App ID (required)
      * @param createTransferRequest Request Body (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -520,16 +490,15 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsTransferAsync(String appId, CreateTransferRequest createTransferRequest, final ApiCallback<CreateTransferResponse> _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsTransferAsync(CreateTransferRequest createTransferRequest, final ApiCallback<CreateTransferResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1TransactionsTransferValidateBeforeCall(appId, createTransferRequest, _callback);
+        okhttp3.Call localVarCall = v1TransactionsTransferValidateBeforeCall(createTransferRequest, _callback);
         Type localVarReturnType = new TypeToken<CreateTransferResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1TransactionsWithdraw
-     * @param appId App ID (required)
      * @param createWithdrawRequest withdraw (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -544,12 +513,11 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsWithdrawCall(String appId, CreateWithdrawRequest createWithdrawRequest, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsWithdrawCall(CreateWithdrawRequest createWithdrawRequest, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = createWithdrawRequest;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/transactions/withdraw"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/transactions/withdraw";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -576,12 +544,7 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1TransactionsWithdrawValidateBeforeCall(String appId, CreateWithdrawRequest createWithdrawRequest, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1TransactionsWithdraw(Async)");
-        }
+    private okhttp3.Call v1TransactionsWithdrawValidateBeforeCall(CreateWithdrawRequest createWithdrawRequest, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'createWithdrawRequest' is set
         if (createWithdrawRequest == null) {
@@ -589,7 +552,7 @@ public class TransactionsApi {
         }
         
 
-        okhttp3.Call localVarCall = v1TransactionsWithdrawCall(appId, createWithdrawRequest, _callback);
+        okhttp3.Call localVarCall = v1TransactionsWithdrawCall(createWithdrawRequest, _callback);
         return localVarCall;
 
     }
@@ -597,7 +560,6 @@ public class TransactionsApi {
     /**
      * Withdraw
      * Create a new withdrawal request for a specified currency
-     * @param appId App ID (required)
      * @param createWithdrawRequest withdraw (required)
      * @return CreateWithdrawReply
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -611,15 +573,14 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CreateWithdrawReply v1TransactionsWithdraw(String appId, CreateWithdrawRequest createWithdrawRequest) throws ApiException {
-        ApiResponse<CreateWithdrawReply> localVarResp = v1TransactionsWithdrawWithHttpInfo(appId, createWithdrawRequest);
+    public CreateWithdrawReply v1TransactionsWithdraw(CreateWithdrawRequest createWithdrawRequest) throws ApiException {
+        ApiResponse<CreateWithdrawReply> localVarResp = v1TransactionsWithdrawWithHttpInfo(createWithdrawRequest);
         return localVarResp.getData();
     }
 
     /**
      * Withdraw
      * Create a new withdrawal request for a specified currency
-     * @param appId App ID (required)
      * @param createWithdrawRequest withdraw (required)
      * @return ApiResponse&lt;CreateWithdrawReply&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -633,8 +594,8 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateWithdrawReply> v1TransactionsWithdrawWithHttpInfo(String appId, CreateWithdrawRequest createWithdrawRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1TransactionsWithdrawValidateBeforeCall(appId, createWithdrawRequest, null);
+    public ApiResponse<CreateWithdrawReply> v1TransactionsWithdrawWithHttpInfo(CreateWithdrawRequest createWithdrawRequest) throws ApiException {
+        okhttp3.Call localVarCall = v1TransactionsWithdrawValidateBeforeCall(createWithdrawRequest, null);
         Type localVarReturnType = new TypeToken<CreateWithdrawReply>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -642,7 +603,6 @@ public class TransactionsApi {
     /**
      * Withdraw (asynchronously)
      * Create a new withdrawal request for a specified currency
-     * @param appId App ID (required)
      * @param createWithdrawRequest withdraw (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -657,9 +617,9 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsWithdrawAsync(String appId, CreateWithdrawRequest createWithdrawRequest, final ApiCallback<CreateWithdrawReply> _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsWithdrawAsync(CreateWithdrawRequest createWithdrawRequest, final ApiCallback<CreateWithdrawReply> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1TransactionsWithdrawValidateBeforeCall(appId, createWithdrawRequest, _callback);
+        okhttp3.Call localVarCall = v1TransactionsWithdrawValidateBeforeCall(createWithdrawRequest, _callback);
         Type localVarReturnType = new TypeToken<CreateWithdrawReply>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

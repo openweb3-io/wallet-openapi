@@ -9,18 +9,17 @@ import io.openweb3.wallet.models.CreateTransferResponse;
 import io.openweb3.wallet.models.CreateWithdrawRequest;
 import io.openweb3.wallet.models.CreateWithdrawReply;
 
-public final class TransactionAPI {
+public final class TransactionsAPI {
 	private final TransactionsApi api;
 
-	TransactionAPI() {
+	TransactionsAPI() {
 		api = new TransactionsApi();
 	}
 
 	// list transactions		
-	public CursorPageTransaction listTransactions(final String appId, final ListTransactionOptions options) throws ApiException {
+	public CursorPageTransaction listTransactions(final ListTransactionOptions options) throws ApiException {
 		try {
 			return api.v1TransactionsList(
-				appId,
 				options.getCurrency(),
 				options.getCursor(),
 				options.getDirection(),
@@ -36,27 +35,27 @@ public final class TransactionAPI {
 	}
 
 	// get transaction
-	public Transaction getTransaction(final String appId, final String transactionId) throws ApiException {
+	public Transaction getTransaction(final String transactionId) throws ApiException {
 		try {
-			return api.v1TransactionsRetrieve(appId, transactionId);
+			return api.v1TransactionsRetrieve(transactionId);
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 	
 	// transfer
-	public CreateTransferResponse transfer(final String appId, final CreateTransferRequest req) throws ApiException {
+	public CreateTransferResponse transfer(final CreateTransferRequest req) throws ApiException {
 		try {
-			return api.v1TransactionsTransfer(appId, req);
+			return api.v1TransactionsTransfer(req);
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
 	// withdraw
-	public CreateWithdrawReply withdraw(final String appId, final CreateWithdrawRequest req) throws ApiException {
+	public CreateWithdrawReply withdraw(final CreateWithdrawRequest req) throws ApiException {
 		try {
-			return api.v1TransactionsWithdraw(appId, req);
+			return api.v1TransactionsWithdraw(req);
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
