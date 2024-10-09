@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1WebhooksCreate**](WebhookEndpointsApi.md#V1WebhooksCreate) | **Post** /api/v1/apps/{appId}/endpoints | Create webhook endpoint
-[**V1WebhooksDelete**](WebhookEndpointsApi.md#V1WebhooksDelete) | **Delete** /api/v1/apps/{appId}/endpoints/{endpointId} | Delete webhook endpoint
-[**V1WebhooksList**](WebhookEndpointsApi.md#V1WebhooksList) | **Get** /api/v1/apps/{appId}/endpoints | List webhook endpoints
-[**V1WebhooksRetrieve**](WebhookEndpointsApi.md#V1WebhooksRetrieve) | **Get** /api/v1/apps/{appId}/endpoints/{endpointId} | Get webhook endpoint
-[**V1WebhooksUpdate**](WebhookEndpointsApi.md#V1WebhooksUpdate) | **Patch** /api/v1/apps/{appId}/endpoints/{endpointId} | Update webhook endpoint
+[**V1WebhooksCreate**](WebhookEndpointsApi.md#V1WebhooksCreate) | **Post** /api/v1/endpoints | Create webhook endpoint
+[**V1WebhooksDelete**](WebhookEndpointsApi.md#V1WebhooksDelete) | **Delete** /api/v1/endpoints/{endpointId} | Delete webhook endpoint
+[**V1WebhooksList**](WebhookEndpointsApi.md#V1WebhooksList) | **Get** /api/v1/endpoints | List webhook endpoints
+[**V1WebhooksRetrieve**](WebhookEndpointsApi.md#V1WebhooksRetrieve) | **Get** /api/v1/endpoints/{endpointId} | Get webhook endpoint
+[**V1WebhooksUpdate**](WebhookEndpointsApi.md#V1WebhooksUpdate) | **Patch** /api/v1/endpoints/{endpointId} | Update webhook endpoint
 
 
 
 ## V1WebhooksCreate
 
-> Webhook V1WebhooksCreate(ctx, appId).CreateWebhook(createWebhook).Execute()
+> Webhook V1WebhooksCreate(ctx).CreateWebhook(createWebhook).Execute()
 
 Create webhook endpoint
 
@@ -33,12 +33,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     createWebhook := *openapiclient.NewCreateWebhook([]openapiclient.EventType{openapiclient.EventType("deposit_success")}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}, "Url_example") // CreateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksCreate(context.Background(), appId).CreateWebhook(createWebhook).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksCreate(context.Background()).CreateWebhook(createWebhook).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,10 +50,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -63,7 +58,6 @@ Other parameters are passed through a pointer to a apiV1WebhooksCreateRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **createWebhook** | [**CreateWebhook**](CreateWebhook.md) | Request body | 
 
 ### Return type
@@ -86,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksDelete
 
-> Webhook V1WebhooksDelete(ctx, appId, endpointId).Execute()
+> Webhook V1WebhooksDelete(ctx, endpointId).Execute()
 
 Delete webhook endpoint
 
@@ -105,12 +99,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     endpointId := "endpointId_example" // string | Endpoint ID
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksDelete(context.Background(), appId, endpointId).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksDelete(context.Background(), endpointId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,7 +119,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **endpointId** | **string** | Endpoint ID | 
 
 ### Other Parameters
@@ -136,7 +128,6 @@ Other parameters are passed through a pointer to a apiV1WebhooksDeleteRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -159,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksList
 
-> CursorPageWebhook V1WebhooksList(ctx, appId).Cursor(cursor).Limit(limit).Execute()
+> CursorPageWebhook V1WebhooksList(ctx).Cursor(cursor).Limit(limit).Execute()
 
 List webhook endpoints
 
@@ -178,13 +169,12 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     cursor := "cursor_example" // string |  (optional)
     limit := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksList(context.Background(), appId).Cursor(cursor).Limit(limit).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksList(context.Background()).Cursor(cursor).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -197,10 +187,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -209,7 +195,6 @@ Other parameters are passed through a pointer to a apiV1WebhooksListRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **cursor** | **string** |  | 
  **limit** | **int32** |  | 
 
@@ -233,7 +218,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksRetrieve
 
-> Webhook V1WebhooksRetrieve(ctx, appId, endpointId).Execute()
+> Webhook V1WebhooksRetrieve(ctx, endpointId).Execute()
 
 Get webhook endpoint
 
@@ -252,12 +237,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     endpointId := "endpointId_example" // string | Endpoint ID
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksRetrieve(context.Background(), appId, endpointId).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksRetrieve(context.Background(), endpointId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksRetrieve``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -273,7 +257,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **endpointId** | **string** | Endpoint ID | 
 
 ### Other Parameters
@@ -283,7 +266,6 @@ Other parameters are passed through a pointer to a apiV1WebhooksRetrieveRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -306,7 +288,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksUpdate
 
-> Webhook V1WebhooksUpdate(ctx, appId, endpointId).UpdateWebhook(updateWebhook).Execute()
+> Webhook V1WebhooksUpdate(ctx, endpointId).UpdateWebhook(updateWebhook).Execute()
 
 Update webhook endpoint
 
@@ -325,13 +307,12 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     endpointId := "endpointId_example" // string | Endpoint ID
     updateWebhook := *openapiclient.NewUpdateWebhook([]openapiclient.EventType{openapiclient.EventType("deposit_success")}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}) // UpdateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksUpdate(context.Background(), appId, endpointId).UpdateWebhook(updateWebhook).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksUpdate(context.Background(), endpointId).UpdateWebhook(updateWebhook).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -347,7 +328,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **endpointId** | **string** | Endpoint ID | 
 
 ### Other Parameters
@@ -357,7 +337,6 @@ Other parameters are passed through a pointer to a apiV1WebhooksUpdateRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **updateWebhook** | [**UpdateWebhook**](UpdateWebhook.md) | Request body | 
 

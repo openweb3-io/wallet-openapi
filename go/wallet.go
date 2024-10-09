@@ -28,9 +28,8 @@ type ListAccountsOptions struct {
 	Limit  int
 }
 
-
-func (e *Wallet) List(ctx context.Context, appId string, options *ListWalletOptions) (*PageWalletOut, error) {
-	req := e.api.WalletsApi.V1WalletsList(ctx, appId)
+func (e *Wallet) List(ctx context.Context, options *ListWalletOptions) (*PageWalletOut, error) {
+	req := e.api.WalletsApi.V1WalletsList(ctx)
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
@@ -44,8 +43,8 @@ func (e *Wallet) List(ctx context.Context, appId string, options *ListWalletOpti
 	return &out, nil
 }
 
-func (e *Wallet) Retrieve(ctx context.Context, appId string, walletId string) (*WalletOut, error) {
-	req := e.api.WalletsApi.V1WalletsRetrieve(ctx, appId, walletId)
+func (e *Wallet) Retrieve(ctx context.Context, walletId string) (*WalletOut, error) {
+	req := e.api.WalletsApi.V1WalletsRetrieve(ctx, walletId)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -53,8 +52,8 @@ func (e *Wallet) Retrieve(ctx context.Context, appId string, walletId string) (*
 	return &out, nil
 }
 
-func (e *Wallet) Create(ctx context.Context, appId string, createWalletIn *CreateWalletIn) (*WalletOut, error) {
-	req := e.api.WalletsApi.V1WalletsCreate(ctx, appId)
+func (e *Wallet) Create(ctx context.Context, createWalletIn *CreateWalletIn) (*WalletOut, error) {
+	req := e.api.WalletsApi.V1WalletsCreate(ctx)
 	req = req.CreateWalletRequest(*createWalletIn)
 	out, res, err := req.Execute()
 	if err != nil {
@@ -63,8 +62,8 @@ func (e *Wallet) Create(ctx context.Context, appId string, createWalletIn *Creat
 	return &out, nil
 }
 
-func (e *Wallet) Update(ctx context.Context, appId string, walletId string, updateWalletIn *UpdateWalletIn) (*WalletOut, error) {
-	req := e.api.WalletsApi.V1WalletsUpdate(ctx, appId, walletId)
+func (e *Wallet) Update(ctx context.Context, walletId string, updateWalletIn *UpdateWalletIn) (*WalletOut, error) {
+	req := e.api.WalletsApi.V1WalletsUpdate(ctx, walletId)
 	req = req.UpdateWalletRequest(*updateWalletIn)
 	out, res, err := req.Execute()
 	if err != nil {
@@ -73,8 +72,8 @@ func (e *Wallet) Update(ctx context.Context, appId string, walletId string, upda
 	return &out, nil
 }
 
-func (e *Wallet) ListAccounts(ctx context.Context, appId string, walletId string, options *ListAccountsOptions) (*PageAccountOut, error) {
-	req := e.api.WalletsApi.V1WalletsListAccounts(ctx, appId, walletId)
+func (e *Wallet) ListAccounts(ctx context.Context, walletId string, options *ListAccountsOptions) (*PageAccountOut, error) {
+	req := e.api.WalletsApi.V1WalletsListAccounts(ctx, walletId)
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}

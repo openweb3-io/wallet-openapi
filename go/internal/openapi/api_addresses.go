@@ -30,7 +30,6 @@ type AddressesApiService service
 type ApiV1AddressesListRequest struct {
 	ctx _context.Context
 	ApiService *AddressesApiService
-	appId string
 	currency *string
 	cursor *string
 	limit *int32
@@ -67,14 +66,12 @@ func (r ApiV1AddressesListRequest) Execute() (CursorPageAddress, *_nethttp.Respo
  * V1AddressesList List all addresses
  * List of all available addresses.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @return ApiV1AddressesListRequest
  */
-func (a *AddressesApiService) V1AddressesList(ctx _context.Context, appId string) ApiV1AddressesListRequest {
+func (a *AddressesApiService) V1AddressesList(ctx _context.Context) ApiV1AddressesListRequest {
 	return ApiV1AddressesListRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -97,8 +94,7 @@ func (a *AddressesApiService) V1AddressesListExecute(r ApiV1AddressesListRequest
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/addresses"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/addresses"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -243,7 +239,6 @@ func (a *AddressesApiService) V1AddressesListExecute(r ApiV1AddressesListRequest
 type ApiV1WalletsGetDepositAddressRequest struct {
 	ctx _context.Context
 	ApiService *AddressesApiService
-	appId string
 	walletId string
 	currency *string
 	network *string
@@ -266,15 +261,13 @@ func (r ApiV1WalletsGetDepositAddressRequest) Execute() (Address, *_nethttp.Resp
  * V1WalletsGetDepositAddress Get deposit address
  * Get wallet's deposit address
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @param walletId Wallet ID
  * @return ApiV1WalletsGetDepositAddressRequest
  */
-func (a *AddressesApiService) V1WalletsGetDepositAddress(ctx _context.Context, appId string, walletId string) ApiV1WalletsGetDepositAddressRequest {
+func (a *AddressesApiService) V1WalletsGetDepositAddress(ctx _context.Context, walletId string) ApiV1WalletsGetDepositAddressRequest {
 	return ApiV1WalletsGetDepositAddressRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		walletId: walletId,
 	}
 }
@@ -298,8 +291,7 @@ func (a *AddressesApiService) V1WalletsGetDepositAddressExecute(r ApiV1WalletsGe
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/wallets/{walletId}/deposit_address"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/wallets/{walletId}/deposit_address"
 	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -437,7 +429,6 @@ func (a *AddressesApiService) V1WalletsGetDepositAddressExecute(r ApiV1WalletsGe
 type ApiV1WalletsListDepositAddressesRequest struct {
 	ctx _context.Context
 	ApiService *AddressesApiService
-	appId string
 	walletId string
 	currency *string
 	cursor *string
@@ -470,15 +461,13 @@ func (r ApiV1WalletsListDepositAddressesRequest) Execute() (CursorPageAddress, *
  * V1WalletsListDepositAddresses List deposit addresses
  * List wallet's deposit addresses
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @param walletId Wallet ID
  * @return ApiV1WalletsListDepositAddressesRequest
  */
-func (a *AddressesApiService) V1WalletsListDepositAddresses(ctx _context.Context, appId string, walletId string) ApiV1WalletsListDepositAddressesRequest {
+func (a *AddressesApiService) V1WalletsListDepositAddresses(ctx _context.Context, walletId string) ApiV1WalletsListDepositAddressesRequest {
 	return ApiV1WalletsListDepositAddressesRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		walletId: walletId,
 	}
 }
@@ -502,8 +491,7 @@ func (a *AddressesApiService) V1WalletsListDepositAddressesExecute(r ApiV1Wallet
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/wallets/{walletId}/deposit_addresses"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/wallets/{walletId}/deposit_addresses"
 	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

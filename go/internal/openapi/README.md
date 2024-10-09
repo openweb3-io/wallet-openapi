@@ -78,27 +78,27 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AddressesApi* | [**V1AddressesList**](docs/AddressesApi.md#v1addresseslist) | **Get** /api/v1/apps/{appId}/addresses | List all addresses
-*AddressesApi* | [**V1WalletsGetDepositAddress**](docs/AddressesApi.md#v1walletsgetdepositaddress) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/deposit_address | Get deposit address
-*AddressesApi* | [**V1WalletsListDepositAddresses**](docs/AddressesApi.md#v1walletslistdepositaddresses) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/deposit_addresses | List deposit addresses
-*CurrenciesApi* | [**V1CurrenciesList**](docs/CurrenciesApi.md#v1currencieslist) | **Get** /api/v1/apps/{appId}/currencies | List currencies
-*CurrenciesApi* | [**V1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1currenciesretrieve) | **Get** /api/v1/apps/{appId}/currencies/{code} | Get Currency
-*RatesApi* | [**V1RatesEstimate**](docs/RatesApi.md#v1ratesestimate) | **Get** /api/v1/apps/{appId}/rates/estimate | Estimates
-*RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/apps/{appId}/rates | List rates
-*TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/apps/{appId}/transactions | List transactions
-*TransactionsApi* | [**V1TransactionsRetrieve**](docs/TransactionsApi.md#v1transactionsretrieve) | **Get** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
-*TransactionsApi* | [**V1TransactionsTransfer**](docs/TransactionsApi.md#v1transactionstransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer(internal)
-*TransactionsApi* | [**V1TransactionsWithdraw**](docs/TransactionsApi.md#v1transactionswithdraw) | **Post** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
-*WalletsApi* | [**V1WalletsCreate**](docs/WalletsApi.md#v1walletscreate) | **Post** /api/v1/apps/{appId}/wallets | Create wallet
-*WalletsApi* | [**V1WalletsList**](docs/WalletsApi.md#v1walletslist) | **Get** /api/v1/apps/{appId}/wallets | List wallets
-*WalletsApi* | [**V1WalletsListAccounts**](docs/WalletsApi.md#v1walletslistaccounts) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/accounts | List wallet accounts
-*WalletsApi* | [**V1WalletsRetrieve**](docs/WalletsApi.md#v1walletsretrieve) | **Get** /api/v1/apps/{appId}/wallets/{walletId} | Get wallet
-*WalletsApi* | [**V1WalletsUpdate**](docs/WalletsApi.md#v1walletsupdate) | **Patch** /api/v1/apps/{appId}/wallets/{walletId} | Update wallet
-*WebhookEndpointsApi* | [**V1WebhooksCreate**](docs/WebhookEndpointsApi.md#v1webhookscreate) | **Post** /api/v1/apps/{appId}/endpoints | Create webhook endpoint
-*WebhookEndpointsApi* | [**V1WebhooksDelete**](docs/WebhookEndpointsApi.md#v1webhooksdelete) | **Delete** /api/v1/apps/{appId}/endpoints/{endpointId} | Delete webhook endpoint
-*WebhookEndpointsApi* | [**V1WebhooksList**](docs/WebhookEndpointsApi.md#v1webhookslist) | **Get** /api/v1/apps/{appId}/endpoints | List webhook endpoints
-*WebhookEndpointsApi* | [**V1WebhooksRetrieve**](docs/WebhookEndpointsApi.md#v1webhooksretrieve) | **Get** /api/v1/apps/{appId}/endpoints/{endpointId} | Get webhook endpoint
-*WebhookEndpointsApi* | [**V1WebhooksUpdate**](docs/WebhookEndpointsApi.md#v1webhooksupdate) | **Patch** /api/v1/apps/{appId}/endpoints/{endpointId} | Update webhook endpoint
+*AddressesApi* | [**V1AddressesList**](docs/AddressesApi.md#v1addresseslist) | **Get** /api/v1/addresses | List all addresses
+*AddressesApi* | [**V1WalletsGetDepositAddress**](docs/AddressesApi.md#v1walletsgetdepositaddress) | **Get** /api/v1/wallets/{walletId}/deposit_address | Get deposit address
+*AddressesApi* | [**V1WalletsListDepositAddresses**](docs/AddressesApi.md#v1walletslistdepositaddresses) | **Get** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
+*CurrenciesApi* | [**V1CurrenciesList**](docs/CurrenciesApi.md#v1currencieslist) | **Get** /api/v1/currencies | List currencies
+*CurrenciesApi* | [**V1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1currenciesretrieve) | **Get** /api/v1/currencies/{code} | Get Currency
+*RatesApi* | [**V1RatesEstimate**](docs/RatesApi.md#v1ratesestimate) | **Get** /api/v1/rates/estimate | Estimates
+*RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/rates | List rates
+*TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/transactions | List transactions
+*TransactionsApi* | [**V1TransactionsRetrieve**](docs/TransactionsApi.md#v1transactionsretrieve) | **Get** /api/v1/transactions/{transactionId} | Get transaction
+*TransactionsApi* | [**V1TransactionsTransfer**](docs/TransactionsApi.md#v1transactionstransfer) | **Post** /api/v1/transactions/transfer | Transfer(internal)
+*TransactionsApi* | [**V1TransactionsWithdraw**](docs/TransactionsApi.md#v1transactionswithdraw) | **Post** /api/v1/transactions/withdraw | Withdraw
+*WalletsApi* | [**V1WalletsCreate**](docs/WalletsApi.md#v1walletscreate) | **Post** /api/v1/wallets | Create wallet
+*WalletsApi* | [**V1WalletsList**](docs/WalletsApi.md#v1walletslist) | **Get** /api/v1/wallets | List wallets
+*WalletsApi* | [**V1WalletsListAccounts**](docs/WalletsApi.md#v1walletslistaccounts) | **Get** /api/v1/wallets/{walletId}/accounts | List wallet accounts
+*WalletsApi* | [**V1WalletsRetrieve**](docs/WalletsApi.md#v1walletsretrieve) | **Get** /api/v1/wallets/{walletId} | Get wallet
+*WalletsApi* | [**V1WalletsUpdate**](docs/WalletsApi.md#v1walletsupdate) | **Patch** /api/v1/wallets/{walletId} | Update wallet
+*WebhookEndpointsApi* | [**V1WebhooksCreate**](docs/WebhookEndpointsApi.md#v1webhookscreate) | **Post** /api/v1/endpoints | Create webhook endpoint
+*WebhookEndpointsApi* | [**V1WebhooksDelete**](docs/WebhookEndpointsApi.md#v1webhooksdelete) | **Delete** /api/v1/endpoints/{endpointId} | Delete webhook endpoint
+*WebhookEndpointsApi* | [**V1WebhooksList**](docs/WebhookEndpointsApi.md#v1webhookslist) | **Get** /api/v1/endpoints | List webhook endpoints
+*WebhookEndpointsApi* | [**V1WebhooksRetrieve**](docs/WebhookEndpointsApi.md#v1webhooksretrieve) | **Get** /api/v1/endpoints/{endpointId} | Get webhook endpoint
+*WebhookEndpointsApi* | [**V1WebhooksUpdate**](docs/WebhookEndpointsApi.md#v1webhooksupdate) | **Patch** /api/v1/endpoints/{endpointId} | Update webhook endpoint
 
 
 ## Documentation For Models

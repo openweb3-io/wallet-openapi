@@ -30,7 +30,6 @@ type WalletsApiService service
 type ApiV1WalletsCreateRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
-	appId string
 	createWalletRequest *CreateWalletRequest
 }
 
@@ -47,14 +46,12 @@ func (r ApiV1WalletsCreateRequest) Execute() (Wallet, *_nethttp.Response, error)
  * V1WalletsCreate Create wallet
  * Create a Wallet
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @return ApiV1WalletsCreateRequest
  */
-func (a *WalletsApiService) V1WalletsCreate(ctx _context.Context, appId string) ApiV1WalletsCreateRequest {
+func (a *WalletsApiService) V1WalletsCreate(ctx _context.Context) ApiV1WalletsCreateRequest {
 	return ApiV1WalletsCreateRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -77,8 +74,7 @@ func (a *WalletsApiService) V1WalletsCreateExecute(r ApiV1WalletsCreateRequest) 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/wallets"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/wallets"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -213,7 +209,6 @@ func (a *WalletsApiService) V1WalletsCreateExecute(r ApiV1WalletsCreateRequest) 
 type ApiV1WalletsListRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
-	appId string
 	cursor *string
 	limit *int32
 }
@@ -235,14 +230,12 @@ func (r ApiV1WalletsListRequest) Execute() (CursorPageWallet, *_nethttp.Response
  * V1WalletsList List wallets
  * List all wallets
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @return ApiV1WalletsListRequest
  */
-func (a *WalletsApiService) V1WalletsList(ctx _context.Context, appId string) ApiV1WalletsListRequest {
+func (a *WalletsApiService) V1WalletsList(ctx _context.Context) ApiV1WalletsListRequest {
 	return ApiV1WalletsListRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -265,8 +258,7 @@ func (a *WalletsApiService) V1WalletsListExecute(r ApiV1WalletsListRequest) (Cur
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/wallets"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/wallets"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -402,7 +394,6 @@ func (a *WalletsApiService) V1WalletsListExecute(r ApiV1WalletsListRequest) (Cur
 type ApiV1WalletsListAccountsRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
-	appId string
 	walletId string
 	cursor *string
 	limit *int32
@@ -425,15 +416,13 @@ func (r ApiV1WalletsListAccountsRequest) Execute() (CursorPageAccount, *_nethttp
  * V1WalletsListAccounts List wallet accounts
  * List wallet accounts
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @param walletId Wallet ID
  * @return ApiV1WalletsListAccountsRequest
  */
-func (a *WalletsApiService) V1WalletsListAccounts(ctx _context.Context, appId string, walletId string) ApiV1WalletsListAccountsRequest {
+func (a *WalletsApiService) V1WalletsListAccounts(ctx _context.Context, walletId string) ApiV1WalletsListAccountsRequest {
 	return ApiV1WalletsListAccountsRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		walletId: walletId,
 	}
 }
@@ -457,8 +446,7 @@ func (a *WalletsApiService) V1WalletsListAccountsExecute(r ApiV1WalletsListAccou
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/wallets/{walletId}/accounts"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/wallets/{walletId}/accounts"
 	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -595,7 +583,6 @@ func (a *WalletsApiService) V1WalletsListAccountsExecute(r ApiV1WalletsListAccou
 type ApiV1WalletsRetrieveRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
-	appId string
 	walletId string
 }
 
@@ -608,15 +595,13 @@ func (r ApiV1WalletsRetrieveRequest) Execute() (Wallet, *_nethttp.Response, erro
  * V1WalletsRetrieve Get wallet
  * Get a wallet by ID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @param walletId Wallet ID
  * @return ApiV1WalletsRetrieveRequest
  */
-func (a *WalletsApiService) V1WalletsRetrieve(ctx _context.Context, appId string, walletId string) ApiV1WalletsRetrieveRequest {
+func (a *WalletsApiService) V1WalletsRetrieve(ctx _context.Context, walletId string) ApiV1WalletsRetrieveRequest {
 	return ApiV1WalletsRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		walletId: walletId,
 	}
 }
@@ -640,8 +625,7 @@ func (a *WalletsApiService) V1WalletsRetrieveExecute(r ApiV1WalletsRetrieveReque
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/wallets/{walletId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/wallets/{walletId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -772,7 +756,6 @@ func (a *WalletsApiService) V1WalletsRetrieveExecute(r ApiV1WalletsRetrieveReque
 type ApiV1WalletsUpdateRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
-	appId string
 	walletId string
 	updateWalletRequest *UpdateWalletRequest
 }
@@ -790,15 +773,13 @@ func (r ApiV1WalletsUpdateRequest) Execute() (Wallet, *_nethttp.Response, error)
  * V1WalletsUpdate Update wallet
  * Update a Wallet
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @param walletId Wallet ID
  * @return ApiV1WalletsUpdateRequest
  */
-func (a *WalletsApiService) V1WalletsUpdate(ctx _context.Context, appId string, walletId string) ApiV1WalletsUpdateRequest {
+func (a *WalletsApiService) V1WalletsUpdate(ctx _context.Context, walletId string) ApiV1WalletsUpdateRequest {
 	return ApiV1WalletsUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		walletId: walletId,
 	}
 }
@@ -822,8 +803,7 @@ func (a *WalletsApiService) V1WalletsUpdateExecute(r ApiV1WalletsUpdateRequest) 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/wallets/{walletId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/wallets/{walletId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"walletId"+"}", _neturl.PathEscape(parameterToString(r.walletId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

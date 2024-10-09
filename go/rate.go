@@ -23,8 +23,8 @@ type EstimateOptions struct {
 	ToCurrency   string
 }
 
-func (e *Rate) Estimate(ctx context.Context, appId string, options *EstimateOptions) (*EstimateOut, error) {
-	req := e.api.RatesApi.V1RatesEstimate(ctx, appId)
+func (e *Rate) Estimate(ctx context.Context, options *EstimateOptions) (*EstimateOut, error) {
+	req := e.api.RatesApi.V1RatesEstimate(ctx)
 	req = req.BaseCurrency(options.BaseCurrency)
 	req = req.BaseAmount(options.BaseAmount)
 	req = req.ToCurrency(options.ToCurrency)
@@ -35,8 +35,8 @@ func (e *Rate) Estimate(ctx context.Context, appId string, options *EstimateOpti
 	return &out, nil
 }
 
-func (e *Rate) GetRates(ctx context.Context, appId string, getRatesIn *GetRatesIn) (*GetRatesOut, error) {
-	req := e.api.RatesApi.V1RatesList(ctx, appId)
+func (e *Rate) GetRates(ctx context.Context, getRatesIn *GetRatesIn) (*GetRatesOut, error) {
+	req := e.api.RatesApi.V1RatesList(ctx)
 	req = req.GetRatesRequest(*getRatesIn)
 	out, res, err := req.Execute()
 	if err != nil {

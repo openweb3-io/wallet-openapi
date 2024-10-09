@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1TransactionsList**](TransactionsApi.md#V1TransactionsList) | **Get** /api/v1/apps/{appId}/transactions | List transactions
-[**V1TransactionsRetrieve**](TransactionsApi.md#V1TransactionsRetrieve) | **Get** /api/v1/apps/{appId}/transactions/{transactionId} | Get transaction
-[**V1TransactionsTransfer**](TransactionsApi.md#V1TransactionsTransfer) | **Post** /api/v1/apps/{appId}/transactions/transfer | Transfer(internal)
-[**V1TransactionsWithdraw**](TransactionsApi.md#V1TransactionsWithdraw) | **Post** /api/v1/apps/{appId}/transactions/withdraw | Withdraw
+[**V1TransactionsList**](TransactionsApi.md#V1TransactionsList) | **Get** /api/v1/transactions | List transactions
+[**V1TransactionsRetrieve**](TransactionsApi.md#V1TransactionsRetrieve) | **Get** /api/v1/transactions/{transactionId} | Get transaction
+[**V1TransactionsTransfer**](TransactionsApi.md#V1TransactionsTransfer) | **Post** /api/v1/transactions/transfer | Transfer(internal)
+[**V1TransactionsWithdraw**](TransactionsApi.md#V1TransactionsWithdraw) | **Post** /api/v1/transactions/withdraw | Withdraw
 
 
 
 ## V1TransactionsList
 
-> CursorPageTransaction V1TransactionsList(ctx, appId).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
+> CursorPageTransaction V1TransactionsList(ctx).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
 
 List transactions
 
@@ -32,7 +32,6 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     currency := "currency_example" // string | The type of currency involved in the transaction. (optional)
     cursor := "cursor_example" // string | A cursor value for pagination purposes. (optional)
     direction := "direction_example" // string | The direction of the transaction (e.g., incoming or outgoing). (optional)
@@ -44,7 +43,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsList(context.Background(), appId).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsList(context.Background()).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,10 +56,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -69,7 +64,6 @@ Other parameters are passed through a pointer to a apiV1TransactionsListRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **currency** | **string** | The type of currency involved in the transaction. | 
  **cursor** | **string** | A cursor value for pagination purposes. | 
  **direction** | **string** | The direction of the transaction (e.g., incoming or outgoing). | 
@@ -99,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## V1TransactionsRetrieve
 
-> Transaction V1TransactionsRetrieve(ctx, appId, transactionId).Execute()
+> Transaction V1TransactionsRetrieve(ctx, transactionId).Execute()
 
 Get transaction
 
@@ -118,12 +112,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     transactionId := "transactionId_example" // string | Transaction ID
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsRetrieve(context.Background(), appId, transactionId).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsRetrieve(context.Background(), transactionId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsRetrieve``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -139,7 +132,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **transactionId** | **string** | Transaction ID | 
 
 ### Other Parameters
@@ -149,7 +141,6 @@ Other parameters are passed through a pointer to a apiV1TransactionsRetrieveRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -172,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## V1TransactionsTransfer
 
-> CreateTransferResponse V1TransactionsTransfer(ctx, appId).CreateTransferRequest(createTransferRequest).Execute()
+> CreateTransferResponse V1TransactionsTransfer(ctx).CreateTransferRequest(createTransferRequest).Execute()
 
 Transfer(internal)
 
@@ -191,12 +182,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     createTransferRequest := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example", "WalletId_example") // CreateTransferRequest | Request Body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsTransfer(context.Background(), appId).CreateTransferRequest(createTransferRequest).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsTransfer(context.Background()).CreateTransferRequest(createTransferRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,10 +199,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -221,7 +207,6 @@ Other parameters are passed through a pointer to a apiV1TransactionsTransferRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **createTransferRequest** | [**CreateTransferRequest**](CreateTransferRequest.md) | Request Body | 
 
 ### Return type
@@ -244,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## V1TransactionsWithdraw
 
-> CreateWithdrawReply V1TransactionsWithdraw(ctx, appId).CreateWithdrawRequest(createWithdrawRequest).Execute()
+> CreateWithdrawReply V1TransactionsWithdraw(ctx).CreateWithdrawRequest(createWithdrawRequest).Execute()
 
 Withdraw
 
@@ -263,12 +248,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     createWithdrawRequest := *openapiclient.NewCreateWithdrawRequest("Amount_example", "Currency_example", "Network_example", "ToAddress_example", "WalletId_example") // CreateWithdrawRequest | withdraw
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsWithdraw(context.Background(), appId).CreateWithdrawRequest(createWithdrawRequest).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsWithdraw(context.Background()).CreateWithdrawRequest(createWithdrawRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsWithdraw``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,10 +265,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -293,7 +273,6 @@ Other parameters are passed through a pointer to a apiV1TransactionsWithdrawRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **createWithdrawRequest** | [**CreateWithdrawRequest**](CreateWithdrawRequest.md) | withdraw | 
 
 ### Return type

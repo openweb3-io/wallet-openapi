@@ -32,8 +32,8 @@ type ListTransactionOptions struct {
 	Limit     int
 }
 
-func (e *Transaction) List(ctx context.Context, appId string, options *ListTransactionOptions) (*PageTransactionOut, error) {
-	req := e.api.TransactionsApi.V1TransactionsList(ctx, appId)
+func (e *Transaction) List(ctx context.Context, options *ListTransactionOptions) (*PageTransactionOut, error) {
+	req := e.api.TransactionsApi.V1TransactionsList(ctx)
 	if options.WalletId != nil {
 		req = req.WalletId(*options.WalletId)
 	}
@@ -64,8 +64,8 @@ func (e *Transaction) List(ctx context.Context, appId string, options *ListTrans
 	return &out, nil
 }
 
-func (e *Transaction) Retrieve(ctx context.Context, appId string, transactionId string) (*TransactionOut, error) {
-	req := e.api.TransactionsApi.V1TransactionsRetrieve(ctx, appId, transactionId)
+func (e *Transaction) Retrieve(ctx context.Context, transactionId string) (*TransactionOut, error) {
+	req := e.api.TransactionsApi.V1TransactionsRetrieve(ctx, transactionId)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -73,8 +73,8 @@ func (e *Transaction) Retrieve(ctx context.Context, appId string, transactionId 
 	return &out, nil
 }
 
-func (e *Transaction) Withdraw(ctx context.Context, appId string, withdrawIn *WithdrawIn) (*WithdrawOut, error) {
-	req := e.api.TransactionsApi.V1TransactionsWithdraw(ctx, appId)
+func (e *Transaction) Withdraw(ctx context.Context, withdrawIn *WithdrawIn) (*WithdrawOut, error) {
+	req := e.api.TransactionsApi.V1TransactionsWithdraw(ctx)
 	req = req.CreateWithdrawRequest(*withdrawIn)
 	out, res, err := req.Execute()
 	if err != nil {
@@ -83,8 +83,8 @@ func (e *Transaction) Withdraw(ctx context.Context, appId string, withdrawIn *Wi
 	return &out, nil
 }
 
-func (e *Transaction) Transfer(ctx context.Context, appId string, walletId string, transferIn *TransferIn) (*TransferOut, error) {
-	req := e.api.TransactionsApi.V1TransactionsTransfer(ctx, appId)
+func (e *Transaction) Transfer(ctx context.Context, transferIn *TransferIn) (*TransferOut, error) {
+	req := e.api.TransactionsApi.V1TransactionsTransfer(ctx)
 	req = req.CreateTransferRequest(*transferIn)
 	out, res, err := req.Execute()
 	if err != nil {

@@ -30,7 +30,6 @@ type CurrenciesApiService service
 type ApiV1CurrenciesListRequest struct {
 	ctx _context.Context
 	ApiService *CurrenciesApiService
-	appId string
 	cursor *string
 	limit *int32
 	rated *bool
@@ -57,14 +56,12 @@ func (r ApiV1CurrenciesListRequest) Execute() (CursorPageCurrency, *_nethttp.Res
  * V1CurrenciesList List currencies
  * Retrieve a list of all available currencies.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @return ApiV1CurrenciesListRequest
  */
-func (a *CurrenciesApiService) V1CurrenciesList(ctx _context.Context, appId string) ApiV1CurrenciesListRequest {
+func (a *CurrenciesApiService) V1CurrenciesList(ctx _context.Context) ApiV1CurrenciesListRequest {
 	return ApiV1CurrenciesListRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -87,8 +84,7 @@ func (a *CurrenciesApiService) V1CurrenciesListExecute(r ApiV1CurrenciesListRequ
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/currencies"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/currencies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -227,7 +223,6 @@ func (a *CurrenciesApiService) V1CurrenciesListExecute(r ApiV1CurrenciesListRequ
 type ApiV1CurrenciesRetrieveRequest struct {
 	ctx _context.Context
 	ApiService *CurrenciesApiService
-	appId string
 	code string
 }
 
@@ -240,15 +235,13 @@ func (r ApiV1CurrenciesRetrieveRequest) Execute() (Currency, *_nethttp.Response,
  * V1CurrenciesRetrieve Get Currency
  * Get currency info by currency code
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @param code Currency code
  * @return ApiV1CurrenciesRetrieveRequest
  */
-func (a *CurrenciesApiService) V1CurrenciesRetrieve(ctx _context.Context, appId string, code string) ApiV1CurrenciesRetrieveRequest {
+func (a *CurrenciesApiService) V1CurrenciesRetrieve(ctx _context.Context, code string) ApiV1CurrenciesRetrieveRequest {
 	return ApiV1CurrenciesRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		code: code,
 	}
 }
@@ -272,8 +265,7 @@ func (a *CurrenciesApiService) V1CurrenciesRetrieveExecute(r ApiV1CurrenciesRetr
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/currencies/{code}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/currencies/{code}"
 	localVarPath = strings.Replace(localVarPath, "{"+"code"+"}", _neturl.PathEscape(parameterToString(r.code, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

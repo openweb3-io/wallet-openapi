@@ -7,7 +7,7 @@
         "version": "1.0"
     },
     "paths": {
-        "/api/v1/apps/{appId}/addresses": {
+        "/api/v1/addresses": {
             "get": {
                 "security": [
                     {
@@ -30,13 +30,6 @@
                 "summary": "List all addresses",
                 "operationId": "v1.addresses.list",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).",
@@ -112,7 +105,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/currencies": {
+        "/api/v1/currencies": {
             "get": {
                 "security": [
                     {
@@ -135,13 +128,6 @@
                 "summary": "List currencies",
                 "operationId": "v1.currencies.list",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "name": "cursor",
@@ -192,7 +178,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/currencies/{code}": {
+        "/api/v1/currencies/{code}": {
             "get": {
                 "security": [
                     {
@@ -215,13 +201,6 @@
                 "summary": "Get Currency",
                 "operationId": "v1.currencies.retrieve",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Currency code",
@@ -264,7 +243,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/endpoints": {
+        "/api/v1/endpoints": {
             "get": {
                 "security": [
                     {
@@ -287,13 +266,6 @@
                 "summary": "List webhook endpoints",
                 "operationId": "v1.webhooks.list",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "name": "cursor",
@@ -349,13 +321,6 @@
                 "operationId": "v1.webhooks.create",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
                         "description": "Request body",
                         "name": "request",
                         "in": "body",
@@ -387,7 +352,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/endpoints/{endpointId}": {
+        "/api/v1/endpoints/{endpointId}": {
             "get": {
                 "security": [
                     {
@@ -410,13 +375,6 @@
                 "summary": "Get webhook endpoint",
                 "operationId": "v1.webhooks.retrieve",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Endpoint ID",
@@ -476,13 +434,6 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
                         "description": "Endpoint ID",
                         "name": "endpointId",
                         "in": "path",
@@ -534,13 +485,6 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
                         "description": "Endpoint ID",
                         "name": "endpointId",
                         "in": "path",
@@ -566,7 +510,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/rates": {
+        "/api/v1/rates": {
             "post": {
                 "security": [
                     {
@@ -589,13 +533,6 @@
                 "summary": "List rates",
                 "operationId": "v1.rates.list",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "description": "Request body",
                         "name": "request",
@@ -640,7 +577,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/rates/estimate": {
+        "/api/v1/rates/estimate": {
             "get": {
                 "security": [
                     {
@@ -663,13 +600,6 @@
                 "summary": "Estimates",
                 "operationId": "v1.rates.estimate",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "The amount of the base currency you want to convert",
@@ -728,7 +658,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/transactions": {
+        "/api/v1/transactions": {
             "get": {
                 "security": [
                     {
@@ -751,13 +681,6 @@
                 "summary": "List transactions",
                 "operationId": "v1.transactions.list",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "The type of currency involved in the transaction.",
@@ -863,7 +786,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/transactions/transfer": {
+        "/api/v1/transactions/transfer": {
             "post": {
                 "security": [
                     {
@@ -886,13 +809,6 @@
                 "summary": "Transfer(internal)",
                 "operationId": "v1.transactions.transfer",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "description": "Request Body",
                         "name": "request",
@@ -937,7 +853,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/transactions/withdraw": {
+        "/api/v1/transactions/withdraw": {
             "post": {
                 "security": [
                     {
@@ -960,13 +876,6 @@
                 "summary": "Withdraw",
                 "operationId": "v1.transactions.withdraw",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "description": "withdraw",
                         "name": "req",
@@ -1011,7 +920,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/transactions/{transactionId}": {
+        "/api/v1/transactions/{transactionId}": {
             "get": {
                 "security": [
                     {
@@ -1034,13 +943,6 @@
                 "summary": "Get transaction",
                 "operationId": "v1.transactions.retrieve",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Transaction ID",
@@ -1083,7 +985,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/wallets": {
+        "/api/v1/wallets": {
             "get": {
                 "security": [
                     {
@@ -1106,13 +1008,6 @@
                 "summary": "List wallets",
                 "operationId": "v1.wallets.list",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Cursor",
@@ -1182,13 +1077,6 @@
                 "operationId": "v1.wallets.create",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
                         "description": "Request body",
                         "name": "request",
                         "in": "body",
@@ -1232,7 +1120,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/wallets/{walletId}": {
+        "/api/v1/wallets/{walletId}": {
             "get": {
                 "security": [
                     {
@@ -1255,13 +1143,6 @@
                 "summary": "Get wallet",
                 "operationId": "v1.wallets.retrieve",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Wallet ID",
@@ -1327,13 +1208,6 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
                         "description": "Wallet ID",
                         "name": "walletId",
                         "in": "path",
@@ -1383,7 +1257,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/wallets/{walletId}/accounts": {
+        "/api/v1/wallets/{walletId}/accounts": {
             "get": {
                 "security": [
                     {
@@ -1406,13 +1280,6 @@
                 "summary": "List wallet accounts",
                 "operationId": "v1.wallets.listAccounts",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Wallet ID",
@@ -1467,7 +1334,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/wallets/{walletId}/deposit_address": {
+        "/api/v1/wallets/{walletId}/deposit_address": {
             "get": {
                 "security": [
                     {
@@ -1490,13 +1357,6 @@
                 "summary": "Get deposit address",
                 "operationId": "v1.wallets.getDepositAddress",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Wallet ID",
@@ -1552,7 +1412,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/wallets/{walletId}/deposit_addresses": {
+        "/api/v1/wallets/{walletId}/deposit_addresses": {
             "get": {
                 "security": [
                     {
@@ -1575,13 +1435,6 @@
                 "summary": "List deposit addresses",
                 "operationId": "v1.wallets.listDepositAddresses",
                 "parameters": [
-                    {
-                        "type": "string",
-                        "description": "App ID",
-                        "name": "appId",
-                        "in": "path",
-                        "required": true
-                    },
                     {
                         "type": "string",
                         "description": "Wallet ID",

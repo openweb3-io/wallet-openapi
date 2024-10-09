@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1WalletsCreate**](WalletsApi.md#V1WalletsCreate) | **Post** /api/v1/apps/{appId}/wallets | Create wallet
-[**V1WalletsList**](WalletsApi.md#V1WalletsList) | **Get** /api/v1/apps/{appId}/wallets | List wallets
-[**V1WalletsListAccounts**](WalletsApi.md#V1WalletsListAccounts) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/accounts | List wallet accounts
-[**V1WalletsRetrieve**](WalletsApi.md#V1WalletsRetrieve) | **Get** /api/v1/apps/{appId}/wallets/{walletId} | Get wallet
-[**V1WalletsUpdate**](WalletsApi.md#V1WalletsUpdate) | **Patch** /api/v1/apps/{appId}/wallets/{walletId} | Update wallet
+[**V1WalletsCreate**](WalletsApi.md#V1WalletsCreate) | **Post** /api/v1/wallets | Create wallet
+[**V1WalletsList**](WalletsApi.md#V1WalletsList) | **Get** /api/v1/wallets | List wallets
+[**V1WalletsListAccounts**](WalletsApi.md#V1WalletsListAccounts) | **Get** /api/v1/wallets/{walletId}/accounts | List wallet accounts
+[**V1WalletsRetrieve**](WalletsApi.md#V1WalletsRetrieve) | **Get** /api/v1/wallets/{walletId} | Get wallet
+[**V1WalletsUpdate**](WalletsApi.md#V1WalletsUpdate) | **Patch** /api/v1/wallets/{walletId} | Update wallet
 
 
 
 ## V1WalletsCreate
 
-> Wallet V1WalletsCreate(ctx, appId).CreateWalletRequest(createWalletRequest).Execute()
+> Wallet V1WalletsCreate(ctx).CreateWalletRequest(createWalletRequest).Execute()
 
 Create wallet
 
@@ -33,12 +33,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     createWalletRequest := *openapiclient.NewCreateWalletRequest("Name_example") // CreateWalletRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsCreate(context.Background(), appId).CreateWalletRequest(createWalletRequest).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsCreate(context.Background()).CreateWalletRequest(createWalletRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,10 +50,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -63,7 +58,6 @@ Other parameters are passed through a pointer to a apiV1WalletsCreateRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **createWalletRequest** | [**CreateWalletRequest**](CreateWalletRequest.md) | Request body | 
 
 ### Return type
@@ -86,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsList
 
-> CursorPageWallet V1WalletsList(ctx, appId).Cursor(cursor).Limit(limit).Execute()
+> CursorPageWallet V1WalletsList(ctx).Cursor(cursor).Limit(limit).Execute()
 
 List wallets
 
@@ -105,13 +99,12 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     cursor := "cursor_example" // string | Cursor (optional)
     limit := int32(56) // int32 | Limit (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsList(context.Background(), appId).Cursor(cursor).Limit(limit).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsList(context.Background()).Cursor(cursor).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,10 +117,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -136,7 +125,6 @@ Other parameters are passed through a pointer to a apiV1WalletsListRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **cursor** | **string** | Cursor | 
  **limit** | **int32** | Limit | 
 
@@ -160,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsListAccounts
 
-> CursorPageAccount V1WalletsListAccounts(ctx, appId, walletId).Cursor(cursor).Limit(limit).Execute()
+> CursorPageAccount V1WalletsListAccounts(ctx, walletId).Cursor(cursor).Limit(limit).Execute()
 
 List wallet accounts
 
@@ -179,14 +167,13 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     walletId := "walletId_example" // string | Wallet ID
     cursor := "cursor_example" // string | Cursor (optional)
     limit := int32(56) // int32 | Limit (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsListAccounts(context.Background(), appId, walletId).Cursor(cursor).Limit(limit).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsListAccounts(context.Background(), walletId).Cursor(cursor).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsListAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,7 +189,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **walletId** | **string** | Wallet ID | 
 
 ### Other Parameters
@@ -212,7 +198,6 @@ Other parameters are passed through a pointer to a apiV1WalletsListAccountsReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **cursor** | **string** | Cursor | 
  **limit** | **int32** | Limit | 
@@ -237,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsRetrieve
 
-> Wallet V1WalletsRetrieve(ctx, appId, walletId).Execute()
+> Wallet V1WalletsRetrieve(ctx, walletId).Execute()
 
 Get wallet
 
@@ -256,12 +241,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     walletId := "walletId_example" // string | Wallet ID
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsRetrieve(context.Background(), appId, walletId).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsRetrieve(context.Background(), walletId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsRetrieve``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -277,7 +261,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **walletId** | **string** | Wallet ID | 
 
 ### Other Parameters
@@ -287,7 +270,6 @@ Other parameters are passed through a pointer to a apiV1WalletsRetrieveRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -310,7 +292,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsUpdate
 
-> Wallet V1WalletsUpdate(ctx, appId, walletId).UpdateWalletRequest(updateWalletRequest).Execute()
+> Wallet V1WalletsUpdate(ctx, walletId).UpdateWalletRequest(updateWalletRequest).Execute()
 
 Update wallet
 
@@ -329,13 +311,12 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     walletId := "walletId_example" // string | Wallet ID
     updateWalletRequest := *openapiclient.NewUpdateWalletRequest() // UpdateWalletRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsUpdate(context.Background(), appId, walletId).UpdateWalletRequest(updateWalletRequest).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsUpdate(context.Background(), walletId).UpdateWalletRequest(updateWalletRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -351,7 +332,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **walletId** | **string** | Wallet ID | 
 
 ### Other Parameters
@@ -361,7 +341,6 @@ Other parameters are passed through a pointer to a apiV1WalletsUpdateRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **updateWalletRequest** | [**UpdateWalletRequest**](UpdateWalletRequest.md) | Request body | 
 

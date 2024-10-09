@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1CurrenciesList**](CurrenciesApi.md#V1CurrenciesList) | **Get** /api/v1/apps/{appId}/currencies | List currencies
-[**V1CurrenciesRetrieve**](CurrenciesApi.md#V1CurrenciesRetrieve) | **Get** /api/v1/apps/{appId}/currencies/{code} | Get Currency
+[**V1CurrenciesList**](CurrenciesApi.md#V1CurrenciesList) | **Get** /api/v1/currencies | List currencies
+[**V1CurrenciesRetrieve**](CurrenciesApi.md#V1CurrenciesRetrieve) | **Get** /api/v1/currencies/{code} | Get Currency
 
 
 
 ## V1CurrenciesList
 
-> CursorPageCurrency V1CurrenciesList(ctx, appId).Cursor(cursor).Limit(limit).Rated(rated).Execute()
+> CursorPageCurrency V1CurrenciesList(ctx).Cursor(cursor).Limit(limit).Rated(rated).Execute()
 
 List currencies
 
@@ -30,14 +30,13 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     cursor := "cursor_example" // string |  (optional)
     limit := int32(56) // int32 |  (optional)
     rated := true // bool |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CurrenciesApi.V1CurrenciesList(context.Background(), appId).Cursor(cursor).Limit(limit).Rated(rated).Execute()
+    resp, r, err := api_client.CurrenciesApi.V1CurrenciesList(context.Background()).Cursor(cursor).Limit(limit).Rated(rated).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrenciesApi.V1CurrenciesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,10 +49,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -62,7 +57,6 @@ Other parameters are passed through a pointer to a apiV1CurrenciesListRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **cursor** | **string** |  | 
  **limit** | **int32** |  | 
  **rated** | **bool** |  | 
@@ -87,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## V1CurrenciesRetrieve
 
-> Currency V1CurrenciesRetrieve(ctx, appId, code).Execute()
+> Currency V1CurrenciesRetrieve(ctx, code).Execute()
 
 Get Currency
 
@@ -106,12 +100,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     code := "code_example" // string | Currency code
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CurrenciesApi.V1CurrenciesRetrieve(context.Background(), appId, code).Execute()
+    resp, r, err := api_client.CurrenciesApi.V1CurrenciesRetrieve(context.Background(), code).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrenciesApi.V1CurrenciesRetrieve``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,7 +120,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **code** | **string** | Currency code | 
 
 ### Other Parameters
@@ -137,7 +129,6 @@ Other parameters are passed through a pointer to a apiV1CurrenciesRetrieveReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type

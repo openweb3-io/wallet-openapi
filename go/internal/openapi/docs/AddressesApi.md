@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1AddressesList**](AddressesApi.md#V1AddressesList) | **Get** /api/v1/apps/{appId}/addresses | List all addresses
-[**V1WalletsGetDepositAddress**](AddressesApi.md#V1WalletsGetDepositAddress) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/deposit_address | Get deposit address
-[**V1WalletsListDepositAddresses**](AddressesApi.md#V1WalletsListDepositAddresses) | **Get** /api/v1/apps/{appId}/wallets/{walletId}/deposit_addresses | List deposit addresses
+[**V1AddressesList**](AddressesApi.md#V1AddressesList) | **Get** /api/v1/addresses | List all addresses
+[**V1WalletsGetDepositAddress**](AddressesApi.md#V1WalletsGetDepositAddress) | **Get** /api/v1/wallets/{walletId}/deposit_address | Get deposit address
+[**V1WalletsListDepositAddresses**](AddressesApi.md#V1WalletsListDepositAddresses) | **Get** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
 
 
 
 ## V1AddressesList
 
-> CursorPageAddress V1AddressesList(ctx, appId).Currency(currency).Cursor(cursor).Limit(limit).Type_(type_).WalletId(walletId).Execute()
+> CursorPageAddress V1AddressesList(ctx).Currency(currency).Cursor(cursor).Limit(limit).Type_(type_).WalletId(walletId).Execute()
 
 List all addresses
 
@@ -31,7 +31,6 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     currency := "currency_example" // string | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
     cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
     limit := int32(56) // int32 | The number of records to return default: 20 (optional)
@@ -40,7 +39,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AddressesApi.V1AddressesList(context.Background(), appId).Currency(currency).Cursor(cursor).Limit(limit).Type_(type_).WalletId(walletId).Execute()
+    resp, r, err := api_client.AddressesApi.V1AddressesList(context.Background()).Currency(currency).Cursor(cursor).Limit(limit).Type_(type_).WalletId(walletId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.V1AddressesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -53,10 +52,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -65,7 +60,6 @@ Other parameters are passed through a pointer to a apiV1AddressesListRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
  **cursor** | **string** | The cursor to use for pagination. | 
  **limit** | **int32** | The number of records to return default: 20 | 
@@ -92,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsGetDepositAddress
 
-> Address V1WalletsGetDepositAddress(ctx, appId, walletId).Currency(currency).Network(network).Execute()
+> Address V1WalletsGetDepositAddress(ctx, walletId).Currency(currency).Network(network).Execute()
 
 Get deposit address
 
@@ -111,14 +105,13 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     walletId := "walletId_example" // string | Wallet ID
     currency := "currency_example" // string | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).
     network := "network_example" // string | chain network, if not specified, the default network of the currency will be used. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AddressesApi.V1WalletsGetDepositAddress(context.Background(), appId, walletId).Currency(currency).Network(network).Execute()
+    resp, r, err := api_client.AddressesApi.V1WalletsGetDepositAddress(context.Background(), walletId).Currency(currency).Network(network).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.V1WalletsGetDepositAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,7 +127,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **walletId** | **string** | Wallet ID | 
 
 ### Other Parameters
@@ -144,7 +136,6 @@ Other parameters are passed through a pointer to a apiV1WalletsGetDepositAddress
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
  **network** | **string** | chain network, if not specified, the default network of the currency will be used. | 
@@ -169,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsListDepositAddresses
 
-> CursorPageAddress V1WalletsListDepositAddresses(ctx, appId, walletId).Currency(currency).Cursor(cursor).Limit(limit).Network(network).Execute()
+> CursorPageAddress V1WalletsListDepositAddresses(ctx, walletId).Currency(currency).Cursor(cursor).Limit(limit).Network(network).Execute()
 
 List deposit addresses
 
@@ -188,7 +179,6 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     walletId := "walletId_example" // string | Wallet ID
     currency := "currency_example" // string | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
     cursor := "cursor_example" // string | Cursor (optional)
@@ -197,7 +187,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AddressesApi.V1WalletsListDepositAddresses(context.Background(), appId, walletId).Currency(currency).Cursor(cursor).Limit(limit).Network(network).Execute()
+    resp, r, err := api_client.AddressesApi.V1WalletsListDepositAddresses(context.Background(), walletId).Currency(currency).Cursor(cursor).Limit(limit).Network(network).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.V1WalletsListDepositAddresses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,7 +203,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 **walletId** | **string** | Wallet ID | 
 
 ### Other Parameters
@@ -223,7 +212,6 @@ Other parameters are passed through a pointer to a apiV1WalletsListDepositAddres
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
  **currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
  **cursor** | **string** | Cursor | 

@@ -30,7 +30,6 @@ type TransactionsApiService service
 type ApiV1TransactionsListRequest struct {
 	ctx _context.Context
 	ApiService *TransactionsApiService
-	appId string
 	currency *string
 	cursor *string
 	direction *string
@@ -82,14 +81,12 @@ func (r ApiV1TransactionsListRequest) Execute() (CursorPageTransaction, *_nethtt
  * V1TransactionsList List transactions
  * List transactions
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @return ApiV1TransactionsListRequest
  */
-func (a *TransactionsApiService) V1TransactionsList(ctx _context.Context, appId string) ApiV1TransactionsListRequest {
+func (a *TransactionsApiService) V1TransactionsList(ctx _context.Context) ApiV1TransactionsListRequest {
 	return ApiV1TransactionsListRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -112,8 +109,7 @@ func (a *TransactionsApiService) V1TransactionsListExecute(r ApiV1TransactionsLi
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/transactions"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -267,7 +263,6 @@ func (a *TransactionsApiService) V1TransactionsListExecute(r ApiV1TransactionsLi
 type ApiV1TransactionsRetrieveRequest struct {
 	ctx _context.Context
 	ApiService *TransactionsApiService
-	appId string
 	transactionId string
 }
 
@@ -280,15 +275,13 @@ func (r ApiV1TransactionsRetrieveRequest) Execute() (Transaction, *_nethttp.Resp
  * V1TransactionsRetrieve Get transaction
  * Get a transaction by ID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @param transactionId Transaction ID
  * @return ApiV1TransactionsRetrieveRequest
  */
-func (a *TransactionsApiService) V1TransactionsRetrieve(ctx _context.Context, appId string, transactionId string) ApiV1TransactionsRetrieveRequest {
+func (a *TransactionsApiService) V1TransactionsRetrieve(ctx _context.Context, transactionId string) ApiV1TransactionsRetrieveRequest {
 	return ApiV1TransactionsRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		transactionId: transactionId,
 	}
 }
@@ -312,8 +305,7 @@ func (a *TransactionsApiService) V1TransactionsRetrieveExecute(r ApiV1Transactio
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/{transactionId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/transactions/{transactionId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"transactionId"+"}", _neturl.PathEscape(parameterToString(r.transactionId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -444,7 +436,6 @@ func (a *TransactionsApiService) V1TransactionsRetrieveExecute(r ApiV1Transactio
 type ApiV1TransactionsTransferRequest struct {
 	ctx _context.Context
 	ApiService *TransactionsApiService
-	appId string
 	createTransferRequest *CreateTransferRequest
 }
 
@@ -461,14 +452,12 @@ func (r ApiV1TransactionsTransferRequest) Execute() (CreateTransferResponse, *_n
  * V1TransactionsTransfer Transfer(internal)
  * Create a transfer transaction
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @return ApiV1TransactionsTransferRequest
  */
-func (a *TransactionsApiService) V1TransactionsTransfer(ctx _context.Context, appId string) ApiV1TransactionsTransferRequest {
+func (a *TransactionsApiService) V1TransactionsTransfer(ctx _context.Context) ApiV1TransactionsTransferRequest {
 	return ApiV1TransactionsTransferRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -491,8 +480,7 @@ func (a *TransactionsApiService) V1TransactionsTransferExecute(r ApiV1Transactio
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/transfer"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/transactions/transfer"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -627,7 +615,6 @@ func (a *TransactionsApiService) V1TransactionsTransferExecute(r ApiV1Transactio
 type ApiV1TransactionsWithdrawRequest struct {
 	ctx _context.Context
 	ApiService *TransactionsApiService
-	appId string
 	createWithdrawRequest *CreateWithdrawRequest
 }
 
@@ -644,14 +631,12 @@ func (r ApiV1TransactionsWithdrawRequest) Execute() (CreateWithdrawReply, *_neth
  * V1TransactionsWithdraw Withdraw
  * Create a new withdrawal request for a specified currency
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId App ID
  * @return ApiV1TransactionsWithdrawRequest
  */
-func (a *TransactionsApiService) V1TransactionsWithdraw(ctx _context.Context, appId string) ApiV1TransactionsWithdrawRequest {
+func (a *TransactionsApiService) V1TransactionsWithdraw(ctx _context.Context) ApiV1TransactionsWithdrawRequest {
 	return ApiV1TransactionsWithdrawRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -674,8 +659,7 @@ func (a *TransactionsApiService) V1TransactionsWithdrawExecute(r ApiV1Transactio
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/transactions/withdraw"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/transactions/withdraw"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

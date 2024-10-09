@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1RatesEstimate**](RatesApi.md#V1RatesEstimate) | **Get** /api/v1/apps/{appId}/rates/estimate | Estimates
-[**V1RatesList**](RatesApi.md#V1RatesList) | **Post** /api/v1/apps/{appId}/rates | List rates
+[**V1RatesEstimate**](RatesApi.md#V1RatesEstimate) | **Get** /api/v1/rates/estimate | Estimates
+[**V1RatesList**](RatesApi.md#V1RatesList) | **Post** /api/v1/rates | List rates
 
 
 
 ## V1RatesEstimate
 
-> EstimateResponse V1RatesEstimate(ctx, appId).BaseAmount(baseAmount).BaseCurrency(baseCurrency).ToCurrency(toCurrency).Execute()
+> EstimateResponse V1RatesEstimate(ctx).BaseAmount(baseAmount).BaseCurrency(baseCurrency).ToCurrency(toCurrency).Execute()
 
 Estimates
 
@@ -30,14 +30,13 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     baseAmount := "baseAmount_example" // string | The amount of the base currency you want to convert
     baseCurrency := "baseCurrency_example" // string | The currency code of the base currency that you want to convert from
     toCurrency := "toCurrency_example" // string | The currency code of the target currency that you want to convert to
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RatesApi.V1RatesEstimate(context.Background(), appId).BaseAmount(baseAmount).BaseCurrency(baseCurrency).ToCurrency(toCurrency).Execute()
+    resp, r, err := api_client.RatesApi.V1RatesEstimate(context.Background()).BaseAmount(baseAmount).BaseCurrency(baseCurrency).ToCurrency(toCurrency).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RatesApi.V1RatesEstimate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,10 +49,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -62,7 +57,6 @@ Other parameters are passed through a pointer to a apiV1RatesEstimateRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **baseAmount** | **string** | The amount of the base currency you want to convert | 
  **baseCurrency** | **string** | The currency code of the base currency that you want to convert from | 
  **toCurrency** | **string** | The currency code of the target currency that you want to convert to | 
@@ -87,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## V1RatesList
 
-> GetRatesResponse V1RatesList(ctx, appId).GetRatesRequest(getRatesRequest).Execute()
+> GetRatesResponse V1RatesList(ctx).GetRatesRequest(getRatesRequest).Execute()
 
 List rates
 
@@ -106,12 +100,11 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | App ID
     getRatesRequest := *openapiclient.NewGetRatesRequest([]openapiclient.CurrencyPair{*openapiclient.NewCurrencyPair("BaseCurrency_example", "ToCurrency_example")}) // GetRatesRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RatesApi.V1RatesList(context.Background(), appId).GetRatesRequest(getRatesRequest).Execute()
+    resp, r, err := api_client.RatesApi.V1RatesList(context.Background()).GetRatesRequest(getRatesRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RatesApi.V1RatesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,10 +117,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | App ID | 
 
 ### Other Parameters
 
@@ -136,7 +125,6 @@ Other parameters are passed through a pointer to a apiV1RatesListRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **getRatesRequest** | [**GetRatesRequest**](GetRatesRequest.md) | Request body | 
 
 ### Return type

@@ -36,8 +36,8 @@ type ListDepositAddressesOptions struct {
 	Limit    int
 }
 
-func (e *Address) List(ctx context.Context, appId string, options *ListAddressOptions) (*PageAddressOut, error) {
-	req := e.api.AddressesApi.V1AddressesList(ctx, appId)
+func (e *Address) List(ctx context.Context, options *ListAddressOptions) (*PageAddressOut, error) {
+	req := e.api.AddressesApi.V1AddressesList(ctx)
 	if options.Currency != nil {
 		req = req.Currency(*options.Currency)
 	}
@@ -57,8 +57,8 @@ func (e *Address) List(ctx context.Context, appId string, options *ListAddressOp
 	return &out, nil
 }
 
-func (e *Address) GetDepositAddress(ctx context.Context, appId string, walletId string, options *GetDepositAddressOptions) (*AddressOut, error) {
-	req := e.api.AddressesApi.V1WalletsGetDepositAddress(ctx, appId, walletId)
+func (e *Address) GetDepositAddress(ctx context.Context, walletId string, options *GetDepositAddressOptions) (*AddressOut, error) {
+	req := e.api.AddressesApi.V1WalletsGetDepositAddress(ctx, walletId)
 	req = req.Currency(options.Currency)
 	if options.Network != nil {
 		req = req.Network(*options.Network)
@@ -70,8 +70,8 @@ func (e *Address) GetDepositAddress(ctx context.Context, appId string, walletId 
 	return &out, nil
 }
 
-func (e *Address) ListDepositAddresses(ctx context.Context, appId string, walletId string, options *ListDepositAddressesOptions) (*PageAddressOut, error) {
-	req := e.api.AddressesApi.V1WalletsListDepositAddresses(ctx, appId, walletId)
+func (e *Address) ListDepositAddresses(ctx context.Context, walletId string, options *ListDepositAddressesOptions) (*PageAddressOut, error) {
+	req := e.api.AddressesApi.V1WalletsListDepositAddresses(ctx, walletId)
 	if options.Currency != nil {
 		req = req.Currency(*options.Currency)
 	}
