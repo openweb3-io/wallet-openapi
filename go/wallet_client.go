@@ -2,6 +2,7 @@ package wallet
 
 import (
 	"bytes"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"log"
@@ -11,6 +12,7 @@ import (
 	"time"
 
 	"github.com/openweb3-io/wallet-openapi/go/internal/openapi"
+	"github.com/openweb3-io/wallet-openapi/go/internal/signature"
 	"github.com/openweb3-io/wallet-openapi/go/internal/version"
 )
 
@@ -66,12 +68,17 @@ func New(options *WalletClientOptions) *WalletClient {
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
 
-		signature, err := genSign([]byte(dataToBeSignature), []byte(options.PrivateKey))
+		signer := signature.Get(signature.SigningMethodEd25519)
+		priKey, err := hex.DecodeString(options.PrivateKey + options.ApiKey)
+		if err != nil {
+			log.Printf("Error decoding private key: %v", err)
+		}
+		signature, err := signer.Sign(priKey, []byte(dataToBeSignature))
 		if err != nil {
 			log.Printf("Error generating signature: %v", err)
 		}
 
-		req.Header.Set("X-Signature", signature)
+		req.Header.Set("X-Signature", hex.EncodeToString(signature))
 	}
 
 	if options != nil {
