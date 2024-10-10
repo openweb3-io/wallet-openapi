@@ -11,7 +11,7 @@
 Java library for interacting with the pay API and verifying pay signatures
 
 ![GitHub tag](https://img.shields.io/github/tag/pay/wallet.svg)
-[![Maven Central (Java)](https://img.shields.io/maven-central/v/io.openweb3.wallet/pay?label=maven-central%20(java))](https://search.maven.org/artifact/io.openweb3.wallet/pay)
+[![Maven Central (Java)](https://img.shields.io/maven-central/v/io.openweb3.wallet/wallet?label=maven-central%20(java))](https://search.maven.org/artifact/io.openweb3.wallet/wallet)
 
 [![Join our slack](https://img.shields.io/badge/Slack-join%20the%20community-blue?logo=slack&style=social)](https://pay.openweb3.io/slack/)
 
@@ -50,8 +50,8 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>io.openweb3.wallet</groupId>
-  <artifactId>pay</artifactId>
-  <version>0.1.0</version>
+  <artifactId>wallet</artifactId>
+  <version>0.0.1</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "io.openweb3.wallet:pay:0.1.0"
+implementation "io.openweb3.wallet:wallet:0.0.1"
 ```
 
 # Development
