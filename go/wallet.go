@@ -20,12 +20,12 @@ type Wallet struct {
 
 type ListWalletOptions struct {
 	Cursor *string
-	Limit  int
+	Limit  *int32
 }
 
 type ListAccountsOptions struct {
 	Cursor *string
-	Limit  int
+	Limit  *int32
 }
 
 func (e *Wallet) List(ctx context.Context, options *ListWalletOptions) (*PageWalletOut, error) {
@@ -33,8 +33,8 @@ func (e *Wallet) List(ctx context.Context, options *ListWalletOptions) (*PageWal
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
-	if options.Limit != 0 {
-		req = req.Limit(int32(options.Limit))
+	if options.Limit != nil {
+		req = req.Limit(*options.Limit)
 	}
 	out, res, err := req.Execute()
 	if err != nil {
@@ -77,8 +77,8 @@ func (e *Wallet) ListAccounts(ctx context.Context, walletId string, options *Lis
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
-	if options.Limit != 0 {
-		req = req.Limit(int32(options.Limit))
+	if options.Limit != nil {
+		req = req.Limit(*options.Limit)
 	}
 	out, res, err := req.Execute()
 	if err != nil {

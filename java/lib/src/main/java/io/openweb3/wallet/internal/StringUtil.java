@@ -16,7 +16,7 @@ package io.openweb3.wallet.internal;
 import java.util.Collection;
 import java.util.Iterator;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-09T20:32:04.036147+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T15:28:32.760687+08:00[Asia/Shanghai]")
 public class StringUtil {
   /**
    * Check if the given array contains the given value (with case-insensitive comparison).

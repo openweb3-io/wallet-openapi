@@ -29,7 +29,7 @@ type ListTransactionOptions struct {
 	Txhash    *string
 	Status    *string
 	Cursor    *string
-	Limit     int
+	Limit     *int32
 }
 
 func (e *Transaction) List(ctx context.Context, options *ListTransactionOptions) (*PageTransactionOut, error) {
@@ -55,7 +55,9 @@ func (e *Transaction) List(ctx context.Context, options *ListTransactionOptions)
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
-	req = req.Limit(int32(options.Limit))
+	if options.Limit != nil {
+		req = req.Limit(*options.Limit)
+	}
 
 	out, res, err := req.Execute()
 	if err != nil {

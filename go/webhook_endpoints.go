@@ -18,14 +18,18 @@ type Webhook struct {
 }
 
 type ListWebhookOptions struct {
-	Cursor string
-	Limit  int32
+	Cursor *string
+	Limit  *int32
 }
 
 func (e *Webhook) List(ctx context.Context, options *ListWebhookOptions) (*CursorWebhookOut, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhooksList(ctx)
-	req = req.Cursor(options.Cursor)
-	req = req.Limit(options.Limit)
+	if options.Cursor != nil {
+		req = req.Cursor(*options.Cursor)
+	}
+	if options.Limit != nil {
+		req = req.Limit(*options.Limit)
+	}
 
 	out, res, err := req.Execute()
 	if err != nil {

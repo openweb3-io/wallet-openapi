@@ -20,8 +20,8 @@ type ListAddressOptions struct {
 	Currency *string
 	Type     *AddressType
 	WalletId *string
-	Cursor   string
-	Limit    int
+	Cursor   *string
+	Limit    *int32
 }
 
 type GetDepositAddressOptions struct {
@@ -48,8 +48,12 @@ func (e *Address) List(ctx context.Context, options *ListAddressOptions) (*PageA
 		req = req.WalletId(*options.WalletId)
 	}
 
-	req = req.Cursor(options.Cursor)
-	req = req.Limit(int32(options.Limit))
+	if options.Cursor != nil {
+		req = req.Cursor(*options.Cursor)
+	}
+	if options.Limit != nil {
+		req = req.Limit(*options.Limit)
+	}
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

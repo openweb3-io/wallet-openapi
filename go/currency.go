@@ -15,13 +15,13 @@ type Currency struct {
 	api *openapi.APIClient
 }
 
-type CurrencyListOptions struct {
+type ListCurrencyOptions struct {
 	Cursor *string
 	Limit  *int32
 	Rated  *bool
 }
 
-func (e *Currency) List(ctx context.Context, options *CurrencyListOptions) (*CursorPageCurrencyOut, error) {
+func (e *Currency) List(ctx context.Context, options *ListCurrencyOptions) (*CursorPageCurrencyOut, error) {
 	req := e.api.CurrenciesApi.V1CurrenciesList(ctx)
 	if options != nil {
 		if options.Cursor != nil {

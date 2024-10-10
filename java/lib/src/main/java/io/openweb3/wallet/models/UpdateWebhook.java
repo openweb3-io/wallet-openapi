@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * UpdateWebhook
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-09T20:32:04.036147+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T15:28:32.760687+08:00[Asia/Shanghai]")
 public class UpdateWebhook {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)

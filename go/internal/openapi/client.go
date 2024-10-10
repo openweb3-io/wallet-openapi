@@ -32,7 +32,6 @@ import (
 	"strings"
 	"time"
 	"unicode/utf8"
-	"math/rand"
 
 	"golang.org/x/oauth2"
 )
@@ -361,8 +360,6 @@ func (c *APIClient) prepareRequest(
 
 	// Add the user agent to the request.
 	localVarRequest.Header.Add("User-Agent", c.cfg.UserAgent)
-	rand.Seed(time.Now().UnixNano())
-	localVarRequest.Header.Add("wallet-req-id", strconv.FormatUint(rand.Uint64(), 10))
 
 	if ctx != nil {
 		// add context to the request
