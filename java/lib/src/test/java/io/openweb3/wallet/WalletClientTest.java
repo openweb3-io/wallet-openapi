@@ -5,8 +5,8 @@ import org.junit.Test;
 
 public class WalletClientTest {
     final String apiKey = System.getenv("APIKEY");
-    final String privateKey = System.getenv("PRIVATE_KEY");
-    final WalletClient client = new WalletClient(new WalletClientOptions().apiKey(apiKey).privateKey(privateKey));
+    final String privateKey = System.getenv("SECRET");
+    final WalletClient client = new WalletClient(new WalletClientOptions().apiKey(apiKey).secret(privateKey));
 
     public WalletClientTest() throws Exception {
 

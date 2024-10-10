@@ -24,12 +24,12 @@ public final class WalletClient {
 	private final AddressesAPI address;
 
 	public WalletClient(final String apikey, final String privateKeyPath) throws Exception {
-		this(new WalletClientOptions().apiKey(apikey).privateKey(privateKeyPath));
+		this(new WalletClientOptions().apiKey(apikey).secret(privateKeyPath));
 	}
 
 	public WalletClient(final WalletClientOptions options) throws Exception {
-		if (options.getApiKey() == null || options.getPrivateKey() == null) {
-			throw new IllegalArgumentException("ApiKey and PrivateKey are required");
+		if (options.getApiKey() == null || options.getSecret() == null) {
+			throw new IllegalArgumentException("ApiKey and Secret are required");
 		}
 
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -67,8 +67,7 @@ public final class WalletClient {
 				String signature = null;
 				try {
 					String content = String.format("%s%s%s", body, uri, timestamp);
-//					signature = Utils.calculateSignature(options.getPrivateKey(), content);
-					signature = Utils.signWithEd25519(options.getPrivateKey(), content);
+					signature = Utils.signWithEd25519(options.getSecret(), content);
 				} catch (SigningException e) {
 					throw new RuntimeException(e);
 				}

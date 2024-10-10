@@ -6,7 +6,7 @@ public final class WalletClientOptions {
 	private boolean debug = false;
 	private String serverUrl = DEFAULT_URL;
 	private String apiKey;
-	private String privateKey;
+	private String secret;
 
 	public WalletClientOptions() {
 	}
@@ -26,8 +26,8 @@ public final class WalletClientOptions {
 		return this;
 	}
 
-	public WalletClientOptions privateKey(final String privateKey) {
-		this.privateKey = privateKey;
+	public WalletClientOptions secret(final String secret) {
+		this.secret = secret;
 		return this;
 	}
 
@@ -43,8 +43,8 @@ public final class WalletClientOptions {
 		this.apiKey = apiKey;
 	}
 
-	public void setPrivateKey(final String privateKey) {
-		this.privateKey = privateKey;
+	public void setSecret(final String secret) {
+		this.secret = secret;
 	}
 
 	public boolean getDebug() {
@@ -59,7 +59,7 @@ public final class WalletClientOptions {
 		return apiKey;
 	}
 
-	public String getPrivateKey() {
-		return privateKey;
+	public String getSecret() {
+		return secret;
 	}
 }
