@@ -1,6 +1,6 @@
 package io.openweb3.wallet;
 
-public class ListCurrencyOptions extends CursorListOptions<ListCurrencyOptions> {
+public class ListCurrencyOptions extends ListOptions<ListCurrencyOptions> {
     private boolean rated;
 
     public ListCurrencyOptions rated(final boolean rated) {

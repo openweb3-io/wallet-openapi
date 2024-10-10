@@ -19,7 +19,7 @@ type Webhook struct {
 	CreatedAt string `json:"createdAt"`
 	Description string `json:"description"`
 	Disabled bool `json:"disabled"`
-	EventTypes []EventType `json:"eventTypes"`
+	EventTypes []string `json:"eventTypes"`
 	Filter string `json:"filter"`
 	Headers map[string]string `json:"headers"`
 	Id string `json:"id"`
@@ -32,7 +32,7 @@ type Webhook struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhook(createdAt string, description string, disabled bool, eventTypes []EventType, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string) *Webhook {
+func NewWebhook(createdAt string, description string, disabled bool, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string) *Webhook {
 	this := Webhook{}
 	this.CreatedAt = createdAt
 	this.Description = description
@@ -127,9 +127,9 @@ func (o *Webhook) SetDisabled(v bool) {
 }
 
 // GetEventTypes returns the EventTypes field value
-func (o *Webhook) GetEventTypes() []EventType {
+func (o *Webhook) GetEventTypes() []string {
 	if o == nil {
-		var ret []EventType
+		var ret []string
 		return ret
 	}
 
@@ -138,7 +138,7 @@ func (o *Webhook) GetEventTypes() []EventType {
 
 // GetEventTypesOk returns a tuple with the EventTypes field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetEventTypesOk() (*[]EventType, bool) {
+func (o *Webhook) GetEventTypesOk() (*[]string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -146,7 +146,7 @@ func (o *Webhook) GetEventTypesOk() (*[]EventType, bool) {
 }
 
 // SetEventTypes sets field value
-func (o *Webhook) SetEventTypes(v []EventType) {
+func (o *Webhook) SetEventTypes(v []string) {
 	o.EventTypes = v
 }
 

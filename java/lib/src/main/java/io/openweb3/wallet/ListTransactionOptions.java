@@ -1,6 +1,6 @@
 package io.openweb3.wallet;
 
-public final class ListTransactionOptions extends CursorListOptions<ListTransactionOptions> {
+public final class ListTransactionOptions extends ListOptions<ListTransactionOptions> {
     private String currency;
     private String direction;
     private String network;

@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.openweb3.wallet.models.EventType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -32,7 +31,7 @@ import java.util.Map;
 /**
  * UpdateWebhook
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T15:28:32.760687+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T16:10:15.657182+08:00[Asia/Shanghai]")
 public class UpdateWebhook {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -44,7 +43,7 @@ public class UpdateWebhook {
 
   public static final String SERIALIZED_NAME_EVENT_TYPES = "eventTypes";
   @SerializedName(SERIALIZED_NAME_EVENT_TYPES)
-  private List<EventType> eventTypes = new ArrayList<>();
+  private List<String> eventTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
@@ -109,13 +108,13 @@ public class UpdateWebhook {
   }
 
 
-  public UpdateWebhook eventTypes(List<EventType> eventTypes) {
+  public UpdateWebhook eventTypes(List<String> eventTypes) {
     
     this.eventTypes = eventTypes;
     return this;
   }
 
-  public UpdateWebhook addEventTypesItem(EventType eventTypesItem) {
+  public UpdateWebhook addEventTypesItem(String eventTypesItem) {
     this.eventTypes.add(eventTypesItem);
     return this;
   }
@@ -126,12 +125,12 @@ public class UpdateWebhook {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<EventType> getEventTypes() {
+  public List<String> getEventTypes() {
     return eventTypes;
   }
 
 
-  public void setEventTypes(List<EventType> eventTypes) {
+  public void setEventTypes(List<String> eventTypes) {
     this.eventTypes = eventTypes;
   }
 

@@ -6,7 +6,6 @@ build.gradle
 build.sbt
 docs/Account.md
 docs/Address.md
-docs/AddressType.md
 docs/AddressesApi.md
 docs/CreateTransferRequest.md
 docs/CreateTransferResponse.md
@@ -26,7 +25,6 @@ docs/CursorPageWallet.md
 docs/CursorPageWebhook.md
 docs/Error.md
 docs/EstimateResponse.md
-docs/EventType.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
 docs/Rate.md
@@ -75,7 +73,6 @@ src/main/java/io/openweb3/wallet/internal/auth/HttpBasicAuth.java
 src/main/java/io/openweb3/wallet/internal/auth/HttpBearerAuth.java
 src/main/java/io/openweb3/wallet/models/Account.java
 src/main/java/io/openweb3/wallet/models/Address.java
-src/main/java/io/openweb3/wallet/models/AddressType.java
 src/main/java/io/openweb3/wallet/models/CreateTransferRequest.java
 src/main/java/io/openweb3/wallet/models/CreateTransferResponse.java
 src/main/java/io/openweb3/wallet/models/CreateWalletRequest.java
@@ -93,7 +90,6 @@ src/main/java/io/openweb3/wallet/models/CursorPageWallet.java
 src/main/java/io/openweb3/wallet/models/CursorPageWebhook.java
 src/main/java/io/openweb3/wallet/models/Error.java
 src/main/java/io/openweb3/wallet/models/EstimateResponse.java
-src/main/java/io/openweb3/wallet/models/EventType.java
 src/main/java/io/openweb3/wallet/models/GetRatesRequest.java
 src/main/java/io/openweb3/wallet/models/GetRatesResponse.java
 src/main/java/io/openweb3/wallet/models/Rate.java

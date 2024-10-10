@@ -472,16 +472,8 @@ paths:
         name: type
         required: false
         schema:
-          enum:
-          - COLLECT
-          - DEPOSIT
-          - GAS
           type: string
         style: form
-        x-enum-varnames:
-        - AddressTypeCollect
-        - AddressTypeDeposit
-        - AddressTypeGas
       - description: Unique system generated identifier of the wallet
         explode: true
         in: query
@@ -1282,16 +1274,6 @@ components:
       - network
       - type
       type: object
-    AddressType:
-      enum:
-      - COLLECT
-      - DEPOSIT
-      - GAS
-      type: string
-      x-enum-varnames:
-      - AddressTypeCollect
-      - AddressTypeDeposit
-      - AddressTypeGas
     CreateTransferRequest:
       example:
         amount: amount
@@ -1355,8 +1337,8 @@ components:
         description: description
         disabled: true
         eventTypes:
-        - null
-        - null
+        - eventTypes
+        - eventTypes
         url: url
       properties:
         description:
@@ -1368,7 +1350,7 @@ components:
         eventTypes:
           description: The event types of the webhook
           items:
-            $ref: '#/components/schemas/EventType'
+            type: string
           type: array
         headers:
           additionalProperties:
@@ -1972,8 +1954,8 @@ components:
           disabled: true
           id: id
           eventTypes:
-          - null
-          - null
+          - eventTypes
+          - eventTypes
           url: url
         - filter: filter
           createdAt: createdAt
@@ -1986,8 +1968,8 @@ components:
           disabled: true
           id: id
           eventTypes:
-          - null
-          - null
+          - eventTypes
+          - eventTypes
           url: url
       properties:
         has_next:
@@ -2049,24 +2031,6 @@ components:
       - to_amount
       - to_currency
       type: object
-    EventType:
-      enum:
-      - deposit_success
-      - withdraw_approved
-      - withdraw_success
-      - withdraw_failed
-      - transfer_approved
-      - transfer_success
-      - transfer_failed
-      type: string
-      x-enum-varnames:
-      - EventTypeDepositSuccess
-      - EventTypeWithdrawApproved
-      - EventTypeWithdrawSuccess
-      - EventTypeWithdrawFailed
-      - EventTypeTransferApproved
-      - EventTypeTransferSuccess
-      - EventTypeTransferFailed
     GetRatesRequest:
       example:
         pairs:
@@ -2239,8 +2203,8 @@ components:
         description: description
         disabled: true
         eventTypes:
-        - null
-        - null
+        - eventTypes
+        - eventTypes
         url: url
       properties:
         description:
@@ -2249,7 +2213,7 @@ components:
           type: boolean
         eventTypes:
           items:
-            $ref: '#/components/schemas/EventType'
+            type: string
           type: array
         headers:
           additionalProperties:
@@ -2305,8 +2269,8 @@ components:
         disabled: true
         id: id
         eventTypes:
-        - null
-        - null
+        - eventTypes
+        - eventTypes
         url: url
       properties:
         createdAt:
@@ -2317,7 +2281,7 @@ components:
           type: boolean
         eventTypes:
           items:
-            $ref: '#/components/schemas/EventType'
+            type: string
           type: array
         filter:
           type: string

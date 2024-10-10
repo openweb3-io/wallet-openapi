@@ -105,7 +105,6 @@ Class | Method | HTTP request | Description
 
  - [Account](docs/Account.md)
  - [Address](docs/Address.md)
- - [AddressType](docs/AddressType.md)
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
  - [CreateWalletRequest](docs/CreateWalletRequest.md)
@@ -123,7 +122,6 @@ Class | Method | HTTP request | Description
  - [CursorPageWebhook](docs/CursorPageWebhook.md)
  - [Error](docs/Error.md)
  - [EstimateResponse](docs/EstimateResponse.md)
- - [EventType](docs/EventType.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [Rate](docs/Rate.md)

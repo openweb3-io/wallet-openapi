@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
  **currency** | **String**| The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | [optional]
  **cursor** | **String**| The cursor to use for pagination. | [optional]
  **limit** | **Integer**| The number of records to return default: 20 | [optional]
- **type** | **String**| The type of address to retrieve. | [optional] [enum: COLLECT, DEPOSIT, GAS]
+ **type** | **String**| The type of address to retrieve. | [optional]
  **walletId** | **String**| Unique system generated identifier of the wallet | [optional]
 
 ### Return type

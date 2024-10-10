@@ -9,7 +9,6 @@ import (
 type (
 	AddressOut     = openapi.Address
 	PageAddressOut = openapi.CursorPageAddress
-	AddressType    = openapi.AddressType
 )
 
 type Address struct {
@@ -18,7 +17,7 @@ type Address struct {
 
 type ListAddressOptions struct {
 	Currency *string
-	Type     *AddressType
+	Type     *string
 	WalletId *string
 	Cursor   *string
 	Limit    *int32
@@ -42,7 +41,7 @@ func (e *Address) List(ctx context.Context, options *ListAddressOptions) (*PageA
 		req = req.Currency(*options.Currency)
 	}
 	if options.Type != nil {
-		req = req.Type_(string(*options.Type))
+		req = req.Type_(*options.Type)
 	}
 	if options.WalletId != nil {
 		req = req.WalletId(*options.WalletId)

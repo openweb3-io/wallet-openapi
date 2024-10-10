@@ -1,12 +1,12 @@
 package io.openweb3.wallet;
 
 @SuppressWarnings("unchecked")
-public class CursorListOptions<T> {
+public class ListOptions<T> {
 
 	private String cursor;
 	private Integer limit;
 
-	public CursorListOptions() {
+	public ListOptions() {
 	}
 
 	public T cursor(final String cursor) {

@@ -695,21 +695,11 @@
                         }
                     },
                     {
-                        "x-enum-varnames": [
-                            "AddressTypeCollect",
-                            "AddressTypeDeposit",
-                            "AddressTypeGas"
-                        ],
                         "description": "The type of address to retrieve.",
                         "name": "type",
                         "in": "query",
                         "schema": {
-                            "type": "string",
-                            "enum": [
-                                "COLLECT",
-                                "DEPOSIT",
-                                "GAS"
-                            ]
+                            "type": "string"
                         }
                     },
                     {
@@ -1919,19 +1909,6 @@
                     }
                 }
             },
-            "AddressType": {
-                "type": "string",
-                "enum": [
-                    "COLLECT",
-                    "DEPOSIT",
-                    "GAS"
-                ],
-                "x-enum-varnames": [
-                    "AddressTypeCollect",
-                    "AddressTypeDeposit",
-                    "AddressTypeGas"
-                ]
-            },
             "CreateTransferRequest": {
                 "type": "object",
                 "required": [
@@ -2012,7 +1989,7 @@
                         "description": "The event types of the webhook",
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/EventType"
+                            "type": "string"
                         }
                     },
                     "headers": {
@@ -2497,27 +2474,6 @@
                     }
                 }
             },
-            "EventType": {
-                "type": "string",
-                "enum": [
-                    "deposit_success",
-                    "withdraw_approved",
-                    "withdraw_success",
-                    "withdraw_failed",
-                    "transfer_approved",
-                    "transfer_success",
-                    "transfer_failed"
-                ],
-                "x-enum-varnames": [
-                    "EventTypeDepositSuccess",
-                    "EventTypeWithdrawApproved",
-                    "EventTypeWithdrawSuccess",
-                    "EventTypeWithdrawFailed",
-                    "EventTypeTransferApproved",
-                    "EventTypeTransferSuccess",
-                    "EventTypeTransferFailed"
-                ]
-            },
             "GetRatesRequest": {
                 "type": "object",
                 "required": [
@@ -2697,7 +2653,7 @@
                     "eventTypes": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/EventType"
+                            "type": "string"
                         }
                     },
                     "headers": {
@@ -2771,7 +2727,7 @@
                     "eventTypes": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/EventType"
+                            "type": "string"
                         }
                     },
                     "filter": {

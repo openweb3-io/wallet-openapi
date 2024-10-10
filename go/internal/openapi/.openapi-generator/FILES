@@ -12,7 +12,6 @@ client.go
 configuration.go
 docs/Account.md
 docs/Address.md
-docs/AddressType.md
 docs/AddressesApi.md
 docs/CreateTransferRequest.md
 docs/CreateTransferResponse.md
@@ -32,7 +31,6 @@ docs/CursorPageWallet.md
 docs/CursorPageWebhook.md
 docs/Error.md
 docs/EstimateResponse.md
-docs/EventType.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
 docs/Rate.md
@@ -52,7 +50,6 @@ go.mod
 go.sum
 model_account.go
 model_address.go
-model_address_type.go
 model_create_transfer_request.go
 model_create_transfer_response.go
 model_create_wallet_request.go
@@ -70,7 +67,6 @@ model_cursor_page_wallet.go
 model_cursor_page_webhook.go
 model_error.go
 model_estimate_response.go
-model_event_type.go
 model_get_rates_request.go
 model_get_rates_response.go
 model_rate.go

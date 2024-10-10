@@ -22,11 +22,7 @@ public final class WebhookEndpointsAPI {
 		}
 	}
 
-	public Webhook create(final String appId, final CreateWebhook req) throws ApiException {
-		return this.create(appId, req, new PostOptions());
-	}
-
-	public Webhook create(final String appId, final CreateWebhook req, final PostOptions options)
+	public Webhook create(final String appId, final CreateWebhook req)
 			throws ApiException {
 		try {
 			return api.v1WebhooksCreate(req);

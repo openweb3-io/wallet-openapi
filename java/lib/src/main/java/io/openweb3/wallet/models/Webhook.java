@@ -20,7 +20,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.openweb3.wallet.models.EventType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -32,7 +31,7 @@ import java.util.Map;
 /**
  * Webhook
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T15:28:32.760687+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T16:10:15.657182+08:00[Asia/Shanghai]")
 public class Webhook {
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -48,7 +47,7 @@ public class Webhook {
 
   public static final String SERIALIZED_NAME_EVENT_TYPES = "eventTypes";
   @SerializedName(SERIALIZED_NAME_EVENT_TYPES)
-  private List<EventType> eventTypes = new ArrayList<>();
+  private List<String> eventTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FILTER = "filter";
   @SerializedName(SERIALIZED_NAME_FILTER)
@@ -141,13 +140,13 @@ public class Webhook {
   }
 
 
-  public Webhook eventTypes(List<EventType> eventTypes) {
+  public Webhook eventTypes(List<String> eventTypes) {
     
     this.eventTypes = eventTypes;
     return this;
   }
 
-  public Webhook addEventTypesItem(EventType eventTypesItem) {
+  public Webhook addEventTypesItem(String eventTypesItem) {
     this.eventTypes.add(eventTypesItem);
     return this;
   }
@@ -158,12 +157,12 @@ public class Webhook {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<EventType> getEventTypes() {
+  public List<String> getEventTypes() {
     return eventTypes;
   }
 
 
-  public void setEventTypes(List<EventType> eventTypes) {
+  public void setEventTypes(List<String> eventTypes) {
     this.eventTypes = eventTypes;
   }
 

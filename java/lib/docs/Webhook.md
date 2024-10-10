@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **createdAt** | **String** |  | 
 **description** | **String** |  | 
 **disabled** | **Boolean** |  | 
-**eventTypes** | **List&lt;EventType&gt;** |  | 
+**eventTypes** | **List&lt;String&gt;** |  | 
 **filter** | **String** |  | 
 **headers** | **Map&lt;String, String&gt;** |  | 
 **id** | **String** |  | 

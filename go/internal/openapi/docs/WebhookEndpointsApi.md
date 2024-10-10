@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    createWebhook := *openapiclient.NewCreateWebhook([]openapiclient.EventType{openapiclient.EventType("deposit_success")}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}, "Url_example") // CreateWebhook | Request body
+    createWebhook := *openapiclient.NewCreateWebhook([]string{"EventTypes_example"}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}, "Url_example") // CreateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -308,7 +308,7 @@ import (
 
 func main() {
     endpointId := "endpointId_example" // string | Endpoint ID
-    updateWebhook := *openapiclient.NewUpdateWebhook([]openapiclient.EventType{openapiclient.EventType("deposit_success")}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}) // UpdateWebhook | Request body
+    updateWebhook := *openapiclient.NewUpdateWebhook([]string{"EventTypes_example"}, map[string]string{"key": "Inner_example"}, map[string]interface{}{"key": interface{}(123)}) // UpdateWebhook | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

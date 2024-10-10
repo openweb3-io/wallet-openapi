@@ -1,6 +1,6 @@
 package io.openweb3.wallet;
 
-public final class ListDepositAddressOptions extends CursorListOptions<ListDepositAddressOptions> {
+public final class ListDepositAddressOptions extends ListOptions<ListDepositAddressOptions> {
     private String currency;
     private String network;
 

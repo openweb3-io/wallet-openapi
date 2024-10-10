@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** |  | 
 **Description** | **string** |  | 
 **Disabled** | **bool** |  | 
-**EventTypes** | [**[]EventType**](EventType.md) |  | 
+**EventTypes** | **[]string** |  | 
 **Filter** | **string** |  | 
 **Headers** | **map[string]string** |  | 
 **Id** | **string** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewWebhook
 
-`func NewWebhook(createdAt string, description string, disabled bool, eventTypes []EventType, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string, ) *Webhook`
+`func NewWebhook(createdAt string, description string, disabled bool, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string, ) *Webhook`
 
 NewWebhook instantiates a new Webhook object
 This constructor will assign default values to properties that have it defined,
@@ -96,20 +96,20 @@ SetDisabled sets Disabled field to given value.
 
 ### GetEventTypes
 
-`func (o *Webhook) GetEventTypes() []EventType`
+`func (o *Webhook) GetEventTypes() []string`
 
 GetEventTypes returns the EventTypes field if non-nil, zero value otherwise.
 
 ### GetEventTypesOk
 
-`func (o *Webhook) GetEventTypesOk() (*[]EventType, bool)`
+`func (o *Webhook) GetEventTypesOk() (*[]string, bool)`
 
 GetEventTypesOk returns a tuple with the EventTypes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEventTypes
 
-`func (o *Webhook) SetEventTypes(v []EventType)`
+`func (o *Webhook) SetEventTypes(v []string)`
 
 SetEventTypes sets EventTypes field to given value.
 
