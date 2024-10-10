@@ -32,14 +32,14 @@ final class Utils {
 
     public static String getStringFromFile(String filePath) throws Exception {
         FileInputStream in = new FileInputStream(filePath);
-        InputStreamReader inReader = new InputStreamReader(in, "UTF-8");
+        InputStreamReader inReader = new InputStreamReader(in, StandardCharsets.UTF_8);
         BufferedReader bf = new BufferedReader(inReader);
         StringBuilder sb = new StringBuilder();
         String line;
         do {
             line = bf.readLine();
             if (line != null) {
-                if (sb.length() != 0) {
+                if (!sb.isEmpty()) {
                     sb.append("\n");
                 }
                 sb.append(line);
@@ -138,15 +138,15 @@ final class Utils {
             // from OpenSSL hexadecimal private key string
             byte[] privateKeyBytes = Hex.decode(hexPrivateKey);
 
-            var digest = MessageDigest.getInstance("SHA-256");
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
             digest.update(content.getBytes(StandardCharsets.UTF_8));
-            var contentBytes = digest.digest();
+            byte[] contentBytes = digest.digest();
 
             Ed25519PrivateKeyParameters keyParameters = new Ed25519PrivateKeyParameters(privateKeyBytes, 0);
             Ed25519Signer signer = new Ed25519Signer();
             signer.init(true, keyParameters);
             signer.update(contentBytes, 0, contentBytes.length);
-            var signedData = signer.generateSignature();
+            byte[] signedData = signer.generateSignature();
 
             return Hex.toHexString(signedData);
         } catch (Exception e) {
