@@ -29,8 +29,6 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(TransactionDirection.Adapter.class)
 public enum TransactionDirection {
   
-  TransactionDirectionUnknown("UNKNOWN"),
-  
   TransactionDirectionOut("OUT"),
   
   TransactionDirectionIn("IN");

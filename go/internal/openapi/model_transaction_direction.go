@@ -20,13 +20,11 @@ type TransactionDirection string
 
 // List of TransactionDirection
 const (
-	TRANSACTIONDIRECTION_TransactionDirectionUnknown TransactionDirection = "UNKNOWN"
 	TRANSACTIONDIRECTION_TransactionDirectionOut TransactionDirection = "OUT"
 	TRANSACTIONDIRECTION_TransactionDirectionIn TransactionDirection = "IN"
 )
 
 var allowedTransactionDirectionEnumValues = []TransactionDirection{
-	"UNKNOWN",
 	"OUT",
 	"IN",
 }

@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **currency** | **String**| The type of currency involved in the transaction. | [optional]
  **cursor** | **String**| A cursor value for pagination purposes. | [optional]
- **direction** | **String**| The direction of the transaction (e.g., incoming or outgoing). | [optional] [enum: UNKNOWN, OUT, IN]
+ **direction** | **String**| The direction of the transaction (e.g., incoming or outgoing). | [optional] [enum: OUT, IN]
  **limit** | **Integer**| The number of records to return default: 20 | [optional]
  **network** | **String**| The blockchain network on which the transaction takes place. | [optional]
  **status** | **String**| The status of the transaction. | [optional] [enum: PROCESSING, CANCELED, FAILED, SUCCEED]
