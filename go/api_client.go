@@ -11,13 +11,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/openweb3-io/wallet-openapi/go/internal/crypto"
+	"github.com/openweb3-io/wallet-openapi/go/crypto"
 	"github.com/openweb3-io/wallet-openapi/go/internal/openapi"
 	"github.com/openweb3-io/wallet-openapi/go/internal/version"
 )
 
 type (
-	WalletClientOptions struct {
+	APIClientOptions struct {
 		Debug bool
 
 		ApiKey string
@@ -27,7 +27,7 @@ type (
 		ServerUrl  *url.URL
 		HTTPClient *http.Client
 	}
-	WalletClient struct {
+	APIClient struct {
 		Currency          *Currency
 		Rate              *Rate
 		Address           *Address
@@ -42,7 +42,7 @@ var defaultHTTPClient = &http.Client{
 	Timeout: 60 * time.Second,
 }
 
-func New(options *WalletClientOptions) *WalletClient {
+func New(options *APIClientOptions) *APIClient {
 	conf := openapi.NewConfiguration()
 	conf.Scheme = "https"
 	conf.Host = "api.wallet.openweb3.io"
@@ -93,7 +93,7 @@ func New(options *WalletClientOptions) *WalletClient {
 	conf.UserAgent = fmt.Sprintf("wallet-openapi/%s/go", version.Version)
 	apiClient := openapi.NewAPIClient(conf)
 
-	return &WalletClient{
+	return &APIClient{
 		Currency: &Currency{
 			api: apiClient,
 		},

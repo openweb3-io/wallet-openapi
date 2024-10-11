@@ -14,7 +14,7 @@ import okhttp3.Response;
 import io.openweb3.wallet.exceptions.SigningException;
 import java.io.IOException;
 
-public final class WalletClient {
+public final class APIClient {
 	public static final String VERSION = "0.0.1";
 	private final WebhookEndpointsAPI webhookEndpoint;
 	private final CurrenciesAPI currency;
@@ -23,11 +23,11 @@ public final class WalletClient {
 	private final WalletsAPI wallet;
 	private final AddressesAPI address;
 
-	public WalletClient(final String apikey, final String privateKeyPath) throws Exception {
-		this(new WalletClientOptions().apiKey(apikey).secret(privateKeyPath));
+	public APIClient(final String apikey, final String privateKeyPath) throws Exception {
+		this(new APIClientOptions().apiKey(apikey).secret(privateKeyPath));
 	}
 
-	public WalletClient(final WalletClientOptions options) throws Exception {
+	public APIClient(final APIClientOptions options) throws Exception {
 		if (options.getApiKey() == null || options.getSecret() == null) {
 			throw new IllegalArgumentException("ApiKey and Secret are required");
 		}

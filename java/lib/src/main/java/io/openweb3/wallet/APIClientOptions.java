@@ -1,6 +1,6 @@
 package io.openweb3.wallet;
 
-public final class WalletClientOptions {
+public final class APIClientOptions {
 	private static final String DEFAULT_URL = "https://api.wallet.openweb3.io";
 
 	private boolean debug = false;
@@ -8,25 +8,25 @@ public final class WalletClientOptions {
 	private String apiKey;
 	private String secret;
 
-	public WalletClientOptions() {
+	public APIClientOptions() {
 	}
 
-	public WalletClientOptions debug(final boolean debug) {
+	public APIClientOptions debug(final boolean debug) {
 		this.debug = debug;
 		return this;
 	}
 
-	public WalletClientOptions serverUrl(final String serverUrl) {
+	public APIClientOptions serverUrl(final String serverUrl) {
 		this.serverUrl = serverUrl;
 		return this;
 	}
 
-	public WalletClientOptions apiKey(final String apiKey) {
+	public APIClientOptions apiKey(final String apiKey) {
 		this.apiKey = apiKey;
 		return this;
 	}
 
-	public WalletClientOptions secret(final String secret) {
+	public APIClientOptions secret(final String secret) {
 		this.secret = secret;
 		return this;
 	}

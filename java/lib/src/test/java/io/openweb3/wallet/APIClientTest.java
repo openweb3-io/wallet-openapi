@@ -3,12 +3,12 @@ package io.openweb3.wallet;
 import io.openweb3.wallet.exceptions.ApiException;
 import org.junit.Test;
 
-public class WalletClientTest {
+public class APIClientTest {
     final String apiKey = System.getenv("APIKEY");
     final String privateKey = System.getenv("SECRET");
-    final WalletClient client = new WalletClient(new WalletClientOptions().apiKey(apiKey).secret(privateKey));
+    final APIClient client = new APIClient(new APIClientOptions().apiKey(apiKey).secret(privateKey));
 
-    public WalletClientTest() throws Exception {
+    public APIClientTest() throws Exception {
 
     }
 
