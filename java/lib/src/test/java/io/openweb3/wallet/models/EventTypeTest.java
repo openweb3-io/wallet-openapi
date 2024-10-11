@@ -18,61 +18,42 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.openweb3.wallet.models.Webhook;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for CursorPageWebhook
+ * Model tests for EventType
  */
-public class CursorPageWebhookTest {
-    private final CursorPageWebhook model = new CursorPageWebhook();
+public class EventTypeTest {
+    private final EventType model = new EventType();
 
     /**
-     * Model tests for CursorPageWebhook
+     * Model tests for EventType
      */
     @Test
-    public void testCursorPageWebhook() {
-        // TODO: test CursorPageWebhook
+    public void testEventType() {
+        // TODO: test EventType
     }
 
     /**
-     * Test the property 'hasNext'
+     * Test the property 'description'
      */
     @Test
-    public void hasNextTest() {
-        // TODO: test hasNext
+    public void descriptionTest() {
+        // TODO: test description
     }
 
     /**
-     * Test the property 'items'
+     * Test the property 'eventType'
      */
     @Test
-    public void itemsTest() {
-        // TODO: test items
-    }
-
-    /**
-     * Test the property 'nextCursor'
-     */
-    @Test
-    public void nextCursorTest() {
-        // TODO: test nextCursor
-    }
-
-    /**
-     * Test the property 'prevCursor'
-     */
-    @Test
-    public void prevCursorTest() {
-        // TODO: test prevCursor
+    public void eventTypeTest() {
+        // TODO: test eventType
     }
 
 }

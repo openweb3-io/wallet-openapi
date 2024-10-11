@@ -233,273 +233,6 @@
                 }
             }
         },
-        "/api/v1/endpoints": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "List webhook endpoints",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "webhook endpoints"
-                ],
-                "summary": "List webhook endpoints",
-                "operationId": "v1.webhooks.list",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "name": "cursor",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "name": "limit",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/CursorPage-Webhook"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Create a webhook endpoint",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "webhook endpoints"
-                ],
-                "summary": "Create webhook endpoint",
-                "operationId": "v1.webhooks.create",
-                "parameters": [
-                    {
-                        "description": "Request body",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/CreateWebhook"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Webhook"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/endpoints/{endpointId}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Get specific webhook endpoint",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "webhook endpoints"
-                ],
-                "summary": "Get webhook endpoint",
-                "operationId": "v1.webhooks.retrieve",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Endpoint ID",
-                        "name": "endpointId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Webhook"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Delete specific webhook endpoint",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "webhook endpoints"
-                ],
-                "summary": "Delete webhook endpoint",
-                "operationId": "v1.webhooks.delete",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Endpoint ID",
-                        "name": "endpointId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Webhook"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            },
-            "patch": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Update specific webhook endpoint",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "webhook endpoints"
-                ],
-                "summary": "Update webhook endpoint",
-                "operationId": "v1.webhooks.update",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Endpoint ID",
-                        "name": "endpointId",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Request body",
-                        "name": "request",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/UpdateWebhook"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Webhook"
-                        }
-                    }
-                }
-            }
-        },
         "/api/v1/rates": {
             "post": {
                 "security": [
@@ -1365,7 +1098,8 @@
                         "type": "string",
                         "description": "chain network, if not specified, the default network of the currency will be used.",
                         "name": "network",
-                        "in": "query"
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1490,6 +1224,320 @@
                     }
                 }
             }
+        },
+        "/api/v1/webhook/endpoints": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List webhook endpoints",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "List webhook endpoints",
+                "operationId": "v1.webhooks.list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CursorPage-Endpoint"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Create a webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Create webhook endpoint",
+                "operationId": "v1.webhooks.create",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateEndpoint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Endpoint"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/webhook/endpoints/{endpointId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Get specific webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Get webhook endpoint",
+                "operationId": "v1.webhooks.retrieve",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Endpoint"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Delete specific webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Delete webhook endpoint",
+                "operationId": "v1.webhooks.delete",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Endpoint"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Update specific webhook endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook endpoints"
+                ],
+                "summary": "Update webhook endpoint",
+                "operationId": "v1.webhooks.update",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Endpoint ID",
+                        "name": "endpointId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateEndpoint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Endpoint"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/webhook/event_types": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List all webhook event types",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "webhook event types"
+                ],
+                "summary": "List webhook event types",
+                "operationId": "v1.webhooks.eventtypes.list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/EventType"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -1552,6 +1600,50 @@
                 }
             }
         },
+        "CreateEndpoint": {
+            "type": "object",
+            "required": [
+                "filterTypes",
+                "url"
+            ],
+            "properties": {
+                "description": {
+                    "description": "The description of the webhook endpoint",
+                    "type": "string"
+                },
+                "disabled": {
+                    "description": "The disabled of the webhook endpoint",
+                    "type": "boolean"
+                },
+                "filterTypes": {
+                    "description": "The filter types of the webhook endpoint",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "headers": {
+                    "description": "The headers of the webhook endpoint",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "metadata": {
+                    "description": "The metadata of the webhook endpoint",
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "uid": {
+                    "description": "The uid of the webhook endpoint",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The url of the webhook endpoint",
+                    "type": "string"
+                }
+            }
+        },
         "CreateTransferRequest": {
             "type": "object",
             "required": [
@@ -1607,52 +1699,6 @@
                 },
                 "uid": {
                     "description": "Custom ID",
-                    "type": "string"
-                }
-            }
-        },
-        "CreateWebhook": {
-            "type": "object",
-            "required": [
-                "eventTypes",
-                "headers",
-                "metadata",
-                "url"
-            ],
-            "properties": {
-                "description": {
-                    "description": "The description of the webhook",
-                    "type": "string"
-                },
-                "disabled": {
-                    "description": "The disabled of the webhook",
-                    "type": "boolean"
-                },
-                "eventTypes": {
-                    "description": "The event types of the webhook",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "headers": {
-                    "description": "The headers of the webhook",
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
-                "metadata": {
-                    "description": "The metadata of the webhook",
-                    "type": "object",
-                    "additionalProperties": {}
-                },
-                "uid": {
-                    "description": "The uid of the webhook",
-                    "type": "string"
-                },
-                "url": {
-                    "description": "The url of the webhook",
                     "type": "string"
                 }
             }
@@ -1996,6 +2042,30 @@
                 }
             }
         },
+        "CursorPage-Endpoint": {
+            "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
+            "properties": {
+                "has_next": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Endpoint"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
         "CursorPage-Transaction": {
             "type": "object",
             "required": [
@@ -2044,26 +2114,63 @@
                 }
             }
         },
-        "CursorPage-Webhook": {
+        "Endpoint": {
             "type": "object",
             "required": [
-                "has_next",
-                "items"
+                "createdAt",
+                "description",
+                "disabled",
+                "filter",
+                "filterTypes",
+                "id",
+                "url"
             ],
             "properties": {
-                "has_next": {
-                    "type": "boolean"
-                },
-                "items": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Webhook"
-                    }
-                },
-                "next_cursor": {
+                "createdAt": {
+                    "description": "The created at of the webhook endpoint",
                     "type": "string"
                 },
-                "prev_cursor": {
+                "description": {
+                    "description": "The description of the webhook endpoint",
+                    "type": "string"
+                },
+                "disabled": {
+                    "description": "The disabled of the webhook endpoint",
+                    "type": "boolean"
+                },
+                "filter": {
+                    "description": "The filter of the webhook endpoint",
+                    "type": "string"
+                },
+                "filterTypes": {
+                    "description": "The filter types of the webhook endpoint",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "headers": {
+                    "description": "The headers of the webhook endpoint",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "description": "The id of the webhook endpoint",
+                    "type": "string"
+                },
+                "metadata": {
+                    "description": "The metadata of the webhook endpoint",
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "uid": {
+                    "description": "The uid of the webhook endpoint",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The url of the webhook endpoint",
                     "type": "string"
                 }
             }
@@ -2113,6 +2220,23 @@
                 },
                 "to_currency": {
                     "description": "The currency code of the target currency that you want to convert to",
+                    "type": "string"
+                }
+            }
+        },
+        "EventType": {
+            "type": "object",
+            "required": [
+                "description",
+                "eventType"
+            ],
+            "properties": {
+                "description": {
+                    "description": "The description of the webhook event type",
+                    "type": "string"
+                },
+                "eventType": {
+                    "description": "The type of the webhook event",
                     "type": "string"
                 }
             }
@@ -2266,6 +2390,49 @@
                 "TransactionStatusSucceed"
             ]
         },
+        "UpdateEndpoint": {
+            "type": "object",
+            "required": [
+                "filterTypes"
+            ],
+            "properties": {
+                "description": {
+                    "description": "The description of the webhook endpoint",
+                    "type": "string"
+                },
+                "disabled": {
+                    "description": "The disabled of the webhook endpoint",
+                    "type": "boolean"
+                },
+                "filterTypes": {
+                    "description": "The filter types of the webhook endpoint",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "headers": {
+                    "description": "The headers of the webhook endpoint",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "metadata": {
+                    "description": "The metadata of the webhook endpoint",
+                    "type": "object",
+                    "additionalProperties": {}
+                },
+                "uid": {
+                    "description": "The uid of the webhook endpoint",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The url of the webhook endpoint",
+                    "type": "string"
+                }
+            }
+        },
         "UpdateWalletRequest": {
             "type": "object",
             "properties": {
@@ -2275,44 +2442,6 @@
                 },
                 "uid": {
                     "description": "Custom ID",
-                    "type": "string"
-                }
-            }
-        },
-        "UpdateWebhook": {
-            "type": "object",
-            "required": [
-                "eventTypes",
-                "headers",
-                "metadata"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "disabled": {
-                    "type": "boolean"
-                },
-                "eventTypes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "headers": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
-                "metadata": {
-                    "type": "object",
-                    "additionalProperties": {}
-                },
-                "uid": {
-                    "type": "string"
-                },
-                "url": {
                     "type": "string"
                 }
             }
@@ -2340,59 +2469,6 @@
                 },
                 "uid": {
                     "description": "External unique ID",
-                    "type": "string"
-                }
-            }
-        },
-        "Webhook": {
-            "type": "object",
-            "required": [
-                "createdAt",
-                "description",
-                "disabled",
-                "eventTypes",
-                "filter",
-                "headers",
-                "id",
-                "metadata",
-                "url"
-            ],
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "disabled": {
-                    "type": "boolean"
-                },
-                "eventTypes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "filter": {
-                    "type": "string"
-                },
-                "headers": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
-                "id": {
-                    "type": "string"
-                },
-                "metadata": {
-                    "type": "object",
-                    "additionalProperties": {}
-                },
-                "uid": {
-                    "type": "string"
-                },
-                "url": {
                     "type": "string"
                 }
             }

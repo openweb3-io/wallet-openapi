@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.openweb3.wallet.models.Webhook;
+import io.openweb3.wallet.models.Endpoint;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,17 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CursorPageWebhook
+ * CursorPageEndpoint
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T16:10:15.657182+08:00[Asia/Shanghai]")
-public class CursorPageWebhook {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-11T08:53:30.725356+08:00[Asia/Shanghai]")
+public class CursorPageEndpoint {
   public static final String SERIALIZED_NAME_HAS_NEXT = "has_next";
   @SerializedName(SERIALIZED_NAME_HAS_NEXT)
   private Boolean hasNext;
 
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<Webhook> items = new ArrayList<>();
+  private List<Endpoint> items = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_CURSOR = "next_cursor";
   @SerializedName(SERIALIZED_NAME_NEXT_CURSOR)
@@ -49,7 +49,7 @@ public class CursorPageWebhook {
   private String prevCursor;
 
 
-  public CursorPageWebhook hasNext(Boolean hasNext) {
+  public CursorPageEndpoint hasNext(Boolean hasNext) {
     
     this.hasNext = hasNext;
     return this;
@@ -71,13 +71,13 @@ public class CursorPageWebhook {
   }
 
 
-  public CursorPageWebhook items(List<Webhook> items) {
+  public CursorPageEndpoint items(List<Endpoint> items) {
     
     this.items = items;
     return this;
   }
 
-  public CursorPageWebhook addItemsItem(Webhook itemsItem) {
+  public CursorPageEndpoint addItemsItem(Endpoint itemsItem) {
     this.items.add(itemsItem);
     return this;
   }
@@ -88,17 +88,17 @@ public class CursorPageWebhook {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<Webhook> getItems() {
+  public List<Endpoint> getItems() {
     return items;
   }
 
 
-  public void setItems(List<Webhook> items) {
+  public void setItems(List<Endpoint> items) {
     this.items = items;
   }
 
 
-  public CursorPageWebhook nextCursor(String nextCursor) {
+  public CursorPageEndpoint nextCursor(String nextCursor) {
     
     this.nextCursor = nextCursor;
     return this;
@@ -121,7 +121,7 @@ public class CursorPageWebhook {
   }
 
 
-  public CursorPageWebhook prevCursor(String prevCursor) {
+  public CursorPageEndpoint prevCursor(String prevCursor) {
     
     this.prevCursor = prevCursor;
     return this;
@@ -152,11 +152,11 @@ public class CursorPageWebhook {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CursorPageWebhook cursorPageWebhook = (CursorPageWebhook) o;
-    return Objects.equals(this.hasNext, cursorPageWebhook.hasNext) &&
-        Objects.equals(this.items, cursorPageWebhook.items) &&
-        Objects.equals(this.nextCursor, cursorPageWebhook.nextCursor) &&
-        Objects.equals(this.prevCursor, cursorPageWebhook.prevCursor);
+    CursorPageEndpoint cursorPageEndpoint = (CursorPageEndpoint) o;
+    return Objects.equals(this.hasNext, cursorPageEndpoint.hasNext) &&
+        Objects.equals(this.items, cursorPageEndpoint.items) &&
+        Objects.equals(this.nextCursor, cursorPageEndpoint.nextCursor) &&
+        Objects.equals(this.prevCursor, cursorPageEndpoint.prevCursor);
   }
 
   @Override
@@ -167,7 +167,7 @@ public class CursorPageWebhook {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CursorPageWebhook {\n");
+    sb.append("class CursorPageEndpoint {\n");
     sb.append("    hasNext: ").append(toIndentedString(hasNext)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    nextCursor: ").append(toIndentedString(nextCursor)).append("\n");

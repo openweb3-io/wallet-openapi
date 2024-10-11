@@ -300,11 +300,12 @@ func (a *AddressesApiService) V1WalletsGetDepositAddressExecute(r ApiV1WalletsGe
 	if r.currency == nil {
 		return localVarReturnValue, nil, reportError("currency is required and must be specified")
 	}
+	if r.network == nil {
+		return localVarReturnValue, nil, reportError("network is required and must be specified")
+	}
 
 	localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
-	if r.network != nil {
-		localVarQueryParams.Add("network", parameterToString(*r.network, ""))
-	}
+	localVarQueryParams.Add("network", parameterToString(*r.network, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

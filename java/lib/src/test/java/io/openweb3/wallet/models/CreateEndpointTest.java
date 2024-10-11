@@ -31,17 +31,17 @@ import org.junit.Test;
 
 
 /**
- * Model tests for UpdateWebhook
+ * Model tests for CreateEndpoint
  */
-public class UpdateWebhookTest {
-    private final UpdateWebhook model = new UpdateWebhook();
+public class CreateEndpointTest {
+    private final CreateEndpoint model = new CreateEndpoint();
 
     /**
-     * Model tests for UpdateWebhook
+     * Model tests for CreateEndpoint
      */
     @Test
-    public void testUpdateWebhook() {
-        // TODO: test UpdateWebhook
+    public void testCreateEndpoint() {
+        // TODO: test CreateEndpoint
     }
 
     /**
@@ -61,11 +61,11 @@ public class UpdateWebhookTest {
     }
 
     /**
-     * Test the property 'eventTypes'
+     * Test the property 'filterTypes'
      */
     @Test
-    public void eventTypesTest() {
-        // TODO: test eventTypes
+    public void filterTypesTest() {
+        // TODO: test filterTypes
     }
 
     /**

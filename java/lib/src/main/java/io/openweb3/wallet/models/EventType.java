@@ -25,62 +25,60 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * UpdateWalletRequest
+ * EventType
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-11T08:53:30.725356+08:00[Asia/Shanghai]")
-public class UpdateWalletRequest {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+public class EventType {
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
 
-  public static final String SERIALIZED_NAME_UID = "uid";
-  @SerializedName(SERIALIZED_NAME_UID)
-  private String uid;
+  public static final String SERIALIZED_NAME_EVENT_TYPE = "eventType";
+  @SerializedName(SERIALIZED_NAME_EVENT_TYPE)
+  private String eventType;
 
 
-  public UpdateWalletRequest name(String name) {
+  public EventType description(String description) {
     
-    this.name = name;
+    this.description = description;
     return this;
   }
 
    /**
-   * Wallet Name
-   * @return name
+   * The description of the webhook event type
+   * @return description
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Wallet Name")
+  @ApiModelProperty(required = true, value = "The description of the webhook event type")
 
-  public String getName() {
-    return name;
+  public String getDescription() {
+    return description;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
-  public UpdateWalletRequest uid(String uid) {
+  public EventType eventType(String eventType) {
     
-    this.uid = uid;
+    this.eventType = eventType;
     return this;
   }
 
    /**
-   * Custom ID
-   * @return uid
+   * The type of the webhook event
+   * @return eventType
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Custom ID")
+  @ApiModelProperty(required = true, value = "The type of the webhook event")
 
-  public String getUid() {
-    return uid;
+  public String getEventType() {
+    return eventType;
   }
 
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setEventType(String eventType) {
+    this.eventType = eventType;
   }
 
 
@@ -92,22 +90,22 @@ public class UpdateWalletRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateWalletRequest updateWalletRequest = (UpdateWalletRequest) o;
-    return Objects.equals(this.name, updateWalletRequest.name) &&
-        Objects.equals(this.uid, updateWalletRequest.uid);
+    EventType eventType = (EventType) o;
+    return Objects.equals(this.description, eventType.description) &&
+        Objects.equals(this.eventType, eventType.eventType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, uid);
+    return Objects.hash(description, eventType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateWalletRequest {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("class EventType {\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    eventType: ").append(toIndentedString(eventType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

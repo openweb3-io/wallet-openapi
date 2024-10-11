@@ -14,35 +14,35 @@ import (
 	"encoding/json"
 )
 
-// CursorPageWebhook struct for CursorPageWebhook
-type CursorPageWebhook struct {
+// CursorPageEndpoint struct for CursorPageEndpoint
+type CursorPageEndpoint struct {
 	HasNext bool `json:"has_next"`
-	Items []Webhook `json:"items"`
+	Items []Endpoint `json:"items"`
 	NextCursor *string `json:"next_cursor,omitempty"`
 	PrevCursor *string `json:"prev_cursor,omitempty"`
 }
 
-// NewCursorPageWebhook instantiates a new CursorPageWebhook object
+// NewCursorPageEndpoint instantiates a new CursorPageEndpoint object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCursorPageWebhook(hasNext bool, items []Webhook) *CursorPageWebhook {
-	this := CursorPageWebhook{}
+func NewCursorPageEndpoint(hasNext bool, items []Endpoint) *CursorPageEndpoint {
+	this := CursorPageEndpoint{}
 	this.HasNext = hasNext
 	this.Items = items
 	return &this
 }
 
-// NewCursorPageWebhookWithDefaults instantiates a new CursorPageWebhook object
+// NewCursorPageEndpointWithDefaults instantiates a new CursorPageEndpoint object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCursorPageWebhookWithDefaults() *CursorPageWebhook {
-	this := CursorPageWebhook{}
+func NewCursorPageEndpointWithDefaults() *CursorPageEndpoint {
+	this := CursorPageEndpoint{}
 	return &this
 }
 
 // GetHasNext returns the HasNext field value
-func (o *CursorPageWebhook) GetHasNext() bool {
+func (o *CursorPageEndpoint) GetHasNext() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -53,7 +53,7 @@ func (o *CursorPageWebhook) GetHasNext() bool {
 
 // GetHasNextOk returns a tuple with the HasNext field value
 // and a boolean to check if the value has been set.
-func (o *CursorPageWebhook) GetHasNextOk() (*bool, bool) {
+func (o *CursorPageEndpoint) GetHasNextOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -61,14 +61,14 @@ func (o *CursorPageWebhook) GetHasNextOk() (*bool, bool) {
 }
 
 // SetHasNext sets field value
-func (o *CursorPageWebhook) SetHasNext(v bool) {
+func (o *CursorPageEndpoint) SetHasNext(v bool) {
 	o.HasNext = v
 }
 
 // GetItems returns the Items field value
-func (o *CursorPageWebhook) GetItems() []Webhook {
+func (o *CursorPageEndpoint) GetItems() []Endpoint {
 	if o == nil {
-		var ret []Webhook
+		var ret []Endpoint
 		return ret
 	}
 
@@ -77,7 +77,7 @@ func (o *CursorPageWebhook) GetItems() []Webhook {
 
 // GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
-func (o *CursorPageWebhook) GetItemsOk() (*[]Webhook, bool) {
+func (o *CursorPageEndpoint) GetItemsOk() (*[]Endpoint, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -85,12 +85,12 @@ func (o *CursorPageWebhook) GetItemsOk() (*[]Webhook, bool) {
 }
 
 // SetItems sets field value
-func (o *CursorPageWebhook) SetItems(v []Webhook) {
+func (o *CursorPageEndpoint) SetItems(v []Endpoint) {
 	o.Items = v
 }
 
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
-func (o *CursorPageWebhook) GetNextCursor() string {
+func (o *CursorPageEndpoint) GetNextCursor() string {
 	if o == nil || o.NextCursor == nil {
 		var ret string
 		return ret
@@ -100,7 +100,7 @@ func (o *CursorPageWebhook) GetNextCursor() string {
 
 // GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CursorPageWebhook) GetNextCursorOk() (*string, bool) {
+func (o *CursorPageEndpoint) GetNextCursorOk() (*string, bool) {
 	if o == nil || o.NextCursor == nil {
 		return nil, false
 	}
@@ -108,7 +108,7 @@ func (o *CursorPageWebhook) GetNextCursorOk() (*string, bool) {
 }
 
 // HasNextCursor returns a boolean if a field has been set.
-func (o *CursorPageWebhook) HasNextCursor() bool {
+func (o *CursorPageEndpoint) HasNextCursor() bool {
 	if o != nil && o.NextCursor != nil {
 		return true
 	}
@@ -117,12 +117,12 @@ func (o *CursorPageWebhook) HasNextCursor() bool {
 }
 
 // SetNextCursor gets a reference to the given string and assigns it to the NextCursor field.
-func (o *CursorPageWebhook) SetNextCursor(v string) {
+func (o *CursorPageEndpoint) SetNextCursor(v string) {
 	o.NextCursor = &v
 }
 
 // GetPrevCursor returns the PrevCursor field value if set, zero value otherwise.
-func (o *CursorPageWebhook) GetPrevCursor() string {
+func (o *CursorPageEndpoint) GetPrevCursor() string {
 	if o == nil || o.PrevCursor == nil {
 		var ret string
 		return ret
@@ -132,7 +132,7 @@ func (o *CursorPageWebhook) GetPrevCursor() string {
 
 // GetPrevCursorOk returns a tuple with the PrevCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CursorPageWebhook) GetPrevCursorOk() (*string, bool) {
+func (o *CursorPageEndpoint) GetPrevCursorOk() (*string, bool) {
 	if o == nil || o.PrevCursor == nil {
 		return nil, false
 	}
@@ -140,7 +140,7 @@ func (o *CursorPageWebhook) GetPrevCursorOk() (*string, bool) {
 }
 
 // HasPrevCursor returns a boolean if a field has been set.
-func (o *CursorPageWebhook) HasPrevCursor() bool {
+func (o *CursorPageEndpoint) HasPrevCursor() bool {
 	if o != nil && o.PrevCursor != nil {
 		return true
 	}
@@ -149,11 +149,11 @@ func (o *CursorPageWebhook) HasPrevCursor() bool {
 }
 
 // SetPrevCursor gets a reference to the given string and assigns it to the PrevCursor field.
-func (o *CursorPageWebhook) SetPrevCursor(v string) {
+func (o *CursorPageEndpoint) SetPrevCursor(v string) {
 	o.PrevCursor = &v
 }
 
-func (o CursorPageWebhook) MarshalJSON() ([]byte, error) {
+func (o CursorPageEndpoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["has_next"] = o.HasNext
@@ -170,38 +170,38 @@ func (o CursorPageWebhook) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableCursorPageWebhook struct {
-	value *CursorPageWebhook
+type NullableCursorPageEndpoint struct {
+	value *CursorPageEndpoint
 	isSet bool
 }
 
-func (v NullableCursorPageWebhook) Get() *CursorPageWebhook {
+func (v NullableCursorPageEndpoint) Get() *CursorPageEndpoint {
 	return v.value
 }
 
-func (v *NullableCursorPageWebhook) Set(val *CursorPageWebhook) {
+func (v *NullableCursorPageEndpoint) Set(val *CursorPageEndpoint) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCursorPageWebhook) IsSet() bool {
+func (v NullableCursorPageEndpoint) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCursorPageWebhook) Unset() {
+func (v *NullableCursorPageEndpoint) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCursorPageWebhook(val *CursorPageWebhook) *NullableCursorPageWebhook {
-	return &NullableCursorPageWebhook{value: val, isSet: true}
+func NewNullableCursorPageEndpoint(val *CursorPageEndpoint) *NullableCursorPageEndpoint {
+	return &NullableCursorPageEndpoint{value: val, isSet: true}
 }
 
-func (v NullableCursorPageWebhook) MarshalJSON() ([]byte, error) {
+func (v NullableCursorPageEndpoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCursorPageWebhook) UnmarshalJSON(src []byte) error {
+func (v *NullableCursorPageEndpoint) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

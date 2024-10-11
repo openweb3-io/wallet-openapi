@@ -107,7 +107,7 @@ import (
 func main() {
     walletId := "walletId_example" // string | Wallet ID
     currency := "currency_example" // string | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).
-    network := "network_example" // string | chain network, if not specified, the default network of the currency will be used. (optional)
+    network := "network_example" // string | chain network, if not specified, the default network of the currency will be used.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

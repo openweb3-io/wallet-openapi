@@ -4,16 +4,16 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1WebhooksCreate**](WebhookEndpointsApi.md#v1WebhooksCreate) | **POST** /api/v1/endpoints | Create webhook endpoint
-[**v1WebhooksDelete**](WebhookEndpointsApi.md#v1WebhooksDelete) | **DELETE** /api/v1/endpoints/{endpointId} | Delete webhook endpoint
-[**v1WebhooksList**](WebhookEndpointsApi.md#v1WebhooksList) | **GET** /api/v1/endpoints | List webhook endpoints
-[**v1WebhooksRetrieve**](WebhookEndpointsApi.md#v1WebhooksRetrieve) | **GET** /api/v1/endpoints/{endpointId} | Get webhook endpoint
-[**v1WebhooksUpdate**](WebhookEndpointsApi.md#v1WebhooksUpdate) | **PATCH** /api/v1/endpoints/{endpointId} | Update webhook endpoint
+[**v1WebhooksCreate**](WebhookEndpointsApi.md#v1WebhooksCreate) | **POST** /api/v1/webhook/endpoints | Create webhook endpoint
+[**v1WebhooksDelete**](WebhookEndpointsApi.md#v1WebhooksDelete) | **DELETE** /api/v1/webhook/endpoints/{endpointId} | Delete webhook endpoint
+[**v1WebhooksList**](WebhookEndpointsApi.md#v1WebhooksList) | **GET** /api/v1/webhook/endpoints | List webhook endpoints
+[**v1WebhooksRetrieve**](WebhookEndpointsApi.md#v1WebhooksRetrieve) | **GET** /api/v1/webhook/endpoints/{endpointId} | Get webhook endpoint
+[**v1WebhooksUpdate**](WebhookEndpointsApi.md#v1WebhooksUpdate) | **PATCH** /api/v1/webhook/endpoints/{endpointId} | Update webhook endpoint
 
 
 <a name="v1WebhooksCreate"></a>
 # **v1WebhooksCreate**
-> Webhook v1WebhooksCreate(createWebhook)
+> Endpoint v1WebhooksCreate(createEndpoint)
 
 Create webhook endpoint
 
@@ -47,9 +47,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    CreateWebhook createWebhook = new CreateWebhook(); // CreateWebhook | Request body
+    CreateEndpoint createEndpoint = new CreateEndpoint(); // CreateEndpoint | Request body
     try {
-      Webhook result = apiInstance.v1WebhooksCreate(createWebhook);
+      Endpoint result = apiInstance.v1WebhooksCreate(createEndpoint);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksCreate");
@@ -66,11 +66,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createWebhook** | [**CreateWebhook**](CreateWebhook.md)| Request body |
+ **createEndpoint** | [**CreateEndpoint**](CreateEndpoint.md)| Request body |
 
 ### Return type
 
-[**Webhook**](Webhook.md)
+[**Endpoint**](Endpoint.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksDelete"></a>
 # **v1WebhooksDelete**
-> Webhook v1WebhooksDelete(endpointId)
+> Endpoint v1WebhooksDelete(endpointId)
 
 Delete webhook endpoint
 
@@ -126,7 +126,7 @@ public class Example {
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
     String endpointId = "endpointId_example"; // String | Endpoint ID
     try {
-      Webhook result = apiInstance.v1WebhooksDelete(endpointId);
+      Endpoint result = apiInstance.v1WebhooksDelete(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksDelete");
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Webhook**](Webhook.md)
+[**Endpoint**](Endpoint.md)
 
 ### Authorization
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksList"></a>
 # **v1WebhooksList**
-> CursorPageWebhook v1WebhooksList(cursor, limit)
+> CursorPageEndpoint v1WebhooksList(cursor, limit)
 
 List webhook endpoints
 
@@ -204,7 +204,7 @@ public class Example {
     String cursor = "cursor_example"; // String | 
     Integer limit = 56; // Integer | 
     try {
-      CursorPageWebhook result = apiInstance.v1WebhooksList(cursor, limit);
+      CursorPageEndpoint result = apiInstance.v1WebhooksList(cursor, limit);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksList");
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CursorPageWebhook**](CursorPageWebhook.md)
+[**CursorPageEndpoint**](CursorPageEndpoint.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksRetrieve"></a>
 # **v1WebhooksRetrieve**
-> Webhook v1WebhooksRetrieve(endpointId)
+> Endpoint v1WebhooksRetrieve(endpointId)
 
 Get webhook endpoint
 
@@ -282,7 +282,7 @@ public class Example {
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
     String endpointId = "endpointId_example"; // String | Endpoint ID
     try {
-      Webhook result = apiInstance.v1WebhooksRetrieve(endpointId);
+      Endpoint result = apiInstance.v1WebhooksRetrieve(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksRetrieve");
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Webhook**](Webhook.md)
+[**Endpoint**](Endpoint.md)
 
 ### Authorization
 
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksUpdate"></a>
 # **v1WebhooksUpdate**
-> Webhook v1WebhooksUpdate(endpointId, updateWebhook)
+> Endpoint v1WebhooksUpdate(endpointId, updateEndpoint)
 
 Update webhook endpoint
 
@@ -359,9 +359,9 @@ public class Example {
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
     String endpointId = "endpointId_example"; // String | Endpoint ID
-    UpdateWebhook updateWebhook = new UpdateWebhook(); // UpdateWebhook | Request body
+    UpdateEndpoint updateEndpoint = new UpdateEndpoint(); // UpdateEndpoint | Request body
     try {
-      Webhook result = apiInstance.v1WebhooksUpdate(endpointId, updateWebhook);
+      Endpoint result = apiInstance.v1WebhooksUpdate(endpointId, updateEndpoint);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksUpdate");
@@ -379,11 +379,11 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpointId** | **String**| Endpoint ID |
- **updateWebhook** | [**UpdateWebhook**](UpdateWebhook.md)| Request body |
+ **updateEndpoint** | [**UpdateEndpoint**](UpdateEndpoint.md)| Request body |
 
 ### Return type
 
-[**Webhook**](Webhook.md)
+[**Endpoint**](Endpoint.md)
 
 ### Authorization
 

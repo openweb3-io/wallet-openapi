@@ -7,13 +7,13 @@ import (
 )
 
 type (
-	CursorWebhookOut = openapi.CursorPageWebhook
-	WebhookOut       = openapi.Webhook
-	CreateWebhookIn  = openapi.CreateWebhook
-	UpdateWebhookIn  = openapi.UpdateWebhook
+	CursorEndpointOut = openapi.CursorPageEndpoint
+	EndpointOut       = openapi.Endpoint
+	CreateEndpointIn  = openapi.CreateEndpoint
+	UpdateEndpointIn  = openapi.UpdateEndpoint
 )
 
-type Webhook struct {
+type WebhookEndpoint struct {
 	api *openapi.APIClient
 }
 
@@ -22,7 +22,7 @@ type ListWebhookOptions struct {
 	Limit  *int32
 }
 
-func (e *Webhook) List(ctx context.Context, options *ListWebhookOptions) (*CursorWebhookOut, error) {
+func (e *WebhookEndpoint) List(ctx context.Context, options *ListWebhookOptions) (*CursorEndpointOut, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhooksList(ctx)
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
@@ -38,7 +38,7 @@ func (e *Webhook) List(ctx context.Context, options *ListWebhookOptions) (*Curso
 	return &out, nil
 }
 
-func (e *Webhook) Retrieve(ctx context.Context, endpointId string) (*WebhookOut, error) {
+func (e *WebhookEndpoint) Retrieve(ctx context.Context, endpointId string) (*EndpointOut, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhooksRetrieve(ctx, endpointId)
 	out, res, err := req.Execute()
 	if err != nil {
@@ -47,9 +47,9 @@ func (e *Webhook) Retrieve(ctx context.Context, endpointId string) (*WebhookOut,
 	return &out, nil
 }
 
-func (e *Webhook) Create(ctx context.Context, createWebhookIn *CreateWebhookIn) (*WebhookOut, error) {
+func (e *WebhookEndpoint) Create(ctx context.Context, createEndpointIn *CreateEndpointIn) (*EndpointOut, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhooksCreate(ctx)
-	req = req.CreateWebhook(*createWebhookIn)
+	req = req.CreateEndpoint(*createEndpointIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -57,9 +57,9 @@ func (e *Webhook) Create(ctx context.Context, createWebhookIn *CreateWebhookIn) 
 	return &out, nil
 }
 
-func (e *Webhook) Update(ctx context.Context, endpointId string, updateWebhookIn *UpdateWebhookIn) (*WebhookOut, error) {
+func (e *WebhookEndpoint) Update(ctx context.Context, endpointId string, updateEndpointIn *UpdateEndpointIn) (*EndpointOut, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhooksUpdate(ctx, endpointId)
-	req = req.UpdateWebhook(*updateWebhookIn)
+	req = req.UpdateEndpoint(*updateEndpointIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -67,7 +67,7 @@ func (e *Webhook) Update(ctx context.Context, endpointId string, updateWebhookIn
 	return &out, nil
 }
 
-func (e *Webhook) Delete(ctx context.Context, endpointId string) error {
+func (e *WebhookEndpoint) Delete(ctx context.Context, endpointId string) error {
 	req := e.api.WebhookEndpointsApi.V1WebhooksDelete(ctx, endpointId)
 	_, res, err := req.Execute()
 	if err != nil {

@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * UpdateWebhook
+ * CreateEndpoint
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T16:10:15.657182+08:00[Asia/Shanghai]")
-public class UpdateWebhook {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-11T08:53:30.725356+08:00[Asia/Shanghai]")
+public class CreateEndpoint {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -41,17 +41,17 @@ public class UpdateWebhook {
   @SerializedName(SERIALIZED_NAME_DISABLED)
   private Boolean disabled;
 
-  public static final String SERIALIZED_NAME_EVENT_TYPES = "eventTypes";
-  @SerializedName(SERIALIZED_NAME_EVENT_TYPES)
-  private List<String> eventTypes = new ArrayList<>();
+  public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
+  @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
+  private List<String> filterTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
-  private Map<String, String> headers = new HashMap<>();
+  private Map<String, String> headers = null;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, Object> metadata = new HashMap<>();
+  private Map<String, Object> metadata = null;
 
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -62,18 +62,18 @@ public class UpdateWebhook {
   private String url;
 
 
-  public UpdateWebhook description(String description) {
+  public CreateEndpoint description(String description) {
     
     this.description = description;
     return this;
   }
 
    /**
-   * Get description
+   * The description of the webhook endpoint
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The description of the webhook endpoint")
 
   public String getDescription() {
     return description;
@@ -85,18 +85,18 @@ public class UpdateWebhook {
   }
 
 
-  public UpdateWebhook disabled(Boolean disabled) {
+  public CreateEndpoint disabled(Boolean disabled) {
     
     this.disabled = disabled;
     return this;
   }
 
    /**
-   * Get disabled
+   * The disabled of the webhook endpoint
    * @return disabled
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The disabled of the webhook endpoint")
 
   public Boolean getDisabled() {
     return disabled;
@@ -108,49 +108,53 @@ public class UpdateWebhook {
   }
 
 
-  public UpdateWebhook eventTypes(List<String> eventTypes) {
+  public CreateEndpoint filterTypes(List<String> filterTypes) {
     
-    this.eventTypes = eventTypes;
+    this.filterTypes = filterTypes;
     return this;
   }
 
-  public UpdateWebhook addEventTypesItem(String eventTypesItem) {
-    this.eventTypes.add(eventTypesItem);
+  public CreateEndpoint addFilterTypesItem(String filterTypesItem) {
+    this.filterTypes.add(filterTypesItem);
     return this;
   }
 
    /**
-   * Get eventTypes
-   * @return eventTypes
+   * The filter types of the webhook endpoint
+   * @return filterTypes
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The filter types of the webhook endpoint")
 
-  public List<String> getEventTypes() {
-    return eventTypes;
+  public List<String> getFilterTypes() {
+    return filterTypes;
   }
 
 
-  public void setEventTypes(List<String> eventTypes) {
-    this.eventTypes = eventTypes;
+  public void setFilterTypes(List<String> filterTypes) {
+    this.filterTypes = filterTypes;
   }
 
 
-  public UpdateWebhook headers(Map<String, String> headers) {
+  public CreateEndpoint headers(Map<String, String> headers) {
     
     this.headers = headers;
     return this;
   }
 
-  public UpdateWebhook putHeadersItem(String key, String headersItem) {
+  public CreateEndpoint putHeadersItem(String key, String headersItem) {
+    if (this.headers == null) {
+      this.headers = new HashMap<>();
+    }
     this.headers.put(key, headersItem);
     return this;
   }
 
    /**
-   * Get headers
+   * The headers of the webhook endpoint
    * @return headers
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The headers of the webhook endpoint")
 
   public Map<String, String> getHeaders() {
     return headers;
@@ -162,22 +166,26 @@ public class UpdateWebhook {
   }
 
 
-  public UpdateWebhook metadata(Map<String, Object> metadata) {
+  public CreateEndpoint metadata(Map<String, Object> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public UpdateWebhook putMetadataItem(String key, Object metadataItem) {
+  public CreateEndpoint putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
     this.metadata.put(key, metadataItem);
     return this;
   }
 
    /**
-   * Get metadata
+   * The metadata of the webhook endpoint
    * @return metadata
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The metadata of the webhook endpoint")
 
   public Map<String, Object> getMetadata() {
     return metadata;
@@ -189,18 +197,18 @@ public class UpdateWebhook {
   }
 
 
-  public UpdateWebhook uid(String uid) {
+  public CreateEndpoint uid(String uid) {
     
     this.uid = uid;
     return this;
   }
 
    /**
-   * Get uid
+   * The uid of the webhook endpoint
    * @return uid
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The uid of the webhook endpoint")
 
   public String getUid() {
     return uid;
@@ -212,18 +220,17 @@ public class UpdateWebhook {
   }
 
 
-  public UpdateWebhook url(String url) {
+  public CreateEndpoint url(String url) {
     
     this.url = url;
     return this;
   }
 
    /**
-   * Get url
+   * The url of the webhook endpoint
    * @return url
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "The url of the webhook endpoint")
 
   public String getUrl() {
     return url;
@@ -243,28 +250,28 @@ public class UpdateWebhook {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateWebhook updateWebhook = (UpdateWebhook) o;
-    return Objects.equals(this.description, updateWebhook.description) &&
-        Objects.equals(this.disabled, updateWebhook.disabled) &&
-        Objects.equals(this.eventTypes, updateWebhook.eventTypes) &&
-        Objects.equals(this.headers, updateWebhook.headers) &&
-        Objects.equals(this.metadata, updateWebhook.metadata) &&
-        Objects.equals(this.uid, updateWebhook.uid) &&
-        Objects.equals(this.url, updateWebhook.url);
+    CreateEndpoint createEndpoint = (CreateEndpoint) o;
+    return Objects.equals(this.description, createEndpoint.description) &&
+        Objects.equals(this.disabled, createEndpoint.disabled) &&
+        Objects.equals(this.filterTypes, createEndpoint.filterTypes) &&
+        Objects.equals(this.headers, createEndpoint.headers) &&
+        Objects.equals(this.metadata, createEndpoint.metadata) &&
+        Objects.equals(this.uid, createEndpoint.uid) &&
+        Objects.equals(this.url, createEndpoint.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, disabled, eventTypes, headers, metadata, uid, url);
+    return Objects.hash(description, disabled, filterTypes, headers, metadata, uid, url);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateWebhook {\n");
+    sb.append("class CreateEndpoint {\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
-    sb.append("    eventTypes: ").append(toIndentedString(eventTypes)).append("\n");
+    sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");

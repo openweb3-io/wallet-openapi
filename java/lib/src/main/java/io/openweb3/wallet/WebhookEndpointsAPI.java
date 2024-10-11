@@ -2,10 +2,7 @@ package io.openweb3.wallet;
 
 import io.openweb3.wallet.exceptions.ApiException;
 import io.openweb3.wallet.internal.api.WebhookEndpointsApi;
-import io.openweb3.wallet.models.CreateWebhook;
-import io.openweb3.wallet.models.UpdateWebhook;
-import io.openweb3.wallet.models.Webhook;
-import io.openweb3.wallet.models.CursorPageWebhook;
+import io.openweb3.wallet.models.*;
 
 public final class WebhookEndpointsAPI {
 	private final WebhookEndpointsApi api;
@@ -14,7 +11,7 @@ public final class WebhookEndpointsAPI {
 		api = new WebhookEndpointsApi();
 	}
 
-	public CursorPageWebhook list(final ListWebhookEndpointOptions options) throws ApiException {
+	public CursorPageEndpoint list(final ListWebhookEndpointOptions options) throws ApiException {
 		try {
 			return api.v1WebhooksList(options.getCursor(), options.getLimit());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
@@ -22,7 +19,7 @@ public final class WebhookEndpointsAPI {
 		}
 	}
 
-	public Webhook create(final String appId, final CreateWebhook req)
+	public Endpoint create(final CreateEndpoint req)
 			throws ApiException {
 		try {
 			return api.v1WebhooksCreate(req);
@@ -32,7 +29,7 @@ public final class WebhookEndpointsAPI {
 	}
 
 	// delete
-	public Webhook get(final String endpointId) throws ApiException {
+	public Endpoint get(final String endpointId) throws ApiException {
 		try {
 			return api.v1WebhooksDelete(endpointId);
 		} catch (io.openweb3.wallet.internal.ApiException e) {
@@ -41,7 +38,7 @@ public final class WebhookEndpointsAPI {
 	}
 
 	// delete
-	public Webhook delete(final String endpointId) throws ApiException {
+	public Endpoint delete(final String endpointId) throws ApiException {
 		try {
 			return api.v1WebhooksDelete(endpointId);
 		} catch (io.openweb3.wallet.internal.ApiException e) {
@@ -50,7 +47,7 @@ public final class WebhookEndpointsAPI {
 	}
 
 	// update
-	public Webhook update(final String endpointId, final UpdateWebhook req) throws ApiException {
+	public Endpoint update(final String endpointId, final UpdateEndpoint req) throws ApiException {
 		try {
 			return api.v1WebhooksUpdate(endpointId, req);
 		} catch (io.openweb3.wallet.internal.ApiException e) {

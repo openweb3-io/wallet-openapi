@@ -218,7 +218,7 @@ public class AddressesApi {
      * Build call for v1WalletsGetDepositAddress
      * @param walletId Wallet ID (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (required)
-     * @param network chain network, if not specified, the default network of the currency will be used. (optional)
+     * @param network chain network, if not specified, the default network of the currency will be used. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -284,6 +284,11 @@ public class AddressesApi {
             throw new ApiException("Missing the required parameter 'currency' when calling v1WalletsGetDepositAddress(Async)");
         }
         
+        // verify the required parameter 'network' is set
+        if (network == null) {
+            throw new ApiException("Missing the required parameter 'network' when calling v1WalletsGetDepositAddress(Async)");
+        }
+        
 
         okhttp3.Call localVarCall = v1WalletsGetDepositAddressCall(walletId, currency, network, _callback);
         return localVarCall;
@@ -295,7 +300,7 @@ public class AddressesApi {
      * Get wallet&#39;s deposit address
      * @param walletId Wallet ID (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (required)
-     * @param network chain network, if not specified, the default network of the currency will be used. (optional)
+     * @param network chain network, if not specified, the default network of the currency will be used. (required)
      * @return Address
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -318,7 +323,7 @@ public class AddressesApi {
      * Get wallet&#39;s deposit address
      * @param walletId Wallet ID (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (required)
-     * @param network chain network, if not specified, the default network of the currency will be used. (optional)
+     * @param network chain network, if not specified, the default network of the currency will be used. (required)
      * @return ApiResponse&lt;Address&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -342,7 +347,7 @@ public class AddressesApi {
      * Get wallet&#39;s deposit address
      * @param walletId Wallet ID (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (required)
-     * @param network chain network, if not specified, the default network of the currency will be used. (optional)
+     * @param network chain network, if not specified, the default network of the currency will be used. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

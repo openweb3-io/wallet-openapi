@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CurrencyPair
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T16:10:15.657182+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-11T08:53:30.725356+08:00[Asia/Shanghai]")
 public class CurrencyPair {
   public static final String SERIALIZED_NAME_BASE_CURRENCY = "base_currency";
   @SerializedName(SERIALIZED_NAME_BASE_CURRENCY)

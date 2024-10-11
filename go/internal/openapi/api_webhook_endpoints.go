@@ -30,15 +30,15 @@ type WebhookEndpointsApiService service
 type ApiV1WebhooksCreateRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointsApiService
-	createWebhook *CreateWebhook
+	createEndpoint *CreateEndpoint
 }
 
-func (r ApiV1WebhooksCreateRequest) CreateWebhook(createWebhook CreateWebhook) ApiV1WebhooksCreateRequest {
-	r.createWebhook = &createWebhook
+func (r ApiV1WebhooksCreateRequest) CreateEndpoint(createEndpoint CreateEndpoint) ApiV1WebhooksCreateRequest {
+	r.createEndpoint = &createEndpoint
 	return r
 }
 
-func (r ApiV1WebhooksCreateRequest) Execute() (Webhook, *_nethttp.Response, error) {
+func (r ApiV1WebhooksCreateRequest) Execute() (Endpoint, *_nethttp.Response, error) {
 	return r.ApiService.V1WebhooksCreateExecute(r)
 }
 
@@ -57,16 +57,16 @@ func (a *WebhookEndpointsApiService) V1WebhooksCreate(ctx _context.Context) ApiV
 
 /*
  * Execute executes the request
- * @return Webhook
+ * @return Endpoint
  */
-func (a *WebhookEndpointsApiService) V1WebhooksCreateExecute(r ApiV1WebhooksCreateRequest) (Webhook, *_nethttp.Response, error) {
+func (a *WebhookEndpointsApiService) V1WebhooksCreateExecute(r ApiV1WebhooksCreateRequest) (Endpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Webhook
+		localVarReturnValue  Endpoint
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointsApiService.V1WebhooksCreate")
@@ -74,13 +74,13 @@ func (a *WebhookEndpointsApiService) V1WebhooksCreateExecute(r ApiV1WebhooksCrea
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/endpoints"
+	localVarPath := localBasePath + "/api/v1/webhook/endpoints"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.createWebhook == nil {
-		return localVarReturnValue, nil, reportError("createWebhook is required and must be specified")
+	if r.createEndpoint == nil {
+		return localVarReturnValue, nil, reportError("createEndpoint is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (a *WebhookEndpointsApiService) V1WebhooksCreateExecute(r ApiV1WebhooksCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createWebhook
+	localVarPostBody = r.createEndpoint
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -193,7 +193,7 @@ type ApiV1WebhooksDeleteRequest struct {
 }
 
 
-func (r ApiV1WebhooksDeleteRequest) Execute() (Webhook, *_nethttp.Response, error) {
+func (r ApiV1WebhooksDeleteRequest) Execute() (Endpoint, *_nethttp.Response, error) {
 	return r.ApiService.V1WebhooksDeleteExecute(r)
 }
 
@@ -214,16 +214,16 @@ func (a *WebhookEndpointsApiService) V1WebhooksDelete(ctx _context.Context, endp
 
 /*
  * Execute executes the request
- * @return Webhook
+ * @return Endpoint
  */
-func (a *WebhookEndpointsApiService) V1WebhooksDeleteExecute(r ApiV1WebhooksDeleteRequest) (Webhook, *_nethttp.Response, error) {
+func (a *WebhookEndpointsApiService) V1WebhooksDeleteExecute(r ApiV1WebhooksDeleteRequest) (Endpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Webhook
+		localVarReturnValue  Endpoint
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointsApiService.V1WebhooksDelete")
@@ -231,7 +231,7 @@ func (a *WebhookEndpointsApiService) V1WebhooksDeleteExecute(r ApiV1WebhooksDele
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/endpoints/{endpointId}"
+	localVarPath := localBasePath + "/api/v1/webhook/endpoints/{endpointId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -355,7 +355,7 @@ func (r ApiV1WebhooksListRequest) Limit(limit int32) ApiV1WebhooksListRequest {
 	return r
 }
 
-func (r ApiV1WebhooksListRequest) Execute() (CursorPageWebhook, *_nethttp.Response, error) {
+func (r ApiV1WebhooksListRequest) Execute() (CursorPageEndpoint, *_nethttp.Response, error) {
 	return r.ApiService.V1WebhooksListExecute(r)
 }
 
@@ -374,16 +374,16 @@ func (a *WebhookEndpointsApiService) V1WebhooksList(ctx _context.Context) ApiV1W
 
 /*
  * Execute executes the request
- * @return CursorPageWebhook
+ * @return CursorPageEndpoint
  */
-func (a *WebhookEndpointsApiService) V1WebhooksListExecute(r ApiV1WebhooksListRequest) (CursorPageWebhook, *_nethttp.Response, error) {
+func (a *WebhookEndpointsApiService) V1WebhooksListExecute(r ApiV1WebhooksListRequest) (CursorPageEndpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CursorPageWebhook
+		localVarReturnValue  CursorPageEndpoint
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointsApiService.V1WebhooksList")
@@ -391,7 +391,7 @@ func (a *WebhookEndpointsApiService) V1WebhooksListExecute(r ApiV1WebhooksListRe
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/endpoints"
+	localVarPath := localBasePath + "/api/v1/webhook/endpoints"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -511,7 +511,7 @@ type ApiV1WebhooksRetrieveRequest struct {
 }
 
 
-func (r ApiV1WebhooksRetrieveRequest) Execute() (Webhook, *_nethttp.Response, error) {
+func (r ApiV1WebhooksRetrieveRequest) Execute() (Endpoint, *_nethttp.Response, error) {
 	return r.ApiService.V1WebhooksRetrieveExecute(r)
 }
 
@@ -532,16 +532,16 @@ func (a *WebhookEndpointsApiService) V1WebhooksRetrieve(ctx _context.Context, en
 
 /*
  * Execute executes the request
- * @return Webhook
+ * @return Endpoint
  */
-func (a *WebhookEndpointsApiService) V1WebhooksRetrieveExecute(r ApiV1WebhooksRetrieveRequest) (Webhook, *_nethttp.Response, error) {
+func (a *WebhookEndpointsApiService) V1WebhooksRetrieveExecute(r ApiV1WebhooksRetrieveRequest) (Endpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Webhook
+		localVarReturnValue  Endpoint
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointsApiService.V1WebhooksRetrieve")
@@ -549,7 +549,7 @@ func (a *WebhookEndpointsApiService) V1WebhooksRetrieveExecute(r ApiV1WebhooksRe
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/endpoints/{endpointId}"
+	localVarPath := localBasePath + "/api/v1/webhook/endpoints/{endpointId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -671,15 +671,15 @@ type ApiV1WebhooksUpdateRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointsApiService
 	endpointId string
-	updateWebhook *UpdateWebhook
+	updateEndpoint *UpdateEndpoint
 }
 
-func (r ApiV1WebhooksUpdateRequest) UpdateWebhook(updateWebhook UpdateWebhook) ApiV1WebhooksUpdateRequest {
-	r.updateWebhook = &updateWebhook
+func (r ApiV1WebhooksUpdateRequest) UpdateEndpoint(updateEndpoint UpdateEndpoint) ApiV1WebhooksUpdateRequest {
+	r.updateEndpoint = &updateEndpoint
 	return r
 }
 
-func (r ApiV1WebhooksUpdateRequest) Execute() (Webhook, *_nethttp.Response, error) {
+func (r ApiV1WebhooksUpdateRequest) Execute() (Endpoint, *_nethttp.Response, error) {
 	return r.ApiService.V1WebhooksUpdateExecute(r)
 }
 
@@ -700,16 +700,16 @@ func (a *WebhookEndpointsApiService) V1WebhooksUpdate(ctx _context.Context, endp
 
 /*
  * Execute executes the request
- * @return Webhook
+ * @return Endpoint
  */
-func (a *WebhookEndpointsApiService) V1WebhooksUpdateExecute(r ApiV1WebhooksUpdateRequest) (Webhook, *_nethttp.Response, error) {
+func (a *WebhookEndpointsApiService) V1WebhooksUpdateExecute(r ApiV1WebhooksUpdateRequest) (Endpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Webhook
+		localVarReturnValue  Endpoint
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointsApiService.V1WebhooksUpdate")
@@ -717,14 +717,14 @@ func (a *WebhookEndpointsApiService) V1WebhooksUpdateExecute(r ApiV1WebhooksUpda
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/endpoints/{endpointId}"
+	localVarPath := localBasePath + "/api/v1/webhook/endpoints/{endpointId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.updateWebhook == nil {
-		return localVarReturnValue, nil, reportError("updateWebhook is required and must be specified")
+	if r.updateEndpoint == nil {
+		return localVarReturnValue, nil, reportError("updateEndpoint is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -745,7 +745,7 @@ func (a *WebhookEndpointsApiService) V1WebhooksUpdateExecute(r ApiV1WebhooksUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateWebhook
+	localVarPostBody = r.updateEndpoint
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

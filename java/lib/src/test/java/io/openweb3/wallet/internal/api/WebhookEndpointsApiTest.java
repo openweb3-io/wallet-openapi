@@ -14,11 +14,11 @@
 package io.openweb3.wallet.internal.api;
 
 import io.openweb3.wallet.internal.ApiException;
-import io.openweb3.wallet.models.CreateWebhook;
-import io.openweb3.wallet.models.CursorPageWebhook;
+import io.openweb3.wallet.models.CreateEndpoint;
+import io.openweb3.wallet.models.CursorPageEndpoint;
+import io.openweb3.wallet.models.Endpoint;
 import io.openweb3.wallet.models.Error;
-import io.openweb3.wallet.models.UpdateWebhook;
-import io.openweb3.wallet.models.Webhook;
+import io.openweb3.wallet.models.UpdateEndpoint;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -46,8 +46,8 @@ public class WebhookEndpointsApiTest {
      */
     @Test
     public void v1WebhooksCreateTest() throws ApiException {
-        CreateWebhook createWebhook = null;
-        Webhook response = api.v1WebhooksCreate(createWebhook);
+        CreateEndpoint createEndpoint = null;
+        Endpoint response = api.v1WebhooksCreate(createEndpoint);
 
         // TODO: test validations
     }
@@ -63,7 +63,7 @@ public class WebhookEndpointsApiTest {
     @Test
     public void v1WebhooksDeleteTest() throws ApiException {
         String endpointId = null;
-        Webhook response = api.v1WebhooksDelete(endpointId);
+        Endpoint response = api.v1WebhooksDelete(endpointId);
 
         // TODO: test validations
     }
@@ -80,7 +80,7 @@ public class WebhookEndpointsApiTest {
     public void v1WebhooksListTest() throws ApiException {
         String cursor = null;
         Integer limit = null;
-        CursorPageWebhook response = api.v1WebhooksList(cursor, limit);
+        CursorPageEndpoint response = api.v1WebhooksList(cursor, limit);
 
         // TODO: test validations
     }
@@ -96,7 +96,7 @@ public class WebhookEndpointsApiTest {
     @Test
     public void v1WebhooksRetrieveTest() throws ApiException {
         String endpointId = null;
-        Webhook response = api.v1WebhooksRetrieve(endpointId);
+        Endpoint response = api.v1WebhooksRetrieve(endpointId);
 
         // TODO: test validations
     }
@@ -112,8 +112,8 @@ public class WebhookEndpointsApiTest {
     @Test
     public void v1WebhooksUpdateTest() throws ApiException {
         String endpointId = null;
-        UpdateWebhook updateWebhook = null;
-        Webhook response = api.v1WebhooksUpdate(endpointId, updateWebhook);
+        UpdateEndpoint updateEndpoint = null;
+        Endpoint response = api.v1WebhooksUpdate(endpointId, updateEndpoint);
 
         // TODO: test validations
     }

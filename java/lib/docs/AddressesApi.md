@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **walletId** | **String**| Wallet ID |
  **currency** | **String**| The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). |
- **network** | **String**| chain network, if not specified, the default network of the currency will be used. | [optional]
+ **network** | **String**| chain network, if not specified, the default network of the currency will be used. |
 
 ### Return type
 

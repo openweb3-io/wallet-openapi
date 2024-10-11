@@ -14,48 +14,56 @@ import (
 	"encoding/json"
 )
 
-// Webhook struct for Webhook
-type Webhook struct {
+// Endpoint struct for Endpoint
+type Endpoint struct {
+	// The created at of the webhook endpoint
 	CreatedAt string `json:"createdAt"`
+	// The description of the webhook endpoint
 	Description string `json:"description"`
+	// The disabled of the webhook endpoint
 	Disabled bool `json:"disabled"`
-	EventTypes []string `json:"eventTypes"`
+	// The filter of the webhook endpoint
 	Filter string `json:"filter"`
-	Headers map[string]string `json:"headers"`
+	// The filter types of the webhook endpoint
+	FilterTypes []string `json:"filterTypes"`
+	// The headers of the webhook endpoint
+	Headers map[string]string `json:"headers,omitempty"`
+	// The id of the webhook endpoint
 	Id string `json:"id"`
-	Metadata map[string]interface{} `json:"metadata"`
+	// The metadata of the webhook endpoint
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	// The uid of the webhook endpoint
 	Uid *string `json:"uid,omitempty"`
+	// The url of the webhook endpoint
 	Url string `json:"url"`
 }
 
-// NewWebhook instantiates a new Webhook object
+// NewEndpoint instantiates a new Endpoint object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhook(createdAt string, description string, disabled bool, eventTypes []string, filter string, headers map[string]string, id string, metadata map[string]interface{}, url string) *Webhook {
-	this := Webhook{}
+func NewEndpoint(createdAt string, description string, disabled bool, filter string, filterTypes []string, id string, url string) *Endpoint {
+	this := Endpoint{}
 	this.CreatedAt = createdAt
 	this.Description = description
 	this.Disabled = disabled
-	this.EventTypes = eventTypes
 	this.Filter = filter
-	this.Headers = headers
+	this.FilterTypes = filterTypes
 	this.Id = id
-	this.Metadata = metadata
 	this.Url = url
 	return &this
 }
 
-// NewWebhookWithDefaults instantiates a new Webhook object
+// NewEndpointWithDefaults instantiates a new Endpoint object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewWebhookWithDefaults() *Webhook {
-	this := Webhook{}
+func NewEndpointWithDefaults() *Endpoint {
+	this := Endpoint{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *Webhook) GetCreatedAt() string {
+func (o *Endpoint) GetCreatedAt() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -66,7 +74,7 @@ func (o *Webhook) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetCreatedAtOk() (*string, bool) {
+func (o *Endpoint) GetCreatedAtOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -74,12 +82,12 @@ func (o *Webhook) GetCreatedAtOk() (*string, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *Webhook) SetCreatedAt(v string) {
+func (o *Endpoint) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
 
 // GetDescription returns the Description field value
-func (o *Webhook) GetDescription() string {
+func (o *Endpoint) GetDescription() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -90,7 +98,7 @@ func (o *Webhook) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetDescriptionOk() (*string, bool) {
+func (o *Endpoint) GetDescriptionOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -98,12 +106,12 @@ func (o *Webhook) GetDescriptionOk() (*string, bool) {
 }
 
 // SetDescription sets field value
-func (o *Webhook) SetDescription(v string) {
+func (o *Endpoint) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetDisabled returns the Disabled field value
-func (o *Webhook) GetDisabled() bool {
+func (o *Endpoint) GetDisabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -114,7 +122,7 @@ func (o *Webhook) GetDisabled() bool {
 
 // GetDisabledOk returns a tuple with the Disabled field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetDisabledOk() (*bool, bool) {
+func (o *Endpoint) GetDisabledOk() (*bool, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -122,36 +130,12 @@ func (o *Webhook) GetDisabledOk() (*bool, bool) {
 }
 
 // SetDisabled sets field value
-func (o *Webhook) SetDisabled(v bool) {
+func (o *Endpoint) SetDisabled(v bool) {
 	o.Disabled = v
 }
 
-// GetEventTypes returns the EventTypes field value
-func (o *Webhook) GetEventTypes() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.EventTypes
-}
-
-// GetEventTypesOk returns a tuple with the EventTypes field value
-// and a boolean to check if the value has been set.
-func (o *Webhook) GetEventTypesOk() (*[]string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.EventTypes, true
-}
-
-// SetEventTypes sets field value
-func (o *Webhook) SetEventTypes(v []string) {
-	o.EventTypes = v
-}
-
 // GetFilter returns the Filter field value
-func (o *Webhook) GetFilter() string {
+func (o *Endpoint) GetFilter() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -162,7 +146,7 @@ func (o *Webhook) GetFilter() string {
 
 // GetFilterOk returns a tuple with the Filter field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetFilterOk() (*string, bool) {
+func (o *Endpoint) GetFilterOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -170,36 +154,69 @@ func (o *Webhook) GetFilterOk() (*string, bool) {
 }
 
 // SetFilter sets field value
-func (o *Webhook) SetFilter(v string) {
+func (o *Endpoint) SetFilter(v string) {
 	o.Filter = v
 }
 
-// GetHeaders returns the Headers field value
-func (o *Webhook) GetHeaders() map[string]string {
+// GetFilterTypes returns the FilterTypes field value
+func (o *Endpoint) GetFilterTypes() []string {
 	if o == nil {
-		var ret map[string]string
+		var ret []string
 		return ret
 	}
 
+	return o.FilterTypes
+}
+
+// GetFilterTypesOk returns a tuple with the FilterTypes field value
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetFilterTypesOk() (*[]string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FilterTypes, true
+}
+
+// SetFilterTypes sets field value
+func (o *Endpoint) SetFilterTypes(v []string) {
+	o.FilterTypes = v
+}
+
+// GetHeaders returns the Headers field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Endpoint) GetHeaders() map[string]string {
+	if o == nil  {
+		var ret map[string]string
+		return ret
+	}
 	return o.Headers
 }
 
-// GetHeadersOk returns a tuple with the Headers field value
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil  {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Endpoint) GetHeadersOk() (*map[string]string, bool) {
+	if o == nil || o.Headers == nil {
 		return nil, false
 	}
 	return &o.Headers, true
 }
 
-// SetHeaders sets field value
-func (o *Webhook) SetHeaders(v map[string]string) {
+// HasHeaders returns a boolean if a field has been set.
+func (o *Endpoint) HasHeaders() bool {
+	if o != nil && o.Headers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
+func (o *Endpoint) SetHeaders(v map[string]string) {
 	o.Headers = v
 }
 
 // GetId returns the Id field value
-func (o *Webhook) GetId() string {
+func (o *Endpoint) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -210,7 +227,7 @@ func (o *Webhook) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetIdOk() (*string, bool) {
+func (o *Endpoint) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -218,36 +235,45 @@ func (o *Webhook) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *Webhook) SetId(v string) {
+func (o *Endpoint) SetId(v string) {
 	o.Id = v
 }
 
-// GetMetadata returns the Metadata field value
-func (o *Webhook) GetMetadata() map[string]interface{} {
-	if o == nil {
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Endpoint) GetMetadata() map[string]interface{} {
+	if o == nil  {
 		var ret map[string]interface{}
 		return ret
 	}
-
 	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil  {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Endpoint) GetMetadataOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
 	return &o.Metadata, true
 }
 
-// SetMetadata sets field value
-func (o *Webhook) SetMetadata(v map[string]interface{}) {
+// HasMetadata returns a boolean if a field has been set.
+func (o *Endpoint) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Endpoint) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
 // GetUid returns the Uid field value if set, zero value otherwise.
-func (o *Webhook) GetUid() string {
+func (o *Endpoint) GetUid() string {
 	if o == nil || o.Uid == nil {
 		var ret string
 		return ret
@@ -257,7 +283,7 @@ func (o *Webhook) GetUid() string {
 
 // GetUidOk returns a tuple with the Uid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetUidOk() (*string, bool) {
+func (o *Endpoint) GetUidOk() (*string, bool) {
 	if o == nil || o.Uid == nil {
 		return nil, false
 	}
@@ -265,7 +291,7 @@ func (o *Webhook) GetUidOk() (*string, bool) {
 }
 
 // HasUid returns a boolean if a field has been set.
-func (o *Webhook) HasUid() bool {
+func (o *Endpoint) HasUid() bool {
 	if o != nil && o.Uid != nil {
 		return true
 	}
@@ -274,12 +300,12 @@ func (o *Webhook) HasUid() bool {
 }
 
 // SetUid gets a reference to the given string and assigns it to the Uid field.
-func (o *Webhook) SetUid(v string) {
+func (o *Endpoint) SetUid(v string) {
 	o.Uid = &v
 }
 
 // GetUrl returns the Url field value
-func (o *Webhook) GetUrl() string {
+func (o *Endpoint) GetUrl() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -290,7 +316,7 @@ func (o *Webhook) GetUrl() string {
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *Webhook) GetUrlOk() (*string, bool) {
+func (o *Endpoint) GetUrlOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -298,11 +324,11 @@ func (o *Webhook) GetUrlOk() (*string, bool) {
 }
 
 // SetUrl sets field value
-func (o *Webhook) SetUrl(v string) {
+func (o *Endpoint) SetUrl(v string) {
 	o.Url = v
 }
 
-func (o Webhook) MarshalJSON() ([]byte, error) {
+func (o Endpoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["createdAt"] = o.CreatedAt
@@ -314,18 +340,18 @@ func (o Webhook) MarshalJSON() ([]byte, error) {
 		toSerialize["disabled"] = o.Disabled
 	}
 	if true {
-		toSerialize["eventTypes"] = o.EventTypes
-	}
-	if true {
 		toSerialize["filter"] = o.Filter
 	}
 	if true {
+		toSerialize["filterTypes"] = o.FilterTypes
+	}
+	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
 	}
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if true {
+	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Uid != nil {
@@ -337,38 +363,38 @@ func (o Webhook) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableWebhook struct {
-	value *Webhook
+type NullableEndpoint struct {
+	value *Endpoint
 	isSet bool
 }
 
-func (v NullableWebhook) Get() *Webhook {
+func (v NullableEndpoint) Get() *Endpoint {
 	return v.value
 }
 
-func (v *NullableWebhook) Set(val *Webhook) {
+func (v *NullableEndpoint) Set(val *Endpoint) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableWebhook) IsSet() bool {
+func (v NullableEndpoint) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableWebhook) Unset() {
+func (v *NullableEndpoint) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableWebhook(val *Webhook) *NullableWebhook {
-	return &NullableWebhook{value: val, isSet: true}
+func NewNullableEndpoint(val *Endpoint) *NullableEndpoint {
+	return &NullableEndpoint{value: val, isSet: true}
 }
 
-func (v NullableWebhook) MarshalJSON() ([]byte, error) {
+func (v NullableEndpoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableWebhook) UnmarshalJSON(src []byte) error {
+func (v *NullableEndpoint) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

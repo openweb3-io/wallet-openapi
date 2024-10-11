@@ -28,12 +28,13 @@ type (
 		HTTPClient *http.Client
 	}
 	WalletClient struct {
-		Currency    *Currency
-		Rate        *Rate
-		Address     *Address
-		Transaction *Transaction
-		Wallet      *Wallet
-		Webhook     *Webhook
+		Currency          *Currency
+		Rate              *Rate
+		Address           *Address
+		Transaction       *Transaction
+		Wallet            *Wallet
+		WebhookEndpoint   *WebhookEndpoint
+		WebhookEventTypes *WebhookEventTypes
 	}
 )
 
@@ -108,7 +109,10 @@ func New(options *WalletClientOptions) *WalletClient {
 		Wallet: &Wallet{
 			api: apiClient,
 		},
-		Webhook: &Webhook{
+		WebhookEndpoint: &WebhookEndpoint{
+			api: apiClient,
+		},
+		WebhookEventTypes: &WebhookEventTypes{
 			api: apiClient,
 		},
 	}
