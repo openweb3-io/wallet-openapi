@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2024-10-11T20:19:08.648184+08:00[Asia/Shanghai]
+  - Build date: 2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 
@@ -129,6 +129,7 @@ Class | Method | HTTP request | Description
 *AddressesApi* | [**v1WalletsListDepositAddresses**](docs/AddressesApi.md#v1WalletsListDepositAddresses) | **GET** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
 *CurrenciesApi* | [**v1CurrenciesList**](docs/CurrenciesApi.md#v1CurrenciesList) | **GET** /api/v1/currencies | List currencies
 *CurrenciesApi* | [**v1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1CurrenciesRetrieve) | **GET** /api/v1/currencies/{code} | Get Currency
+*NetworksApi* | [**v1NetworksList**](docs/NetworksApi.md#v1NetworksList) | **GET** /api/v1/networks | List Networks
 *RatesApi* | [**v1RatesEstimate**](docs/RatesApi.md#v1RatesEstimate) | **GET** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**v1RatesList**](docs/RatesApi.md#v1RatesList) | **POST** /api/v1/rates | List rates
 *TransactionsApi* | [**v1TransactionsList**](docs/TransactionsApi.md#v1TransactionsList) | **GET** /api/v1/transactions | List transactions
@@ -152,6 +153,7 @@ Class | Method | HTTP request | Description
 
  - [Account](docs/Account.md)
  - [Address](docs/Address.md)
+ - [ChainNetwork](docs/ChainNetwork.md)
  - [CreateEndpoint](docs/CreateEndpoint.md)
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
@@ -163,6 +165,7 @@ Class | Method | HTTP request | Description
  - [CurrencyPair](docs/CurrencyPair.md)
  - [CursorPageAccount](docs/CursorPageAccount.md)
  - [CursorPageAddress](docs/CursorPageAddress.md)
+ - [CursorPageChainNetwork](docs/CursorPageChainNetwork.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)

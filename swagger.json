@@ -233,6 +233,76 @@
                 }
             }
         },
+        "/api/v1/networks": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List networks",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "networks"
+                ],
+                "summary": "List Networks",
+                "operationId": "v1.networks.list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CursorPage-ChainNetwork"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/rates": {
             "post": {
                 "security": [
@@ -418,13 +488,11 @@
                     },
                     {
                         "enum": [
-                            "UNKNOWN",
                             "OUT",
                             "IN"
                         ],
                         "type": "string",
                         "x-enum-varnames": [
-                            "TransactionDirectionUnknown",
                             "TransactionDirectionOut",
                             "TransactionDirectionIn"
                         ],
@@ -1600,6 +1668,35 @@
                 }
             }
         },
+        "ChainNetwork": {
+            "type": "object",
+            "properties": {
+                "explorer_address_url": {
+                    "type": "string"
+                },
+                "explorer_block_url": {
+                    "type": "string"
+                },
+                "explorer_tx_url": {
+                    "type": "string"
+                },
+                "icon_url": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "network": {
+                    "type": "string"
+                },
+                "network_id": {
+                    "type": "string"
+                }
+            }
+        },
         "CreateEndpoint": {
             "type": "object",
             "required": [
@@ -2018,6 +2115,30 @@
                 }
             }
         },
+        "CursorPage-ChainNetwork": {
+            "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
+            "properties": {
+                "has_next": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ChainNetwork"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
         "CursorPage-Currency": {
             "type": "object",
             "required": [
@@ -2365,12 +2486,10 @@
         "TransactionDirection": {
             "type": "string",
             "enum": [
-                "UNKNOWN",
                 "OUT",
                 "IN"
             ],
             "x-enum-varnames": [
-                "TransactionDirectionUnknown",
                 "TransactionDirectionOut",
                 "TransactionDirectionIn"
             ]

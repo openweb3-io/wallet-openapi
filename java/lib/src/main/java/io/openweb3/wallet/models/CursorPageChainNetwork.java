@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.openweb3.wallet.models.Endpoint;
+import io.openweb3.wallet.models.ChainNetwork;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,17 +28,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CursorPageEndpoint
+ * CursorPageChainNetwork
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]")
-public class CursorPageEndpoint {
+public class CursorPageChainNetwork {
   public static final String SERIALIZED_NAME_HAS_NEXT = "has_next";
   @SerializedName(SERIALIZED_NAME_HAS_NEXT)
   private Boolean hasNext;
 
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<Endpoint> items = new ArrayList<>();
+  private List<ChainNetwork> items = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_CURSOR = "next_cursor";
   @SerializedName(SERIALIZED_NAME_NEXT_CURSOR)
@@ -49,7 +49,7 @@ public class CursorPageEndpoint {
   private String prevCursor;
 
 
-  public CursorPageEndpoint hasNext(Boolean hasNext) {
+  public CursorPageChainNetwork hasNext(Boolean hasNext) {
     
     this.hasNext = hasNext;
     return this;
@@ -71,13 +71,13 @@ public class CursorPageEndpoint {
   }
 
 
-  public CursorPageEndpoint items(List<Endpoint> items) {
+  public CursorPageChainNetwork items(List<ChainNetwork> items) {
     
     this.items = items;
     return this;
   }
 
-  public CursorPageEndpoint addItemsItem(Endpoint itemsItem) {
+  public CursorPageChainNetwork addItemsItem(ChainNetwork itemsItem) {
     this.items.add(itemsItem);
     return this;
   }
@@ -88,17 +88,17 @@ public class CursorPageEndpoint {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<Endpoint> getItems() {
+  public List<ChainNetwork> getItems() {
     return items;
   }
 
 
-  public void setItems(List<Endpoint> items) {
+  public void setItems(List<ChainNetwork> items) {
     this.items = items;
   }
 
 
-  public CursorPageEndpoint nextCursor(String nextCursor) {
+  public CursorPageChainNetwork nextCursor(String nextCursor) {
     
     this.nextCursor = nextCursor;
     return this;
@@ -121,7 +121,7 @@ public class CursorPageEndpoint {
   }
 
 
-  public CursorPageEndpoint prevCursor(String prevCursor) {
+  public CursorPageChainNetwork prevCursor(String prevCursor) {
     
     this.prevCursor = prevCursor;
     return this;
@@ -152,11 +152,11 @@ public class CursorPageEndpoint {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CursorPageEndpoint cursorPageEndpoint = (CursorPageEndpoint) o;
-    return Objects.equals(this.hasNext, cursorPageEndpoint.hasNext) &&
-        Objects.equals(this.items, cursorPageEndpoint.items) &&
-        Objects.equals(this.nextCursor, cursorPageEndpoint.nextCursor) &&
-        Objects.equals(this.prevCursor, cursorPageEndpoint.prevCursor);
+    CursorPageChainNetwork cursorPageChainNetwork = (CursorPageChainNetwork) o;
+    return Objects.equals(this.hasNext, cursorPageChainNetwork.hasNext) &&
+        Objects.equals(this.items, cursorPageChainNetwork.items) &&
+        Objects.equals(this.nextCursor, cursorPageChainNetwork.nextCursor) &&
+        Objects.equals(this.prevCursor, cursorPageChainNetwork.prevCursor);
   }
 
   @Override
@@ -167,7 +167,7 @@ public class CursorPageEndpoint {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CursorPageEndpoint {\n");
+    sb.append("class CursorPageChainNetwork {\n");
     sb.append("    hasNext: ").append(toIndentedString(hasNext)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    nextCursor: ").append(toIndentedString(nextCursor)).append("\n");

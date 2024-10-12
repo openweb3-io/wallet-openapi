@@ -2,10 +2,10 @@ package io.openweb3.wallet;
 
 import io.openweb3.wallet.exceptions.VerificationException;
 
-public final class WebhookVerifier {
+public final class WebhookClient {
 	private final String publicKey;
 
-	public WebhookVerifier(final String publicKey) {
+	public WebhookClient(final String publicKey) {
 		this.publicKey = publicKey;
 	}
 

@@ -83,6 +83,7 @@ Class | Method | HTTP request | Description
 *AddressesApi* | [**V1WalletsListDepositAddresses**](docs/AddressesApi.md#v1walletslistdepositaddresses) | **Get** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
 *CurrenciesApi* | [**V1CurrenciesList**](docs/CurrenciesApi.md#v1currencieslist) | **Get** /api/v1/currencies | List currencies
 *CurrenciesApi* | [**V1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1currenciesretrieve) | **Get** /api/v1/currencies/{code} | Get Currency
+*NetworksApi* | [**V1NetworksList**](docs/NetworksApi.md#v1networkslist) | **Get** /api/v1/networks | List Networks
 *RatesApi* | [**V1RatesEstimate**](docs/RatesApi.md#v1ratesestimate) | **Get** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/rates | List rates
 *TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/transactions | List transactions
@@ -106,6 +107,7 @@ Class | Method | HTTP request | Description
 
  - [Account](docs/Account.md)
  - [Address](docs/Address.md)
+ - [ChainNetwork](docs/ChainNetwork.md)
  - [CreateEndpoint](docs/CreateEndpoint.md)
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
@@ -117,6 +119,7 @@ Class | Method | HTTP request | Description
  - [CurrencyPair](docs/CurrencyPair.md)
  - [CursorPageAccount](docs/CursorPageAccount.md)
  - [CursorPageAddress](docs/CursorPageAddress.md)
+ - [CursorPageChainNetwork](docs/CursorPageChainNetwork.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)

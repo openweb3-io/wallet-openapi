@@ -30,25 +30,6 @@ final class Utils {
         return new ApiException(e.getMessage(), e, e.getCode(), e.getResponseHeaders(), e.getResponseBody());
     }
 
-    public static String getStringFromFile(String filePath) throws Exception {
-        FileInputStream in = new FileInputStream(filePath);
-        InputStreamReader inReader = new InputStreamReader(in, StandardCharsets.UTF_8);
-        BufferedReader bf = new BufferedReader(inReader);
-        StringBuilder sb = new StringBuilder();
-        String line;
-        do {
-            line = bf.readLine();
-            if (line != null) {
-                if (!sb.isEmpty()) {
-                    sb.append("\n");
-                }
-                sb.append(line);
-            }
-        } while (line != null);
-
-        return sb.toString();
-    }
-
     public static String toHex(byte[] array) {
         BigInteger bi = new BigInteger(1, array);
         String hex = bi.toString(16);

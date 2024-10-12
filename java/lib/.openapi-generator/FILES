@@ -7,6 +7,7 @@ build.sbt
 docs/Account.md
 docs/Address.md
 docs/AddressesApi.md
+docs/ChainNetwork.md
 docs/CreateEndpoint.md
 docs/CreateTransferRequest.md
 docs/CreateTransferResponse.md
@@ -19,6 +20,7 @@ docs/CurrencyNetwork.md
 docs/CurrencyPair.md
 docs/CursorPageAccount.md
 docs/CursorPageAddress.md
+docs/CursorPageChainNetwork.md
 docs/CursorPageCurrency.md
 docs/CursorPageEndpoint.md
 docs/CursorPageTransaction.md
@@ -29,6 +31,7 @@ docs/EstimateResponse.md
 docs/EventType.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
+docs/NetworksApi.md
 docs/Rate.md
 docs/RatesApi.md
 docs/Transaction.md
@@ -65,6 +68,7 @@ src/main/java/io/openweb3/wallet/internal/ServerVariable.java
 src/main/java/io/openweb3/wallet/internal/StringUtil.java
 src/main/java/io/openweb3/wallet/internal/api/AddressesApi.java
 src/main/java/io/openweb3/wallet/internal/api/CurrenciesApi.java
+src/main/java/io/openweb3/wallet/internal/api/NetworksApi.java
 src/main/java/io/openweb3/wallet/internal/api/RatesApi.java
 src/main/java/io/openweb3/wallet/internal/api/TransactionsApi.java
 src/main/java/io/openweb3/wallet/internal/api/WalletsApi.java
@@ -76,6 +80,7 @@ src/main/java/io/openweb3/wallet/internal/auth/HttpBasicAuth.java
 src/main/java/io/openweb3/wallet/internal/auth/HttpBearerAuth.java
 src/main/java/io/openweb3/wallet/models/Account.java
 src/main/java/io/openweb3/wallet/models/Address.java
+src/main/java/io/openweb3/wallet/models/ChainNetwork.java
 src/main/java/io/openweb3/wallet/models/CreateEndpoint.java
 src/main/java/io/openweb3/wallet/models/CreateTransferRequest.java
 src/main/java/io/openweb3/wallet/models/CreateTransferResponse.java
@@ -87,6 +92,7 @@ src/main/java/io/openweb3/wallet/models/CurrencyNetwork.java
 src/main/java/io/openweb3/wallet/models/CurrencyPair.java
 src/main/java/io/openweb3/wallet/models/CursorPageAccount.java
 src/main/java/io/openweb3/wallet/models/CursorPageAddress.java
+src/main/java/io/openweb3/wallet/models/CursorPageChainNetwork.java
 src/main/java/io/openweb3/wallet/models/CursorPageCurrency.java
 src/main/java/io/openweb3/wallet/models/CursorPageEndpoint.java
 src/main/java/io/openweb3/wallet/models/CursorPageTransaction.java
@@ -104,3 +110,6 @@ src/main/java/io/openweb3/wallet/models/TransactionStatus.java
 src/main/java/io/openweb3/wallet/models/UpdateEndpoint.java
 src/main/java/io/openweb3/wallet/models/UpdateWalletRequest.java
 src/main/java/io/openweb3/wallet/models/Wallet.java
+src/test/java/io/openweb3/wallet/internal/api/NetworksApiTest.java
+src/test/java/io/openweb3/wallet/models/ChainNetworkTest.java
+src/test/java/io/openweb3/wallet/models/CursorPageChainNetworkTest.java

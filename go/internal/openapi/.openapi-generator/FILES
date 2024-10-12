@@ -4,6 +4,7 @@ README.md
 api/openapi.yaml
 api_addresses.go
 api_currencies.go
+api_networks.go
 api_rates.go
 api_transactions.go
 api_wallets.go
@@ -14,6 +15,7 @@ configuration.go
 docs/Account.md
 docs/Address.md
 docs/AddressesApi.md
+docs/ChainNetwork.md
 docs/CreateEndpoint.md
 docs/CreateTransferRequest.md
 docs/CreateTransferResponse.md
@@ -26,6 +28,7 @@ docs/CurrencyNetwork.md
 docs/CurrencyPair.md
 docs/CursorPageAccount.md
 docs/CursorPageAddress.md
+docs/CursorPageChainNetwork.md
 docs/CursorPageCurrency.md
 docs/CursorPageEndpoint.md
 docs/CursorPageTransaction.md
@@ -36,6 +39,7 @@ docs/EstimateResponse.md
 docs/EventType.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
+docs/NetworksApi.md
 docs/Rate.md
 docs/RatesApi.md
 docs/Transaction.md
@@ -53,6 +57,7 @@ go.mod
 go.sum
 model_account.go
 model_address.go
+model_chain_network.go
 model_create_endpoint.go
 model_create_transfer_request.go
 model_create_transfer_response.go
@@ -64,6 +69,7 @@ model_currency_network.go
 model_currency_pair.go
 model_cursor_page_account.go
 model_cursor_page_address.go
+model_cursor_page_chain_network.go
 model_cursor_page_currency.go
 model_cursor_page_endpoint.go
 model_cursor_page_transaction.go

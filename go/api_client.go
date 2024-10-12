@@ -28,6 +28,7 @@ type (
 		HTTPClient *http.Client
 	}
 	APIClient struct {
+		ChainNetwork      *ChainNetwork
 		Currency          *Currency
 		Rate              *Rate
 		Address           *Address
@@ -94,6 +95,9 @@ func New(options *APIClientOptions) *APIClient {
 	apiClient := openapi.NewAPIClient(conf)
 
 	return &APIClient{
+		ChainNetwork: &ChainNetwork{
+			api: apiClient,
+		},
 		Currency: &Currency{
 			api: apiClient,
 		},

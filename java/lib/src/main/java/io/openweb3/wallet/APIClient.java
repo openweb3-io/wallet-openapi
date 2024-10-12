@@ -22,6 +22,7 @@ public final class APIClient {
 	private final TransactionsAPI transaction;
 	private final WalletsAPI wallet;
 	private final AddressesAPI address;
+	private final NetworksAPI network;
 
 	public APIClient(final String apikey, final String privateKeyPath) throws Exception {
 		this(new APIClientOptions().apiKey(apikey).secret(privateKeyPath));
@@ -95,6 +96,7 @@ public final class APIClient {
 		this.currency = new CurrenciesAPI();
 		this.rate = new RatesAPI();
 		this.webhookEndpoint = new WebhookEndpointsAPI();
+		this.network = new NetworksAPI();
 	}
 
 	private Interceptor getProgressInterceptor() {
@@ -137,5 +139,9 @@ public final class APIClient {
 
 	public WebhookEndpointsAPI getEndpoint() {
 		return webhookEndpoint;
+	}
+
+	public NetworksAPI getNetwork() {
+		return network;
 	}
 }
