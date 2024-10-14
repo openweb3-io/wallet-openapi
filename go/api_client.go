@@ -53,7 +53,9 @@ func New(options *APIClientOptions) *APIClient {
 		req.Header.Set("X-Request-Time", requestTime)
 
 		var dataToBeSignature string
-		if strings.ToUpper(req.Method) == "POST" || strings.ToUpper(req.Method) == "PUT" {
+		if strings.ToUpper(req.Method) == "POST" ||
+			strings.ToUpper(req.Method) == "PUT" ||
+			strings.ToUpper(req.Method) == "PATCH" {
 			body, err := io.ReadAll(req.Body)
 			if err != nil {
 				log.Printf("Error reading body: %v", err)
