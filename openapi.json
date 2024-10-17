@@ -1260,6 +1260,14 @@
                         }
                     },
                     {
+                        "description": "The payment gateway or platform used to process the transaction.",
+                        "name": "gateway",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "description": "The number of records to return default: 20",
                         "name": "limit",
                         "in": "query",
@@ -1836,7 +1844,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Endpoint"
+                                    "$ref": "#/components/schemas/DeleteWebhookEndpointResponse"
                                 }
                             }
                         }
@@ -1940,6 +1948,148 @@
                                     "items": {
                                         "$ref": "#/components/schemas/EventType"
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/webhook/events": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List webhook events",
+                "tags": [
+                    "webhook events"
+                ],
+                "summary": "List webhook events",
+                "operationId": "v1.webhooks.events.list",
+                "parameters": [
+                    {
+                        "description": "The cursor of the webhook event",
+                        "name": "cursor",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The type of the webhook event",
+                        "name": "event_types",
+                        "in": "query",
+                        "style": "form",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "description": "The limit of the webhook event",
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CursorPage-WebhookEvent"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/webhook/events/resend": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Resend a webhook event to specific endpoint",
+                "tags": [
+                    "webhook events"
+                ],
+                "summary": "Resend webhook event",
+                "operationId": "v1.webhooks.events.resend",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResendWebhookEventRequest"
+                            }
+                        }
+                    },
+                    "description": "The request",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResendWebhookEventResponse"
                                 }
                             }
                         }
@@ -2073,7 +2223,7 @@
             "CreateEndpoint": {
                 "type": "object",
                 "required": [
-                    "filterTypes",
+                    "filter_types",
                     "url"
                 ],
                 "properties": {
@@ -2085,12 +2235,13 @@
                         "description": "The disabled of the webhook endpoint",
                         "type": "boolean"
                     },
-                    "filterTypes": {
-                        "description": "The filter types of the webhook endpoint",
+                    "filter_types": {
+                        "description": "The filter event types of the webhook endpoint",
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "nullable": true
                     },
                     "headers": {
                         "description": "The headers of the webhook endpoint",
@@ -2122,8 +2273,7 @@
                     "amount",
                     "currency",
                     "from",
-                    "to",
-                    "wallet_id"
+                    "to"
                 ],
                 "properties": {
                     "amount": {
@@ -2141,20 +2291,16 @@
                     "to": {
                         "description": "The ID of the wallet to which the transfer will be made",
                         "type": "string"
-                    },
-                    "wallet_id": {
-                        "description": "The ID of the wallet from which the transfer will be made",
-                        "type": "string"
                     }
                 }
             },
             "CreateTransferResponse": {
                 "type": "object",
                 "required": [
-                    "transaction_id"
+                    "transfer_id"
                 ],
                 "properties": {
-                    "transaction_id": {
+                    "transfer_id": {
                         "type": "string"
                     }
                 }
@@ -2192,8 +2338,8 @@
                     "amount",
                     "currency",
                     "network",
-                    "toAddress",
-                    "walletId"
+                    "to_address",
+                    "wallet_id"
                 ],
                 "properties": {
                     "amount": {
@@ -2208,11 +2354,11 @@
                         "description": "The network of the currency to be withdrawn.",
                         "type": "string"
                     },
-                    "toAddress": {
+                    "to_address": {
                         "description": "The recipient address where the withdrawn funds will be sent. This is usually a wallet address specific to the chosen network.",
                         "type": "string"
                     },
-                    "walletId": {
+                    "wallet_id": {
                         "description": "The ID of the wallet from which the withdrawal will be made.",
                         "type": "string"
                     }
@@ -2610,19 +2756,54 @@
                     }
                 }
             },
+            "CursorPage-WebhookEvent": {
+                "type": "object",
+                "required": [
+                    "has_next",
+                    "items"
+                ],
+                "properties": {
+                    "has_next": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/WebhookEvent"
+                        }
+                    },
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    }
+                }
+            },
+            "DeleteWebhookEndpointResponse": {
+                "type": "object",
+                "required": [
+                    "success"
+                ],
+                "properties": {
+                    "success": {
+                        "description": "The success of the webhook endpoint",
+                        "type": "boolean"
+                    }
+                }
+            },
             "Endpoint": {
                 "type": "object",
                 "required": [
-                    "createdAt",
+                    "created_at",
                     "description",
                     "disabled",
-                    "filter",
-                    "filterTypes",
+                    "filter_types",
                     "id",
                     "url"
                 ],
                 "properties": {
-                    "createdAt": {
+                    "created_at": {
                         "description": "The created at of the webhook endpoint",
                         "type": "string"
                     },
@@ -2634,16 +2815,13 @@
                         "description": "The disabled of the webhook endpoint",
                         "type": "boolean"
                     },
-                    "filter": {
-                        "description": "The filter of the webhook endpoint",
-                        "type": "string"
-                    },
-                    "filterTypes": {
-                        "description": "The filter types of the webhook endpoint",
+                    "filter_types": {
+                        "description": "The filter event types of the webhook endpoint",
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "nullable": true
                     },
                     "headers": {
                         "description": "The headers of the webhook endpoint",
@@ -2785,6 +2963,35 @@
                     }
                 }
             },
+            "ResendWebhookEventRequest": {
+                "type": "object",
+                "required": [
+                    "endpoint_id",
+                    "event_id"
+                ],
+                "properties": {
+                    "endpoint_id": {
+                        "description": "The endpoint id of the webhook event",
+                        "type": "string"
+                    },
+                    "event_id": {
+                        "description": "The id of the webhook event",
+                        "type": "string"
+                    }
+                }
+            },
+            "ResendWebhookEventResponse": {
+                "type": "object",
+                "required": [
+                    "success"
+                ],
+                "properties": {
+                    "success": {
+                        "description": "The success of the webhook event",
+                        "type": "boolean"
+                    }
+                }
+            },
             "Transaction": {
                 "type": "object",
                 "required": [
@@ -2889,7 +3096,7 @@
             "UpdateEndpoint": {
                 "type": "object",
                 "required": [
-                    "filterTypes"
+                    "filter_types"
                 ],
                 "properties": {
                     "description": {
@@ -2900,12 +3107,13 @@
                         "description": "The disabled of the webhook endpoint",
                         "type": "boolean"
                     },
-                    "filterTypes": {
-                        "description": "The filter types of the webhook endpoint",
+                    "filter_types": {
+                        "description": "The filter event types of the webhook endpoint",
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "nullable": true
                     },
                     "headers": {
                         "description": "The headers of the webhook endpoint",
@@ -2967,6 +3175,34 @@
                     },
                     "uid": {
                         "description": "External unique ID",
+                        "type": "string"
+                    }
+                }
+            },
+            "WebhookEvent": {
+                "type": "object",
+                "required": [
+                    "event_type",
+                    "id",
+                    "payload",
+                    "timestamp"
+                ],
+                "properties": {
+                    "event_type": {
+                        "description": "The type of the webhook event",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The id of the webhook event",
+                        "type": "string"
+                    },
+                    "payload": {
+                        "description": "The payload of the webhook event",
+                        "type": "object",
+                        "additionalProperties": {}
+                    },
+                    "timestamp": {
+                        "description": "The timestamp of the webhook event",
                         "type": "string"
                     }
                 }

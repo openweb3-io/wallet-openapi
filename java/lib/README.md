@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]
+  - Build date: 2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 
@@ -147,6 +147,8 @@ Class | Method | HTTP request | Description
 *WebhookEndpointsApi* | [**v1WebhooksRetrieve**](docs/WebhookEndpointsApi.md#v1WebhooksRetrieve) | **GET** /api/v1/webhook/endpoints/{endpointId} | Get webhook endpoint
 *WebhookEndpointsApi* | [**v1WebhooksUpdate**](docs/WebhookEndpointsApi.md#v1WebhooksUpdate) | **PATCH** /api/v1/webhook/endpoints/{endpointId} | Update webhook endpoint
 *WebhookEventTypesApi* | [**v1WebhooksEventtypesList**](docs/WebhookEventTypesApi.md#v1WebhooksEventtypesList) | **GET** /api/v1/webhook/event_types | List webhook event types
+*WebhookEventsApi* | [**v1WebhooksEventsList**](docs/WebhookEventsApi.md#v1WebhooksEventsList) | **GET** /api/v1/webhook/events | List webhook events
+*WebhookEventsApi* | [**v1WebhooksEventsResend**](docs/WebhookEventsApi.md#v1WebhooksEventsResend) | **POST** /api/v1/webhook/events/resend | Resend webhook event
 
 
 ## Documentation for Models
@@ -170,6 +172,8 @@ Class | Method | HTTP request | Description
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)
  - [CursorPageWallet](docs/CursorPageWallet.md)
+ - [CursorPageWebhookEvent](docs/CursorPageWebhookEvent.md)
+ - [DeleteWebhookEndpointResponse](docs/DeleteWebhookEndpointResponse.md)
  - [Endpoint](docs/Endpoint.md)
  - [Error](docs/Error.md)
  - [EstimateResponse](docs/EstimateResponse.md)
@@ -177,12 +181,15 @@ Class | Method | HTTP request | Description
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [Rate](docs/Rate.md)
+ - [ResendWebhookEventRequest](docs/ResendWebhookEventRequest.md)
+ - [ResendWebhookEventResponse](docs/ResendWebhookEventResponse.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)
  - [UpdateEndpoint](docs/UpdateEndpoint.md)
  - [UpdateWalletRequest](docs/UpdateWalletRequest.md)
  - [Wallet](docs/Wallet.md)
+ - [WebhookEvent](docs/WebhookEvent.md)
 
 
 ## Documentation for Authorization

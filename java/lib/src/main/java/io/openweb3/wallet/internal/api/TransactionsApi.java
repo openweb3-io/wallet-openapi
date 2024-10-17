@@ -65,6 +65,7 @@ public class TransactionsApi {
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
+     * @param gateway The payment gateway or platform used to process the transaction. (optional)
      * @param limit The number of records to return default: 20 (optional)
      * @param network The blockchain network on which the transaction takes place. (optional)
      * @param status The status of the transaction. (optional)
@@ -83,7 +84,7 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsListCall(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsListCall(String currency, String cursor, String direction, String gateway, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -105,6 +106,10 @@ public class TransactionsApi {
 
         if (direction != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("direction", direction));
+        }
+
+        if (gateway != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("gateway", gateway));
         }
 
         if (limit != null) {
@@ -146,10 +151,10 @@ public class TransactionsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1TransactionsListValidateBeforeCall(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1TransactionsListValidateBeforeCall(String currency, String cursor, String direction, String gateway, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = v1TransactionsListCall(currency, cursor, direction, limit, network, status, txhash, walletId, _callback);
+        okhttp3.Call localVarCall = v1TransactionsListCall(currency, cursor, direction, gateway, limit, network, status, txhash, walletId, _callback);
         return localVarCall;
 
     }
@@ -160,6 +165,7 @@ public class TransactionsApi {
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
+     * @param gateway The payment gateway or platform used to process the transaction. (optional)
      * @param limit The number of records to return default: 20 (optional)
      * @param network The blockchain network on which the transaction takes place. (optional)
      * @param status The status of the transaction. (optional)
@@ -177,8 +183,8 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageTransaction v1TransactionsList(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
-        ApiResponse<CursorPageTransaction> localVarResp = v1TransactionsListWithHttpInfo(currency, cursor, direction, limit, network, status, txhash, walletId);
+    public CursorPageTransaction v1TransactionsList(String currency, String cursor, String direction, String gateway, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
+        ApiResponse<CursorPageTransaction> localVarResp = v1TransactionsListWithHttpInfo(currency, cursor, direction, gateway, limit, network, status, txhash, walletId);
         return localVarResp.getData();
     }
 
@@ -188,6 +194,7 @@ public class TransactionsApi {
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
+     * @param gateway The payment gateway or platform used to process the transaction. (optional)
      * @param limit The number of records to return default: 20 (optional)
      * @param network The blockchain network on which the transaction takes place. (optional)
      * @param status The status of the transaction. (optional)
@@ -205,8 +212,8 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageTransaction> v1TransactionsListWithHttpInfo(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
-        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(currency, cursor, direction, limit, network, status, txhash, walletId, null);
+    public ApiResponse<CursorPageTransaction> v1TransactionsListWithHttpInfo(String currency, String cursor, String direction, String gateway, Integer limit, String network, String status, String txhash, String walletId) throws ApiException {
+        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(currency, cursor, direction, gateway, limit, network, status, txhash, walletId, null);
         Type localVarReturnType = new TypeToken<CursorPageTransaction>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -217,6 +224,7 @@ public class TransactionsApi {
      * @param currency The type of currency involved in the transaction. (optional)
      * @param cursor A cursor value for pagination purposes. (optional)
      * @param direction The direction of the transaction (e.g., incoming or outgoing). (optional)
+     * @param gateway The payment gateway or platform used to process the transaction. (optional)
      * @param limit The number of records to return default: 20 (optional)
      * @param network The blockchain network on which the transaction takes place. (optional)
      * @param status The status of the transaction. (optional)
@@ -235,9 +243,9 @@ public class TransactionsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransactionsListAsync(String currency, String cursor, String direction, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback<CursorPageTransaction> _callback) throws ApiException {
+    public okhttp3.Call v1TransactionsListAsync(String currency, String cursor, String direction, String gateway, Integer limit, String network, String status, String txhash, String walletId, final ApiCallback<CursorPageTransaction> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(currency, cursor, direction, limit, network, status, txhash, walletId, _callback);
+        okhttp3.Call localVarCall = v1TransactionsListValidateBeforeCall(currency, cursor, direction, gateway, limit, network, status, txhash, walletId, _callback);
         Type localVarReturnType = new TypeToken<CursorPageTransaction>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

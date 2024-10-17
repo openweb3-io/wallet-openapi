@@ -101,6 +101,8 @@ Class | Method | HTTP request | Description
 *WebhookEndpointsApi* | [**V1WebhooksRetrieve**](docs/WebhookEndpointsApi.md#v1webhooksretrieve) | **Get** /api/v1/webhook/endpoints/{endpointId} | Get webhook endpoint
 *WebhookEndpointsApi* | [**V1WebhooksUpdate**](docs/WebhookEndpointsApi.md#v1webhooksupdate) | **Patch** /api/v1/webhook/endpoints/{endpointId} | Update webhook endpoint
 *WebhookEventTypesApi* | [**V1WebhooksEventtypesList**](docs/WebhookEventTypesApi.md#v1webhookseventtypeslist) | **Get** /api/v1/webhook/event_types | List webhook event types
+*WebhookEventsApi* | [**V1WebhooksEventsList**](docs/WebhookEventsApi.md#v1webhookseventslist) | **Get** /api/v1/webhook/events | List webhook events
+*WebhookEventsApi* | [**V1WebhooksEventsResend**](docs/WebhookEventsApi.md#v1webhookseventsresend) | **Post** /api/v1/webhook/events/resend | Resend webhook event
 
 
 ## Documentation For Models
@@ -124,6 +126,8 @@ Class | Method | HTTP request | Description
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)
  - [CursorPageWallet](docs/CursorPageWallet.md)
+ - [CursorPageWebhookEvent](docs/CursorPageWebhookEvent.md)
+ - [DeleteWebhookEndpointResponse](docs/DeleteWebhookEndpointResponse.md)
  - [Endpoint](docs/Endpoint.md)
  - [Error](docs/Error.md)
  - [EstimateResponse](docs/EstimateResponse.md)
@@ -131,12 +135,15 @@ Class | Method | HTTP request | Description
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [Rate](docs/Rate.md)
+ - [ResendWebhookEventRequest](docs/ResendWebhookEventRequest.md)
+ - [ResendWebhookEventResponse](docs/ResendWebhookEventResponse.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)
  - [UpdateEndpoint](docs/UpdateEndpoint.md)
  - [UpdateWalletRequest](docs/UpdateWalletRequest.md)
  - [Wallet](docs/Wallet.md)
+ - [WebhookEvent](docs/WebhookEvent.md)
 
 
 ## Documentation For Authorization

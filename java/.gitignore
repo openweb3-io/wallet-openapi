@@ -38,3 +38,4 @@ bin/
 
 examples
 .DS_Store
+APIClientTest.java

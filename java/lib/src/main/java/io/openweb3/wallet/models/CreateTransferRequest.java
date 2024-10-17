@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CreateTransferRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]")
 public class CreateTransferRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -44,10 +44,6 @@ public class CreateTransferRequest {
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
   private String to;
-
-  public static final String SERIALIZED_NAME_WALLET_ID = "wallet_id";
-  @SerializedName(SERIALIZED_NAME_WALLET_ID)
-  private String walletId;
 
 
   public CreateTransferRequest amount(String amount) {
@@ -138,28 +134,6 @@ public class CreateTransferRequest {
   }
 
 
-  public CreateTransferRequest walletId(String walletId) {
-    
-    this.walletId = walletId;
-    return this;
-  }
-
-   /**
-   * The ID of the wallet from which the transfer will be made
-   * @return walletId
-  **/
-  @ApiModelProperty(required = true, value = "The ID of the wallet from which the transfer will be made")
-
-  public String getWalletId() {
-    return walletId;
-  }
-
-
-  public void setWalletId(String walletId) {
-    this.walletId = walletId;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -172,13 +146,12 @@ public class CreateTransferRequest {
     return Objects.equals(this.amount, createTransferRequest.amount) &&
         Objects.equals(this.currency, createTransferRequest.currency) &&
         Objects.equals(this.from, createTransferRequest.from) &&
-        Objects.equals(this.to, createTransferRequest.to) &&
-        Objects.equals(this.walletId, createTransferRequest.walletId);
+        Objects.equals(this.to, createTransferRequest.to);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, from, to, walletId);
+    return Objects.hash(amount, currency, from, to);
   }
 
   @Override
@@ -189,7 +162,6 @@ public class CreateTransferRequest {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
-    sb.append("    walletId: ").append(toIndentedString(walletId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

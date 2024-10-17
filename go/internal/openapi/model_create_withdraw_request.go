@@ -23,9 +23,9 @@ type CreateWithdrawRequest struct {
 	// The network of the currency to be withdrawn.
 	Network string `json:"network"`
 	// The recipient address where the withdrawn funds will be sent. This is usually a wallet address specific to the chosen network.
-	ToAddress string `json:"toAddress"`
+	ToAddress string `json:"to_address"`
 	// The ID of the wallet from which the withdrawal will be made.
-	WalletId string `json:"walletId"`
+	WalletId string `json:"wallet_id"`
 }
 
 // NewCreateWithdrawRequest instantiates a new CreateWithdrawRequest object
@@ -182,10 +182,10 @@ func (o CreateWithdrawRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["network"] = o.Network
 	}
 	if true {
-		toSerialize["toAddress"] = o.ToAddress
+		toSerialize["to_address"] = o.ToAddress
 	}
 	if true {
-		toSerialize["walletId"] = o.WalletId
+		toSerialize["wallet_id"] = o.WalletId
 	}
 	return json.Marshal(toSerialize)
 }

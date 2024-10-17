@@ -16,13 +16,15 @@ import java.io.IOException;
 
 public final class APIClient {
 	public static final String VERSION = "0.0.1";
-	private final WebhookEndpointsAPI webhookEndpoint;
 	private final CurrenciesAPI currency;
 	private final RatesAPI rate;
 	private final TransactionsAPI transaction;
 	private final WalletsAPI wallet;
 	private final AddressesAPI address;
 	private final NetworksAPI network;
+	private final WebhookEndpointsAPI webhookEndpoint;
+	private final WebhookEventsAPI webhookEvent;
+	private final WebhookEventTypesAPI webhookEventType;
 
 	public APIClient(final String apikey, final String privateKeyPath) throws Exception {
 		this(new APIClientOptions().apiKey(apikey).secret(privateKeyPath));
@@ -83,6 +85,7 @@ public final class APIClient {
 		OkHttpClient httpClient = builder.build();
 
 		ApiClient apiClient = new ApiClient(httpClient);
+		apiClient.setDebugging(options.getDebug());
 		apiClient.setBasePath(options.getServerUrl());
 		apiClient.setUserAgent(String.format("wallet-libs/%s/java", VERSION));
 		ApiKeyAuth apiKeyAuth = (ApiKeyAuth) apiClient.getAuthentication("ApiKeyAuth");
@@ -95,8 +98,10 @@ public final class APIClient {
 		this.transaction = new TransactionsAPI();
 		this.currency = new CurrenciesAPI();
 		this.rate = new RatesAPI();
-		this.webhookEndpoint = new WebhookEndpointsAPI();
 		this.network = new NetworksAPI();
+		this.webhookEndpoint = new WebhookEndpointsAPI();
+		this.webhookEventType = new WebhookEventTypesAPI();
+		this.webhookEvent = new WebhookEventsAPI();
 	}
 
 	private Interceptor getProgressInterceptor() {
@@ -137,11 +142,19 @@ public final class APIClient {
 		return rate;
 	}
 
+	public NetworksAPI getNetwork() {
+		return network;
+	}
+
 	public WebhookEndpointsAPI getEndpoint() {
 		return webhookEndpoint;
 	}
 
-	public NetworksAPI getNetwork() {
-		return network;
+	public WebhookEventTypesAPI getWebhookEventType() {
+		return webhookEventType;
+	}
+
+	public WebhookEventsAPI getWebhookEvent() {
+		return webhookEvent;
 	}
 }

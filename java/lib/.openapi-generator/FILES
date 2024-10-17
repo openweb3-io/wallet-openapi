@@ -25,6 +25,8 @@ docs/CursorPageCurrency.md
 docs/CursorPageEndpoint.md
 docs/CursorPageTransaction.md
 docs/CursorPageWallet.md
+docs/CursorPageWebhookEvent.md
+docs/DeleteWebhookEndpointResponse.md
 docs/Endpoint.md
 docs/Error.md
 docs/EstimateResponse.md
@@ -34,6 +36,8 @@ docs/GetRatesResponse.md
 docs/NetworksApi.md
 docs/Rate.md
 docs/RatesApi.md
+docs/ResendWebhookEventRequest.md
+docs/ResendWebhookEventResponse.md
 docs/Transaction.md
 docs/TransactionDirection.md
 docs/TransactionStatus.md
@@ -43,7 +47,9 @@ docs/UpdateWalletRequest.md
 docs/Wallet.md
 docs/WalletsApi.md
 docs/WebhookEndpointsApi.md
+docs/WebhookEvent.md
 docs/WebhookEventTypesApi.md
+docs/WebhookEventsApi.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -74,6 +80,7 @@ src/main/java/io/openweb3/wallet/internal/api/TransactionsApi.java
 src/main/java/io/openweb3/wallet/internal/api/WalletsApi.java
 src/main/java/io/openweb3/wallet/internal/api/WebhookEndpointsApi.java
 src/main/java/io/openweb3/wallet/internal/api/WebhookEventTypesApi.java
+src/main/java/io/openweb3/wallet/internal/api/WebhookEventsApi.java
 src/main/java/io/openweb3/wallet/internal/auth/ApiKeyAuth.java
 src/main/java/io/openweb3/wallet/internal/auth/Authentication.java
 src/main/java/io/openweb3/wallet/internal/auth/HttpBasicAuth.java
@@ -97,6 +104,8 @@ src/main/java/io/openweb3/wallet/models/CursorPageCurrency.java
 src/main/java/io/openweb3/wallet/models/CursorPageEndpoint.java
 src/main/java/io/openweb3/wallet/models/CursorPageTransaction.java
 src/main/java/io/openweb3/wallet/models/CursorPageWallet.java
+src/main/java/io/openweb3/wallet/models/CursorPageWebhookEvent.java
+src/main/java/io/openweb3/wallet/models/DeleteWebhookEndpointResponse.java
 src/main/java/io/openweb3/wallet/models/Endpoint.java
 src/main/java/io/openweb3/wallet/models/Error.java
 src/main/java/io/openweb3/wallet/models/EstimateResponse.java
@@ -104,12 +113,12 @@ src/main/java/io/openweb3/wallet/models/EventType.java
 src/main/java/io/openweb3/wallet/models/GetRatesRequest.java
 src/main/java/io/openweb3/wallet/models/GetRatesResponse.java
 src/main/java/io/openweb3/wallet/models/Rate.java
+src/main/java/io/openweb3/wallet/models/ResendWebhookEventRequest.java
+src/main/java/io/openweb3/wallet/models/ResendWebhookEventResponse.java
 src/main/java/io/openweb3/wallet/models/Transaction.java
 src/main/java/io/openweb3/wallet/models/TransactionDirection.java
 src/main/java/io/openweb3/wallet/models/TransactionStatus.java
 src/main/java/io/openweb3/wallet/models/UpdateEndpoint.java
 src/main/java/io/openweb3/wallet/models/UpdateWalletRequest.java
 src/main/java/io/openweb3/wallet/models/Wallet.java
-src/test/java/io/openweb3/wallet/internal/api/NetworksApiTest.java
-src/test/java/io/openweb3/wallet/models/ChainNetworkTest.java
-src/test/java/io/openweb3/wallet/models/CursorPageChainNetworkTest.java
+src/main/java/io/openweb3/wallet/models/WebhookEvent.java

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## V1TransactionsList
 
-> CursorPageTransaction V1TransactionsList(ctx).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
+> CursorPageTransaction V1TransactionsList(ctx).Currency(currency).Cursor(cursor).Direction(direction).Gateway(gateway).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
 
 List transactions
 
@@ -35,6 +35,7 @@ func main() {
     currency := "currency_example" // string | The type of currency involved in the transaction. (optional)
     cursor := "cursor_example" // string | A cursor value for pagination purposes. (optional)
     direction := "direction_example" // string | The direction of the transaction (e.g., incoming or outgoing). (optional)
+    gateway := "gateway_example" // string | The payment gateway or platform used to process the transaction. (optional)
     limit := int32(56) // int32 | The number of records to return default: 20 (optional)
     network := "network_example" // string | The blockchain network on which the transaction takes place. (optional)
     status := "status_example" // string | The status of the transaction. (optional)
@@ -43,7 +44,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsList(context.Background()).Currency(currency).Cursor(cursor).Direction(direction).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsList(context.Background()).Currency(currency).Cursor(cursor).Direction(direction).Gateway(gateway).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
  **currency** | **string** | The type of currency involved in the transaction. | 
  **cursor** | **string** | A cursor value for pagination purposes. | 
  **direction** | **string** | The direction of the transaction (e.g., incoming or outgoing). | 
+ **gateway** | **string** | The payment gateway or platform used to process the transaction. | 
  **limit** | **int32** | The number of records to return default: 20 | 
  **network** | **string** | The blockchain network on which the transaction takes place. | 
  **status** | **string** | The status of the transaction. | 
@@ -182,7 +184,7 @@ import (
 )
 
 func main() {
-    createTransferRequest := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example", "WalletId_example") // CreateTransferRequest | Request Body
+    createTransferRequest := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example") // CreateTransferRequest | Request Body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

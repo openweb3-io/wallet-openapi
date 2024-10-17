@@ -31,9 +31,9 @@ import java.util.Map;
 /**
  * Endpoint
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]")
 public class Endpoint {
-  public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
+  public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private String createdAt;
 
@@ -45,11 +45,7 @@ public class Endpoint {
   @SerializedName(SERIALIZED_NAME_DISABLED)
   private Boolean disabled;
 
-  public static final String SERIALIZED_NAME_FILTER = "filter";
-  @SerializedName(SERIALIZED_NAME_FILTER)
-  private String filter;
-
-  public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
+  public static final String SERIALIZED_NAME_FILTER_TYPES = "filter_types";
   @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
   private List<String> filterTypes = new ArrayList<>();
 
@@ -140,28 +136,6 @@ public class Endpoint {
   }
 
 
-  public Endpoint filter(String filter) {
-    
-    this.filter = filter;
-    return this;
-  }
-
-   /**
-   * The filter of the webhook endpoint
-   * @return filter
-  **/
-  @ApiModelProperty(required = true, value = "The filter of the webhook endpoint")
-
-  public String getFilter() {
-    return filter;
-  }
-
-
-  public void setFilter(String filter) {
-    this.filter = filter;
-  }
-
-
   public Endpoint filterTypes(List<String> filterTypes) {
     
     this.filterTypes = filterTypes;
@@ -174,10 +148,11 @@ public class Endpoint {
   }
 
    /**
-   * The filter types of the webhook endpoint
+   * The filter event types of the webhook endpoint
    * @return filterTypes
   **/
-  @ApiModelProperty(required = true, value = "The filter types of the webhook endpoint")
+  @javax.annotation.Nullable
+  @ApiModelProperty(required = true, value = "The filter event types of the webhook endpoint")
 
   public List<String> getFilterTypes() {
     return filterTypes;
@@ -330,7 +305,6 @@ public class Endpoint {
     return Objects.equals(this.createdAt, endpoint.createdAt) &&
         Objects.equals(this.description, endpoint.description) &&
         Objects.equals(this.disabled, endpoint.disabled) &&
-        Objects.equals(this.filter, endpoint.filter) &&
         Objects.equals(this.filterTypes, endpoint.filterTypes) &&
         Objects.equals(this.headers, endpoint.headers) &&
         Objects.equals(this.id, endpoint.id) &&
@@ -341,7 +315,7 @@ public class Endpoint {
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, description, disabled, filter, filterTypes, headers, id, metadata, uid, url);
+    return Objects.hash(createdAt, description, disabled, filterTypes, headers, id, metadata, uid, url);
   }
 
   @Override
@@ -351,7 +325,6 @@ public class Endpoint {
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
-    sb.append("    filter: ").append(toIndentedString(filter)).append("\n");
     sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");

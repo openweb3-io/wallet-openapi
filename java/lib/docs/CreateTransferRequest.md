@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **currency** | **String** | The code of currency to be transferred | 
 **from** | **String** | The ID of the wallet from which the transfer will be made | 
 **to** | **String** | The ID of the wallet to which the transfer will be made | 
-**walletId** | **String** | The ID of the wallet from which the transfer will be made | 
 
 
 

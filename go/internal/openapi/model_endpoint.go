@@ -17,15 +17,13 @@ import (
 // Endpoint struct for Endpoint
 type Endpoint struct {
 	// The created at of the webhook endpoint
-	CreatedAt string `json:"createdAt"`
+	CreatedAt string `json:"created_at"`
 	// The description of the webhook endpoint
 	Description string `json:"description"`
 	// The disabled of the webhook endpoint
 	Disabled bool `json:"disabled"`
-	// The filter of the webhook endpoint
-	Filter string `json:"filter"`
-	// The filter types of the webhook endpoint
-	FilterTypes []string `json:"filterTypes"`
+	// The filter event types of the webhook endpoint
+	FilterTypes []string `json:"filter_types"`
 	// The headers of the webhook endpoint
 	Headers map[string]string `json:"headers,omitempty"`
 	// The id of the webhook endpoint
@@ -42,12 +40,11 @@ type Endpoint struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpoint(createdAt string, description string, disabled bool, filter string, filterTypes []string, id string, url string) *Endpoint {
+func NewEndpoint(createdAt string, description string, disabled bool, filterTypes []string, id string, url string) *Endpoint {
 	this := Endpoint{}
 	this.CreatedAt = createdAt
 	this.Description = description
 	this.Disabled = disabled
-	this.Filter = filter
 	this.FilterTypes = filterTypes
 	this.Id = id
 	this.Url = url
@@ -134,31 +131,8 @@ func (o *Endpoint) SetDisabled(v bool) {
 	o.Disabled = v
 }
 
-// GetFilter returns the Filter field value
-func (o *Endpoint) GetFilter() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Filter
-}
-
-// GetFilterOk returns a tuple with the Filter field value
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetFilterOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Filter, true
-}
-
-// SetFilter sets field value
-func (o *Endpoint) SetFilter(v string) {
-	o.Filter = v
-}
-
 // GetFilterTypes returns the FilterTypes field value
+// If the value is explicit nil, the zero value for []string will be returned
 func (o *Endpoint) GetFilterTypes() []string {
 	if o == nil {
 		var ret []string
@@ -170,8 +144,9 @@ func (o *Endpoint) GetFilterTypes() []string {
 
 // GetFilterTypesOk returns a tuple with the FilterTypes field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Endpoint) GetFilterTypesOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil || o.FilterTypes == nil {
 		return nil, false
 	}
 	return &o.FilterTypes, true
@@ -331,7 +306,7 @@ func (o *Endpoint) SetUrl(v string) {
 func (o Endpoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["createdAt"] = o.CreatedAt
+		toSerialize["created_at"] = o.CreatedAt
 	}
 	if true {
 		toSerialize["description"] = o.Description
@@ -339,11 +314,8 @@ func (o Endpoint) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["disabled"] = o.Disabled
 	}
-	if true {
-		toSerialize["filter"] = o.Filter
-	}
-	if true {
-		toSerialize["filterTypes"] = o.FilterTypes
+	if o.FilterTypes != nil {
+		toSerialize["filter_types"] = o.FilterTypes
 	}
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers

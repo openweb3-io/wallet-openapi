@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transactionId** | **String** |  | 
+**transferId** | **String** |  | 
 
 
 

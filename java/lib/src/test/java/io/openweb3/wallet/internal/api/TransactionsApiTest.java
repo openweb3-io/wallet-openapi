@@ -56,7 +56,8 @@ public class TransactionsApiTest {
         String status = null;
         String txhash = null;
         String walletId = null;
-        CursorPageTransaction response = api.v1TransactionsList(currency, cursor, direction, limit, network, status, txhash, walletId);
+        String gateway = null;
+        CursorPageTransaction response = api.v1TransactionsList(currency, cursor, direction, gateway, limit, network, status, txhash, walletId);
 
         // TODO: test validations
     }

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TransactionId** | **string** |  | 
+**TransferId** | **string** |  | 
 
 ## Methods
 
 ### NewCreateTransferResponse
 
-`func NewCreateTransferResponse(transactionId string, ) *CreateTransferResponse`
+`func NewCreateTransferResponse(transferId string, ) *CreateTransferResponse`
 
 NewCreateTransferResponse instantiates a new CreateTransferResponse object
 This constructor will assign default values to properties that have it defined,
@@ -25,24 +25,24 @@ NewCreateTransferResponseWithDefaults instantiates a new CreateTransferResponse 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTransactionId
+### GetTransferId
 
-`func (o *CreateTransferResponse) GetTransactionId() string`
+`func (o *CreateTransferResponse) GetTransferId() string`
 
-GetTransactionId returns the TransactionId field if non-nil, zero value otherwise.
+GetTransferId returns the TransferId field if non-nil, zero value otherwise.
 
-### GetTransactionIdOk
+### GetTransferIdOk
 
-`func (o *CreateTransferResponse) GetTransactionIdOk() (*string, bool)`
+`func (o *CreateTransferResponse) GetTransferIdOk() (*string, bool)`
 
-GetTransactionIdOk returns a tuple with the TransactionId field if it's non-nil, zero value otherwise
+GetTransferIdOk returns a tuple with the TransferId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTransactionId
+### SetTransferId
 
-`func (o *CreateTransferResponse) SetTransactionId(v string)`
+`func (o *CreateTransferResponse) SetTransferId(v string)`
 
-SetTransactionId sets TransactionId field to given value.
+SetTransferId sets TransferId field to given value.
 
 
 

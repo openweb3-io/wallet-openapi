@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** | The description of the webhook endpoint | [optional] 
 **Disabled** | Pointer to **bool** | The disabled of the webhook endpoint | [optional] 
-**FilterTypes** | **[]string** | The filter types of the webhook endpoint | 
+**FilterTypes** | **[]string** | The filter event types of the webhook endpoint | 
 **Headers** | Pointer to **map[string]string** | The headers of the webhook endpoint | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | The metadata of the webhook endpoint | [optional] 
 **Uid** | Pointer to **string** | The uid of the webhook endpoint | [optional] 
@@ -101,6 +101,16 @@ and a boolean to check if the value has been set.
 SetFilterTypes sets FilterTypes field to given value.
 
 
+### SetFilterTypesNil
+
+`func (o *UpdateEndpoint) SetFilterTypesNil(b bool)`
+
+ SetFilterTypesNil sets the value for FilterTypes to be an explicit nil
+
+### UnsetFilterTypes
+`func (o *UpdateEndpoint) UnsetFilterTypes()`
+
+UnsetFilterTypes ensures that no value is present for FilterTypes, not even an explicit nil
 ### GetHeaders
 
 `func (o *UpdateEndpoint) GetHeaders() map[string]string`

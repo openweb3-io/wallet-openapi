@@ -27,32 +27,32 @@ import java.io.IOException;
 /**
  * CreateTransferResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]")
 public class CreateTransferResponse {
-  public static final String SERIALIZED_NAME_TRANSACTION_ID = "transaction_id";
-  @SerializedName(SERIALIZED_NAME_TRANSACTION_ID)
-  private String transactionId;
+  public static final String SERIALIZED_NAME_TRANSFER_ID = "transfer_id";
+  @SerializedName(SERIALIZED_NAME_TRANSFER_ID)
+  private String transferId;
 
 
-  public CreateTransferResponse transactionId(String transactionId) {
+  public CreateTransferResponse transferId(String transferId) {
     
-    this.transactionId = transactionId;
+    this.transferId = transferId;
     return this;
   }
 
    /**
-   * Get transactionId
-   * @return transactionId
+   * Get transferId
+   * @return transferId
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public String getTransactionId() {
-    return transactionId;
+  public String getTransferId() {
+    return transferId;
   }
 
 
-  public void setTransactionId(String transactionId) {
-    this.transactionId = transactionId;
+  public void setTransferId(String transferId) {
+    this.transferId = transferId;
   }
 
 
@@ -65,19 +65,19 @@ public class CreateTransferResponse {
       return false;
     }
     CreateTransferResponse createTransferResponse = (CreateTransferResponse) o;
-    return Objects.equals(this.transactionId, createTransferResponse.transactionId);
+    return Objects.equals(this.transferId, createTransferResponse.transferId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transactionId);
+    return Objects.hash(transferId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateTransferResponse {\n");
-    sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
+    sb.append("    transferId: ").append(toIndentedString(transferId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

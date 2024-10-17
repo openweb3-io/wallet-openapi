@@ -31,14 +31,14 @@ public final class WebhookEndpointsAPI {
 	// delete
 	public Endpoint get(final String endpointId) throws ApiException {
 		try {
-			return api.v1WebhooksDelete(endpointId);
+			return api.v1WebhooksRetrieve(endpointId);
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
 	// delete
-	public Endpoint delete(final String endpointId) throws ApiException {
+	public DeleteWebhookEndpointResponse delete(final String endpointId) throws ApiException {
 		try {
 			return api.v1WebhooksDelete(endpointId);
 		} catch (io.openweb3.wallet.internal.ApiException e) {

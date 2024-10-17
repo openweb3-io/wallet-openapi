@@ -193,7 +193,7 @@ type ApiV1WebhooksDeleteRequest struct {
 }
 
 
-func (r ApiV1WebhooksDeleteRequest) Execute() (Endpoint, *_nethttp.Response, error) {
+func (r ApiV1WebhooksDeleteRequest) Execute() (DeleteWebhookEndpointResponse, *_nethttp.Response, error) {
 	return r.ApiService.V1WebhooksDeleteExecute(r)
 }
 
@@ -214,16 +214,16 @@ func (a *WebhookEndpointsApiService) V1WebhooksDelete(ctx _context.Context, endp
 
 /*
  * Execute executes the request
- * @return Endpoint
+ * @return DeleteWebhookEndpointResponse
  */
-func (a *WebhookEndpointsApiService) V1WebhooksDeleteExecute(r ApiV1WebhooksDeleteRequest) (Endpoint, *_nethttp.Response, error) {
+func (a *WebhookEndpointsApiService) V1WebhooksDeleteExecute(r ApiV1WebhooksDeleteRequest) (DeleteWebhookEndpointResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Endpoint
+		localVarReturnValue  DeleteWebhookEndpointResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointsApiService.V1WebhooksDelete")

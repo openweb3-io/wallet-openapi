@@ -10,6 +10,7 @@ api_transactions.go
 api_wallets.go
 api_webhook_endpoints.go
 api_webhook_event_types.go
+api_webhook_events.go
 client.go
 configuration.go
 docs/Account.md
@@ -33,6 +34,8 @@ docs/CursorPageCurrency.md
 docs/CursorPageEndpoint.md
 docs/CursorPageTransaction.md
 docs/CursorPageWallet.md
+docs/CursorPageWebhookEvent.md
+docs/DeleteWebhookEndpointResponse.md
 docs/Endpoint.md
 docs/Error.md
 docs/EstimateResponse.md
@@ -42,6 +45,8 @@ docs/GetRatesResponse.md
 docs/NetworksApi.md
 docs/Rate.md
 docs/RatesApi.md
+docs/ResendWebhookEventRequest.md
+docs/ResendWebhookEventResponse.md
 docs/Transaction.md
 docs/TransactionDirection.md
 docs/TransactionStatus.md
@@ -51,7 +56,9 @@ docs/UpdateWalletRequest.md
 docs/Wallet.md
 docs/WalletsApi.md
 docs/WebhookEndpointsApi.md
+docs/WebhookEvent.md
 docs/WebhookEventTypesApi.md
+docs/WebhookEventsApi.md
 git_push.sh
 go.mod
 go.sum
@@ -74,6 +81,8 @@ model_cursor_page_currency.go
 model_cursor_page_endpoint.go
 model_cursor_page_transaction.go
 model_cursor_page_wallet.go
+model_cursor_page_webhook_event.go
+model_delete_webhook_endpoint_response.go
 model_endpoint.go
 model_error.go
 model_estimate_response.go
@@ -81,11 +90,14 @@ model_event_type.go
 model_get_rates_request.go
 model_get_rates_response.go
 model_rate.go
+model_resend_webhook_event_request.go
+model_resend_webhook_event_response.go
 model_transaction.go
 model_transaction_direction.go
 model_transaction_status.go
 model_update_endpoint.go
 model_update_wallet_request.go
 model_wallet.go
+model_webhook_event.go
 response.go
 utils.go

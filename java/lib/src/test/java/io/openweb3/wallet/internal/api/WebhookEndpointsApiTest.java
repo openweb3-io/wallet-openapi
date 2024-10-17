@@ -14,11 +14,8 @@
 package io.openweb3.wallet.internal.api;
 
 import io.openweb3.wallet.internal.ApiException;
-import io.openweb3.wallet.models.CreateEndpoint;
-import io.openweb3.wallet.models.CursorPageEndpoint;
-import io.openweb3.wallet.models.Endpoint;
+import io.openweb3.wallet.models.*;
 import io.openweb3.wallet.models.Error;
-import io.openweb3.wallet.models.UpdateEndpoint;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -63,7 +60,7 @@ public class WebhookEndpointsApiTest {
     @Test
     public void v1WebhooksDeleteTest() throws ApiException {
         String endpointId = null;
-        Endpoint response = api.v1WebhooksDelete(endpointId);
+        DeleteWebhookEndpointResponse response = api.v1WebhooksDelete(endpointId);
 
         // TODO: test validations
     }

@@ -26,6 +26,7 @@ type ListTransactionOptions struct {
 	Network   *string
 	Currency  *string
 	Direction *string
+	Gateway   *string
 	Txhash    *string
 	Status    *string
 	Cursor    *string
@@ -57,6 +58,9 @@ func (e *Transaction) List(ctx context.Context, options *ListTransactionOptions)
 	}
 	if options.Limit != nil {
 		req = req.Limit(*options.Limit)
+	}
+	if options.Gateway != nil {
+		req = req.Gateway(*options.Gateway)
 	}
 
 	out, res, err := req.Execute()

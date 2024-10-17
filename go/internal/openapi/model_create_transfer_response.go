@@ -16,16 +16,16 @@ import (
 
 // CreateTransferResponse struct for CreateTransferResponse
 type CreateTransferResponse struct {
-	TransactionId string `json:"transaction_id"`
+	TransferId string `json:"transfer_id"`
 }
 
 // NewCreateTransferResponse instantiates a new CreateTransferResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateTransferResponse(transactionId string) *CreateTransferResponse {
+func NewCreateTransferResponse(transferId string) *CreateTransferResponse {
 	this := CreateTransferResponse{}
-	this.TransactionId = transactionId
+	this.TransferId = transferId
 	return &this
 }
 
@@ -37,34 +37,34 @@ func NewCreateTransferResponseWithDefaults() *CreateTransferResponse {
 	return &this
 }
 
-// GetTransactionId returns the TransactionId field value
-func (o *CreateTransferResponse) GetTransactionId() string {
+// GetTransferId returns the TransferId field value
+func (o *CreateTransferResponse) GetTransferId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.TransactionId
+	return o.TransferId
 }
 
-// GetTransactionIdOk returns a tuple with the TransactionId field value
+// GetTransferIdOk returns a tuple with the TransferId field value
 // and a boolean to check if the value has been set.
-func (o *CreateTransferResponse) GetTransactionIdOk() (*string, bool) {
+func (o *CreateTransferResponse) GetTransferIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.TransactionId, true
+	return &o.TransferId, true
 }
 
-// SetTransactionId sets field value
-func (o *CreateTransferResponse) SetTransactionId(v string) {
-	o.TransactionId = v
+// SetTransferId sets field value
+func (o *CreateTransferResponse) SetTransferId(v string) {
+	o.TransferId = v
 }
 
 func (o CreateTransferResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["transaction_id"] = o.TransactionId
+		toSerialize["transfer_id"] = o.TransferId
 	}
 	return json.Marshal(toSerialize)
 }

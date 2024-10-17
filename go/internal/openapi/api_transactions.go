@@ -33,6 +33,7 @@ type ApiV1TransactionsListRequest struct {
 	currency *string
 	cursor *string
 	direction *string
+	gateway *string
 	limit *int32
 	network *string
 	status *string
@@ -50,6 +51,10 @@ func (r ApiV1TransactionsListRequest) Cursor(cursor string) ApiV1TransactionsLis
 }
 func (r ApiV1TransactionsListRequest) Direction(direction string) ApiV1TransactionsListRequest {
 	r.direction = &direction
+	return r
+}
+func (r ApiV1TransactionsListRequest) Gateway(gateway string) ApiV1TransactionsListRequest {
+	r.gateway = &gateway
 	return r
 }
 func (r ApiV1TransactionsListRequest) Limit(limit int32) ApiV1TransactionsListRequest {
@@ -123,6 +128,9 @@ func (a *TransactionsApiService) V1TransactionsListExecute(r ApiV1TransactionsLi
 	}
 	if r.direction != nil {
 		localVarQueryParams.Add("direction", parameterToString(*r.direction, ""))
+	}
+	if r.gateway != nil {
+		localVarQueryParams.Add("gateway", parameterToString(*r.gateway, ""))
 	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))

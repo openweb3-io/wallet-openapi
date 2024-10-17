@@ -7,8 +7,7 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** | The created at of the webhook endpoint | 
 **Description** | **string** | The description of the webhook endpoint | 
 **Disabled** | **bool** | The disabled of the webhook endpoint | 
-**Filter** | **string** | The filter of the webhook endpoint | 
-**FilterTypes** | **[]string** | The filter types of the webhook endpoint | 
+**FilterTypes** | **[]string** | The filter event types of the webhook endpoint | 
 **Headers** | Pointer to **map[string]string** | The headers of the webhook endpoint | [optional] 
 **Id** | **string** | The id of the webhook endpoint | 
 **Metadata** | Pointer to **map[string]interface{}** | The metadata of the webhook endpoint | [optional] 
@@ -19,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewEndpoint
 
-`func NewEndpoint(createdAt string, description string, disabled bool, filter string, filterTypes []string, id string, url string, ) *Endpoint`
+`func NewEndpoint(createdAt string, description string, disabled bool, filterTypes []string, id string, url string, ) *Endpoint`
 
 NewEndpoint instantiates a new Endpoint object
 This constructor will assign default values to properties that have it defined,
@@ -94,26 +93,6 @@ and a boolean to check if the value has been set.
 SetDisabled sets Disabled field to given value.
 
 
-### GetFilter
-
-`func (o *Endpoint) GetFilter() string`
-
-GetFilter returns the Filter field if non-nil, zero value otherwise.
-
-### GetFilterOk
-
-`func (o *Endpoint) GetFilterOk() (*string, bool)`
-
-GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilter
-
-`func (o *Endpoint) SetFilter(v string)`
-
-SetFilter sets Filter field to given value.
-
-
 ### GetFilterTypes
 
 `func (o *Endpoint) GetFilterTypes() []string`
@@ -134,6 +113,16 @@ and a boolean to check if the value has been set.
 SetFilterTypes sets FilterTypes field to given value.
 
 
+### SetFilterTypesNil
+
+`func (o *Endpoint) SetFilterTypesNil(b bool)`
+
+ SetFilterTypesNil sets the value for FilterTypes to be an explicit nil
+
+### UnsetFilterTypes
+`func (o *Endpoint) UnsetFilterTypes()`
+
+UnsetFilterTypes ensures that no value is present for FilterTypes, not even an explicit nil
 ### GetHeaders
 
 `func (o *Endpoint) GetHeaders() map[string]string`

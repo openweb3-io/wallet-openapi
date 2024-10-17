@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="v1TransactionsList"></a>
 # **v1TransactionsList**
-> CursorPageTransaction v1TransactionsList(currency, cursor, direction, limit, network, status, txhash, walletId)
+> CursorPageTransaction v1TransactionsList(currency, cursor, direction, gateway, limit, network, status, txhash, walletId)
 
 List transactions
 
@@ -49,13 +49,14 @@ public class Example {
     String currency = "currency_example"; // String | The type of currency involved in the transaction.
     String cursor = "cursor_example"; // String | A cursor value for pagination purposes.
     String direction = "direction_example"; // String | The direction of the transaction (e.g., incoming or outgoing).
+    String gateway = "gateway_example"; // String | The payment gateway or platform used to process the transaction.
     Integer limit = 56; // Integer | The number of records to return default: 20
     String network = "network_example"; // String | The blockchain network on which the transaction takes place.
     String status = "status_example"; // String | The status of the transaction.
     String txhash = "txhash_example"; // String | The transaction hash, which uniquely identifies a transaction on the blockchain.
     String walletId = "walletId_example"; // String | Unique system generated identifier of the wallet
     try {
-      CursorPageTransaction result = apiInstance.v1TransactionsList(currency, cursor, direction, limit, network, status, txhash, walletId);
+      CursorPageTransaction result = apiInstance.v1TransactionsList(currency, cursor, direction, gateway, limit, network, status, txhash, walletId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TransactionsApi#v1TransactionsList");
@@ -75,6 +76,7 @@ Name | Type | Description  | Notes
  **currency** | **String**| The type of currency involved in the transaction. | [optional]
  **cursor** | **String**| A cursor value for pagination purposes. | [optional]
  **direction** | **String**| The direction of the transaction (e.g., incoming or outgoing). | [optional] [enum: OUT, IN]
+ **gateway** | **String**| The payment gateway or platform used to process the transaction. | [optional]
  **limit** | **Integer**| The number of records to return default: 20 | [optional]
  **network** | **String**| The blockchain network on which the transaction takes place. | [optional]
  **status** | **String**| The status of the transaction. | [optional] [enum: PROCESSING, CANCELED, FAILED, SUCCEED]

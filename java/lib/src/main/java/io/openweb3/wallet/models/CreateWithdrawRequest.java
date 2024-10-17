@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CreateWithdrawRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]")
 public class CreateWithdrawRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -41,11 +41,11 @@ public class CreateWithdrawRequest {
   @SerializedName(SERIALIZED_NAME_NETWORK)
   private String network;
 
-  public static final String SERIALIZED_NAME_TO_ADDRESS = "toAddress";
+  public static final String SERIALIZED_NAME_TO_ADDRESS = "to_address";
   @SerializedName(SERIALIZED_NAME_TO_ADDRESS)
   private String toAddress;
 
-  public static final String SERIALIZED_NAME_WALLET_ID = "walletId";
+  public static final String SERIALIZED_NAME_WALLET_ID = "wallet_id";
   @SerializedName(SERIALIZED_NAME_WALLET_ID)
   private String walletId;
 

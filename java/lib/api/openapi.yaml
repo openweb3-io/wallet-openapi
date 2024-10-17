@@ -859,6 +859,14 @@ paths:
         x-enum-varnames:
         - TransactionDirectionOut
         - TransactionDirectionIn
+      - description: The payment gateway or platform used to process the transaction.
+        explode: true
+        in: query
+        name: gateway
+        required: false
+        schema:
+          type: string
+        style: form
       - description: 'The number of records to return default: 20'
         explode: true
         in: query
@@ -1199,7 +1207,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Endpoint'
+                $ref: '#/components/schemas/DeleteWebhookEndpointResponse'
           description: OK
         "400":
           content:
@@ -1330,6 +1338,101 @@ paths:
       tags:
       - webhook event types
       x-accepts: application/json
+  /api/v1/webhook/events:
+    get:
+      description: List webhook events
+      operationId: v1.webhooks.events.list
+      parameters:
+      - description: The cursor of the webhook event
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The type of the webhook event
+        explode: false
+        in: query
+        name: event_types
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The limit of the webhook event
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-WebhookEvent'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List webhook events
+      tags:
+      - webhook events
+      x-accepts: application/json
+  /api/v1/webhook/events/resend:
+    post:
+      description: Resend a webhook event to specific endpoint
+      operationId: v1.webhooks.events.resend
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendWebhookEventRequest'
+        description: The request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResendWebhookEventResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Resend webhook event
+      tags:
+      - webhook events
+      x-contentType: application/json
+      x-accepts: application/json
 components:
   schemas:
     Account:
@@ -1424,9 +1527,9 @@ components:
           key: ""
         description: description
         disabled: true
-        filterTypes:
-        - filterTypes
-        - filterTypes
+        filter_types:
+        - filter_types
+        - filter_types
         url: url
       properties:
         description:
@@ -1435,10 +1538,11 @@ components:
         disabled:
           description: The disabled of the webhook endpoint
           type: boolean
-        filterTypes:
-          description: The filter types of the webhook endpoint
+        filter_types:
+          description: The filter event types of the webhook endpoint
           items:
             type: string
+          nullable: true
           type: array
         headers:
           additionalProperties:
@@ -1458,13 +1562,12 @@ components:
           description: The url of the webhook endpoint
           type: string
       required:
-      - filterTypes
+      - filter_types
       - url
       type: object
     CreateTransferRequest:
       example:
         amount: amount
-        wallet_id: wallet_id
         currency: currency
         from: from
         to: to
@@ -1481,24 +1584,20 @@ components:
         to:
           description: The ID of the wallet to which the transfer will be made
           type: string
-        wallet_id:
-          description: The ID of the wallet from which the transfer will be made
-          type: string
       required:
       - amount
       - currency
       - from
       - to
-      - wallet_id
       type: object
     CreateTransferResponse:
       example:
-        transaction_id: transaction_id
+        transfer_id: transfer_id
       properties:
-        transaction_id:
+        transfer_id:
           type: string
       required:
-      - transaction_id
+      - transfer_id
       type: object
     CreateWalletRequest:
       example:
@@ -1525,10 +1624,10 @@ components:
       type: object
     CreateWithdrawRequest:
       example:
-        walletId: walletId
         amount: amount
+        wallet_id: wallet_id
         currency: currency
-        toAddress: toAddress
+        to_address: to_address
         network: network
       properties:
         amount:
@@ -1540,19 +1639,19 @@ components:
         network:
           description: The network of the currency to be withdrawn.
           type: string
-        toAddress:
+        to_address:
           description: The recipient address where the withdrawn funds will be sent.
             This is usually a wallet address specific to the chosen network.
           type: string
-        walletId:
+        wallet_id:
           description: The ID of the wallet from which the withdrawal will be made.
           type: string
       required:
       - amount
       - currency
       - network
-      - toAddress
-      - walletId
+      - to_address
+      - wallet_id
       type: object
     Currency:
       example:
@@ -2047,33 +2146,31 @@ components:
         next_cursor: next_cursor
         has_next: true
         items:
-        - filter: filter
-          createdAt: createdAt
-          headers:
+        - headers:
             key: headers
           uid: uid
           metadata:
             key: ""
+          created_at: created_at
           description: description
           disabled: true
+          filter_types:
+          - filter_types
+          - filter_types
           id: id
-          filterTypes:
-          - filterTypes
-          - filterTypes
           url: url
-        - filter: filter
-          createdAt: createdAt
-          headers:
+        - headers:
             key: headers
           uid: uid
           metadata:
             key: ""
+          created_at: created_at
           description: description
           disabled: true
+          filter_types:
+          - filter_types
+          - filter_types
           id: id
-          filterTypes:
-          - filterTypes
-          - filterTypes
           url: url
       properties:
         has_next:
@@ -2164,24 +2261,64 @@ components:
       - has_next
       - items
       type: object
+    CursorPage-WebhookEvent:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - event_type: event_type
+          payload:
+            key: ""
+          id: id
+          timestamp: timestamp
+        - event_type: event_type
+          payload:
+            key: ""
+          id: id
+          timestamp: timestamp
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/WebhookEvent'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      required:
+      - has_next
+      - items
+      type: object
+    DeleteWebhookEndpointResponse:
+      example:
+        success: true
+      properties:
+        success:
+          description: The success of the webhook endpoint
+          type: boolean
+      required:
+      - success
+      type: object
     Endpoint:
       example:
-        filter: filter
-        createdAt: createdAt
         headers:
           key: headers
         uid: uid
         metadata:
           key: ""
+        created_at: created_at
         description: description
         disabled: true
+        filter_types:
+        - filter_types
+        - filter_types
         id: id
-        filterTypes:
-        - filterTypes
-        - filterTypes
         url: url
       properties:
-        createdAt:
+        created_at:
           description: The created at of the webhook endpoint
           type: string
         description:
@@ -2190,13 +2327,11 @@ components:
         disabled:
           description: The disabled of the webhook endpoint
           type: boolean
-        filter:
-          description: The filter of the webhook endpoint
-          type: string
-        filterTypes:
-          description: The filter types of the webhook endpoint
+        filter_types:
+          description: The filter event types of the webhook endpoint
           items:
             type: string
+          nullable: true
           type: array
         headers:
           additionalProperties:
@@ -2219,11 +2354,10 @@ components:
           description: The url of the webhook endpoint
           type: string
       required:
-      - createdAt
+      - created_at
       - description
       - disabled
-      - filter
-      - filterTypes
+      - filter_types
       - id
       - url
       type: object
@@ -2345,6 +2479,31 @@ components:
       - pair
       - rate
       type: object
+    ResendWebhookEventRequest:
+      example:
+        event_id: event_id
+        endpoint_id: endpoint_id
+      properties:
+        endpoint_id:
+          description: The endpoint id of the webhook event
+          type: string
+        event_id:
+          description: The id of the webhook event
+          type: string
+      required:
+      - endpoint_id
+      - event_id
+      type: object
+    ResendWebhookEventResponse:
+      example:
+        success: true
+      properties:
+        success:
+          description: The success of the webhook event
+          type: boolean
+      required:
+      - success
+      type: object
     Transaction:
       example:
         amount: amount
@@ -2444,9 +2603,9 @@ components:
           key: ""
         description: description
         disabled: true
-        filterTypes:
-        - filterTypes
-        - filterTypes
+        filter_types:
+        - filter_types
+        - filter_types
         url: url
       properties:
         description:
@@ -2455,10 +2614,11 @@ components:
         disabled:
           description: The disabled of the webhook endpoint
           type: boolean
-        filterTypes:
-          description: The filter types of the webhook endpoint
+        filter_types:
+          description: The filter event types of the webhook endpoint
           items:
             type: string
+          nullable: true
           type: array
         headers:
           additionalProperties:
@@ -2478,7 +2638,7 @@ components:
           description: The url of the webhook endpoint
           type: string
       required:
-      - filterTypes
+      - filter_types
       type: object
     UpdateWalletRequest:
       example:
@@ -2516,6 +2676,33 @@ components:
       - id
       - name
       - uid
+      type: object
+    WebhookEvent:
+      example:
+        event_type: event_type
+        payload:
+          key: ""
+        id: id
+        timestamp: timestamp
+      properties:
+        event_type:
+          description: The type of the webhook event
+          type: string
+        id:
+          description: The id of the webhook event
+          type: string
+        payload:
+          additionalProperties: {}
+          description: The payload of the webhook event
+          type: object
+        timestamp:
+          description: The timestamp of the webhook event
+          type: string
+      required:
+      - event_type
+      - id
+      - payload
+      - timestamp
       type: object
   securitySchemes:
     ApiKeyAuth:

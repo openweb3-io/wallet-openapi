@@ -20,8 +20,8 @@ type CreateEndpoint struct {
 	Description *string `json:"description,omitempty"`
 	// The disabled of the webhook endpoint
 	Disabled *bool `json:"disabled,omitempty"`
-	// The filter types of the webhook endpoint
-	FilterTypes []string `json:"filterTypes"`
+	// The filter event types of the webhook endpoint
+	FilterTypes []string `json:"filter_types"`
 	// The headers of the webhook endpoint
 	Headers map[string]string `json:"headers,omitempty"`
 	// The metadata of the webhook endpoint
@@ -116,6 +116,7 @@ func (o *CreateEndpoint) SetDisabled(v bool) {
 }
 
 // GetFilterTypes returns the FilterTypes field value
+// If the value is explicit nil, the zero value for []string will be returned
 func (o *CreateEndpoint) GetFilterTypes() []string {
 	if o == nil {
 		var ret []string
@@ -127,8 +128,9 @@ func (o *CreateEndpoint) GetFilterTypes() []string {
 
 // GetFilterTypesOk returns a tuple with the FilterTypes field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateEndpoint) GetFilterTypesOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil || o.FilterTypes == nil {
 		return nil, false
 	}
 	return &o.FilterTypes, true
@@ -269,8 +271,8 @@ func (o CreateEndpoint) MarshalJSON() ([]byte, error) {
 	if o.Disabled != nil {
 		toSerialize["disabled"] = o.Disabled
 	}
-	if true {
-		toSerialize["filterTypes"] = o.FilterTypes
+	if o.FilterTypes != nil {
+		toSerialize["filter_types"] = o.FilterTypes
 	}
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers

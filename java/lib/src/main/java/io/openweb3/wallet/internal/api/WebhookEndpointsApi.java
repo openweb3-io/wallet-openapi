@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import io.openweb3.wallet.models.CreateEndpoint;
 import io.openweb3.wallet.models.CursorPageEndpoint;
+import io.openweb3.wallet.models.DeleteWebhookEndpointResponse;
 import io.openweb3.wallet.models.Endpoint;
 import io.openweb3.wallet.models.Error;
 import io.openweb3.wallet.models.UpdateEndpoint;
@@ -240,7 +241,7 @@ public class WebhookEndpointsApi {
      * Delete webhook endpoint
      * Delete specific webhook endpoint
      * @param endpointId Endpoint ID (required)
-     * @return Endpoint
+     * @return DeleteWebhookEndpointResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -250,8 +251,8 @@ public class WebhookEndpointsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public Endpoint v1WebhooksDelete(String endpointId) throws ApiException {
-        ApiResponse<Endpoint> localVarResp = v1WebhooksDeleteWithHttpInfo(endpointId);
+    public DeleteWebhookEndpointResponse v1WebhooksDelete(String endpointId) throws ApiException {
+        ApiResponse<DeleteWebhookEndpointResponse> localVarResp = v1WebhooksDeleteWithHttpInfo(endpointId);
         return localVarResp.getData();
     }
 
@@ -259,7 +260,7 @@ public class WebhookEndpointsApi {
      * Delete webhook endpoint
      * Delete specific webhook endpoint
      * @param endpointId Endpoint ID (required)
-     * @return ApiResponse&lt;Endpoint&gt;
+     * @return ApiResponse&lt;DeleteWebhookEndpointResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -269,9 +270,9 @@ public class WebhookEndpointsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Endpoint> v1WebhooksDeleteWithHttpInfo(String endpointId) throws ApiException {
+    public ApiResponse<DeleteWebhookEndpointResponse> v1WebhooksDeleteWithHttpInfo(String endpointId) throws ApiException {
         okhttp3.Call localVarCall = v1WebhooksDeleteValidateBeforeCall(endpointId, null);
-        Type localVarReturnType = new TypeToken<Endpoint>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeleteWebhookEndpointResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -290,10 +291,10 @@ public class WebhookEndpointsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhooksDeleteAsync(String endpointId, final ApiCallback<Endpoint> _callback) throws ApiException {
+    public okhttp3.Call v1WebhooksDeleteAsync(String endpointId, final ApiCallback<DeleteWebhookEndpointResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1WebhooksDeleteValidateBeforeCall(endpointId, _callback);
-        Type localVarReturnType = new TypeToken<Endpoint>(){}.getType();
+        Type localVarReturnType = new TypeToken<DeleteWebhookEndpointResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

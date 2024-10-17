@@ -36,6 +36,7 @@ type (
 		Wallet            *Wallet
 		WebhookEndpoint   *WebhookEndpoint
 		WebhookEventTypes *WebhookEventTypes
+		WebhookEvents     *WebhookEvents
 	}
 )
 
@@ -119,6 +120,9 @@ func New(options *APIClientOptions) *APIClient {
 			api: apiClient,
 		},
 		WebhookEventTypes: &WebhookEventTypes{
+			api: apiClient,
+		},
+		WebhookEvents: &WebhookEvents{
 			api: apiClient,
 		},
 	}

@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksDelete"></a>
 # **v1WebhooksDelete**
-> Endpoint v1WebhooksDelete(endpointId)
+> DeleteWebhookEndpointResponse v1WebhooksDelete(endpointId)
 
 Delete webhook endpoint
 
@@ -126,7 +126,7 @@ public class Example {
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
     String endpointId = "endpointId_example"; // String | Endpoint ID
     try {
-      Endpoint result = apiInstance.v1WebhooksDelete(endpointId);
+      DeleteWebhookEndpointResponse result = apiInstance.v1WebhooksDelete(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksDelete");
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Endpoint**](Endpoint.md)
+[**DeleteWebhookEndpointResponse**](DeleteWebhookEndpointResponse.md)
 
 ### Authorization
 

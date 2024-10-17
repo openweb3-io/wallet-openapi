@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksDelete
 
-> Endpoint V1WebhooksDelete(ctx, endpointId).Execute()
+> DeleteWebhookEndpointResponse V1WebhooksDelete(ctx, endpointId).Execute()
 
 Delete webhook endpoint
 
@@ -108,7 +108,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1WebhooksDelete`: Endpoint
+    // response from `V1WebhooksDelete`: DeleteWebhookEndpointResponse
     fmt.Fprintf(os.Stdout, "Response from `WebhookEndpointsApi.V1WebhooksDelete`: %v\n", resp)
 }
 ```
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Endpoint**](Endpoint.md)
+[**DeleteWebhookEndpointResponse**](DeleteWebhookEndpointResponse.md)
 
 ### Authorization
 

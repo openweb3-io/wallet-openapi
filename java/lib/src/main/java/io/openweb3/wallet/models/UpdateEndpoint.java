@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * UpdateEndpoint
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-12T22:51:22.492502+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]")
 public class UpdateEndpoint {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -41,7 +41,7 @@ public class UpdateEndpoint {
   @SerializedName(SERIALIZED_NAME_DISABLED)
   private Boolean disabled;
 
-  public static final String SERIALIZED_NAME_FILTER_TYPES = "filterTypes";
+  public static final String SERIALIZED_NAME_FILTER_TYPES = "filter_types";
   @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
   private List<String> filterTypes = new ArrayList<>();
 
@@ -120,10 +120,11 @@ public class UpdateEndpoint {
   }
 
    /**
-   * The filter types of the webhook endpoint
+   * The filter event types of the webhook endpoint
    * @return filterTypes
   **/
-  @ApiModelProperty(required = true, value = "The filter types of the webhook endpoint")
+  @javax.annotation.Nullable
+  @ApiModelProperty(required = true, value = "The filter event types of the webhook endpoint")
 
   public List<String> getFilterTypes() {
     return filterTypes;

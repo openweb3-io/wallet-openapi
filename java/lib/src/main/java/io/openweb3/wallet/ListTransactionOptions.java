@@ -4,6 +4,7 @@ public final class ListTransactionOptions extends ListOptions<ListTransactionOpt
     private String currency;
     private String direction;
     private String network;
+    private String gateway;
     private String status;
     private String txHash;
     private String walletId;
@@ -38,6 +39,11 @@ public final class ListTransactionOptions extends ListOptions<ListTransactionOpt
         return this;
     }
 
+    public ListTransactionOptions gateway(final String gateway) {
+        this.gateway = gateway;
+        return this;
+    }
+
     public void setCurrency(final String currency) {
     }
 
@@ -59,6 +65,10 @@ public final class ListTransactionOptions extends ListOptions<ListTransactionOpt
 
     public void setWalletId(final String walletId) {
         this.walletId = walletId;
+    }
+
+    public void setGateway(final String gateway) {
+        this.gateway = gateway;
     }
 
     public String getCurrency() {
@@ -83,5 +93,9 @@ public final class ListTransactionOptions extends ListOptions<ListTransactionOpt
 
     public String getWalletId() {
         return walletId;
+    }
+
+    public String getGateway() {
+        return gateway;
     }
 }

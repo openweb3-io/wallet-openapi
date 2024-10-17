@@ -23,6 +23,7 @@ public final class TransactionsAPI {
 				options.getCurrency(),
 				options.getCursor(),
 				options.getDirection(),
+				options.getGateway(),
 				options.getLimit(),
 				options.getNetwork(),
 				options.getStatus(),
