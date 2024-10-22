@@ -3,6 +3,7 @@ package io.openweb3.wallet;
 import io.openweb3.wallet.exceptions.ApiException;
 import io.openweb3.wallet.models.CreateTransferRequest;
 import io.openweb3.wallet.models.ResendWebhookEventRequest;
+import io.openweb3.wallet.models.SweepAddressRequest;
 import io.openweb3.wallet.models.UpdateWalletRequest;
 import org.junit.Test;
 
@@ -10,14 +11,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class APIClientTest {
-    final String apiKey = System.getenv("APIKEY");
-    final String privateKey = System.getenv("SECRET");
+   final String apiKey = System.getenv("APIKEY");
+   final String privateKey = System.getenv("SECRET");
+
     final APIClient client = new APIClient(
             new APIClientOptions()
                     .debug(true)
                     .apiKey(apiKey)
                     .secret(privateKey)
-//                    .serverUrl("http://localhost:8080")
+                    // .serverUrl("http://localhost:8080")
 //                    .serverUrl("http://openapi-server.wallet.dev")
     );
 
@@ -130,4 +132,16 @@ public class APIClientTest {
         }
     }
 
+
+    // test sweep
+    @Test
+    public void testSweep() {
+        try {
+            var rsp = client.getSweep().sweepAddress("TNYgYBM49yALWk83f5W38obEvZfM5aUFzk", new SweepAddressRequest().currency("TRX").amount("10000000"));
+            System.out.println(rsp);
+        } catch (ApiException e) {
+            System.out.print(e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
 }

@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * CursorPageAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-22T17:17:00.758182+08:00[Asia/Shanghai]")
 public class CursorPageAddress {
   public static final String SERIALIZED_NAME_HAS_NEXT = "has_next";
   @SerializedName(SERIALIZED_NAME_HAS_NEXT)

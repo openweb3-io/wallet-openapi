@@ -13,6 +13,7 @@ import okhttp3.Response;
 
 import io.openweb3.wallet.exceptions.SigningException;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public final class APIClient {
 	public static final String VERSION = "0.0.1";
@@ -25,6 +26,7 @@ public final class APIClient {
 	private final WebhookEndpointsAPI webhookEndpoint;
 	private final WebhookEventsAPI webhookEvent;
 	private final WebhookEventTypesAPI webhookEventType;
+	private final SweepAPI sweep;
 
 	public APIClient(final String apikey, final String privateKeyPath) throws Exception {
 		this(new APIClientOptions().apiKey(apikey).secret(privateKeyPath));
@@ -36,6 +38,9 @@ public final class APIClient {
 		}
 
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
+		builder.readTimeout(30, TimeUnit.SECONDS)
+				.writeTimeout(30, TimeUnit.SECONDS)
+				.connectTimeout(30, TimeUnit.SECONDS);
 		builder.addNetworkInterceptor(getProgressInterceptor());
 		builder.addInterceptor(new Interceptor() {
 			@NotNull
@@ -102,6 +107,7 @@ public final class APIClient {
 		this.webhookEndpoint = new WebhookEndpointsAPI();
 		this.webhookEventType = new WebhookEventTypesAPI();
 		this.webhookEvent = new WebhookEventsAPI();
+		this.sweep = new SweepAPI();
 	}
 
 	private Interceptor getProgressInterceptor() {
@@ -156,5 +162,9 @@ public final class APIClient {
 
 	public WebhookEventsAPI getWebhookEvent() {
 		return webhookEvent;
+	}
+
+	public SweepAPI getSweep() {
+		return sweep;
 	}
 }

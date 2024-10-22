@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 *NetworksApi* | [**V1NetworksList**](docs/NetworksApi.md#v1networkslist) | **Get** /api/v1/networks | List Networks
 *RatesApi* | [**V1RatesEstimate**](docs/RatesApi.md#v1ratesestimate) | **Get** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/rates | List rates
+*SweepFundsApi* | [**V1SweepAddress**](docs/SweepFundsApi.md#v1sweepaddress) | **Post** /api/v1/sweep/address/{address} | Sweep address
 *TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/transactions | List transactions
 *TransactionsApi* | [**V1TransactionsRetrieve**](docs/TransactionsApi.md#v1transactionsretrieve) | **Get** /api/v1/transactions/{transactionId} | Get transaction
 *TransactionsApi* | [**V1TransactionsTransfer**](docs/TransactionsApi.md#v1transactionstransfer) | **Post** /api/v1/transactions/transfer | Transfer(internal)
@@ -137,6 +138,8 @@ Class | Method | HTTP request | Description
  - [Rate](docs/Rate.md)
  - [ResendWebhookEventRequest](docs/ResendWebhookEventRequest.md)
  - [ResendWebhookEventResponse](docs/ResendWebhookEventResponse.md)
+ - [SweepAddressRequest](docs/SweepAddressRequest.md)
+ - [SweepAddressResponse](docs/SweepAddressResponse.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)

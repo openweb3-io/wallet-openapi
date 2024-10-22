@@ -25,11 +25,11 @@ type Endpoint struct {
 	// The filter event types of the webhook endpoint
 	FilterTypes []string `json:"filter_types"`
 	// The headers of the webhook endpoint
-	Headers map[string]string `json:"headers,omitempty"`
+	Headers *map[string]string `json:"headers,omitempty"`
 	// The id of the webhook endpoint
 	Id string `json:"id"`
 	// The metadata of the webhook endpoint
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 	// The uid of the webhook endpoint
 	Uid *string `json:"uid,omitempty"`
 	// The url of the webhook endpoint
@@ -132,7 +132,6 @@ func (o *Endpoint) SetDisabled(v bool) {
 }
 
 // GetFilterTypes returns the FilterTypes field value
-// If the value is explicit nil, the zero value for []string will be returned
 func (o *Endpoint) GetFilterTypes() []string {
 	if o == nil {
 		var ret []string
@@ -144,9 +143,8 @@ func (o *Endpoint) GetFilterTypes() []string {
 
 // GetFilterTypesOk returns a tuple with the FilterTypes field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Endpoint) GetFilterTypesOk() (*[]string, bool) {
-	if o == nil || o.FilterTypes == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.FilterTypes, true
@@ -157,23 +155,22 @@ func (o *Endpoint) SetFilterTypes(v []string) {
 	o.FilterTypes = v
 }
 
-// GetHeaders returns the Headers field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *Endpoint) GetHeaders() map[string]string {
-	if o == nil  {
+	if o == nil || o.Headers == nil {
 		var ret map[string]string
 		return ret
 	}
-	return o.Headers
+	return *o.Headers
 }
 
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Endpoint) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || o.Headers == nil {
 		return nil, false
 	}
-	return &o.Headers, true
+	return o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
@@ -187,7 +184,7 @@ func (o *Endpoint) HasHeaders() bool {
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
 func (o *Endpoint) SetHeaders(v map[string]string) {
-	o.Headers = v
+	o.Headers = &v
 }
 
 // GetId returns the Id field value
@@ -214,23 +211,22 @@ func (o *Endpoint) SetId(v string) {
 	o.Id = v
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *Endpoint) GetMetadata() map[string]interface{} {
-	if o == nil  {
+	if o == nil || o.Metadata == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Metadata
+	return *o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Endpoint) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
-	return &o.Metadata, true
+	return o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
@@ -244,7 +240,7 @@ func (o *Endpoint) HasMetadata() bool {
 
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *Endpoint) SetMetadata(v map[string]interface{}) {
-	o.Metadata = v
+	o.Metadata = &v
 }
 
 // GetUid returns the Uid field value if set, zero value otherwise.
@@ -314,7 +310,7 @@ func (o Endpoint) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["disabled"] = o.Disabled
 	}
-	if o.FilterTypes != nil {
+	if true {
 		toSerialize["filter_types"] = o.FilterTypes
 	}
 	if o.Headers != nil {

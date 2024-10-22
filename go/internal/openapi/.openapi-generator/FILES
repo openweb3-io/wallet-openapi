@@ -6,6 +6,7 @@ api_addresses.go
 api_currencies.go
 api_networks.go
 api_rates.go
+api_sweep_funds.go
 api_transactions.go
 api_wallets.go
 api_webhook_endpoints.go
@@ -47,6 +48,9 @@ docs/Rate.md
 docs/RatesApi.md
 docs/ResendWebhookEventRequest.md
 docs/ResendWebhookEventResponse.md
+docs/SweepAddressRequest.md
+docs/SweepAddressResponse.md
+docs/SweepFundsApi.md
 docs/Transaction.md
 docs/TransactionDirection.md
 docs/TransactionStatus.md
@@ -92,6 +96,8 @@ model_get_rates_response.go
 model_rate.go
 model_resend_webhook_event_request.go
 model_resend_webhook_event_response.go
+model_sweep_address_request.go
+model_sweep_address_response.go
 model_transaction.go
 model_transaction_direction.go
 model_transaction_status.go

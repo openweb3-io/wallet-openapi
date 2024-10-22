@@ -59,6 +59,8 @@ type APIClient struct {
 
 	RatesApi *RatesApiService
 
+	SweepFundsApi *SweepFundsApiService
+
 	TransactionsApi *TransactionsApiService
 
 	WalletsApi *WalletsApiService
@@ -90,6 +92,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CurrenciesApi = (*CurrenciesApiService)(&c.common)
 	c.NetworksApi = (*NetworksApiService)(&c.common)
 	c.RatesApi = (*RatesApiService)(&c.common)
+	c.SweepFundsApi = (*SweepFundsApiService)(&c.common)
 	c.TransactionsApi = (*TransactionsApiService)(&c.common)
 	c.WalletsApi = (*WalletsApiService)(&c.common)
 	c.WebhookEndpointsApi = (*WebhookEndpointsApiService)(&c.common)

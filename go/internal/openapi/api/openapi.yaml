@@ -1085,6 +1085,63 @@ paths:
       summary: Withdraw
       tags:
       - transactions
+  /api/v1/sweep/address/{address}:
+    post:
+      description: Sweep funds from a single address
+      operationId: v1.sweep.address
+      parameters:
+      - description: Address that funds will be swept from
+        explode: false
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SweepAddressRequest'
+        description: Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SweepAddressResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Sweep address
+      tags:
+      - sweep funds
   /api/v1/webhook/endpoints:
     get:
       description: List webhook endpoints
@@ -1509,18 +1566,15 @@ components:
           description: The filter event types of the webhook endpoint
           items:
             type: string
-          nullable: true
           type: array
         headers:
           additionalProperties:
             type: string
           description: The headers of the webhook endpoint
-          nullable: true
           type: object
         metadata:
           additionalProperties: {}
           description: The metadata of the webhook endpoint
-          nullable: true
           type: object
         uid:
           description: The uid of the webhook endpoint
@@ -2298,13 +2352,11 @@ components:
           description: The filter event types of the webhook endpoint
           items:
             type: string
-          nullable: true
           type: array
         headers:
           additionalProperties:
             type: string
           description: The headers of the webhook endpoint
-          nullable: true
           type: object
         id:
           description: The id of the webhook endpoint
@@ -2312,7 +2364,6 @@ components:
         metadata:
           additionalProperties: {}
           description: The metadata of the webhook endpoint
-          nullable: true
           type: object
         uid:
           description: The uid of the webhook endpoint
@@ -2471,6 +2522,29 @@ components:
       required:
       - success
       type: object
+    SweepAddressRequest:
+      example:
+        amount: amount
+        currency: currency
+      properties:
+        amount:
+          description: amount in smallest unit to be swept, if not provided, all funds
+            will be swept
+          type: string
+        currency:
+          description: currency to be swept
+          type: string
+      required:
+      - currency
+      type: object
+    SweepAddressResponse:
+      example:
+        tx_id: tx_id
+      properties:
+        tx_id:
+          description: transaction id
+          type: string
+      type: object
     Transaction:
       example:
         amount: amount
@@ -2585,18 +2659,15 @@ components:
           description: The filter event types of the webhook endpoint
           items:
             type: string
-          nullable: true
           type: array
         headers:
           additionalProperties:
             type: string
           description: The headers of the webhook endpoint
-          nullable: true
           type: object
         metadata:
           additionalProperties: {}
           description: The metadata of the webhook endpoint
-          nullable: true
           type: object
         uid:
           description: The uid of the webhook endpoint

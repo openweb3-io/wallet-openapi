@@ -1617,6 +1617,98 @@
                 }
             }
         },
+        "/api/v1/sweep/address/{address}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Sweep funds from a single address",
+                "tags": [
+                    "sweep funds"
+                ],
+                "summary": "Sweep address",
+                "operationId": "v1.sweep.address",
+                "parameters": [
+                    {
+                        "description": "Address that funds will be swept from",
+                        "name": "address",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SweepAddressRequest"
+                            }
+                        }
+                    },
+                    "description": "Request",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SweepAddressResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/webhook/endpoints": {
             "get": {
                 "security": [
@@ -2240,22 +2332,19 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        },
-                        "nullable": true
+                        }
                     },
                     "headers": {
                         "description": "The headers of the webhook endpoint",
                         "type": "object",
                         "additionalProperties": {
                             "type": "string"
-                        },
-                        "nullable": true
+                        }
                     },
                     "metadata": {
                         "description": "The metadata of the webhook endpoint",
                         "type": "object",
-                        "additionalProperties": {},
-                        "nullable": true
+                        "additionalProperties": {}
                     },
                     "uid": {
                         "description": "The uid of the webhook endpoint",
@@ -2820,16 +2909,14 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        },
-                        "nullable": true
+                        }
                     },
                     "headers": {
                         "description": "The headers of the webhook endpoint",
                         "type": "object",
                         "additionalProperties": {
                             "type": "string"
-                        },
-                        "nullable": true
+                        }
                     },
                     "id": {
                         "description": "The id of the webhook endpoint",
@@ -2838,8 +2925,7 @@
                     "metadata": {
                         "description": "The metadata of the webhook endpoint",
                         "type": "object",
-                        "additionalProperties": {},
-                        "nullable": true
+                        "additionalProperties": {}
                     },
                     "uid": {
                         "description": "The uid of the webhook endpoint",
@@ -2992,6 +3078,31 @@
                     }
                 }
             },
+            "SweepAddressRequest": {
+                "type": "object",
+                "required": [
+                    "currency"
+                ],
+                "properties": {
+                    "amount": {
+                        "description": "amount in smallest unit to be swept, if not provided, all funds will be swept",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "currency to be swept",
+                        "type": "string"
+                    }
+                }
+            },
+            "SweepAddressResponse": {
+                "type": "object",
+                "properties": {
+                    "tx_id": {
+                        "description": "transaction id",
+                        "type": "string"
+                    }
+                }
+            },
             "Transaction": {
                 "type": "object",
                 "required": [
@@ -3112,22 +3223,19 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        },
-                        "nullable": true
+                        }
                     },
                     "headers": {
                         "description": "The headers of the webhook endpoint",
                         "type": "object",
                         "additionalProperties": {
                             "type": "string"
-                        },
-                        "nullable": true
+                        }
                     },
                     "metadata": {
                         "description": "The metadata of the webhook endpoint",
                         "type": "object",
-                        "additionalProperties": {},
-                        "nullable": true
+                        "additionalProperties": {}
                     },
                     "uid": {
                         "description": "The uid of the webhook endpoint",

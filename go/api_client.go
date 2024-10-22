@@ -37,6 +37,7 @@ type (
 		WebhookEndpoint   *WebhookEndpoint
 		WebhookEventTypes *WebhookEventTypes
 		WebhookEvents     *WebhookEvents
+		Sweep             *Sweep
 	}
 )
 
@@ -123,6 +124,9 @@ func New(options *APIClientOptions) *APIClient {
 			api: apiClient,
 		},
 		WebhookEvents: &WebhookEvents{
+			api: apiClient,
+		},
+		Sweep: &Sweep{
 			api: apiClient,
 		},
 	}

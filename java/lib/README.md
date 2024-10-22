@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2024-10-18T03:36:10.637836+08:00[Asia/Shanghai]
+  - Build date: 2024-10-22T17:17:00.758182+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 
@@ -132,6 +132,7 @@ Class | Method | HTTP request | Description
 *NetworksApi* | [**v1NetworksList**](docs/NetworksApi.md#v1NetworksList) | **GET** /api/v1/networks | List Networks
 *RatesApi* | [**v1RatesEstimate**](docs/RatesApi.md#v1RatesEstimate) | **GET** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**v1RatesList**](docs/RatesApi.md#v1RatesList) | **POST** /api/v1/rates | List rates
+*SweepFundsApi* | [**v1SweepAddress**](docs/SweepFundsApi.md#v1SweepAddress) | **POST** /api/v1/sweep/address/{address} | Sweep address
 *TransactionsApi* | [**v1TransactionsList**](docs/TransactionsApi.md#v1TransactionsList) | **GET** /api/v1/transactions | List transactions
 *TransactionsApi* | [**v1TransactionsRetrieve**](docs/TransactionsApi.md#v1TransactionsRetrieve) | **GET** /api/v1/transactions/{transactionId} | Get transaction
 *TransactionsApi* | [**v1TransactionsTransfer**](docs/TransactionsApi.md#v1TransactionsTransfer) | **POST** /api/v1/transactions/transfer | Transfer(internal)
@@ -183,6 +184,8 @@ Class | Method | HTTP request | Description
  - [Rate](docs/Rate.md)
  - [ResendWebhookEventRequest](docs/ResendWebhookEventRequest.md)
  - [ResendWebhookEventResponse](docs/ResendWebhookEventResponse.md)
+ - [SweepAddressRequest](docs/SweepAddressRequest.md)
+ - [SweepAddressResponse](docs/SweepAddressResponse.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)

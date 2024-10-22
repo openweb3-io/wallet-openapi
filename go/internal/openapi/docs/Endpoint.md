@@ -113,16 +113,6 @@ and a boolean to check if the value has been set.
 SetFilterTypes sets FilterTypes field to given value.
 
 
-### SetFilterTypesNil
-
-`func (o *Endpoint) SetFilterTypesNil(b bool)`
-
- SetFilterTypesNil sets the value for FilterTypes to be an explicit nil
-
-### UnsetFilterTypes
-`func (o *Endpoint) UnsetFilterTypes()`
-
-UnsetFilterTypes ensures that no value is present for FilterTypes, not even an explicit nil
 ### GetHeaders
 
 `func (o *Endpoint) GetHeaders() map[string]string`
@@ -148,16 +138,6 @@ SetHeaders sets Headers field to given value.
 
 HasHeaders returns a boolean if a field has been set.
 
-### SetHeadersNil
-
-`func (o *Endpoint) SetHeadersNil(b bool)`
-
- SetHeadersNil sets the value for Headers to be an explicit nil
-
-### UnsetHeaders
-`func (o *Endpoint) UnsetHeaders()`
-
-UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
 ### GetId
 
 `func (o *Endpoint) GetId() string`
@@ -203,16 +183,6 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
-### SetMetadataNil
-
-`func (o *Endpoint) SetMetadataNil(b bool)`
-
- SetMetadataNil sets the value for Metadata to be an explicit nil
-
-### UnsetMetadata
-`func (o *Endpoint) UnsetMetadata()`
-
-UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetUid
 
 `func (o *Endpoint) GetUid() string`

@@ -1299,6 +1299,80 @@
                 }
             }
         },
+        "/api/v1/sweep/address/{address}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Sweep funds from a single address",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "sweep funds"
+                ],
+                "summary": "Sweep address",
+                "operationId": "v1.sweep.address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Address that funds will be swept from",
+                        "name": "address",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SweepAddressRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/SweepAddressResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/webhook/endpoints": {
             "get": {
                 "security": [
@@ -2589,6 +2663,31 @@
                 "success": {
                     "description": "The success of the webhook event",
                     "type": "boolean"
+                }
+            }
+        },
+        "SweepAddressRequest": {
+            "type": "object",
+            "required": [
+                "currency"
+            ],
+            "properties": {
+                "amount": {
+                    "description": "amount in smallest unit to be swept, if not provided, all funds will be swept",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "currency to be swept",
+                    "type": "string"
+                }
+            }
+        },
+        "SweepAddressResponse": {
+            "type": "object",
+            "properties": {
+                "tx_id": {
+                    "description": "transaction id",
+                    "type": "string"
                 }
             }
         },
