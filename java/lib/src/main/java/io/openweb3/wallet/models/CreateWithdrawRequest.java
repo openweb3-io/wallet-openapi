@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CreateWithdrawRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-22T17:17:00.758182+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]")
 public class CreateWithdrawRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -36,6 +36,14 @@ public class CreateWithdrawRequest {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
+
+  public static final String SERIALIZED_NAME_FEE = "fee";
+  @SerializedName(SERIALIZED_NAME_FEE)
+  private String fee;
+
+  public static final String SERIALIZED_NAME_FEE_CURRENCY = "fee_currency";
+  @SerializedName(SERIALIZED_NAME_FEE_CURRENCY)
+  private String feeCurrency;
 
   public static final String SERIALIZED_NAME_NETWORK = "network";
   @SerializedName(SERIALIZED_NAME_NETWORK)
@@ -91,6 +99,52 @@ public class CreateWithdrawRequest {
 
   public void setCurrency(String currency) {
     this.currency = currency;
+  }
+
+
+  public CreateWithdrawRequest fee(String fee) {
+    
+    this.fee = fee;
+    return this;
+  }
+
+   /**
+   * The fee of the withdrawal
+   * @return fee
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The fee of the withdrawal")
+
+  public String getFee() {
+    return fee;
+  }
+
+
+  public void setFee(String fee) {
+    this.fee = fee;
+  }
+
+
+  public CreateWithdrawRequest feeCurrency(String feeCurrency) {
+    
+    this.feeCurrency = feeCurrency;
+    return this;
+  }
+
+   /**
+   * The currency of fee
+   * @return feeCurrency
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The currency of fee")
+
+  public String getFeeCurrency() {
+    return feeCurrency;
+  }
+
+
+  public void setFeeCurrency(String feeCurrency) {
+    this.feeCurrency = feeCurrency;
   }
 
 
@@ -171,6 +225,8 @@ public class CreateWithdrawRequest {
     CreateWithdrawRequest createWithdrawRequest = (CreateWithdrawRequest) o;
     return Objects.equals(this.amount, createWithdrawRequest.amount) &&
         Objects.equals(this.currency, createWithdrawRequest.currency) &&
+        Objects.equals(this.fee, createWithdrawRequest.fee) &&
+        Objects.equals(this.feeCurrency, createWithdrawRequest.feeCurrency) &&
         Objects.equals(this.network, createWithdrawRequest.network) &&
         Objects.equals(this.toAddress, createWithdrawRequest.toAddress) &&
         Objects.equals(this.walletId, createWithdrawRequest.walletId);
@@ -178,7 +234,7 @@ public class CreateWithdrawRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, network, toAddress, walletId);
+    return Objects.hash(amount, currency, fee, feeCurrency, network, toAddress, walletId);
   }
 
   @Override
@@ -187,6 +243,8 @@ public class CreateWithdrawRequest {
     sb.append("class CreateWithdrawRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
+    sb.append("    feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
     sb.append("    network: ").append(toIndentedString(network)).append("\n");
     sb.append("    toAddress: ").append(toIndentedString(toAddress)).append("\n");
     sb.append("    walletId: ").append(toIndentedString(walletId)).append("\n");

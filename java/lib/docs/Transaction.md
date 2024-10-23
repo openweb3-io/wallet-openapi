@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **createdAt** | **String** | The date and time when the transaction was created. | 
 **currency** | **String** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
 **direction** | [**TransactionDirection**](TransactionDirection.md) | Indicates the flow of the transaction, typically whether it is incoming or outgoing. | 
+**feeAmount** | **String** | The amount of fee | 
+**feeCurrency** | **String** | The currency of fee | 
 **fromAddress** | **String** | The address of the sender. | 
 **gateway** | **String** | The payment gateway or platform used to process the transaction. | 
 **id** | **String** | A unique identifier for the transaction. | 

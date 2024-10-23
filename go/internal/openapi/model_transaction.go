@@ -26,6 +26,10 @@ type Transaction struct {
 	Currency string `json:"currency"`
 	// Indicates the flow of the transaction, typically whether it is incoming or outgoing.
 	Direction TransactionDirection `json:"direction"`
+	// The amount of fee
+	FeeAmount string `json:"fee_amount"`
+	// The currency of fee
+	FeeCurrency string `json:"fee_currency"`
 	// The address of the sender.
 	FromAddress string `json:"from_address"`
 	// The payment gateway or platform used to process the transaction.
@@ -46,13 +50,15 @@ type Transaction struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, fromAddress string, gateway string, id string, network string, status TransactionStatus, toAddress string, walletId string) *Transaction {
+func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, feeAmount string, feeCurrency string, fromAddress string, gateway string, id string, network string, status TransactionStatus, toAddress string, walletId string) *Transaction {
 	this := Transaction{}
 	this.Amount = amount
 	this.Avatar = avatar
 	this.CreatedAt = createdAt
 	this.Currency = currency
 	this.Direction = direction
+	this.FeeAmount = feeAmount
+	this.FeeCurrency = feeCurrency
 	this.FromAddress = fromAddress
 	this.Gateway = gateway
 	this.Id = id
@@ -189,6 +195,54 @@ func (o *Transaction) GetDirectionOk() (*TransactionDirection, bool) {
 // SetDirection sets field value
 func (o *Transaction) SetDirection(v TransactionDirection) {
 	o.Direction = v
+}
+
+// GetFeeAmount returns the FeeAmount field value
+func (o *Transaction) GetFeeAmount() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FeeAmount
+}
+
+// GetFeeAmountOk returns a tuple with the FeeAmount field value
+// and a boolean to check if the value has been set.
+func (o *Transaction) GetFeeAmountOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeAmount, true
+}
+
+// SetFeeAmount sets field value
+func (o *Transaction) SetFeeAmount(v string) {
+	o.FeeAmount = v
+}
+
+// GetFeeCurrency returns the FeeCurrency field value
+func (o *Transaction) GetFeeCurrency() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FeeCurrency
+}
+
+// GetFeeCurrencyOk returns a tuple with the FeeCurrency field value
+// and a boolean to check if the value has been set.
+func (o *Transaction) GetFeeCurrencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.FeeCurrency, true
+}
+
+// SetFeeCurrency sets field value
+func (o *Transaction) SetFeeCurrency(v string) {
+	o.FeeCurrency = v
 }
 
 // GetFromAddress returns the FromAddress field value
@@ -375,6 +429,12 @@ func (o Transaction) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["direction"] = o.Direction
+	}
+	if true {
+		toSerialize["fee_amount"] = o.FeeAmount
+	}
+	if true {
+		toSerialize["fee_currency"] = o.FeeCurrency
 	}
 	if true {
 		toSerialize["from_address"] = o.FromAddress

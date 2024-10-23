@@ -128,6 +128,3 @@ src/main/java/io/openweb3/wallet/models/UpdateEndpoint.java
 src/main/java/io/openweb3/wallet/models/UpdateWalletRequest.java
 src/main/java/io/openweb3/wallet/models/Wallet.java
 src/main/java/io/openweb3/wallet/models/WebhookEvent.java
-src/test/java/io/openweb3/wallet/internal/api/SweepFundsApiTest.java
-src/test/java/io/openweb3/wallet/models/SweepAddressRequestTest.java
-src/test/java/io/openweb3/wallet/models/SweepAddressResponseTest.java

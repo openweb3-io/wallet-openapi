@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **CreatedAt** | **string** | The date and time when the transaction was created. | 
 **Currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
 **Direction** | [**TransactionDirection**](TransactionDirection.md) | Indicates the flow of the transaction, typically whether it is incoming or outgoing. | 
+**FeeAmount** | **string** | The amount of fee | 
+**FeeCurrency** | **string** | The currency of fee | 
 **FromAddress** | **string** | The address of the sender. | 
 **Gateway** | **string** | The payment gateway or platform used to process the transaction. | 
 **Id** | **string** | A unique identifier for the transaction. | 
@@ -21,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewTransaction
 
-`func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, fromAddress string, gateway string, id string, network string, status TransactionStatus, toAddress string, walletId string, ) *Transaction`
+`func NewTransaction(amount string, avatar string, createdAt string, currency string, direction TransactionDirection, feeAmount string, feeCurrency string, fromAddress string, gateway string, id string, network string, status TransactionStatus, toAddress string, walletId string, ) *Transaction`
 
 NewTransaction instantiates a new Transaction object
 This constructor will assign default values to properties that have it defined,
@@ -134,6 +136,46 @@ and a boolean to check if the value has been set.
 `func (o *Transaction) SetDirection(v TransactionDirection)`
 
 SetDirection sets Direction field to given value.
+
+
+### GetFeeAmount
+
+`func (o *Transaction) GetFeeAmount() string`
+
+GetFeeAmount returns the FeeAmount field if non-nil, zero value otherwise.
+
+### GetFeeAmountOk
+
+`func (o *Transaction) GetFeeAmountOk() (*string, bool)`
+
+GetFeeAmountOk returns a tuple with the FeeAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFeeAmount
+
+`func (o *Transaction) SetFeeAmount(v string)`
+
+SetFeeAmount sets FeeAmount field to given value.
+
+
+### GetFeeCurrency
+
+`func (o *Transaction) GetFeeCurrency() string`
+
+GetFeeCurrency returns the FeeCurrency field if non-nil, zero value otherwise.
+
+### GetFeeCurrencyOk
+
+`func (o *Transaction) GetFeeCurrencyOk() (*string, bool)`
+
+GetFeeCurrencyOk returns a tuple with the FeeCurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFeeCurrency
+
+`func (o *Transaction) SetFeeCurrency(v string)`
+
+SetFeeCurrency sets FeeCurrency field to given value.
 
 
 ### GetFromAddress

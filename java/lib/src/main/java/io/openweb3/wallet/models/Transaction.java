@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * Transaction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-22T17:17:00.758182+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]")
 public class Transaction {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -50,6 +50,14 @@ public class Transaction {
   public static final String SERIALIZED_NAME_DIRECTION = "direction";
   @SerializedName(SERIALIZED_NAME_DIRECTION)
   private TransactionDirection direction;
+
+  public static final String SERIALIZED_NAME_FEE_AMOUNT = "fee_amount";
+  @SerializedName(SERIALIZED_NAME_FEE_AMOUNT)
+  private String feeAmount;
+
+  public static final String SERIALIZED_NAME_FEE_CURRENCY = "fee_currency";
+  @SerializedName(SERIALIZED_NAME_FEE_CURRENCY)
+  private String feeCurrency;
 
   public static final String SERIALIZED_NAME_FROM_ADDRESS = "from_address";
   @SerializedName(SERIALIZED_NAME_FROM_ADDRESS)
@@ -187,6 +195,50 @@ public class Transaction {
 
   public void setDirection(TransactionDirection direction) {
     this.direction = direction;
+  }
+
+
+  public Transaction feeAmount(String feeAmount) {
+    
+    this.feeAmount = feeAmount;
+    return this;
+  }
+
+   /**
+   * The amount of fee
+   * @return feeAmount
+  **/
+  @ApiModelProperty(required = true, value = "The amount of fee")
+
+  public String getFeeAmount() {
+    return feeAmount;
+  }
+
+
+  public void setFeeAmount(String feeAmount) {
+    this.feeAmount = feeAmount;
+  }
+
+
+  public Transaction feeCurrency(String feeCurrency) {
+    
+    this.feeCurrency = feeCurrency;
+    return this;
+  }
+
+   /**
+   * The currency of fee
+   * @return feeCurrency
+  **/
+  @ApiModelProperty(required = true, value = "The currency of fee")
+
+  public String getFeeCurrency() {
+    return feeCurrency;
+  }
+
+
+  public void setFeeCurrency(String feeCurrency) {
+    this.feeCurrency = feeCurrency;
   }
 
 
@@ -358,6 +410,8 @@ public class Transaction {
         Objects.equals(this.createdAt, transaction.createdAt) &&
         Objects.equals(this.currency, transaction.currency) &&
         Objects.equals(this.direction, transaction.direction) &&
+        Objects.equals(this.feeAmount, transaction.feeAmount) &&
+        Objects.equals(this.feeCurrency, transaction.feeCurrency) &&
         Objects.equals(this.fromAddress, transaction.fromAddress) &&
         Objects.equals(this.gateway, transaction.gateway) &&
         Objects.equals(this.id, transaction.id) &&
@@ -369,7 +423,7 @@ public class Transaction {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, avatar, createdAt, currency, direction, fromAddress, gateway, id, network, status, toAddress, walletId);
+    return Objects.hash(amount, avatar, createdAt, currency, direction, feeAmount, feeCurrency, fromAddress, gateway, id, network, status, toAddress, walletId);
   }
 
   @Override
@@ -381,6 +435,8 @@ public class Transaction {
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    direction: ").append(toIndentedString(direction)).append("\n");
+    sb.append("    feeAmount: ").append(toIndentedString(feeAmount)).append("\n");
+    sb.append("    feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
     sb.append("    fromAddress: ").append(toIndentedString(fromAddress)).append("\n");
     sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");

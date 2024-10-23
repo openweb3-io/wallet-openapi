@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **ContractAddress** | Pointer to **string** | Contract address for tokens based on smart contracts, such as ERC-20 | [optional] 
 **Id** | **string** |  | 
 **MaxFee** | **string** | Maximum transaction fee | 
+**Fee** | **string** | Transaction fee | 
+**FeeCurrency** | **string** | Transaction fee currency | 
 **MaxFeeForCtAddr** | **string** | Maximum transaction fee for contract addresses | 
 **MaxWithdrawAmount** | **string** | Maximum amount for a single on-chain withdrawal | 
 **MinCollectAmount** | Pointer to **string** | Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address | [optional] 
@@ -27,7 +29,7 @@ Name | Type | Description | Notes
 
 ### NewCurrencyNetwork
 
-`func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string, ) *CurrencyNetwork`
+`func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, id string, maxFee string, fee string, feeCurrency string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string, ) *CurrencyNetwork`
 
 NewCurrencyNetwork instantiates a new CurrencyNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -185,6 +187,46 @@ and a boolean to check if the value has been set.
 `func (o *CurrencyNetwork) SetMaxFee(v string)`
 
 SetMaxFee sets MaxFee field to given value.
+
+
+### GetFee
+
+`func (o *CurrencyNetwork) GetFee() string`
+
+GetFee returns the Fee field if non-nil, zero value otherwise.
+
+### GetFeeOk
+
+`func (o *CurrencyNetwork) GetFeeOk() (*string, bool)`
+
+GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFee
+
+`func (o *CurrencyNetwork) SetFee(v string)`
+
+SetFee sets Fee field to given value.
+
+
+### GetFeeCurrency
+
+`func (o *CurrencyNetwork) GetFeeCurrency() string`
+
+GetFeeCurrency returns the FeeCurrency field if non-nil, zero value otherwise.
+
+### GetFeeCurrencyOk
+
+`func (o *CurrencyNetwork) GetFeeCurrencyOk() (*string, bool)`
+
+GetFeeCurrencyOk returns a tuple with the FeeCurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFeeCurrency
+
+`func (o *CurrencyNetwork) SetFeeCurrency(v string)`
+
+SetFeeCurrency sets FeeCurrency field to given value.
 
 
 ### GetMaxFeeForCtAddr

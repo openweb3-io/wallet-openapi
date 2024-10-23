@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CurrencyNetwork
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-22T17:17:00.758182+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]")
 public class CurrencyNetwork {
   public static final String SERIALIZED_NAME_CAN_DEPOSIT = "can_deposit";
   @SerializedName(SERIALIZED_NAME_CAN_DEPOSIT)
@@ -56,6 +56,14 @@ public class CurrencyNetwork {
   public static final String SERIALIZED_NAME_MAX_FEE = "max_fee";
   @SerializedName(SERIALIZED_NAME_MAX_FEE)
   private String maxFee;
+
+  public static final String SERIALIZED_NAME_FEE = "fee";
+  @SerializedName(SERIALIZED_NAME_FEE)
+  private String fee;
+
+  public static final String SERIALIZED_NAME_FEE_CURRENCY = "fee_currency";
+  @SerializedName(SERIALIZED_NAME_FEE_CURRENCY)
+  private String feeCurrency;
 
   public static final String SERIALIZED_NAME_MAX_FEE_FOR_CT_ADDR = "max_fee_for_ct_addr";
   @SerializedName(SERIALIZED_NAME_MAX_FEE_FOR_CT_ADDR)
@@ -254,6 +262,50 @@ public class CurrencyNetwork {
 
   public void setMaxFee(String maxFee) {
     this.maxFee = maxFee;
+  }
+
+
+  public CurrencyNetwork fee(String fee) {
+    
+    this.fee = fee;
+    return this;
+  }
+
+   /**
+   * Transaction fee
+   * @return fee
+  **/
+  @ApiModelProperty(required = true, value = "Transaction fee")
+
+  public String getFee() {
+    return fee;
+  }
+
+
+  public void setFee(String fee) {
+    this.fee = fee;
+  }
+
+
+  public CurrencyNetwork feeCurrency(String feeCurrency) {
+    
+    this.feeCurrency = feeCurrency;
+    return this;
+  }
+
+   /**
+   * Transaction fee currency
+   * @return feeCurrency
+  **/
+  @ApiModelProperty(required = true, value = "Transaction fee currency")
+
+  public String getFeeCurrency() {
+    return feeCurrency;
+  }
+
+
+  public void setFeeCurrency(String feeCurrency) {
+    this.feeCurrency = feeCurrency;
   }
 
 
@@ -516,6 +568,8 @@ public class CurrencyNetwork {
         Objects.equals(this.contractAddress, currencyNetwork.contractAddress) &&
         Objects.equals(this.id, currencyNetwork.id) &&
         Objects.equals(this.maxFee, currencyNetwork.maxFee) &&
+        Objects.equals(this.fee, currencyNetwork.fee) &&
+        Objects.equals(this.feeCurrency, currencyNetwork.feeCurrency) &&
         Objects.equals(this.maxFeeForCtAddr, currencyNetwork.maxFeeForCtAddr) &&
         Objects.equals(this.maxWithdrawAmount, currencyNetwork.maxWithdrawAmount) &&
         Objects.equals(this.minCollectAmount, currencyNetwork.minCollectAmount) &&
@@ -531,7 +585,7 @@ public class CurrencyNetwork {
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, id, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
+    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, id, maxFee, fee, feeCurrency, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
   }
 
   @Override
@@ -545,6 +599,8 @@ public class CurrencyNetwork {
     sb.append("    contractAddress: ").append(toIndentedString(contractAddress)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    maxFee: ").append(toIndentedString(maxFee)).append("\n");
+    sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
+    sb.append("    feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
     sb.append("    maxFeeForCtAddr: ").append(toIndentedString(maxFeeForCtAddr)).append("\n");
     sb.append("    maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
     sb.append("    minCollectAmount: ").append(toIndentedString(minCollectAmount)).append("\n");

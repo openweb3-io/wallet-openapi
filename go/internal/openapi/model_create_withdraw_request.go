@@ -20,6 +20,10 @@ type CreateWithdrawRequest struct {
 	Amount string `json:"amount"`
 	// The code of currency to be withdrawn.
 	Currency string `json:"currency"`
+	// The fee of the withdrawal
+	Fee *string `json:"fee,omitempty"`
+	// The currency of fee
+	FeeCurrency *string `json:"fee_currency,omitempty"`
 	// The network of the currency to be withdrawn.
 	Network string `json:"network"`
 	// The recipient address where the withdrawn funds will be sent. This is usually a wallet address specific to the chosen network.
@@ -96,6 +100,70 @@ func (o *CreateWithdrawRequest) GetCurrencyOk() (*string, bool) {
 // SetCurrency sets field value
 func (o *CreateWithdrawRequest) SetCurrency(v string) {
 	o.Currency = v
+}
+
+// GetFee returns the Fee field value if set, zero value otherwise.
+func (o *CreateWithdrawRequest) GetFee() string {
+	if o == nil || o.Fee == nil {
+		var ret string
+		return ret
+	}
+	return *o.Fee
+}
+
+// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateWithdrawRequest) GetFeeOk() (*string, bool) {
+	if o == nil || o.Fee == nil {
+		return nil, false
+	}
+	return o.Fee, true
+}
+
+// HasFee returns a boolean if a field has been set.
+func (o *CreateWithdrawRequest) HasFee() bool {
+	if o != nil && o.Fee != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFee gets a reference to the given string and assigns it to the Fee field.
+func (o *CreateWithdrawRequest) SetFee(v string) {
+	o.Fee = &v
+}
+
+// GetFeeCurrency returns the FeeCurrency field value if set, zero value otherwise.
+func (o *CreateWithdrawRequest) GetFeeCurrency() string {
+	if o == nil || o.FeeCurrency == nil {
+		var ret string
+		return ret
+	}
+	return *o.FeeCurrency
+}
+
+// GetFeeCurrencyOk returns a tuple with the FeeCurrency field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateWithdrawRequest) GetFeeCurrencyOk() (*string, bool) {
+	if o == nil || o.FeeCurrency == nil {
+		return nil, false
+	}
+	return o.FeeCurrency, true
+}
+
+// HasFeeCurrency returns a boolean if a field has been set.
+func (o *CreateWithdrawRequest) HasFeeCurrency() bool {
+	if o != nil && o.FeeCurrency != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFeeCurrency gets a reference to the given string and assigns it to the FeeCurrency field.
+func (o *CreateWithdrawRequest) SetFeeCurrency(v string) {
+	o.FeeCurrency = &v
 }
 
 // GetNetwork returns the Network field value
@@ -177,6 +245,12 @@ func (o CreateWithdrawRequest) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["currency"] = o.Currency
+	}
+	if o.Fee != nil {
+		toSerialize["fee"] = o.Fee
+	}
+	if o.FeeCurrency != nil {
+		toSerialize["fee_currency"] = o.FeeCurrency
 	}
 	if true {
 		toSerialize["network"] = o.Network

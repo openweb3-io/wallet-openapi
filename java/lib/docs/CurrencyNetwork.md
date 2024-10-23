@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **contractAddress** | **String** | Contract address for tokens based on smart contracts, such as ERC-20 |  [optional]
 **id** | **String** |  | 
 **maxFee** | **String** | Maximum transaction fee | 
+**fee** | **String** | Transaction fee | 
+**feeCurrency** | **String** | Transaction fee currency | 
 **maxFeeForCtAddr** | **String** | Maximum transaction fee for contract addresses | 
 **maxWithdrawAmount** | **String** | Maximum amount for a single on-chain withdrawal | 
 **minCollectAmount** | **String** | Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address |  [optional]

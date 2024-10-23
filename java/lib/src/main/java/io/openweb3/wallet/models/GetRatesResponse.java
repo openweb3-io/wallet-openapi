@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * GetRatesResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-22T17:17:00.758182+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]")
 public class GetRatesResponse {
   public static final String SERIALIZED_NAME_RATES = "rates";
   @SerializedName(SERIALIZED_NAME_RATES)

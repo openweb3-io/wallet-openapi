@@ -1210,6 +1210,98 @@
                 }
             }
         },
+        "/api/v1/sweep/address/{address}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Sweep funds from a single address",
+                "tags": [
+                    "sweep funds"
+                ],
+                "summary": "Sweep address",
+                "operationId": "v1.sweep.address",
+                "parameters": [
+                    {
+                        "description": "Address that funds will be swept from",
+                        "name": "address",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SweepAddressRequest"
+                            }
+                        }
+                    },
+                    "description": "Request",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SweepAddressResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/transactions": {
             "get": {
                 "security": [
@@ -1327,87 +1419,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/CursorPage-Transaction"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/transactions/{transactionId}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Get a transaction by ID",
-                "tags": [
-                    "transactions"
-                ],
-                "summary": "Get transaction",
-                "operationId": "v1.transactions.retrieve",
-                "parameters": [
-                    {
-                        "description": "Transaction ID",
-                        "name": "transactionId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Transaction"
                                 }
                             }
                         }
@@ -1617,8 +1628,8 @@
                 }
             }
         },
-        "/api/v1/sweep/address/{address}": {
-            "post": {
+        "/api/v1/transactions/{transactionId}": {
+            "get": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -1627,16 +1638,16 @@
                         "SignatureAuth": []
                     }
                 ],
-                "description": "Sweep funds from a single address",
+                "description": "Get a transaction by ID",
                 "tags": [
-                    "sweep funds"
+                    "transactions"
                 ],
-                "summary": "Sweep address",
-                "operationId": "v1.sweep.address",
+                "summary": "Get transaction",
+                "operationId": "v1.transactions.retrieve",
                 "parameters": [
                     {
-                        "description": "Address that funds will be swept from",
-                        "name": "address",
+                        "description": "Transaction ID",
+                        "name": "transactionId",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -1644,24 +1655,13 @@
                         }
                     }
                 ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/SweepAddressRequest"
-                            }
-                        }
-                    },
-                    "description": "Request",
-                    "required": true
-                },
                 "responses": {
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/SweepAddressResponse"
+                                    "$ref": "#/components/schemas/Transaction"
                                 }
                             }
                         }
@@ -2439,6 +2439,14 @@
                         "description": "The code of currency to be withdrawn.",
                         "type": "string"
                     },
+                    "fee": {
+                        "description": "The fee of the withdrawal",
+                        "type": "string"
+                    },
+                    "fee_currency": {
+                        "description": "The currency of fee",
+                        "type": "string"
+                    },
                     "network": {
                         "description": "The network of the currency to be withdrawn.",
                         "type": "string"
@@ -2580,6 +2588,8 @@
                     "min_withdraw_amount",
                     "name",
                     "need_memo",
+                    "fee",
+                    "fee_currency",
                     "network"
                 ],
                 "properties": {
@@ -2608,6 +2618,14 @@
                     },
                     "max_fee": {
                         "description": "Maximum transaction fee",
+                        "type": "string"
+                    },
+                    "fee": {
+                        "description": "Transaction fee",
+                        "type": "string"
+                    },
+                    "fee_currency": {
+                        "description": "Transaction fee currency",
                         "type": "string"
                     },
                     "max_fee_for_ct_addr": {
@@ -3111,6 +3129,8 @@
                     "created_at",
                     "currency",
                     "direction",
+                    "fee_amount",
+                    "fee_currency",
                     "from_address",
                     "gateway",
                     "id",
@@ -3143,6 +3163,14 @@
                                 "$ref": "#/components/schemas/TransactionDirection"
                             }
                         ]
+                    },
+                    "fee_amount": {
+                        "description": "The amount of fee",
+                        "type": "string"
+                    },
+                    "fee_currency": {
+                        "description": "The currency of fee",
+                        "type": "string"
                     },
                     "from_address": {
                         "description": "The address of the sender.",

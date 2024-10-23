@@ -824,6 +824,65 @@ paths:
       tags:
       - rates
       x-accepts: application/json
+  /api/v1/sweep/address/{address}:
+    post:
+      description: Sweep funds from a single address
+      operationId: v1.sweep.address
+      parameters:
+      - description: Address that funds will be swept from
+        explode: false
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SweepAddressRequest'
+        description: Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SweepAddressResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Sweep address
+      tags:
+      - sweep funds
+      x-contentType: application/json
+      x-accepts: application/json
   /api/v1/transactions:
     get:
       description: List transactions
@@ -956,57 +1015,6 @@ paths:
       tags:
       - transactions
       x-accepts: application/json
-  /api/v1/transactions/{transactionId}:
-    get:
-      description: Get a transaction by ID
-      operationId: v1.transactions.retrieve
-      parameters:
-      - description: Transaction ID
-        explode: false
-        in: path
-        name: transactionId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Transaction'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Get transaction
-      tags:
-      - transactions
-      x-accepts: application/json
   /api/v1/transactions/transfer:
     post:
       description: Create a transfer transaction
@@ -1107,32 +1115,25 @@ paths:
       - transactions
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/sweep/address/{address}:
-    post:
-      description: Sweep funds from a single address
-      operationId: v1.sweep.address
+  /api/v1/transactions/{transactionId}:
+    get:
+      description: Get a transaction by ID
+      operationId: v1.transactions.retrieve
       parameters:
-      - description: Address that funds will be swept from
+      - description: Transaction ID
         explode: false
         in: path
-        name: address
+        name: transactionId
         required: true
         schema:
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SweepAddressRequest'
-        description: Request
-        required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SweepAddressResponse'
+                $ref: '#/components/schemas/Transaction'
           description: OK
         "400":
           content:
@@ -1161,10 +1162,9 @@ paths:
       security:
       - ApiKeyAuth: []
       - SignatureAuth: []
-      summary: Sweep address
+      summary: Get transaction
       tags:
-      - sweep funds
-      x-contentType: application/json
+      - transactions
       x-accepts: application/json
   /api/v1/webhook/endpoints:
     get:
@@ -1682,6 +1682,8 @@ components:
       example:
         amount: amount
         wallet_id: wallet_id
+        fee: fee
+        fee_currency: fee_currency
         currency: currency
         to_address: to_address
         network: network
@@ -1691,6 +1693,12 @@ components:
           type: string
         currency:
           description: The code of currency to be withdrawn.
+          type: string
+        fee:
+          description: The fee of the withdrawal
+          type: string
+        fee_currency:
+          description: The currency of fee
           type: string
         network:
           description: The network of the currency to be withdrawn.
@@ -1720,6 +1728,8 @@ components:
         networks:
         - code: code
           need_memo: true
+          fee: fee
+          fee_currency: fee_currency
           can_deposit: true
           contract_address: contract_address
           min_fee_for_ct_addr: min_fee_for_ct_addr
@@ -1738,6 +1748,8 @@ components:
           min_confirmations: 6
         - code: code
           need_memo: true
+          fee: fee
+          fee_currency: fee_currency
           can_deposit: true
           contract_address: contract_address
           min_fee_for_ct_addr: min_fee_for_ct_addr
@@ -1855,6 +1867,8 @@ components:
       example:
         code: code
         need_memo: true
+        fee: fee
+        fee_currency: fee_currency
         can_deposit: true
         contract_address: contract_address
         min_fee_for_ct_addr: min_fee_for_ct_addr
@@ -1892,6 +1906,12 @@ components:
           type: string
         max_fee:
           description: Maximum transaction fee
+          type: string
+        fee:
+          description: Transaction fee
+          type: string
+        fee_currency:
+          description: Transaction fee currency
           type: string
         max_fee_for_ct_addr:
           description: Maximum transaction fee for contract addresses
@@ -1934,6 +1954,8 @@ components:
       - can_transfer
       - can_withdraw
       - code
+      - fee
+      - fee_currency
       - id
       - max_fee
       - max_fee_for_ct_addr
@@ -2078,6 +2100,8 @@ components:
           networks:
           - code: code
             need_memo: true
+            fee: fee
+            fee_currency: fee_currency
             can_deposit: true
             contract_address: contract_address
             min_fee_for_ct_addr: min_fee_for_ct_addr
@@ -2096,6 +2120,8 @@ components:
             min_confirmations: 6
           - code: code
             need_memo: true
+            fee: fee
+            fee_currency: fee_currency
             can_deposit: true
             contract_address: contract_address
             min_fee_for_ct_addr: min_fee_for_ct_addr
@@ -2134,6 +2160,8 @@ components:
           networks:
           - code: code
             need_memo: true
+            fee: fee
+            fee_currency: fee_currency
             can_deposit: true
             contract_address: contract_address
             min_fee_for_ct_addr: min_fee_for_ct_addr
@@ -2152,6 +2180,8 @@ components:
             min_confirmations: 6
           - code: code
             need_memo: true
+            fee: fee
+            fee_currency: fee_currency
             can_deposit: true
             contract_address: contract_address
             min_fee_for_ct_addr: min_fee_for_ct_addr
@@ -2250,28 +2280,32 @@ components:
         has_next: true
         items:
         - amount: amount
-          wallet_id: wallet_id
+          fee_currency: fee_currency
           created_at: created_at
-          currency: currency
           to_address: to_address
           avatar: avatar
+          network: network
+          fee_amount: fee_amount
+          wallet_id: wallet_id
+          currency: currency
           id: id
           from_address: from_address
           gateway: gateway
           direction: ""
-          network: network
           status: ""
         - amount: amount
-          wallet_id: wallet_id
+          fee_currency: fee_currency
           created_at: created_at
-          currency: currency
           to_address: to_address
           avatar: avatar
+          network: network
+          fee_amount: fee_amount
+          wallet_id: wallet_id
+          currency: currency
           id: id
           from_address: from_address
           gateway: gateway
           direction: ""
-          network: network
           status: ""
       properties:
         has_next:
@@ -2583,16 +2617,18 @@ components:
     Transaction:
       example:
         amount: amount
-        wallet_id: wallet_id
+        fee_currency: fee_currency
         created_at: created_at
-        currency: currency
         to_address: to_address
         avatar: avatar
+        network: network
+        fee_amount: fee_amount
+        wallet_id: wallet_id
+        currency: currency
         id: id
         from_address: from_address
         gateway: gateway
         direction: ""
-        network: network
         status: ""
       properties:
         amount:
@@ -2614,6 +2650,12 @@ components:
           - $ref: '#/components/schemas/TransactionDirection'
           description: Indicates the flow of the transaction, typically whether it
             is incoming or outgoing.
+        fee_amount:
+          description: The amount of fee
+          type: string
+        fee_currency:
+          description: The currency of fee
+          type: string
         from_address:
           description: The address of the sender.
           type: string
@@ -2642,6 +2684,8 @@ components:
       - created_at
       - currency
       - direction
+      - fee_amount
+      - fee_currency
       - from_address
       - gateway
       - id

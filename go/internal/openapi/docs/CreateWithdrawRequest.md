@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **string** | The amount of currency to be withdrawn | 
 **Currency** | **string** | The code of currency to be withdrawn. | 
+**Fee** | Pointer to **string** | The fee of the withdrawal | [optional] 
+**FeeCurrency** | Pointer to **string** | The currency of fee | [optional] 
 **Network** | **string** | The network of the currency to be withdrawn. | 
 **ToAddress** | **string** | The recipient address where the withdrawn funds will be sent. This is usually a wallet address specific to the chosen network. | 
 **WalletId** | **string** | The ID of the wallet from which the withdrawal will be made. | 
@@ -68,6 +70,56 @@ and a boolean to check if the value has been set.
 
 SetCurrency sets Currency field to given value.
 
+
+### GetFee
+
+`func (o *CreateWithdrawRequest) GetFee() string`
+
+GetFee returns the Fee field if non-nil, zero value otherwise.
+
+### GetFeeOk
+
+`func (o *CreateWithdrawRequest) GetFeeOk() (*string, bool)`
+
+GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFee
+
+`func (o *CreateWithdrawRequest) SetFee(v string)`
+
+SetFee sets Fee field to given value.
+
+### HasFee
+
+`func (o *CreateWithdrawRequest) HasFee() bool`
+
+HasFee returns a boolean if a field has been set.
+
+### GetFeeCurrency
+
+`func (o *CreateWithdrawRequest) GetFeeCurrency() string`
+
+GetFeeCurrency returns the FeeCurrency field if non-nil, zero value otherwise.
+
+### GetFeeCurrencyOk
+
+`func (o *CreateWithdrawRequest) GetFeeCurrencyOk() (*string, bool)`
+
+GetFeeCurrencyOk returns a tuple with the FeeCurrency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFeeCurrency
+
+`func (o *CreateWithdrawRequest) SetFeeCurrency(v string)`
+
+SetFeeCurrency sets FeeCurrency field to given value.
+
+### HasFeeCurrency
+
+`func (o *CreateWithdrawRequest) HasFeeCurrency() bool`
+
+HasFeeCurrency returns a boolean if a field has been set.
 
 ### GetNetwork
 
