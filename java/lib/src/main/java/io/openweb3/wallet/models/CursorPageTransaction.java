@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * CursorPageTransaction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T00:18:23.478447+08:00[Asia/Shanghai]")
 public class CursorPageTransaction {
   public static final String SERIALIZED_NAME_HAS_NEXT = "has_next";
   @SerializedName(SERIALIZED_NAME_HAS_NEXT)

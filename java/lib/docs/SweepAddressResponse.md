@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**txId** | **String** | transaction id |  [optional]
+**txId** | **String** | transaction id | 
 
 
 

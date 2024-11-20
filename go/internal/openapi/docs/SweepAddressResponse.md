@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TxId** | Pointer to **string** | transaction id | [optional] 
+**TxId** | **string** | transaction id | 
 
 ## Methods
 
 ### NewSweepAddressResponse
 
-`func NewSweepAddressResponse() *SweepAddressResponse`
+`func NewSweepAddressResponse(txId string, ) *SweepAddressResponse`
 
 NewSweepAddressResponse instantiates a new SweepAddressResponse object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetTxId sets TxId field to given value.
 
-### HasTxId
-
-`func (o *SweepAddressResponse) HasTxId() bool`
-
-HasTxId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

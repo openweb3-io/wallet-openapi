@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **string** | amount in smallest unit to be swept, if not provided, all funds will be swept | [optional] 
 **Currency** | **string** | currency to be swept | 
 
 ## Methods
@@ -25,31 +24,6 @@ will change when the set of required properties is changed
 NewSweepAddressRequestWithDefaults instantiates a new SweepAddressRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAmount
-
-`func (o *SweepAddressRequest) GetAmount() string`
-
-GetAmount returns the Amount field if non-nil, zero value otherwise.
-
-### GetAmountOk
-
-`func (o *SweepAddressRequest) GetAmountOk() (*string, bool)`
-
-GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAmount
-
-`func (o *SweepAddressRequest) SetAmount(v string)`
-
-SetAmount sets Amount field to given value.
-
-### HasAmount
-
-`func (o *SweepAddressRequest) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
 
 ### GetCurrency
 

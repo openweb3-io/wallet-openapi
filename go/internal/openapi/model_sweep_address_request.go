@@ -16,8 +16,6 @@ import (
 
 // SweepAddressRequest struct for SweepAddressRequest
 type SweepAddressRequest struct {
-	// amount in smallest unit to be swept, if not provided, all funds will be swept
-	Amount *string `json:"amount,omitempty"`
 	// currency to be swept
 	Currency string `json:"currency"`
 }
@@ -38,38 +36,6 @@ func NewSweepAddressRequest(currency string) *SweepAddressRequest {
 func NewSweepAddressRequestWithDefaults() *SweepAddressRequest {
 	this := SweepAddressRequest{}
 	return &this
-}
-
-// GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *SweepAddressRequest) GetAmount() string {
-	if o == nil || o.Amount == nil {
-		var ret string
-		return ret
-	}
-	return *o.Amount
-}
-
-// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SweepAddressRequest) GetAmountOk() (*string, bool) {
-	if o == nil || o.Amount == nil {
-		return nil, false
-	}
-	return o.Amount, true
-}
-
-// HasAmount returns a boolean if a field has been set.
-func (o *SweepAddressRequest) HasAmount() bool {
-	if o != nil && o.Amount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAmount gets a reference to the given string and assigns it to the Amount field.
-func (o *SweepAddressRequest) SetAmount(v string) {
-	o.Amount = &v
 }
 
 // GetCurrency returns the Currency field value
@@ -98,9 +64,6 @@ func (o *SweepAddressRequest) SetCurrency(v string) {
 
 func (o SweepAddressRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Amount != nil {
-		toSerialize["amount"] = o.Amount
-	}
 	if true {
 		toSerialize["currency"] = o.Currency
 	}

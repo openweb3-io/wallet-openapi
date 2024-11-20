@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]
+  - Build date: 2024-11-21T00:18:23.478447+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 

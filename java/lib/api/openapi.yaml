@@ -66,6 +66,121 @@ paths:
       tags:
       - networks
       x-accepts: application/json
+  /api/v1/currencies:
+    get:
+      description: Retrieve a list of all available currencies.
+      operationId: v1.currencies.list
+      parameters:
+      - explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: rated
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Currency'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List currencies
+      tags:
+      - currencies
+      x-accepts: application/json
+  /api/v1/currencies/{code}:
+    get:
+      description: Get currency info by currency code
+      operationId: v1.currencies.retrieve
+      parameters:
+      - description: Currency code
+        explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Currency'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Get Currency
+      tags:
+      - currencies
+      x-accepts: application/json
   /api/v1/wallets:
     get:
       description: List all wallets
@@ -588,301 +703,6 @@ paths:
       tags:
       - addresses
       x-accepts: application/json
-  /api/v1/currencies:
-    get:
-      description: Retrieve a list of all available currencies.
-      operationId: v1.currencies.list
-      parameters:
-      - explode: true
-        in: query
-        name: cursor
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: rated
-        required: false
-        schema:
-          type: boolean
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CursorPage-Currency'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: List currencies
-      tags:
-      - currencies
-      x-accepts: application/json
-  /api/v1/currencies/{code}:
-    get:
-      description: Get currency info by currency code
-      operationId: v1.currencies.retrieve
-      parameters:
-      - description: Currency code
-        explode: false
-        in: path
-        name: code
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Currency'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Get Currency
-      tags:
-      - currencies
-      x-accepts: application/json
-  /api/v1/rates:
-    post:
-      description: Query the latest exchange rates between different currencies.
-      operationId: v1.rates.list
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetRatesRequest'
-        description: Request body
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetRatesResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: List rates
-      tags:
-      - rates
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/rates/estimate:
-    get:
-      description: Estimates currency exchange amounts.
-      operationId: v1.rates.estimate
-      parameters:
-      - description: The amount of the base currency you want to convert
-        explode: true
-        in: query
-        name: base_amount
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: The currency code of the base currency that you want to convert
-          from
-        explode: true
-        in: query
-        name: base_currency
-        required: true
-        schema:
-          minLength: 1
-          type: string
-        style: form
-      - description: The currency code of the target currency that you want to convert
-          to
-        explode: true
-        in: query
-        name: to_currency
-        required: true
-        schema:
-          minLength: 1
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EstimateResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Estimates
-      tags:
-      - rates
-      x-accepts: application/json
-  /api/v1/sweep/address/{address}:
-    post:
-      description: Sweep funds from a single address
-      operationId: v1.sweep.address
-      parameters:
-      - description: Address that funds will be swept from
-        explode: false
-        in: path
-        name: address
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SweepAddressRequest'
-        description: Request
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SweepAddressResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Sweep address
-      tags:
-      - sweep funds
-      x-contentType: application/json
-      x-accepts: application/json
   /api/v1/transactions:
     get:
       description: List transactions
@@ -1165,6 +985,186 @@ paths:
       summary: Get transaction
       tags:
       - transactions
+      x-accepts: application/json
+  /api/v1/sweep/address/{address}:
+    post:
+      description: Sweep funds from a single address
+      operationId: v1.sweep.address
+      parameters:
+      - description: Address that funds will be swept from
+        explode: false
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SweepAddressRequest'
+        description: Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SweepAddressResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Sweep address
+      tags:
+      - sweep funds
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/rates:
+    post:
+      description: Query the latest exchange rates between different currencies.
+      operationId: v1.rates.list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetRatesRequest'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRatesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List rates
+      tags:
+      - rates
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/rates/estimate:
+    get:
+      description: Estimates currency exchange amounts.
+      operationId: v1.rates.estimate
+      parameters:
+      - description: The amount of the base currency you want to convert
+        explode: true
+        in: query
+        name: base_amount
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The currency code of the base currency that you want to convert
+          from
+        explode: true
+        in: query
+        name: base_currency
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: The currency code of the target currency that you want to convert
+          to
+        explode: true
+        in: query
+        name: to_currency
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Estimates
+      tags:
+      - rates
       x-accepts: application/json
   /api/v1/webhook/endpoints:
     get:
@@ -1902,16 +1902,16 @@ components:
           description: Contract address for tokens based on smart contracts, such
             as ERC-20
           type: string
-        id:
-          type: string
-        max_fee:
-          description: Maximum transaction fee
-          type: string
         fee:
           description: Transaction fee
           type: string
         fee_currency:
           description: Transaction fee currency
+          type: string
+        id:
+          type: string
+        max_fee:
+          description: Maximum transaction fee
           type: string
         max_fee_for_ct_addr:
           description: Maximum transaction fee for contract addresses
@@ -2593,13 +2593,8 @@ components:
       type: object
     SweepAddressRequest:
       example:
-        amount: amount
         currency: currency
       properties:
-        amount:
-          description: amount in smallest unit to be swept, if not provided, all funds
-            will be swept
-          type: string
         currency:
           description: currency to be swept
           type: string
@@ -2613,6 +2608,8 @@ components:
         tx_id:
           description: transaction id
           type: string
+      required:
+      - tx_id
       type: object
     Transaction:
       example:

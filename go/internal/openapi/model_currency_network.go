@@ -26,13 +26,13 @@ type CurrencyNetwork struct {
 	Code string `json:"code"`
 	// Contract address for tokens based on smart contracts, such as ERC-20
 	ContractAddress *string `json:"contract_address,omitempty"`
-	Id string `json:"id"`
-	// Maximum transaction fee
-	MaxFee string `json:"max_fee"`
 	// Transaction fee
 	Fee string `json:"fee"`
 	// Transaction fee currency
 	FeeCurrency string `json:"fee_currency"`
+	Id string `json:"id"`
+	// Maximum transaction fee
+	MaxFee string `json:"max_fee"`
 	// Maximum transaction fee for contract addresses
 	MaxFeeForCtAddr string `json:"max_fee_for_ct_addr"`
 	// Maximum amount for a single on-chain withdrawal
@@ -61,16 +61,16 @@ type CurrencyNetwork struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, id string, maxFee string, fee string, feeCurrency string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string) *CurrencyNetwork {
+func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, fee string, feeCurrency string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string) *CurrencyNetwork {
 	this := CurrencyNetwork{}
 	this.CanDeposit = canDeposit
 	this.CanTransfer = canTransfer
 	this.CanWithdraw = canWithdraw
 	this.Code = code
-	this.Id = id
-	this.MaxFee = maxFee
 	this.Fee = fee
 	this.FeeCurrency = feeCurrency
+	this.Id = id
+	this.MaxFee = maxFee
 	this.MaxFeeForCtAddr = maxFeeForCtAddr
 	this.MaxWithdrawAmount = maxWithdrawAmount
 	this.MinConfirmations = minConfirmations
@@ -220,54 +220,6 @@ func (o *CurrencyNetwork) SetContractAddress(v string) {
 	o.ContractAddress = &v
 }
 
-// GetId returns the Id field value
-func (o *CurrencyNetwork) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CurrencyNetwork) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CurrencyNetwork) SetId(v string) {
-	o.Id = v
-}
-
-// GetMaxFee returns the MaxFee field value
-func (o *CurrencyNetwork) GetMaxFee() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.MaxFee
-}
-
-// GetMaxFeeOk returns a tuple with the MaxFee field value
-// and a boolean to check if the value has been set.
-func (o *CurrencyNetwork) GetMaxFeeOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.MaxFee, true
-}
-
-// SetMaxFee sets field value
-func (o *CurrencyNetwork) SetMaxFee(v string) {
-	o.MaxFee = v
-}
-
 // GetFee returns the Fee field value
 func (o *CurrencyNetwork) GetFee() string {
 	if o == nil {
@@ -314,6 +266,54 @@ func (o *CurrencyNetwork) GetFeeCurrencyOk() (*string, bool) {
 // SetFeeCurrency sets field value
 func (o *CurrencyNetwork) SetFeeCurrency(v string) {
 	o.FeeCurrency = v
+}
+
+// GetId returns the Id field value
+func (o *CurrencyNetwork) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CurrencyNetwork) GetIdOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CurrencyNetwork) SetId(v string) {
+	o.Id = v
+}
+
+// GetMaxFee returns the MaxFee field value
+func (o *CurrencyNetwork) GetMaxFee() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MaxFee
+}
+
+// GetMaxFeeOk returns a tuple with the MaxFee field value
+// and a boolean to check if the value has been set.
+func (o *CurrencyNetwork) GetMaxFeeOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MaxFee, true
+}
+
+// SetMaxFee sets field value
+func (o *CurrencyNetwork) SetMaxFee(v string) {
+	o.MaxFee = v
 }
 
 // GetMaxFeeForCtAddr returns the MaxFeeForCtAddr field value
@@ -606,16 +606,16 @@ func (o CurrencyNetwork) MarshalJSON() ([]byte, error) {
 		toSerialize["contract_address"] = o.ContractAddress
 	}
 	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["max_fee"] = o.MaxFee
-	}
-	if true {
 		toSerialize["fee"] = o.Fee
 	}
 	if true {
 		toSerialize["fee_currency"] = o.FeeCurrency
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["max_fee"] = o.MaxFee
 	}
 	if true {
 		toSerialize["max_fee_for_ct_addr"] = o.MaxFeeForCtAddr

@@ -27,38 +27,11 @@ import java.io.IOException;
 /**
  * SweepAddressRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T00:18:23.478447+08:00[Asia/Shanghai]")
 public class SweepAddressRequest {
-  public static final String SERIALIZED_NAME_AMOUNT = "amount";
-  @SerializedName(SERIALIZED_NAME_AMOUNT)
-  private String amount;
-
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
-
-
-  public SweepAddressRequest amount(String amount) {
-    
-    this.amount = amount;
-    return this;
-  }
-
-   /**
-   * amount in smallest unit to be swept, if not provided, all funds will be swept
-   * @return amount
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "amount in smallest unit to be swept, if not provided, all funds will be swept")
-
-  public String getAmount() {
-    return amount;
-  }
-
-
-  public void setAmount(String amount) {
-    this.amount = amount;
-  }
 
 
   public SweepAddressRequest currency(String currency) {
@@ -92,20 +65,18 @@ public class SweepAddressRequest {
       return false;
     }
     SweepAddressRequest sweepAddressRequest = (SweepAddressRequest) o;
-    return Objects.equals(this.amount, sweepAddressRequest.amount) &&
-        Objects.equals(this.currency, sweepAddressRequest.currency);
+    return Objects.equals(this.currency, sweepAddressRequest.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency);
+    return Objects.hash(currency);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SweepAddressRequest {\n");
-    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();

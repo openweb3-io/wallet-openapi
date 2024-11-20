@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CurrencyNetwork
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-23T18:09:38.781401+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T00:18:23.478447+08:00[Asia/Shanghai]")
 public class CurrencyNetwork {
   public static final String SERIALIZED_NAME_CAN_DEPOSIT = "can_deposit";
   @SerializedName(SERIALIZED_NAME_CAN_DEPOSIT)
@@ -49,14 +49,6 @@ public class CurrencyNetwork {
   @SerializedName(SERIALIZED_NAME_CONTRACT_ADDRESS)
   private String contractAddress;
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
-  public static final String SERIALIZED_NAME_MAX_FEE = "max_fee";
-  @SerializedName(SERIALIZED_NAME_MAX_FEE)
-  private String maxFee;
-
   public static final String SERIALIZED_NAME_FEE = "fee";
   @SerializedName(SERIALIZED_NAME_FEE)
   private String fee;
@@ -64,6 +56,14 @@ public class CurrencyNetwork {
   public static final String SERIALIZED_NAME_FEE_CURRENCY = "fee_currency";
   @SerializedName(SERIALIZED_NAME_FEE_CURRENCY)
   private String feeCurrency;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
+  public static final String SERIALIZED_NAME_MAX_FEE = "max_fee";
+  @SerializedName(SERIALIZED_NAME_MAX_FEE)
+  private String maxFee;
 
   public static final String SERIALIZED_NAME_MAX_FEE_FOR_CT_ADDR = "max_fee_for_ct_addr";
   @SerializedName(SERIALIZED_NAME_MAX_FEE_FOR_CT_ADDR)
@@ -221,50 +221,6 @@ public class CurrencyNetwork {
   }
 
 
-  public CurrencyNetwork id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public CurrencyNetwork maxFee(String maxFee) {
-    
-    this.maxFee = maxFee;
-    return this;
-  }
-
-   /**
-   * Maximum transaction fee
-   * @return maxFee
-  **/
-  @ApiModelProperty(required = true, value = "Maximum transaction fee")
-
-  public String getMaxFee() {
-    return maxFee;
-  }
-
-
-  public void setMaxFee(String maxFee) {
-    this.maxFee = maxFee;
-  }
-
-
   public CurrencyNetwork fee(String fee) {
     
     this.fee = fee;
@@ -306,6 +262,50 @@ public class CurrencyNetwork {
 
   public void setFeeCurrency(String feeCurrency) {
     this.feeCurrency = feeCurrency;
+  }
+
+
+  public CurrencyNetwork id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public CurrencyNetwork maxFee(String maxFee) {
+    
+    this.maxFee = maxFee;
+    return this;
+  }
+
+   /**
+   * Maximum transaction fee
+   * @return maxFee
+  **/
+  @ApiModelProperty(required = true, value = "Maximum transaction fee")
+
+  public String getMaxFee() {
+    return maxFee;
+  }
+
+
+  public void setMaxFee(String maxFee) {
+    this.maxFee = maxFee;
   }
 
 
@@ -566,10 +566,10 @@ public class CurrencyNetwork {
         Objects.equals(this.canWithdraw, currencyNetwork.canWithdraw) &&
         Objects.equals(this.code, currencyNetwork.code) &&
         Objects.equals(this.contractAddress, currencyNetwork.contractAddress) &&
-        Objects.equals(this.id, currencyNetwork.id) &&
-        Objects.equals(this.maxFee, currencyNetwork.maxFee) &&
         Objects.equals(this.fee, currencyNetwork.fee) &&
         Objects.equals(this.feeCurrency, currencyNetwork.feeCurrency) &&
+        Objects.equals(this.id, currencyNetwork.id) &&
+        Objects.equals(this.maxFee, currencyNetwork.maxFee) &&
         Objects.equals(this.maxFeeForCtAddr, currencyNetwork.maxFeeForCtAddr) &&
         Objects.equals(this.maxWithdrawAmount, currencyNetwork.maxWithdrawAmount) &&
         Objects.equals(this.minCollectAmount, currencyNetwork.minCollectAmount) &&
@@ -585,7 +585,7 @@ public class CurrencyNetwork {
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, id, maxFee, fee, feeCurrency, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
+    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, fee, feeCurrency, id, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
   }
 
   @Override
@@ -597,10 +597,10 @@ public class CurrencyNetwork {
     sb.append("    canWithdraw: ").append(toIndentedString(canWithdraw)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    contractAddress: ").append(toIndentedString(contractAddress)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    maxFee: ").append(toIndentedString(maxFee)).append("\n");
     sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
     sb.append("    feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    maxFee: ").append(toIndentedString(maxFee)).append("\n");
     sb.append("    maxFeeForCtAddr: ").append(toIndentedString(maxFeeForCtAddr)).append("\n");
     sb.append("    maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
     sb.append("    minCollectAmount: ").append(toIndentedString(minCollectAmount)).append("\n");

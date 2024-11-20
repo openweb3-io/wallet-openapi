@@ -17,15 +17,16 @@ import (
 // SweepAddressResponse struct for SweepAddressResponse
 type SweepAddressResponse struct {
 	// transaction id
-	TxId *string `json:"tx_id,omitempty"`
+	TxId string `json:"tx_id"`
 }
 
 // NewSweepAddressResponse instantiates a new SweepAddressResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSweepAddressResponse() *SweepAddressResponse {
+func NewSweepAddressResponse(txId string) *SweepAddressResponse {
 	this := SweepAddressResponse{}
+	this.TxId = txId
 	return &this
 }
 
@@ -37,41 +38,33 @@ func NewSweepAddressResponseWithDefaults() *SweepAddressResponse {
 	return &this
 }
 
-// GetTxId returns the TxId field value if set, zero value otherwise.
+// GetTxId returns the TxId field value
 func (o *SweepAddressResponse) GetTxId() string {
-	if o == nil || o.TxId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.TxId
+
+	return o.TxId
 }
 
-// GetTxIdOk returns a tuple with the TxId field value if set, nil otherwise
+// GetTxIdOk returns a tuple with the TxId field value
 // and a boolean to check if the value has been set.
 func (o *SweepAddressResponse) GetTxIdOk() (*string, bool) {
-	if o == nil || o.TxId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.TxId, true
+	return &o.TxId, true
 }
 
-// HasTxId returns a boolean if a field has been set.
-func (o *SweepAddressResponse) HasTxId() bool {
-	if o != nil && o.TxId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTxId gets a reference to the given string and assigns it to the TxId field.
+// SetTxId sets field value
 func (o *SweepAddressResponse) SetTxId(v string) {
-	o.TxId = &v
+	o.TxId = v
 }
 
 func (o SweepAddressResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TxId != nil {
+	if true {
 		toSerialize["tx_id"] = o.TxId
 	}
 	return json.Marshal(toSerialize)
