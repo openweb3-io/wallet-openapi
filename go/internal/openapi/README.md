@@ -83,6 +83,12 @@ Class | Method | HTTP request | Description
 *AddressesApi* | [**V1WalletsListDepositAddresses**](docs/AddressesApi.md#v1walletslistdepositaddresses) | **Get** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
 *CurrenciesApi* | [**V1CurrenciesList**](docs/CurrenciesApi.md#v1currencieslist) | **Get** /api/v1/currencies | List currencies
 *CurrenciesApi* | [**V1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1currenciesretrieve) | **Get** /api/v1/currencies/{code} | Get Currency
+*GasStationsApi* | [**V1GasStationsCreate**](docs/GasStationsApi.md#v1gasstationscreate) | **Post** /api/v1/gas_stations | Create gas station
+*GasStationsApi* | [**V1GasStationsDelete**](docs/GasStationsApi.md#v1gasstationsdelete) | **Delete** /api/v1/gas_stations/{gas_station_id} | Delete gas station
+*GasStationsApi* | [**V1GasStationsGetDepositAddress**](docs/GasStationsApi.md#v1gasstationsgetdepositaddress) | **Get** /api/v1/gas_stations/deposit_address | Get gas station deposit address
+*GasStationsApi* | [**V1GasStationsList**](docs/GasStationsApi.md#v1gasstationslist) | **Get** /api/v1/gas_stations | List gas stations
+*GasStationsApi* | [**V1GasStationsRetrieve**](docs/GasStationsApi.md#v1gasstationsretrieve) | **Get** /api/v1/gas_stations/{gas_station_id} | Get gas station
+*GasStationsApi* | [**V1GasStationsUpdate**](docs/GasStationsApi.md#v1gasstationsupdate) | **Patch** /api/v1/gas_stations/{gas_station_id} | Update gas station
 *NetworksApi* | [**V1NetworksList**](docs/NetworksApi.md#v1networkslist) | **Get** /api/v1/networks | List Networks
 *RatesApi* | [**V1RatesEstimate**](docs/RatesApi.md#v1ratesestimate) | **Get** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/rates | List rates
@@ -112,6 +118,7 @@ Class | Method | HTTP request | Description
  - [Address](docs/Address.md)
  - [ChainNetwork](docs/ChainNetwork.md)
  - [CreateEndpoint](docs/CreateEndpoint.md)
+ - [CreateGasStationRequest](docs/CreateGasStationRequest.md)
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
  - [CreateWalletRequest](docs/CreateWalletRequest.md)
@@ -125,6 +132,7 @@ Class | Method | HTTP request | Description
  - [CursorPageChainNetwork](docs/CursorPageChainNetwork.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
+ - [CursorPageGasStation](docs/CursorPageGasStation.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)
  - [CursorPageWallet](docs/CursorPageWallet.md)
  - [CursorPageWebhookEvent](docs/CursorPageWebhookEvent.md)
@@ -133,6 +141,8 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [EstimateResponse](docs/EstimateResponse.md)
  - [EventType](docs/EventType.md)
+ - [GasStation](docs/GasStation.md)
+ - [GetGasStationDepositAddressReply](docs/GetGasStationDepositAddressReply.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [Rate](docs/Rate.md)
@@ -144,6 +154,7 @@ Class | Method | HTTP request | Description
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)
  - [UpdateEndpoint](docs/UpdateEndpoint.md)
+ - [UpdateGasStationRequest](docs/UpdateGasStationRequest.md)
  - [UpdateWalletRequest](docs/UpdateWalletRequest.md)
  - [Wallet](docs/Wallet.md)
  - [WebhookEvent](docs/WebhookEvent.md)

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * SweepAddressResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T00:18:23.478447+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-04T08:51:30.487331+08:00[Asia/Shanghai]")
 public class SweepAddressResponse {
   public static final String SERIALIZED_NAME_TX_ID = "tx_id";
   @SerializedName(SERIALIZED_NAME_TX_ID)

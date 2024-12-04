@@ -28,6 +28,7 @@ public final class APIClient {
     private final WebhookEventsAPI webhookEvent;
     private final WebhookEventTypesAPI webhookEventType;
     private final SweepAPI sweep;
+    private final GasStationAPI gasStation;
 
     public APIClient(final String apikey, final String privateKeyPath) throws Exception {
         this(new APIClientOptions().apiKey(apikey).secret(privateKeyPath));
@@ -165,5 +166,9 @@ public final class APIClient {
 
     public SweepAPI getSweep() {
         return sweep;
+    }
+
+    public GasStationAPI getGasStation() {
+        return gasStation;
     }
 }

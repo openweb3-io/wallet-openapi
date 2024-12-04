@@ -9,6 +9,7 @@ docs/Address.md
 docs/AddressesApi.md
 docs/ChainNetwork.md
 docs/CreateEndpoint.md
+docs/CreateGasStationRequest.md
 docs/CreateTransferRequest.md
 docs/CreateTransferResponse.md
 docs/CreateWalletRequest.md
@@ -23,6 +24,7 @@ docs/CursorPageAddress.md
 docs/CursorPageChainNetwork.md
 docs/CursorPageCurrency.md
 docs/CursorPageEndpoint.md
+docs/CursorPageGasStation.md
 docs/CursorPageTransaction.md
 docs/CursorPageWallet.md
 docs/CursorPageWebhookEvent.md
@@ -31,6 +33,9 @@ docs/Endpoint.md
 docs/Error.md
 docs/EstimateResponse.md
 docs/EventType.md
+docs/GasStation.md
+docs/GasStationsApi.md
+docs/GetGasStationDepositAddressReply.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
 docs/NetworksApi.md
@@ -46,6 +51,7 @@ docs/TransactionDirection.md
 docs/TransactionStatus.md
 docs/TransactionsApi.md
 docs/UpdateEndpoint.md
+docs/UpdateGasStationRequest.md
 docs/UpdateWalletRequest.md
 docs/Wallet.md
 docs/WalletsApi.md
@@ -77,6 +83,7 @@ src/main/java/io/openweb3/wallet/internal/ServerVariable.java
 src/main/java/io/openweb3/wallet/internal/StringUtil.java
 src/main/java/io/openweb3/wallet/internal/api/AddressesApi.java
 src/main/java/io/openweb3/wallet/internal/api/CurrenciesApi.java
+src/main/java/io/openweb3/wallet/internal/api/GasStationsApi.java
 src/main/java/io/openweb3/wallet/internal/api/NetworksApi.java
 src/main/java/io/openweb3/wallet/internal/api/RatesApi.java
 src/main/java/io/openweb3/wallet/internal/api/SweepFundsApi.java
@@ -93,6 +100,7 @@ src/main/java/io/openweb3/wallet/models/Account.java
 src/main/java/io/openweb3/wallet/models/Address.java
 src/main/java/io/openweb3/wallet/models/ChainNetwork.java
 src/main/java/io/openweb3/wallet/models/CreateEndpoint.java
+src/main/java/io/openweb3/wallet/models/CreateGasStationRequest.java
 src/main/java/io/openweb3/wallet/models/CreateTransferRequest.java
 src/main/java/io/openweb3/wallet/models/CreateTransferResponse.java
 src/main/java/io/openweb3/wallet/models/CreateWalletRequest.java
@@ -106,6 +114,7 @@ src/main/java/io/openweb3/wallet/models/CursorPageAddress.java
 src/main/java/io/openweb3/wallet/models/CursorPageChainNetwork.java
 src/main/java/io/openweb3/wallet/models/CursorPageCurrency.java
 src/main/java/io/openweb3/wallet/models/CursorPageEndpoint.java
+src/main/java/io/openweb3/wallet/models/CursorPageGasStation.java
 src/main/java/io/openweb3/wallet/models/CursorPageTransaction.java
 src/main/java/io/openweb3/wallet/models/CursorPageWallet.java
 src/main/java/io/openweb3/wallet/models/CursorPageWebhookEvent.java
@@ -114,6 +123,8 @@ src/main/java/io/openweb3/wallet/models/Endpoint.java
 src/main/java/io/openweb3/wallet/models/Error.java
 src/main/java/io/openweb3/wallet/models/EstimateResponse.java
 src/main/java/io/openweb3/wallet/models/EventType.java
+src/main/java/io/openweb3/wallet/models/GasStation.java
+src/main/java/io/openweb3/wallet/models/GetGasStationDepositAddressReply.java
 src/main/java/io/openweb3/wallet/models/GetRatesRequest.java
 src/main/java/io/openweb3/wallet/models/GetRatesResponse.java
 src/main/java/io/openweb3/wallet/models/Rate.java
@@ -125,6 +136,7 @@ src/main/java/io/openweb3/wallet/models/Transaction.java
 src/main/java/io/openweb3/wallet/models/TransactionDirection.java
 src/main/java/io/openweb3/wallet/models/TransactionStatus.java
 src/main/java/io/openweb3/wallet/models/UpdateEndpoint.java
+src/main/java/io/openweb3/wallet/models/UpdateGasStationRequest.java
 src/main/java/io/openweb3/wallet/models/UpdateWalletRequest.java
 src/main/java/io/openweb3/wallet/models/Wallet.java
 src/main/java/io/openweb3/wallet/models/WebhookEvent.java
