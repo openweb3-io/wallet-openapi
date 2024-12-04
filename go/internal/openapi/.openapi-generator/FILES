@@ -4,7 +4,6 @@ README.md
 api/openapi.yaml
 api_addresses.go
 api_currencies.go
-api_gas_stations.go
 api_networks.go
 api_rates.go
 api_sweep_funds.go
@@ -20,7 +19,6 @@ docs/Address.md
 docs/AddressesApi.md
 docs/ChainNetwork.md
 docs/CreateEndpoint.md
-docs/CreateGasStationRequest.md
 docs/CreateTransferRequest.md
 docs/CreateTransferResponse.md
 docs/CreateWalletRequest.md
@@ -35,7 +33,6 @@ docs/CursorPageAddress.md
 docs/CursorPageChainNetwork.md
 docs/CursorPageCurrency.md
 docs/CursorPageEndpoint.md
-docs/CursorPageGasStation.md
 docs/CursorPageTransaction.md
 docs/CursorPageWallet.md
 docs/CursorPageWebhookEvent.md
@@ -44,9 +41,6 @@ docs/Endpoint.md
 docs/Error.md
 docs/EstimateResponse.md
 docs/EventType.md
-docs/GasStation.md
-docs/GasStationsApi.md
-docs/GetGasStationDepositAddressReply.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
 docs/NetworksApi.md
@@ -62,7 +56,6 @@ docs/TransactionDirection.md
 docs/TransactionStatus.md
 docs/TransactionsApi.md
 docs/UpdateEndpoint.md
-docs/UpdateGasStationRequest.md
 docs/UpdateWalletRequest.md
 docs/Wallet.md
 docs/WalletsApi.md
@@ -77,7 +70,6 @@ model_account.go
 model_address.go
 model_chain_network.go
 model_create_endpoint.go
-model_create_gas_station_request.go
 model_create_transfer_request.go
 model_create_transfer_response.go
 model_create_wallet_request.go
@@ -91,7 +83,6 @@ model_cursor_page_address.go
 model_cursor_page_chain_network.go
 model_cursor_page_currency.go
 model_cursor_page_endpoint.go
-model_cursor_page_gas_station.go
 model_cursor_page_transaction.go
 model_cursor_page_wallet.go
 model_cursor_page_webhook_event.go
@@ -100,8 +91,6 @@ model_endpoint.go
 model_error.go
 model_estimate_response.go
 model_event_type.go
-model_gas_station.go
-model_get_gas_station_deposit_address_reply.go
 model_get_rates_request.go
 model_get_rates_response.go
 model_rate.go
@@ -113,7 +102,6 @@ model_transaction.go
 model_transaction_direction.go
 model_transaction_status.go
 model_update_endpoint.go
-model_update_gas_station_request.go
 model_update_wallet_request.go
 model_wallet.go
 model_webhook_event.go
