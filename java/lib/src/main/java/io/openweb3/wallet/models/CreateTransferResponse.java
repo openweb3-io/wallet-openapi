@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CreateTransferResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-04T18:30:03.633689+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-18T05:37:05.137725+08:00[Asia/Shanghai]")
 public class CreateTransferResponse {
   public static final String SERIALIZED_NAME_TRANSFER_ID = "transfer_id";
   @SerializedName(SERIALIZED_NAME_TRANSFER_ID)

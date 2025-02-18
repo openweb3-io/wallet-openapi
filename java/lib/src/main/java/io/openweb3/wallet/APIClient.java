@@ -28,6 +28,7 @@ public final class APIClient {
     private final WebhookEventsAPI webhookEvent;
     private final WebhookEventTypesAPI webhookEventType;
     private final SweepAPI sweep;
+    private final ExchangesAPI exchange;
 
     public APIClient(final String apikey, final String privateKeyPath) throws Exception {
         this(new APIClientOptions().apiKey(apikey).secret(privateKeyPath));
@@ -107,6 +108,7 @@ public final class APIClient {
         this.webhookEventType = new WebhookEventTypesAPI();
         this.webhookEvent = new WebhookEventsAPI();
         this.sweep = new SweepAPI();
+        this.exchange = new ExchangesAPI();
     }
 
     private Interceptor getProgressInterceptor() {
@@ -165,5 +167,9 @@ public final class APIClient {
 
     public SweepAPI getSweep() {
         return sweep;
+    }
+
+    public ExchangesAPI getExchange() {
+        return exchange;
     }
 }

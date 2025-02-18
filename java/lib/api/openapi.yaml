@@ -7,12 +7,21 @@ info:
 servers:
 - url: /
 paths:
-  /api/v1/networks:
+  /api/v1/addresses:
     get:
-      description: List networks
-      operationId: v1.networks.list
+      description: List of all available addresses.
+      operationId: v1.addresses.list
       parameters:
-      - description: Cursor
+      - description: The code of currency used in the transaction (e.g., TON, USDT,
+          USD, EUR, etc.).
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The cursor to use for pagination.
         explode: true
         in: query
         name: cursor
@@ -20,7 +29,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Limit
+      - description: 'The number of records to return default: 20'
         explode: true
         in: query
         name: limit
@@ -28,12 +37,28 @@ paths:
         schema:
           type: integer
         style: form
+      - description: The type of address to retrieve.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Unique system generated identifier of the wallet
+        explode: true
+        in: query
+        name: walletId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CursorPage-ChainNetwork'
+                $ref: '#/components/schemas/CursorPage-Address'
           description: OK
         "400":
           content:
@@ -62,9 +87,9 @@ paths:
       security:
       - ApiKeyAuth: []
       - SignatureAuth: []
-      summary: List Networks
+      summary: List all addresses
       tags:
-      - networks
+      - addresses
       x-accepts: application/json
   /api/v1/currencies:
     get:
@@ -180,6 +205,783 @@ paths:
       summary: Get Currency
       tags:
       - currencies
+      x-accepts: application/json
+  /api/v1/exchanges:
+    get:
+      description: list exchanges
+      operationId: v1.exchanges.list
+      parameters:
+      - description: The cursor
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The limit
+        explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          type: integer
+        style: form
+      - description: The wallet id
+        explode: true
+        in: query
+        name: wallet_id
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Exchange'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: list exchanges
+      tags:
+      - exchanges
+      x-accepts: application/json
+    post:
+      description: Create a new exchange
+      operationId: v1.exchanges.create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExchange'
+        description: CreateExchange
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exchange'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: create exchange
+      tags:
+      - exchanges
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/exchanges/currency_pairs:
+    get:
+      description: list currency pairs
+      operationId: v1.exchanges.currency_pairs
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListExchangeCurrencyPairsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: list currency pairs
+      tags:
+      - exchanges
+      x-accepts: application/json
+  /api/v1/exchanges/{exchangeId}:
+    get:
+      description: retrieve a specified exchange
+      operationId: v1.exchanges.retrieve
+      parameters:
+      - description: Exchange ID
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exchange'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: retrieve exchange
+      tags:
+      - exchanges
+      x-accepts: application/json
+  /api/v1/exchanges/{exchangeId}/submit:
+    post:
+      description: submit a exchange
+      operationId: v1.exchanges.submit
+      parameters:
+      - description: Exchange ID
+        explode: false
+        in: path
+        name: exchangeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Exchange'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: submit exchange
+      tags:
+      - exchanges
+      x-accepts: application/json
+  /api/v1/networks:
+    get:
+      description: List networks
+      operationId: v1.networks.list
+      parameters:
+      - description: Cursor
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Limit
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-ChainNetwork'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List Networks
+      tags:
+      - networks
+      x-accepts: application/json
+  /api/v1/rates:
+    post:
+      description: Query the latest exchange rates between different currencies.
+      operationId: v1.rates.list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetRatesRequest'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRatesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List rates
+      tags:
+      - rates
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/rates/estimate:
+    get:
+      description: Estimates currency exchange amounts.
+      operationId: v1.rates.estimate
+      parameters:
+      - description: The amount of the base currency you want to convert
+        explode: true
+        in: query
+        name: base_amount
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The currency code of the base currency that you want to convert
+          from
+        explode: true
+        in: query
+        name: base_currency
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: The currency code of the target currency that you want to convert
+          to
+        explode: true
+        in: query
+        name: to_currency
+        required: true
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Estimates
+      tags:
+      - rates
+      x-accepts: application/json
+  /api/v1/sweep/address/{address}:
+    post:
+      description: Sweep funds from a single address
+      operationId: v1.sweep.address
+      parameters:
+      - description: Address that funds will be swept from
+        explode: false
+        in: path
+        name: address
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SweepAddressRequest'
+        description: Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SweepAddressResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Sweep address
+      tags:
+      - sweep funds
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/transactions:
+    get:
+      description: List transactions
+      operationId: v1.transactions.list
+      parameters:
+      - description: The type of currency involved in the transaction.
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A cursor value for pagination purposes.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The direction of the transaction (e.g., incoming or outgoing).
+        explode: true
+        in: query
+        name: direction
+        required: false
+        schema:
+          enum:
+          - OUT
+          - IN
+          type: string
+        style: form
+        x-enum-varnames:
+        - TransactionDirectionOut
+        - TransactionDirectionIn
+      - description: The payment gateway or platform used to process the transaction.
+        explode: true
+        in: query
+        name: gateway
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: 'The number of records to return default: 20'
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: The blockchain network on which the transaction takes place.
+        explode: true
+        in: query
+        name: network
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The status of the transaction.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - PROCESSING
+          - CANCELED
+          - FAILED
+          - SUCCEED
+          type: string
+        style: form
+        x-enum-varnames:
+        - TransactionStatusProcessing
+        - TransactionStatusCanceled
+        - TransactionStatusFailed
+        - TransactionStatusSucceed
+      - description: The transaction hash, which uniquely identifies a transaction
+          on the blockchain.
+        explode: true
+        in: query
+        name: txhash
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Unique system generated identifier of the wallet
+        explode: true
+        in: query
+        name: wallet_id
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Transaction'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: List transactions
+      tags:
+      - transactions
+      x-accepts: application/json
+  /api/v1/transactions/transfer:
+    post:
+      description: Create a transfer transaction
+      operationId: v1.transactions.transfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransferRequest'
+        description: Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransferResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Transfer(internal)
+      tags:
+      - transactions
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/transactions/withdraw:
+    post:
+      description: Create a new withdrawal request for a specified currency
+      operationId: v1.transactions.withdraw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWithdrawRequest'
+        description: withdraw
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateWithdrawReply'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Withdraw
+      tags:
+      - transactions
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/transactions/{transactionId}:
+    get:
+      description: Get a transaction by ID
+      operationId: v1.transactions.retrieve
+      parameters:
+      - description: Transaction ID
+        explode: false
+        in: path
+        name: transactionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      - SignatureAuth: []
+      summary: Get transaction
+      tags:
+      - transactions
       x-accepts: application/json
   /api/v1/wallets:
     get:
@@ -618,553 +1420,6 @@ paths:
       summary: List deposit addresses
       tags:
       - addresses
-      x-accepts: application/json
-  /api/v1/addresses:
-    get:
-      description: List of all available addresses.
-      operationId: v1.addresses.list
-      parameters:
-      - description: The code of currency used in the transaction (e.g., TON, USDT,
-          USD, EUR, etc.).
-        explode: true
-        in: query
-        name: currency
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The cursor to use for pagination.
-        explode: true
-        in: query
-        name: cursor
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: 'The number of records to return default: 20'
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: The type of address to retrieve.
-        explode: true
-        in: query
-        name: type
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Unique system generated identifier of the wallet
-        explode: true
-        in: query
-        name: walletId
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CursorPage-Address'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: List all addresses
-      tags:
-      - addresses
-      x-accepts: application/json
-  /api/v1/transactions:
-    get:
-      description: List transactions
-      operationId: v1.transactions.list
-      parameters:
-      - description: The type of currency involved in the transaction.
-        explode: true
-        in: query
-        name: currency
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: A cursor value for pagination purposes.
-        explode: true
-        in: query
-        name: cursor
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The direction of the transaction (e.g., incoming or outgoing).
-        explode: true
-        in: query
-        name: direction
-        required: false
-        schema:
-          enum:
-          - OUT
-          - IN
-          type: string
-        style: form
-        x-enum-varnames:
-        - TransactionDirectionOut
-        - TransactionDirectionIn
-      - description: The payment gateway or platform used to process the transaction.
-        explode: true
-        in: query
-        name: gateway
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: 'The number of records to return default: 20'
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: The blockchain network on which the transaction takes place.
-        explode: true
-        in: query
-        name: network
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: The status of the transaction.
-        explode: true
-        in: query
-        name: status
-        required: false
-        schema:
-          enum:
-          - PROCESSING
-          - CANCELED
-          - FAILED
-          - SUCCEED
-          type: string
-        style: form
-        x-enum-varnames:
-        - TransactionStatusProcessing
-        - TransactionStatusCanceled
-        - TransactionStatusFailed
-        - TransactionStatusSucceed
-      - description: The transaction hash, which uniquely identifies a transaction
-          on the blockchain.
-        explode: true
-        in: query
-        name: txhash
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Unique system generated identifier of the wallet
-        explode: true
-        in: query
-        name: wallet_id
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CursorPage-Transaction'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: List transactions
-      tags:
-      - transactions
-      x-accepts: application/json
-  /api/v1/transactions/transfer:
-    post:
-      description: Create a transfer transaction
-      operationId: v1.transactions.transfer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateTransferRequest'
-        description: Request Body
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateTransferResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Transfer(internal)
-      tags:
-      - transactions
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/transactions/withdraw:
-    post:
-      description: Create a new withdrawal request for a specified currency
-      operationId: v1.transactions.withdraw
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateWithdrawRequest'
-        description: withdraw
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateWithdrawReply'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Withdraw
-      tags:
-      - transactions
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/transactions/{transactionId}:
-    get:
-      description: Get a transaction by ID
-      operationId: v1.transactions.retrieve
-      parameters:
-      - description: Transaction ID
-        explode: false
-        in: path
-        name: transactionId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Transaction'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Get transaction
-      tags:
-      - transactions
-      x-accepts: application/json
-  /api/v1/sweep/address/{address}:
-    post:
-      description: Sweep funds from a single address
-      operationId: v1.sweep.address
-      parameters:
-      - description: Address that funds will be swept from
-        explode: false
-        in: path
-        name: address
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SweepAddressRequest'
-        description: Request
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SweepAddressResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Sweep address
-      tags:
-      - sweep funds
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/rates:
-    post:
-      description: Query the latest exchange rates between different currencies.
-      operationId: v1.rates.list
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetRatesRequest'
-        description: Request body
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetRatesResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: List rates
-      tags:
-      - rates
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/rates/estimate:
-    get:
-      description: Estimates currency exchange amounts.
-      operationId: v1.rates.estimate
-      parameters:
-      - description: The amount of the base currency you want to convert
-        explode: true
-        in: query
-        name: base_amount
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: The currency code of the base currency that you want to convert
-          from
-        explode: true
-        in: query
-        name: base_currency
-        required: true
-        schema:
-          minLength: 1
-          type: string
-        style: form
-      - description: The currency code of the target currency that you want to convert
-          to
-        explode: true
-        in: query
-        name: to_currency
-        required: true
-        schema:
-          minLength: 1
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EstimateResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Estimates
-      tags:
-      - rates
       x-accepts: application/json
   /api/v1/webhook/endpoints:
     get:
@@ -1620,6 +1875,36 @@ components:
       required:
       - filter_types
       - url
+      type: object
+    CreateExchange:
+      example:
+        wallet_id: wallet_id
+        from_currency: from_currency
+        from_amount: from_amount
+        fiat_currency: fiat_currency
+        to_currency: to_currency
+      properties:
+        fiat_currency:
+          description: 'The currency code of fiat currency, e.g.: USD'
+          type: string
+        from_amount:
+          description: 'The amount of the source currency to be exchange, e.g.: 100000'
+          type: string
+        from_currency:
+          description: 'The currency code of source currency, e.g.: TON'
+          type: string
+        to_currency:
+          description: 'The currency code of target currency, e.g.: USDT'
+          type: string
+        wallet_id:
+          description: The wallet id
+          type: string
+      required:
+      - fiat_currency
+      - from_amount
+      - from_currency
+      - to_currency
+      - wallet_id
       type: object
     CreateTransferRequest:
       example:
@@ -2273,6 +2558,53 @@ components:
       - has_next
       - items
       type: object
+    CursorPage-Exchange:
+      example:
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - fee_currency: fee_currency
+          from_amount: from_amount
+          created_at: created_at
+          fiat_currency: fiat_currency
+          ttl: 6
+          fee_amount: fee_amount
+          wallet_id: wallet_id
+          to_amount: to_amount
+          updated_at: updated_at
+          rate: 0.8008281904610115
+          from_currency: from_currency
+          id: id
+          to_currency: to_currency
+        - fee_currency: fee_currency
+          from_amount: from_amount
+          created_at: created_at
+          fiat_currency: fiat_currency
+          ttl: 6
+          fee_amount: fee_amount
+          wallet_id: wallet_id
+          to_amount: to_amount
+          updated_at: updated_at
+          rate: 0.8008281904610115
+          from_currency: from_currency
+          id: id
+          to_currency: to_currency
+      properties:
+        has_next:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Exchange'
+          type: array
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+      required:
+      - has_next
+      - items
+      type: object
     CursorPage-Transaction:
       example:
         prev_cursor: prev_cursor
@@ -2508,6 +2840,97 @@ components:
       - description
       - eventType
       type: object
+    Exchange:
+      example:
+        fee_currency: fee_currency
+        from_amount: from_amount
+        created_at: created_at
+        fiat_currency: fiat_currency
+        ttl: 6
+        fee_amount: fee_amount
+        wallet_id: wallet_id
+        to_amount: to_amount
+        updated_at: updated_at
+        rate: 0.8008281904610115
+        from_currency: from_currency
+        id: id
+        to_currency: to_currency
+      properties:
+        created_at:
+          description: The create time
+          type: string
+        fee_amount:
+          description: The amount of the fee charged for this exchange, denominated
+            in the `fee_currency`
+          type: string
+        fee_currency:
+          description: The currency in which the fee is denominated. For example,
+            'TON'.
+          type: string
+        fiat_currency:
+          description: 'The currency code of fiat currency, e.g.: USD'
+          type: string
+        from_amount:
+          description: The amount of the source currency being sent. For example,
+            0.1 TON.
+          type: string
+        from_currency:
+          description: The currency being sent. In this case, it is 'TON'.
+          type: string
+        id:
+          description: A unique identifier for the exchange.
+          type: string
+        rate:
+          description: The exchange rate applied during the exchange. For example,
+            the rate is 7.11116.
+          type: number
+        to_amount:
+          description: The amount of the target currency received. For example, 0.711116
+            USDT.
+          type: string
+        to_currency:
+          description: The currency being received. In this case, it is 'USDT'.
+          type: string
+        ttl:
+          description: The validity period for the exchange
+          type: integer
+        updated_at:
+          description: The update time
+          type: string
+        wallet_id:
+          description: The walletID that the exchange belong to
+          type: string
+      required:
+      - created_at
+      - fee_amount
+      - fee_currency
+      - fiat_currency
+      - from_amount
+      - from_currency
+      - id
+      - rate
+      - to_amount
+      - to_currency
+      - ttl
+      - updated_at
+      - wallet_id
+      type: object
+    ExchangeCurrencyPairs:
+      example:
+        to_currencies:
+        - to_currencies
+        - to_currencies
+        from_currency: from_currency
+      properties:
+        from_currency:
+          description: 'The currency code of source currency, e.g.: TON'
+          type: string
+        to_currencies:
+          description: 'The currency code list of target currency, e.g.: USDT'
+          items:
+            type: string
+          type: array
+      type: object
     GetRatesRequest:
       example:
         pairs:
@@ -2549,6 +2972,24 @@ components:
           type: array
       required:
       - rates
+      type: object
+    ListExchangeCurrencyPairsResponse:
+      example:
+        items:
+        - to_currencies:
+          - to_currencies
+          - to_currencies
+          from_currency: from_currency
+        - to_currencies:
+          - to_currencies
+          - to_currencies
+          from_currency: from_currency
+      properties:
+        items:
+          description: The list of currency pairs
+          items:
+            $ref: '#/components/schemas/ExchangeCurrencyPairs'
+          type: array
       type: object
     Rate:
       example:

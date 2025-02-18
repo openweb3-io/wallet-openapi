@@ -7,7 +7,7 @@
         "version": "1.0"
     },
     "paths": {
-        "/api/v1/networks": {
+        "/api/v1/addresses": {
             "get": {
                 "security": [
                     {
@@ -17,15 +17,23 @@
                         "SignatureAuth": []
                     }
                 ],
-                "description": "List networks",
+                "description": "List of all available addresses.",
                 "tags": [
-                    "networks"
+                    "addresses"
                 ],
-                "summary": "List Networks",
-                "operationId": "v1.networks.list",
+                "summary": "List all addresses",
+                "operationId": "v1.addresses.list",
                 "parameters": [
                     {
-                        "description": "Cursor",
+                        "description": "The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).",
+                        "name": "currency",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The cursor to use for pagination.",
                         "name": "cursor",
                         "in": "query",
                         "schema": {
@@ -33,11 +41,27 @@
                         }
                     },
                     {
-                        "description": "Limit",
+                        "description": "The number of records to return default: 20",
                         "name": "limit",
                         "in": "query",
                         "schema": {
                             "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "The type of address to retrieve.",
+                        "name": "type",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Unique system generated identifier of the wallet",
+                        "name": "walletId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -47,7 +71,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CursorPage-ChainNetwork"
+                                    "$ref": "#/components/schemas/CursorPage-Address"
                                 }
                             }
                         }
@@ -222,6 +246,1169 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Currency"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "list exchanges",
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "list exchanges",
+                "operationId": "v1.exchanges.list",
+                "parameters": [
+                    {
+                        "description": "The cursor",
+                        "name": "cursor",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The limit",
+                        "name": "limit",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "The wallet id",
+                        "name": "wallet_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CursorPage-Exchange"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Create a new exchange",
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "create exchange",
+                "operationId": "v1.exchanges.create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateExchange"
+                            }
+                        }
+                    },
+                    "description": "CreateExchange",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Exchange"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/currency_pairs": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "list currency pairs",
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "list currency pairs",
+                "operationId": "v1.exchanges.currency_pairs",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListExchangeCurrencyPairsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/{exchangeId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "retrieve a specified exchange",
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "retrieve exchange",
+                "operationId": "v1.exchanges.retrieve",
+                "parameters": [
+                    {
+                        "description": "Exchange ID",
+                        "name": "exchangeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Exchange"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/{exchangeId}/submit": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "submit a exchange",
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "submit exchange",
+                "operationId": "v1.exchanges.submit",
+                "parameters": [
+                    {
+                        "description": "Exchange ID",
+                        "name": "exchangeId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Exchange"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/networks": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List networks",
+                "tags": [
+                    "networks"
+                ],
+                "summary": "List Networks",
+                "operationId": "v1.networks.list",
+                "parameters": [
+                    {
+                        "description": "Cursor",
+                        "name": "cursor",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CursorPage-ChainNetwork"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rates": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Query the latest exchange rates between different currencies.",
+                "tags": [
+                    "rates"
+                ],
+                "summary": "List rates",
+                "operationId": "v1.rates.list",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetRatesRequest"
+                            }
+                        }
+                    },
+                    "description": "Request body",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRatesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/rates/estimate": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Estimates currency exchange amounts.",
+                "tags": [
+                    "rates"
+                ],
+                "summary": "Estimates",
+                "operationId": "v1.rates.estimate",
+                "parameters": [
+                    {
+                        "description": "The amount of the base currency you want to convert",
+                        "name": "base_amount",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The currency code of the base currency that you want to convert from",
+                        "name": "base_currency",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    {
+                        "description": "The currency code of the target currency that you want to convert to",
+                        "name": "to_currency",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EstimateResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/sweep/address/{address}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Sweep funds from a single address",
+                "tags": [
+                    "sweep funds"
+                ],
+                "summary": "Sweep address",
+                "operationId": "v1.sweep.address",
+                "parameters": [
+                    {
+                        "description": "Address that funds will be swept from",
+                        "name": "address",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SweepAddressRequest"
+                            }
+                        }
+                    },
+                    "description": "Request",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SweepAddressResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/transactions": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "List transactions",
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "List transactions",
+                "operationId": "v1.transactions.list",
+                "parameters": [
+                    {
+                        "description": "The type of currency involved in the transaction.",
+                        "name": "currency",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "A cursor value for pagination purposes.",
+                        "name": "cursor",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "x-enum-varnames": [
+                            "TransactionDirectionOut",
+                            "TransactionDirectionIn"
+                        ],
+                        "description": "The direction of the transaction (e.g., incoming or outgoing).",
+                        "name": "direction",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "OUT",
+                                "IN"
+                            ]
+                        }
+                    },
+                    {
+                        "description": "The payment gateway or platform used to process the transaction.",
+                        "name": "gateway",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "The number of records to return default: 20",
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "The blockchain network on which the transaction takes place.",
+                        "name": "network",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "x-enum-varnames": [
+                            "TransactionStatusProcessing",
+                            "TransactionStatusCanceled",
+                            "TransactionStatusFailed",
+                            "TransactionStatusSucceed"
+                        ],
+                        "description": "The status of the transaction.",
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROCESSING",
+                                "CANCELED",
+                                "FAILED",
+                                "SUCCEED"
+                            ]
+                        }
+                    },
+                    {
+                        "description": "The transaction hash, which uniquely identifies a transaction on the blockchain.",
+                        "name": "txhash",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Unique system generated identifier of the wallet",
+                        "name": "wallet_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CursorPage-Transaction"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/transactions/transfer": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Create a transfer transaction",
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Transfer(internal)",
+                "operationId": "v1.transactions.transfer",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateTransferRequest"
+                            }
+                        }
+                    },
+                    "description": "Request Body",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateTransferResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/transactions/withdraw": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Create a new withdrawal request for a specified currency",
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Withdraw",
+                "operationId": "v1.transactions.withdraw",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateWithdrawRequest"
+                            }
+                        }
+                    },
+                    "description": "withdraw",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateWithdrawReply"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/transactions/{transactionId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "SignatureAuth": []
+                    }
+                ],
+                "description": "Get a transaction by ID",
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Get transaction",
+                "operationId": "v1.transactions.retrieve",
+                "parameters": [
+                    {
+                        "description": "Transaction ID",
+                        "name": "transactionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Transaction"
                                 }
                             }
                         }
@@ -916,799 +2103,6 @@
                 }
             }
         },
-        "/api/v1/addresses": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "List of all available addresses.",
-                "tags": [
-                    "addresses"
-                ],
-                "summary": "List all addresses",
-                "operationId": "v1.addresses.list",
-                "parameters": [
-                    {
-                        "description": "The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).",
-                        "name": "currency",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "The cursor to use for pagination.",
-                        "name": "cursor",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "The number of records to return default: 20",
-                        "name": "limit",
-                        "in": "query",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "description": "The type of address to retrieve.",
-                        "name": "type",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Unique system generated identifier of the wallet",
-                        "name": "walletId",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CursorPage-Address"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/transactions": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "List transactions",
-                "tags": [
-                    "transactions"
-                ],
-                "summary": "List transactions",
-                "operationId": "v1.transactions.list",
-                "parameters": [
-                    {
-                        "description": "The type of currency involved in the transaction.",
-                        "name": "currency",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "A cursor value for pagination purposes.",
-                        "name": "cursor",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "x-enum-varnames": [
-                            "TransactionDirectionOut",
-                            "TransactionDirectionIn"
-                        ],
-                        "description": "The direction of the transaction (e.g., incoming or outgoing).",
-                        "name": "direction",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "OUT",
-                                "IN"
-                            ]
-                        }
-                    },
-                    {
-                        "description": "The payment gateway or platform used to process the transaction.",
-                        "name": "gateway",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "The number of records to return default: 20",
-                        "name": "limit",
-                        "in": "query",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "description": "The blockchain network on which the transaction takes place.",
-                        "name": "network",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "x-enum-varnames": [
-                            "TransactionStatusProcessing",
-                            "TransactionStatusCanceled",
-                            "TransactionStatusFailed",
-                            "TransactionStatusSucceed"
-                        ],
-                        "description": "The status of the transaction.",
-                        "name": "status",
-                        "in": "query",
-                        "schema": {
-                            "type": "string",
-                            "enum": [
-                                "PROCESSING",
-                                "CANCELED",
-                                "FAILED",
-                                "SUCCEED"
-                            ]
-                        }
-                    },
-                    {
-                        "description": "The transaction hash, which uniquely identifies a transaction on the blockchain.",
-                        "name": "txhash",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Unique system generated identifier of the wallet",
-                        "name": "wallet_id",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CursorPage-Transaction"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/transactions/transfer": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Create a transfer transaction",
-                "tags": [
-                    "transactions"
-                ],
-                "summary": "Transfer(internal)",
-                "operationId": "v1.transactions.transfer",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateTransferRequest"
-                            }
-                        }
-                    },
-                    "description": "Request Body",
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CreateTransferResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/transactions/withdraw": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Create a new withdrawal request for a specified currency",
-                "tags": [
-                    "transactions"
-                ],
-                "summary": "Withdraw",
-                "operationId": "v1.transactions.withdraw",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateWithdrawRequest"
-                            }
-                        }
-                    },
-                    "description": "withdraw",
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/CreateWithdrawReply"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/transactions/{transactionId}": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Get a transaction by ID",
-                "tags": [
-                    "transactions"
-                ],
-                "summary": "Get transaction",
-                "operationId": "v1.transactions.retrieve",
-                "parameters": [
-                    {
-                        "description": "Transaction ID",
-                        "name": "transactionId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Transaction"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/sweep/address/{address}": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Sweep funds from a single address",
-                "tags": [
-                    "sweep funds"
-                ],
-                "summary": "Sweep address",
-                "operationId": "v1.sweep.address",
-                "parameters": [
-                    {
-                        "description": "Address that funds will be swept from",
-                        "name": "address",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/SweepAddressRequest"
-                            }
-                        }
-                    },
-                    "description": "Request",
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SweepAddressResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/rates": {
-            "post": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Query the latest exchange rates between different currencies.",
-                "tags": [
-                    "rates"
-                ],
-                "summary": "List rates",
-                "operationId": "v1.rates.list",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/GetRatesRequest"
-                            }
-                        }
-                    },
-                    "description": "Request body",
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/GetRatesResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/rates/estimate": {
-            "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "description": "Estimates currency exchange amounts.",
-                "tags": [
-                    "rates"
-                ],
-                "summary": "Estimates",
-                "operationId": "v1.rates.estimate",
-                "parameters": [
-                    {
-                        "description": "The amount of the base currency you want to convert",
-                        "name": "base_amount",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "The currency code of the base currency that you want to convert from",
-                        "name": "base_currency",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "minLength": 1
-                        }
-                    },
-                    {
-                        "description": "The currency code of the target currency that you want to convert to",
-                        "name": "to_currency",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "minLength": 1
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/EstimateResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Error"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/api/v1/webhook/endpoints": {
             "get": {
                 "security": [
@@ -2356,6 +2750,38 @@
                     }
                 }
             },
+            "CreateExchange": {
+                "type": "object",
+                "required": [
+                    "fiat_currency",
+                    "from_amount",
+                    "from_currency",
+                    "to_currency",
+                    "wallet_id"
+                ],
+                "properties": {
+                    "fiat_currency": {
+                        "description": "The currency code of fiat currency, e.g.: USD",
+                        "type": "string"
+                    },
+                    "from_amount": {
+                        "description": "The amount of the source currency to be exchange, e.g.: 100000",
+                        "type": "string"
+                    },
+                    "from_currency": {
+                        "description": "The currency code of source currency, e.g.: TON",
+                        "type": "string"
+                    },
+                    "to_currency": {
+                        "description": "The currency code of target currency, e.g.: USDT",
+                        "type": "string"
+                    },
+                    "wallet_id": {
+                        "description": "The wallet id",
+                        "type": "string"
+                    }
+                }
+            },
             "CreateTransferRequest": {
                 "type": "object",
                 "required": [
@@ -2815,6 +3241,30 @@
                     }
                 }
             },
+            "CursorPage-Exchange": {
+                "type": "object",
+                "required": [
+                    "has_next",
+                    "items"
+                ],
+                "properties": {
+                    "has_next": {
+                        "type": "boolean"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Exchange"
+                        }
+                    },
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    }
+                }
+            },
             "CursorPage-Transaction": {
                 "type": "object",
                 "required": [
@@ -3021,6 +3471,94 @@
                     }
                 }
             },
+            "Exchange": {
+                "type": "object",
+                "required": [
+                    "created_at",
+                    "fee_amount",
+                    "fee_currency",
+                    "fiat_currency",
+                    "from_amount",
+                    "from_currency",
+                    "id",
+                    "rate",
+                    "to_amount",
+                    "to_currency",
+                    "ttl",
+                    "updated_at",
+                    "wallet_id"
+                ],
+                "properties": {
+                    "created_at": {
+                        "description": "The create time",
+                        "type": "string"
+                    },
+                    "fee_amount": {
+                        "description": "The amount of the fee charged for this exchange, denominated in the `fee_currency`",
+                        "type": "string"
+                    },
+                    "fee_currency": {
+                        "description": "The currency in which the fee is denominated. For example, 'TON'.",
+                        "type": "string"
+                    },
+                    "fiat_currency": {
+                        "description": "The currency code of fiat currency, e.g.: USD",
+                        "type": "string"
+                    },
+                    "from_amount": {
+                        "description": "The amount of the source currency being sent. For example, 0.1 TON.",
+                        "type": "string"
+                    },
+                    "from_currency": {
+                        "description": "The currency being sent. In this case, it is 'TON'.",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "A unique identifier for the exchange.",
+                        "type": "string"
+                    },
+                    "rate": {
+                        "description": "The exchange rate applied during the exchange. For example, the rate is 7.11116.",
+                        "type": "number"
+                    },
+                    "to_amount": {
+                        "description": "The amount of the target currency received. For example, 0.711116 USDT.",
+                        "type": "string"
+                    },
+                    "to_currency": {
+                        "description": "The currency being received. In this case, it is 'USDT'.",
+                        "type": "string"
+                    },
+                    "ttl": {
+                        "description": "The validity period for the exchange",
+                        "type": "integer"
+                    },
+                    "updated_at": {
+                        "description": "The update time",
+                        "type": "string"
+                    },
+                    "wallet_id": {
+                        "description": "The walletID that the exchange belong to",
+                        "type": "string"
+                    }
+                }
+            },
+            "ExchangeCurrencyPairs": {
+                "type": "object",
+                "properties": {
+                    "from_currency": {
+                        "description": "The currency code of source currency, e.g.: TON",
+                        "type": "string"
+                    },
+                    "to_currencies": {
+                        "description": "The currency code list of target currency, e.g.: USDT",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "GetRatesRequest": {
                 "type": "object",
                 "required": [
@@ -3047,6 +3585,18 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/Rate"
+                        }
+                    }
+                }
+            },
+            "ListExchangeCurrencyPairsResponse": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "description": "The list of currency pairs",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ExchangeCurrencyPairs"
                         }
                     }
                 }

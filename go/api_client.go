@@ -38,6 +38,7 @@ type (
 		WebhookEventTypes *WebhookEventTypes
 		WebhookEvents     *WebhookEvents
 		Sweep             *Sweep
+		Exchange          *Exchange
 	}
 )
 
@@ -58,19 +59,21 @@ func New(options *APIClientOptions) *APIClient {
 		if strings.ToUpper(req.Method) == "POST" ||
 			strings.ToUpper(req.Method) == "PUT" ||
 			strings.ToUpper(req.Method) == "PATCH" {
-			body, err := io.ReadAll(req.Body)
-			if err != nil {
-				log.Printf("Error reading body: %v", err)
-			}
-			saveBody := body
-			savecl := req.ContentLength
-			defer func() {
-				// set body back to the original value when the middleware is done
-				req.Body = io.NopCloser(bytes.NewBuffer(saveBody))
-				req.ContentLength = savecl
-			}()
+			if req.Body != nil {
+				body, err := io.ReadAll(req.Body)
+				if err != nil {
+					log.Printf("Error reading body: %v", err)
+				}
+				saveBody := body
+				savecl := req.ContentLength
+				defer func() {
+					// set body back to the original value when the middleware is done
+					req.Body = io.NopCloser(bytes.NewBuffer(saveBody))
+					req.ContentLength = savecl
+				}()
 
-			dataToBeSignature = string(body)
+				dataToBeSignature = string(body)
+			}
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
 
@@ -127,6 +130,9 @@ func New(options *APIClientOptions) *APIClient {
 			api: apiClient,
 		},
 		Sweep: &Sweep{
+			api: apiClient,
+		},
+		Exchange: &Exchange{
 			api: apiClient,
 		},
 	}

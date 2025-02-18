@@ -18,7 +18,7 @@ import io.openweb3.wallet.internal.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-04T18:30:03.633689+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-18T05:37:05.137725+08:00[Asia/Shanghai]")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;

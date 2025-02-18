@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2024-12-04T18:30:03.633689+08:00[Asia/Shanghai]
+  - Build date: 2025-02-18T05:37:05.137725+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 
@@ -129,6 +129,11 @@ Class | Method | HTTP request | Description
 *AddressesApi* | [**v1WalletsListDepositAddresses**](docs/AddressesApi.md#v1WalletsListDepositAddresses) | **GET** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
 *CurrenciesApi* | [**v1CurrenciesList**](docs/CurrenciesApi.md#v1CurrenciesList) | **GET** /api/v1/currencies | List currencies
 *CurrenciesApi* | [**v1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1CurrenciesRetrieve) | **GET** /api/v1/currencies/{code} | Get Currency
+*ExchangesApi* | [**v1ExchangesCreate**](docs/ExchangesApi.md#v1ExchangesCreate) | **POST** /api/v1/exchanges | create exchange
+*ExchangesApi* | [**v1ExchangesCurrencyPairs**](docs/ExchangesApi.md#v1ExchangesCurrencyPairs) | **GET** /api/v1/exchanges/currency_pairs | list currency pairs
+*ExchangesApi* | [**v1ExchangesList**](docs/ExchangesApi.md#v1ExchangesList) | **GET** /api/v1/exchanges | list exchanges
+*ExchangesApi* | [**v1ExchangesRetrieve**](docs/ExchangesApi.md#v1ExchangesRetrieve) | **GET** /api/v1/exchanges/{exchangeId} | retrieve exchange
+*ExchangesApi* | [**v1ExchangesSubmit**](docs/ExchangesApi.md#v1ExchangesSubmit) | **POST** /api/v1/exchanges/{exchangeId}/submit | submit exchange
 *NetworksApi* | [**v1NetworksList**](docs/NetworksApi.md#v1NetworksList) | **GET** /api/v1/networks | List Networks
 *RatesApi* | [**v1RatesEstimate**](docs/RatesApi.md#v1RatesEstimate) | **GET** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**v1RatesList**](docs/RatesApi.md#v1RatesList) | **POST** /api/v1/rates | List rates
@@ -158,6 +163,7 @@ Class | Method | HTTP request | Description
  - [Address](docs/Address.md)
  - [ChainNetwork](docs/ChainNetwork.md)
  - [CreateEndpoint](docs/CreateEndpoint.md)
+ - [CreateExchange](docs/CreateExchange.md)
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
  - [CreateWalletRequest](docs/CreateWalletRequest.md)
@@ -171,6 +177,7 @@ Class | Method | HTTP request | Description
  - [CursorPageChainNetwork](docs/CursorPageChainNetwork.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
+ - [CursorPageExchange](docs/CursorPageExchange.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)
  - [CursorPageWallet](docs/CursorPageWallet.md)
  - [CursorPageWebhookEvent](docs/CursorPageWebhookEvent.md)
@@ -179,8 +186,11 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [EstimateResponse](docs/EstimateResponse.md)
  - [EventType](docs/EventType.md)
+ - [Exchange](docs/Exchange.md)
+ - [ExchangeCurrencyPairs](docs/ExchangeCurrencyPairs.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
+ - [ListExchangeCurrencyPairsResponse](docs/ListExchangeCurrencyPairsResponse.md)
  - [Rate](docs/Rate.md)
  - [ResendWebhookEventRequest](docs/ResendWebhookEventRequest.md)
  - [ResendWebhookEventResponse](docs/ResendWebhookEventResponse.md)

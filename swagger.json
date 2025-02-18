@@ -233,6 +233,320 @@
                 }
             }
         },
+        "/api/v1/exchanges": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "list exchanges",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "list exchanges",
+                "operationId": "v1.exchanges.list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The cursor",
+                        "name": "cursor",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "The limit",
+                        "name": "limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "The wallet id",
+                        "name": "wallet_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CursorPage-Exchange"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Create a new exchange",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "create exchange",
+                "operationId": "v1.exchanges.create",
+                "parameters": [
+                    {
+                        "description": "CreateExchange",
+                        "name": "req",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateExchange"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exchange"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/currency_pairs": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "list currency pairs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "list currency pairs",
+                "operationId": "v1.exchanges.currency_pairs",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ListExchangeCurrencyPairsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/{exchangeId}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "retrieve a specified exchange",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "retrieve exchange",
+                "operationId": "v1.exchanges.retrieve",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Exchange ID",
+                        "name": "exchangeId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exchange"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/{exchangeId}/submit": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "submit a exchange",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "exchanges"
+                ],
+                "summary": "submit exchange",
+                "operationId": "v1.exchanges.submit",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Exchange ID",
+                        "name": "exchangeId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Exchange"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/networks": {
             "get": {
                 "security": [
@@ -1944,6 +2258,38 @@
                 }
             }
         },
+        "CreateExchange": {
+            "type": "object",
+            "required": [
+                "fiat_currency",
+                "from_amount",
+                "from_currency",
+                "to_currency",
+                "wallet_id"
+            ],
+            "properties": {
+                "fiat_currency": {
+                    "description": "The currency code of fiat currency, e.g.: USD",
+                    "type": "string"
+                },
+                "from_amount": {
+                    "description": "The amount of the source currency to be exchange, e.g.: 100000",
+                    "type": "string"
+                },
+                "from_currency": {
+                    "description": "The currency code of source currency, e.g.: TON",
+                    "type": "string"
+                },
+                "to_currency": {
+                    "description": "The currency code of target currency, e.g.: USDT",
+                    "type": "string"
+                },
+                "wallet_id": {
+                    "description": "The wallet id",
+                    "type": "string"
+                }
+            }
+        },
         "CreateTransferRequest": {
             "type": "object",
             "required": [
@@ -2403,6 +2749,30 @@
                 }
             }
         },
+        "CursorPage-Exchange": {
+            "type": "object",
+            "required": [
+                "has_next",
+                "items"
+            ],
+            "properties": {
+                "has_next": {
+                    "type": "boolean"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Exchange"
+                    }
+                },
+                "next_cursor": {
+                    "type": "string"
+                },
+                "prev_cursor": {
+                    "type": "string"
+                }
+            }
+        },
         "CursorPage-Transaction": {
             "type": "object",
             "required": [
@@ -2609,6 +2979,94 @@
                 }
             }
         },
+        "Exchange": {
+            "type": "object",
+            "required": [
+                "created_at",
+                "fee_amount",
+                "fee_currency",
+                "fiat_currency",
+                "from_amount",
+                "from_currency",
+                "id",
+                "rate",
+                "to_amount",
+                "to_currency",
+                "ttl",
+                "updated_at",
+                "wallet_id"
+            ],
+            "properties": {
+                "created_at": {
+                    "description": "The create time",
+                    "type": "string"
+                },
+                "fee_amount": {
+                    "description": "The amount of the fee charged for this exchange, denominated in the `fee_currency`",
+                    "type": "string"
+                },
+                "fee_currency": {
+                    "description": "The currency in which the fee is denominated. For example, 'TON'.",
+                    "type": "string"
+                },
+                "fiat_currency": {
+                    "description": "The currency code of fiat currency, e.g.: USD",
+                    "type": "string"
+                },
+                "from_amount": {
+                    "description": "The amount of the source currency being sent. For example, 0.1 TON.",
+                    "type": "string"
+                },
+                "from_currency": {
+                    "description": "The currency being sent. In this case, it is 'TON'.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique identifier for the exchange.",
+                    "type": "string"
+                },
+                "rate": {
+                    "description": "The exchange rate applied during the exchange. For example, the rate is 7.11116.",
+                    "type": "number"
+                },
+                "to_amount": {
+                    "description": "The amount of the target currency received. For example, 0.711116 USDT.",
+                    "type": "string"
+                },
+                "to_currency": {
+                    "description": "The currency being received. In this case, it is 'USDT'.",
+                    "type": "string"
+                },
+                "ttl": {
+                    "description": "The validity period for the exchange",
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "description": "The update time",
+                    "type": "string"
+                },
+                "wallet_id": {
+                    "description": "The walletID that the exchange belong to",
+                    "type": "string"
+                }
+            }
+        },
+        "ExchangeCurrencyPairs": {
+            "type": "object",
+            "properties": {
+                "from_currency": {
+                    "description": "The currency code of source currency, e.g.: TON",
+                    "type": "string"
+                },
+                "to_currencies": {
+                    "description": "The currency code list of target currency, e.g.: USDT",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
         "GetRatesRequest": {
             "type": "object",
             "required": [
@@ -2635,6 +3093,18 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Rate"
+                    }
+                }
+            }
+        },
+        "ListExchangeCurrencyPairsResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "description": "The list of currency pairs",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExchangeCurrencyPairs"
                     }
                 }
             }
