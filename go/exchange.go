@@ -7,9 +7,11 @@ import (
 )
 
 type (
-	ExchangeIn      = openapi.CreateExchange
-	ExchangeOut     = openapi.Exchange
-	PageExchangeOut = openapi.CursorPageExchange
+	ExchangeIn                   = openapi.CreateExchange
+	ExchangeOut                  = openapi.Exchange
+	ExchangeSubmitOut            = openapi.ExchangeSubmitResponse
+	PageExchangeOut              = openapi.CursorPageExchange
+	ListExchangeCurrencyPairsOut = openapi.ListExchangeCurrencyPairsResponse
 )
 
 type Exchange struct {
@@ -60,8 +62,17 @@ func (e *Exchange) Create(ctx context.Context, createExchangeIn *ExchangeIn) (*E
 	return &out, nil
 }
 
-func (e *Exchange) Submit(ctx context.Context, ExchangeId string) (*ExchangeOut, error) {
+func (e *Exchange) Submit(ctx context.Context, ExchangeId string) (*ExchangeSubmitOut, error) {
 	req := e.api.ExchangesApi.V1ExchangesSubmit(ctx, ExchangeId)
+	out, res, err := req.Execute()
+	if err != nil {
+		return nil, wrapError(err, res)
+	}
+	return &out, nil
+}
+
+func (e *Exchange) ListCurrencyPairs(ctx context.Context) (*ListExchangeCurrencyPairsOut, error) {
+	req := e.api.ExchangesApi.V1ExchangesCurrencyPairs(ctx)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

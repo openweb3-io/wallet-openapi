@@ -305,7 +305,7 @@ Name | Type | Description  | Notes
 
 <a name="v1ExchangesSubmit"></a>
 # **v1ExchangesSubmit**
-> Exchange v1ExchangesSubmit(exchangeId)
+> ExchangeSubmitResponse v1ExchangesSubmit(exchangeId)
 
 submit exchange
 
@@ -335,7 +335,7 @@ public class Example {
     ExchangesApi apiInstance = new ExchangesApi(defaultClient);
     String exchangeId = "exchangeId_example"; // String | Exchange ID
     try {
-      Exchange result = apiInstance.v1ExchangesSubmit(exchangeId);
+      ExchangeSubmitResponse result = apiInstance.v1ExchangesSubmit(exchangeId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ExchangesApi#v1ExchangesSubmit");
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Exchange**](Exchange.md)
+[**ExchangeSubmitResponse**](ExchangeSubmitResponse.md)
 
 ### Authorization
 

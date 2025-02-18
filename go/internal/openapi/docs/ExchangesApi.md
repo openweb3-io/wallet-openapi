@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 ## V1ExchangesSubmit
 
-> Exchange V1ExchangesSubmit(ctx, exchangeId).Execute()
+> ExchangeSubmitResponse V1ExchangesSubmit(ctx, exchangeId).Execute()
 
 submit exchange
 
@@ -309,7 +309,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ExchangesApi.V1ExchangesSubmit``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1ExchangesSubmit`: Exchange
+    // response from `V1ExchangesSubmit`: ExchangeSubmitResponse
     fmt.Fprintf(os.Stdout, "Response from `ExchangesApi.V1ExchangesSubmit`: %v\n", resp)
 }
 ```
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Exchange**](Exchange.md)
+[**ExchangeSubmitResponse**](ExchangeSubmitResponse.md)
 
 ### Authorization
 

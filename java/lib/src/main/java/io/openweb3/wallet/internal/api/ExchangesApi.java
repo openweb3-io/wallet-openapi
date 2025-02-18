@@ -31,6 +31,7 @@ import io.openweb3.wallet.models.CreateExchange;
 import io.openweb3.wallet.models.CursorPageExchange;
 import io.openweb3.wallet.models.Error;
 import io.openweb3.wallet.models.Exchange;
+import io.openweb3.wallet.models.ExchangeSubmitResponse;
 import io.openweb3.wallet.models.ListExchangeCurrencyPairsResponse;
 
 import java.lang.reflect.Type;
@@ -648,7 +649,7 @@ public class ExchangesApi {
      * submit exchange
      * submit a exchange
      * @param exchangeId Exchange ID (required)
-     * @return Exchange
+     * @return ExchangeSubmitResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -660,8 +661,8 @@ public class ExchangesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public Exchange v1ExchangesSubmit(String exchangeId) throws ApiException {
-        ApiResponse<Exchange> localVarResp = v1ExchangesSubmitWithHttpInfo(exchangeId);
+    public ExchangeSubmitResponse v1ExchangesSubmit(String exchangeId) throws ApiException {
+        ApiResponse<ExchangeSubmitResponse> localVarResp = v1ExchangesSubmitWithHttpInfo(exchangeId);
         return localVarResp.getData();
     }
 
@@ -669,7 +670,7 @@ public class ExchangesApi {
      * submit exchange
      * submit a exchange
      * @param exchangeId Exchange ID (required)
-     * @return ApiResponse&lt;Exchange&gt;
+     * @return ApiResponse&lt;ExchangeSubmitResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -681,9 +682,9 @@ public class ExchangesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Exchange> v1ExchangesSubmitWithHttpInfo(String exchangeId) throws ApiException {
+    public ApiResponse<ExchangeSubmitResponse> v1ExchangesSubmitWithHttpInfo(String exchangeId) throws ApiException {
         okhttp3.Call localVarCall = v1ExchangesSubmitValidateBeforeCall(exchangeId, null);
-        Type localVarReturnType = new TypeToken<Exchange>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExchangeSubmitResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -704,10 +705,10 @@ public class ExchangesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1ExchangesSubmitAsync(String exchangeId, final ApiCallback<Exchange> _callback) throws ApiException {
+    public okhttp3.Call v1ExchangesSubmitAsync(String exchangeId, final ApiCallback<ExchangeSubmitResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1ExchangesSubmitValidateBeforeCall(exchangeId, _callback);
-        Type localVarReturnType = new TypeToken<Exchange>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExchangeSubmitResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

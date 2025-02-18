@@ -517,7 +517,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Exchange"
+                            "$ref": "#/definitions/ExchangeSubmitResponse"
                         }
                     },
                     "400": {
@@ -2990,6 +2990,7 @@
                 "from_currency",
                 "id",
                 "rate",
+                "status",
                 "to_amount",
                 "to_currency",
                 "ttl",
@@ -3029,6 +3030,10 @@
                     "description": "The exchange rate applied during the exchange. For example, the rate is 7.11116.",
                     "type": "number"
                 },
+                "status": {
+                    "description": "The status of the exchange. For example, 'SUCCESS'.",
+                    "type": "string"
+                },
                 "to_amount": {
                     "description": "The amount of the target currency received. For example, 0.711116 USDT.",
                     "type": "string"
@@ -3064,6 +3069,15 @@
                     "items": {
                         "type": "string"
                     }
+                }
+            }
+        },
+        "ExchangeSubmitResponse": {
+            "type": "object",
+            "properties": {
+                "exchange_id": {
+                    "description": "The exchange id",
+                    "type": "string"
                 }
             }
         },

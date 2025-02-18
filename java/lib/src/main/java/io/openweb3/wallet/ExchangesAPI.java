@@ -43,7 +43,7 @@ public final class ExchangesAPI {
 	}
 
 	// submit exchange
-	public Exchange submit(final String exchangeId) throws ApiException {
+	public ExchangeSubmitResponse submit(final String exchangeId) throws ApiException {
 		try {
 			return api.v1ExchangesSubmit(exchangeId);
 		} catch (io.openweb3.wallet.internal.ApiException e) {

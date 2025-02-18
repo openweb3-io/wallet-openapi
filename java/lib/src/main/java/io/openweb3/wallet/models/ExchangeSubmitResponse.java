@@ -25,62 +25,35 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * UpdateWalletRequest
+ * ExchangeSubmitResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-19T02:07:19.461414+08:00[Asia/Shanghai]")
-public class UpdateWalletRequest {
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
-  public static final String SERIALIZED_NAME_UID = "uid";
-  @SerializedName(SERIALIZED_NAME_UID)
-  private String uid;
+public class ExchangeSubmitResponse {
+  public static final String SERIALIZED_NAME_EXCHANGE_ID = "exchange_id";
+  @SerializedName(SERIALIZED_NAME_EXCHANGE_ID)
+  private String exchangeId;
 
 
-  public UpdateWalletRequest name(String name) {
+  public ExchangeSubmitResponse exchangeId(String exchangeId) {
     
-    this.name = name;
+    this.exchangeId = exchangeId;
     return this;
   }
 
    /**
-   * Wallet Name
-   * @return name
+   * The exchange id
+   * @return exchangeId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Wallet Name")
+  @ApiModelProperty(value = "The exchange id")
 
-  public String getName() {
-    return name;
+  public String getExchangeId() {
+    return exchangeId;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public UpdateWalletRequest uid(String uid) {
-    
-    this.uid = uid;
-    return this;
-  }
-
-   /**
-   * Custom ID
-   * @return uid
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Custom ID")
-
-  public String getUid() {
-    return uid;
-  }
-
-
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setExchangeId(String exchangeId) {
+    this.exchangeId = exchangeId;
   }
 
 
@@ -92,22 +65,20 @@ public class UpdateWalletRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateWalletRequest updateWalletRequest = (UpdateWalletRequest) o;
-    return Objects.equals(this.name, updateWalletRequest.name) &&
-        Objects.equals(this.uid, updateWalletRequest.uid);
+    ExchangeSubmitResponse exchangeSubmitResponse = (ExchangeSubmitResponse) o;
+    return Objects.equals(this.exchangeId, exchangeSubmitResponse.exchangeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, uid);
+    return Objects.hash(exchangeId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateWalletRequest {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("class ExchangeSubmitResponse {\n");
+    sb.append("    exchangeId: ").append(toIndentedString(exchangeId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -32,6 +32,8 @@ type Exchange struct {
 	Id string `json:"id"`
 	// The exchange rate applied during the exchange. For example, the rate is 7.11116.
 	Rate float32 `json:"rate"`
+	// The status of the exchange. For example, 'SUCCESS'.
+	Status string `json:"status"`
 	// The amount of the target currency received. For example, 0.711116 USDT.
 	ToAmount string `json:"to_amount"`
 	// The currency being received. In this case, it is 'USDT'.
@@ -48,7 +50,7 @@ type Exchange struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExchange(createdAt string, feeAmount string, feeCurrency string, fiatCurrency string, fromAmount string, fromCurrency string, id string, rate float32, toAmount string, toCurrency string, ttl int32, updatedAt string, walletId string) *Exchange {
+func NewExchange(createdAt string, feeAmount string, feeCurrency string, fiatCurrency string, fromAmount string, fromCurrency string, id string, rate float32, status string, toAmount string, toCurrency string, ttl int32, updatedAt string, walletId string) *Exchange {
 	this := Exchange{}
 	this.CreatedAt = createdAt
 	this.FeeAmount = feeAmount
@@ -58,6 +60,7 @@ func NewExchange(createdAt string, feeAmount string, feeCurrency string, fiatCur
 	this.FromCurrency = fromCurrency
 	this.Id = id
 	this.Rate = rate
+	this.Status = status
 	this.ToAmount = toAmount
 	this.ToCurrency = toCurrency
 	this.Ttl = ttl
@@ -266,6 +269,30 @@ func (o *Exchange) SetRate(v float32) {
 	o.Rate = v
 }
 
+// GetStatus returns the Status field value
+func (o *Exchange) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *Exchange) GetStatusOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *Exchange) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetToAmount returns the ToAmount field value
 func (o *Exchange) GetToAmount() string {
 	if o == nil {
@@ -411,6 +438,9 @@ func (o Exchange) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["rate"] = o.Rate
+	}
+	if true {
+		toSerialize["status"] = o.Status
 	}
 	if true {
 		toSerialize["to_amount"] = o.ToAmount

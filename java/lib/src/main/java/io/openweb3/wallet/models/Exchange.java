@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * Exchange
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-18T05:37:05.137725+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-19T02:07:19.461414+08:00[Asia/Shanghai]")
 public class Exchange {
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -61,6 +61,10 @@ public class Exchange {
   public static final String SERIALIZED_NAME_RATE = "rate";
   @SerializedName(SERIALIZED_NAME_RATE)
   private BigDecimal rate;
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private String status;
 
   public static final String SERIALIZED_NAME_TO_AMOUNT = "to_amount";
   @SerializedName(SERIALIZED_NAME_TO_AMOUNT)
@@ -259,6 +263,28 @@ public class Exchange {
   }
 
 
+  public Exchange status(String status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * The status of the exchange. For example, &#39;SUCCESS&#39;.
+   * @return status
+  **/
+  @ApiModelProperty(required = true, value = "The status of the exchange. For example, 'SUCCESS'.")
+
+  public String getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+
   public Exchange toAmount(String toAmount) {
     
     this.toAmount = toAmount;
@@ -386,6 +412,7 @@ public class Exchange {
         Objects.equals(this.fromCurrency, exchange.fromCurrency) &&
         Objects.equals(this.id, exchange.id) &&
         Objects.equals(this.rate, exchange.rate) &&
+        Objects.equals(this.status, exchange.status) &&
         Objects.equals(this.toAmount, exchange.toAmount) &&
         Objects.equals(this.toCurrency, exchange.toCurrency) &&
         Objects.equals(this.ttl, exchange.ttl) &&
@@ -395,7 +422,7 @@ public class Exchange {
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, feeAmount, feeCurrency, fiatCurrency, fromAmount, fromCurrency, id, rate, toAmount, toCurrency, ttl, updatedAt, walletId);
+    return Objects.hash(createdAt, feeAmount, feeCurrency, fiatCurrency, fromAmount, fromCurrency, id, rate, status, toAmount, toCurrency, ttl, updatedAt, walletId);
   }
 
   @Override
@@ -410,6 +437,7 @@ public class Exchange {
     sb.append("    fromCurrency: ").append(toIndentedString(fromCurrency)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    toAmount: ").append(toIndentedString(toAmount)).append("\n");
     sb.append("    toCurrency: ").append(toIndentedString(toCurrency)).append("\n");
     sb.append("    ttl: ").append(toIndentedString(ttl)).append("\n");

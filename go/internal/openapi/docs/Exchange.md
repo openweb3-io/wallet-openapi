@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **FromCurrency** | **string** | The currency being sent. In this case, it is &#39;TON&#39;. | 
 **Id** | **string** | A unique identifier for the exchange. | 
 **Rate** | **float32** | The exchange rate applied during the exchange. For example, the rate is 7.11116. | 
+**Status** | **string** | The status of the exchange. For example, &#39;SUCCESS&#39;. | 
 **ToAmount** | **string** | The amount of the target currency received. For example, 0.711116 USDT. | 
 **ToCurrency** | **string** | The currency being received. In this case, it is &#39;USDT&#39;. | 
 **Ttl** | **int32** | The validity period for the exchange | 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewExchange
 
-`func NewExchange(createdAt string, feeAmount string, feeCurrency string, fiatCurrency string, fromAmount string, fromCurrency string, id string, rate float32, toAmount string, toCurrency string, ttl int32, updatedAt string, walletId string, ) *Exchange`
+`func NewExchange(createdAt string, feeAmount string, feeCurrency string, fiatCurrency string, fromAmount string, fromCurrency string, id string, rate float32, status string, toAmount string, toCurrency string, ttl int32, updatedAt string, walletId string, ) *Exchange`
 
 NewExchange instantiates a new Exchange object
 This constructor will assign default values to properties that have it defined,
@@ -195,6 +196,26 @@ and a boolean to check if the value has been set.
 `func (o *Exchange) SetRate(v float32)`
 
 SetRate sets Rate field to given value.
+
+
+### GetStatus
+
+`func (o *Exchange) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *Exchange) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *Exchange) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
 
 
 ### GetToAmount

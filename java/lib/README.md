@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2025-02-18T05:37:05.137725+08:00[Asia/Shanghai]
+  - Build date: 2025-02-19T02:07:19.461414+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 
@@ -188,6 +188,7 @@ Class | Method | HTTP request | Description
  - [EventType](docs/EventType.md)
  - [Exchange](docs/Exchange.md)
  - [ExchangeCurrencyPairs](docs/ExchangeCurrencyPairs.md)
+ - [ExchangeSubmitResponse](docs/ExchangeSubmitResponse.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [ListExchangeCurrencyPairsResponse](docs/ListExchangeCurrencyPairsResponse.md)

@@ -46,6 +46,7 @@ docs/EstimateResponse.md
 docs/EventType.md
 docs/Exchange.md
 docs/ExchangeCurrencyPairs.md
+docs/ExchangeSubmitResponse.md
 docs/ExchangesApi.md
 docs/GetRatesRequest.md
 docs/GetRatesResponse.md
@@ -102,6 +103,7 @@ model_estimate_response.go
 model_event_type.go
 model_exchange.go
 model_exchange_currency_pairs.go
+model_exchange_submit_response.go
 model_get_rates_request.go
 model_get_rates_response.go
 model_list_exchange_currency_pairs_response.go

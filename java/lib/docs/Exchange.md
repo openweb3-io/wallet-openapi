@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **fromCurrency** | **String** | The currency being sent. In this case, it is &#39;TON&#39;. | 
 **id** | **String** | A unique identifier for the exchange. | 
 **rate** | **BigDecimal** | The exchange rate applied during the exchange. For example, the rate is 7.11116. | 
+**status** | **String** | The status of the exchange. For example, &#39;SUCCESS&#39;. | 
 **toAmount** | **String** | The amount of the target currency received. For example, 0.711116 USDT. | 
 **toCurrency** | **String** | The currency being received. In this case, it is &#39;USDT&#39;. | 
 **ttl** | **Integer** | The validity period for the exchange | 

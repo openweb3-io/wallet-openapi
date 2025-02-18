@@ -694,7 +694,7 @@ type ApiV1ExchangesSubmitRequest struct {
 }
 
 
-func (r ApiV1ExchangesSubmitRequest) Execute() (Exchange, *_nethttp.Response, error) {
+func (r ApiV1ExchangesSubmitRequest) Execute() (ExchangeSubmitResponse, *_nethttp.Response, error) {
 	return r.ApiService.V1ExchangesSubmitExecute(r)
 }
 
@@ -715,16 +715,16 @@ func (a *ExchangesApiService) V1ExchangesSubmit(ctx _context.Context, exchangeId
 
 /*
  * Execute executes the request
- * @return Exchange
+ * @return ExchangeSubmitResponse
  */
-func (a *ExchangesApiService) V1ExchangesSubmitExecute(r ApiV1ExchangesSubmitRequest) (Exchange, *_nethttp.Response, error) {
+func (a *ExchangesApiService) V1ExchangesSubmitExecute(r ApiV1ExchangesSubmitRequest) (ExchangeSubmitResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Exchange
+		localVarReturnValue  ExchangeSubmitResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExchangesApiService.V1ExchangesSubmit")

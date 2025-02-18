@@ -142,6 +142,7 @@ Class | Method | HTTP request | Description
  - [EventType](docs/EventType.md)
  - [Exchange](docs/Exchange.md)
  - [ExchangeCurrencyPairs](docs/ExchangeCurrencyPairs.md)
+ - [ExchangeSubmitResponse](docs/ExchangeSubmitResponse.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [ListExchangeCurrencyPairsResponse](docs/ListExchangeCurrencyPairsResponse.md)
