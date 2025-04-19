@@ -1,6 +1,6 @@
 {
   "name": "@openweb3-io/wallet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wallet API client and webhook verification library",
   "author": "wallet",
   "repository": "https://github.com/wallet/wallet-libs",
