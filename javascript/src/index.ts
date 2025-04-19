@@ -120,20 +120,20 @@ export interface ApiClientOptions {
 
 export class ApiClient {
   public readonly _configuration: Configuration;
-  public readonly ChainNetworks: ChainNetworks;
-  public readonly Currencies: Currencies;
-  public readonly Rates: Rates;
-  public readonly Addresses: Addresses;
-  public readonly Transactions: Transactions;
-  public readonly Wallets: Wallets;
-  public readonly WebhookEndpoints: Endpoints;
-  public readonly WebhookEventTypes: WebhookEventTypes;
-  public readonly WebhookEvents: WebhookEvents;
-  public readonly Sweep: Sweeps;
-  public readonly Exchanges: Exchanges;
+  public readonly chainNetworks: ChainNetworks;
+  public readonly currencies: Currencies;
+  public readonly rates: Rates;
+  public readonly addresses: Addresses;
+  public readonly transactions: Transactions;
+  public readonly wallets: Wallets;
+  public readonly webhookEndpoints: Endpoints;
+  public readonly webhookEventTypes: WebhookEventTypes;
+  public readonly webhookEvents: WebhookEvents;
+  public readonly sweeps: Sweeps;
+  public readonly exchanges: Exchanges;
 
-  public constructor(apiKey: string, secret: string, options: ApiClientOptions) {
-    const baseUrl: string = options.serverUrl ?? "https://api.wallet.openweb3.io";
+  public constructor(apiKey: string, secret: string, options?: ApiClientOptions) {
+    const baseUrl: string = options?.serverUrl ?? "https://api.wallet.openweb3.io";
 
     const baseServer = new ServerConfiguration<any>(baseUrl, {});
 
@@ -146,17 +146,17 @@ export class ApiClient {
     });
 
     this._configuration = config;
-    this.ChainNetworks = new ChainNetworks(config);
-    this.Currencies = new Currencies(config);
-    this.Rates = new Rates(config);
-    this.Addresses = new Addresses(config);
-    this.Transactions = new Transactions(config);
-    this.Wallets = new Wallets(config);
-    this.WebhookEndpoints = new Endpoints(config);
-    this.WebhookEventTypes = new WebhookEventTypes(config);
-    this.WebhookEvents = new WebhookEvents(config);
-    this.Sweep = new Sweeps(config);
-    this.Exchanges = new Exchanges(config);
+    this.chainNetworks = new ChainNetworks(config);
+    this.currencies = new Currencies(config);
+    this.rates = new Rates(config);
+    this.addresses = new Addresses(config);
+    this.transactions = new Transactions(config);
+    this.wallets = new Wallets(config);
+    this.webhookEndpoints = new Endpoints(config);
+    this.webhookEventTypes = new WebhookEventTypes(config);
+    this.webhookEvents = new WebhookEvents(config);
+    this.sweeps = new Sweeps(config);
+    this.exchanges = new Exchanges(config);
   }
 }
 

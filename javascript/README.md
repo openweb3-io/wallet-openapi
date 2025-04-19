@@ -52,10 +52,10 @@ yarn add @openweb3-io/wallet
 # Usage
 
 ```js
-import { Wallet } from "@openweb3-io/wallet";
+import { ApiClient } from "@openweb3-io/wallet";
 
-const wallet = new Wallet("API-KEY", "PRIVATE KEY");
-const chains = await wallet.chains.list({ limit: 20 });
+const apiClient = new ApiClient("API-KEY", "PRIVATE KEY");
+const chains = await apiClient.currencies.list({ limit: 20 });
 ```
 
 # Development
