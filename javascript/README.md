@@ -1,11 +1,11 @@
 <h1 align="center">
-    <a style="text-decoration: none" href="https://pay.openweb3.io">
+    <a style="text-decoration: none" href="https://wallet.openweb3.io">
       <img width="120" src="" />
       <p align="center">Wallet - Custody Wallet Service</p>
     </a>
 </h1>
 <h2 align="center">
-  <a href="https://wallet.openweb3.io">Website</a> | <a href="https://docs.wallet.openweb3.io">Documentation</a> | <a href="https://pay.openweb3.io/slack">Community Slack</a>
+  <a href="https://wallet.openweb3.io">Website</a> | <a href="https://docs.wallet.openweb3.io">Documentation</a> | <a href="https://wallet.openweb3.io/slack">Community Slack</a>
 <h2>
 
 Typescript/Javascript library for interacting with the Wallet API and verifying wallet webhook signatures

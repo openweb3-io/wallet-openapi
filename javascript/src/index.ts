@@ -57,7 +57,7 @@ export * from "./openapi/apis/exception";
 import { createHash, createVerify, constants } from "crypto";
 import * as nacl from "tweetnacl";
 
-const VERSION = "0.2.0";
+const VERSION = "0.1.1";
 
 class UserAgentMiddleware implements Middleware {
   public pre(context: RequestContext): Promise<RequestContext> {
