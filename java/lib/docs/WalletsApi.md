@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="v1WalletsCreate"></a>
 # **v1WalletsCreate**
-> Wallet v1WalletsCreate(createWalletRequest)
+> Wallet v1WalletsCreate(request)
 
 Create wallet
 
@@ -47,9 +47,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
-    CreateWalletRequest createWalletRequest = new CreateWalletRequest(); // CreateWalletRequest | Request body
+    CreateWalletRequest request = new CreateWalletRequest(); // CreateWalletRequest | Request body
     try {
-      Wallet result = apiInstance.v1WalletsCreate(createWalletRequest);
+      Wallet result = apiInstance.v1WalletsCreate(request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsCreate");
@@ -66,7 +66,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createWalletRequest** | [**CreateWalletRequest**](CreateWalletRequest.md)| Request body |
+ **request** | [**CreateWalletRequest**](CreateWalletRequest.md)| Request body |
 
 ### Return type
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WalletsList"></a>
 # **v1WalletsList**
-> CursorPageWallet v1WalletsList(cursor, limit)
+> CursorPageWallet v1WalletsList(limit, cursor)
 
 List wallets
 
@@ -126,10 +126,10 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
-    String cursor = "cursor_example"; // String | Cursor
-    Integer limit = 56; // Integer | Limit
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     try {
-      CursorPageWallet result = apiInstance.v1WalletsList(cursor, limit);
+      CursorPageWallet result = apiInstance.v1WalletsList(limit, cursor);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsList");
@@ -146,8 +146,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **String**| Cursor | [optional]
- **limit** | **Integer**| Limit | [optional]
+ **limit** | **Integer**| The number of items to return per page. |
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
 
 ### Return type
 
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WalletsListAccounts"></a>
 # **v1WalletsListAccounts**
-> CursorPageAccount v1WalletsListAccounts(walletId, cursor, limit)
+> CursorPageAccount v1WalletsListAccounts(walletId, limit, cursor)
 
 List wallet accounts
 
@@ -208,10 +208,10 @@ public class Example {
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
     String walletId = "walletId_example"; // String | Wallet ID
-    String cursor = "cursor_example"; // String | Cursor
-    Integer limit = 56; // Integer | Limit
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     try {
-      CursorPageAccount result = apiInstance.v1WalletsListAccounts(walletId, cursor, limit);
+      CursorPageAccount result = apiInstance.v1WalletsListAccounts(walletId, limit, cursor);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsListAccounts");
@@ -229,8 +229,8 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **walletId** | **String**| Wallet ID |
- **cursor** | **String**| Cursor | [optional]
- **limit** | **Integer**| Limit | [optional]
+ **limit** | **Integer**| The number of items to return per page. |
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
 
 ### Return type
 
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WalletsUpdate"></a>
 # **v1WalletsUpdate**
-> Wallet v1WalletsUpdate(walletId, updateWalletRequest)
+> Wallet v1WalletsUpdate(walletId, request)
 
 Update wallet
 
@@ -370,9 +370,9 @@ public class Example {
 
     WalletsApi apiInstance = new WalletsApi(defaultClient);
     String walletId = "walletId_example"; // String | Wallet ID
-    UpdateWalletRequest updateWalletRequest = new UpdateWalletRequest(); // UpdateWalletRequest | Request body
+    UpdateWalletRequest request = new UpdateWalletRequest(); // UpdateWalletRequest | Request body
     try {
-      Wallet result = apiInstance.v1WalletsUpdate(walletId, updateWalletRequest);
+      Wallet result = apiInstance.v1WalletsUpdate(walletId, request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WalletsApi#v1WalletsUpdate");
@@ -390,7 +390,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **walletId** | **String**| Wallet ID |
- **updateWalletRequest** | [**UpdateWalletRequest**](UpdateWalletRequest.md)| Request body |
+ **request** | [**UpdateWalletRequest**](UpdateWalletRequest.md)| Request body |
 
 ### Return type
 

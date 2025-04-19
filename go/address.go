@@ -20,19 +20,19 @@ type ListAddressOptions struct {
 	Type     *string
 	WalletId *string
 	Cursor   *string
-	Limit    *int32
+	Limit    int32
 }
 
 type GetDepositAddressOptions struct {
 	Currency string
-	Network  *string
+	Network  string
 }
 
 type ListDepositAddressesOptions struct {
 	Currency *string
 	Network  *string
 	Cursor   *string
-	Limit    int
+	Limit    int32
 }
 
 func (e *Address) List(ctx context.Context, options *ListAddressOptions) (*PageAddressOut, error) {
@@ -50,9 +50,7 @@ func (e *Address) List(ctx context.Context, options *ListAddressOptions) (*PageA
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
-	if options.Limit != nil {
-		req = req.Limit(*options.Limit)
-	}
+	req = req.Limit(options.Limit)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -63,9 +61,7 @@ func (e *Address) List(ctx context.Context, options *ListAddressOptions) (*PageA
 func (e *Address) GetDepositAddress(ctx context.Context, walletId string, options *GetDepositAddressOptions) (*AddressOut, error) {
 	req := e.api.AddressesApi.V1WalletsGetDepositAddress(ctx, walletId)
 	req = req.Currency(options.Currency)
-	if options.Network != nil {
-		req = req.Network(*options.Network)
-	}
+	req = req.Network(options.Network)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

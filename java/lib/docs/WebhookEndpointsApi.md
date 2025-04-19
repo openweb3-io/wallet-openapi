@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 <a name="v1WebhooksCreate"></a>
 # **v1WebhooksCreate**
-> Endpoint v1WebhooksCreate(createEndpoint)
+> Endpoint v1WebhooksCreate(request)
 
 Create webhook endpoint
 
@@ -47,9 +47,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    CreateEndpoint createEndpoint = new CreateEndpoint(); // CreateEndpoint | Request body
+    CreateEndpoint request = new CreateEndpoint(); // CreateEndpoint | Request body
     try {
-      Endpoint result = apiInstance.v1WebhooksCreate(createEndpoint);
+      Endpoint result = apiInstance.v1WebhooksCreate(request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksCreate");
@@ -66,7 +66,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createEndpoint** | [**CreateEndpoint**](CreateEndpoint.md)| Request body |
+ **request** | [**CreateEndpoint**](CreateEndpoint.md)| Request body |
 
 ### Return type
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksList"></a>
 # **v1WebhooksList**
-> CursorPageEndpoint v1WebhooksList(cursor, limit)
+> CursorPageEndpoint v1WebhooksList(limit, cursor)
 
 List webhook endpoints
 
@@ -201,10 +201,10 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    String cursor = "cursor_example"; // String | 
-    Integer limit = 56; // Integer | 
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     try {
-      CursorPageEndpoint result = apiInstance.v1WebhooksList(cursor, limit);
+      CursorPageEndpoint result = apiInstance.v1WebhooksList(limit, cursor);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksList");
@@ -221,8 +221,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **String**|  | [optional]
- **limit** | **Integer**|  | [optional]
+ **limit** | **Integer**| The number of items to return per page. |
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
 
 ### Return type
 
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksUpdate"></a>
 # **v1WebhooksUpdate**
-> Endpoint v1WebhooksUpdate(endpointId, updateEndpoint)
+> Endpoint v1WebhooksUpdate(endpointId, request)
 
 Update webhook endpoint
 
@@ -359,9 +359,9 @@ public class Example {
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
     String endpointId = "endpointId_example"; // String | Endpoint ID
-    UpdateEndpoint updateEndpoint = new UpdateEndpoint(); // UpdateEndpoint | Request body
+    UpdateEndpoint request = new UpdateEndpoint(); // UpdateEndpoint | Request body
     try {
-      Endpoint result = apiInstance.v1WebhooksUpdate(endpointId, updateEndpoint);
+      Endpoint result = apiInstance.v1WebhooksUpdate(endpointId, request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointsApi#v1WebhooksUpdate");
@@ -379,7 +379,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpointId** | **String**| Endpoint ID |
- **updateEndpoint** | [**UpdateEndpoint**](UpdateEndpoint.md)| Request body |
+ **request** | [**UpdateEndpoint**](UpdateEndpoint.md)| Request body |
 
 ### Return type
 

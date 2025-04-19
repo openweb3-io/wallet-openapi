@@ -32,6 +32,7 @@ import io.openweb3.wallet.models.CursorPageExchange;
 import io.openweb3.wallet.models.Error;
 import io.openweb3.wallet.models.Exchange;
 import io.openweb3.wallet.models.ExchangeSubmitResponse;
+import io.openweb3.wallet.models.GetCurrencyPairQuotaResponse;
 import io.openweb3.wallet.models.ListExchangeCurrencyPairsResponse;
 
 import java.lang.reflect.Type;
@@ -61,7 +62,7 @@ public class ExchangesApi {
 
     /**
      * Build call for v1ExchangesCreate
-     * @param createExchange CreateExchange (required)
+     * @param request CreateExchange (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -75,8 +76,8 @@ public class ExchangesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1ExchangesCreateCall(CreateExchange createExchange, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = createExchange;
+    public okhttp3.Call v1ExchangesCreateCall(CreateExchange request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = request;
 
         // create path and map variables
         String localVarPath = "/api/v1/exchanges";
@@ -106,15 +107,15 @@ public class ExchangesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1ExchangesCreateValidateBeforeCall(CreateExchange createExchange, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1ExchangesCreateValidateBeforeCall(CreateExchange request, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'createExchange' is set
-        if (createExchange == null) {
-            throw new ApiException("Missing the required parameter 'createExchange' when calling v1ExchangesCreate(Async)");
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling v1ExchangesCreate(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1ExchangesCreateCall(createExchange, _callback);
+        okhttp3.Call localVarCall = v1ExchangesCreateCall(request, _callback);
         return localVarCall;
 
     }
@@ -122,7 +123,7 @@ public class ExchangesApi {
     /**
      * create exchange
      * Create a new exchange
-     * @param createExchange CreateExchange (required)
+     * @param request CreateExchange (required)
      * @return Exchange
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -135,15 +136,15 @@ public class ExchangesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public Exchange v1ExchangesCreate(CreateExchange createExchange) throws ApiException {
-        ApiResponse<Exchange> localVarResp = v1ExchangesCreateWithHttpInfo(createExchange);
+    public Exchange v1ExchangesCreate(CreateExchange request) throws ApiException {
+        ApiResponse<Exchange> localVarResp = v1ExchangesCreateWithHttpInfo(request);
         return localVarResp.getData();
     }
 
     /**
      * create exchange
      * Create a new exchange
-     * @param createExchange CreateExchange (required)
+     * @param request CreateExchange (required)
      * @return ApiResponse&lt;Exchange&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -156,8 +157,8 @@ public class ExchangesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Exchange> v1ExchangesCreateWithHttpInfo(CreateExchange createExchange) throws ApiException {
-        okhttp3.Call localVarCall = v1ExchangesCreateValidateBeforeCall(createExchange, null);
+    public ApiResponse<Exchange> v1ExchangesCreateWithHttpInfo(CreateExchange request) throws ApiException {
+        okhttp3.Call localVarCall = v1ExchangesCreateValidateBeforeCall(request, null);
         Type localVarReturnType = new TypeToken<Exchange>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -165,7 +166,7 @@ public class ExchangesApi {
     /**
      * create exchange (asynchronously)
      * Create a new exchange
-     * @param createExchange CreateExchange (required)
+     * @param request CreateExchange (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -179,9 +180,9 @@ public class ExchangesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1ExchangesCreateAsync(CreateExchange createExchange, final ApiCallback<Exchange> _callback) throws ApiException {
+    public okhttp3.Call v1ExchangesCreateAsync(CreateExchange request, final ApiCallback<Exchange> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1ExchangesCreateValidateBeforeCall(createExchange, _callback);
+        okhttp3.Call localVarCall = v1ExchangesCreateValidateBeforeCall(request, _callback);
         Type localVarReturnType = new TypeToken<Exchange>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -305,10 +306,154 @@ public class ExchangesApi {
         return localVarCall;
     }
     /**
+     * Build call for v1ExchangesCurrencyQuota
+     * @param fromCurrency  (required)
+     * @param toCurrency  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call v1ExchangesCurrencyQuotaCall(String fromCurrency, String toCurrency, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/exchanges/currency_pair_quota";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (fromCurrency != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("from_currency", fromCurrency));
+        }
+
+        if (toCurrency != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("to_currency", toCurrency));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+        return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call v1ExchangesCurrencyQuotaValidateBeforeCall(String fromCurrency, String toCurrency, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'fromCurrency' is set
+        if (fromCurrency == null) {
+            throw new ApiException("Missing the required parameter 'fromCurrency' when calling v1ExchangesCurrencyQuota(Async)");
+        }
+        
+        // verify the required parameter 'toCurrency' is set
+        if (toCurrency == null) {
+            throw new ApiException("Missing the required parameter 'toCurrency' when calling v1ExchangesCurrencyQuota(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = v1ExchangesCurrencyQuotaCall(fromCurrency, toCurrency, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * currency pair quota
+     * get currency pair quota
+     * @param fromCurrency  (required)
+     * @param toCurrency  (required)
+     * @return GetCurrencyPairQuotaResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public GetCurrencyPairQuotaResponse v1ExchangesCurrencyQuota(String fromCurrency, String toCurrency) throws ApiException {
+        ApiResponse<GetCurrencyPairQuotaResponse> localVarResp = v1ExchangesCurrencyQuotaWithHttpInfo(fromCurrency, toCurrency);
+        return localVarResp.getData();
+    }
+
+    /**
+     * currency pair quota
+     * get currency pair quota
+     * @param fromCurrency  (required)
+     * @param toCurrency  (required)
+     * @return ApiResponse&lt;GetCurrencyPairQuotaResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GetCurrencyPairQuotaResponse> v1ExchangesCurrencyQuotaWithHttpInfo(String fromCurrency, String toCurrency) throws ApiException {
+        okhttp3.Call localVarCall = v1ExchangesCurrencyQuotaValidateBeforeCall(fromCurrency, toCurrency, null);
+        Type localVarReturnType = new TypeToken<GetCurrencyPairQuotaResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * currency pair quota (asynchronously)
+     * get currency pair quota
+     * @param fromCurrency  (required)
+     * @param toCurrency  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call v1ExchangesCurrencyQuotaAsync(String fromCurrency, String toCurrency, final ApiCallback<GetCurrencyPairQuotaResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = v1ExchangesCurrencyQuotaValidateBeforeCall(fromCurrency, toCurrency, _callback);
+        Type localVarReturnType = new TypeToken<GetCurrencyPairQuotaResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for v1ExchangesList
-     * @param limit The limit (required)
+     * @param limit The number of items to return per page. (required)
      * @param walletId The wallet id (required)
-     * @param cursor The cursor (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -386,9 +531,9 @@ public class ExchangesApi {
     /**
      * list exchanges
      * list exchanges
-     * @param limit The limit (required)
+     * @param limit The number of items to return per page. (required)
      * @param walletId The wallet id (required)
-     * @param cursor The cursor (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return CursorPageExchange
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -409,9 +554,9 @@ public class ExchangesApi {
     /**
      * list exchanges
      * list exchanges
-     * @param limit The limit (required)
+     * @param limit The number of items to return per page. (required)
      * @param walletId The wallet id (required)
-     * @param cursor The cursor (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return ApiResponse&lt;CursorPageExchange&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -433,9 +578,9 @@ public class ExchangesApi {
     /**
      * list exchanges (asynchronously)
      * list exchanges
-     * @param limit The limit (required)
+     * @param limit The number of items to return per page. (required)
      * @param walletId The wallet id (required)
-     * @param cursor The cursor (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

@@ -45,8 +45,8 @@ public class SweepFundsApiTest {
     @Test
     public void v1SweepAddressTest() throws ApiException {
         String address = null;
-        SweepAddressRequest sweepAddressRequest = null;
-        SweepAddressResponse response = api.v1SweepAddress(address, sweepAddressRequest);
+        SweepAddressRequest request = null;
+        SweepAddressResponse response = api.v1SweepAddress(address, request);
 
         // TODO: test validations
     }

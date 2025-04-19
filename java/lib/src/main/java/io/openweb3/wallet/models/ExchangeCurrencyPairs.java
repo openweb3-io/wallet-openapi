@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * ExchangeCurrencyPairs
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-19T02:07:19.461414+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
 public class ExchangeCurrencyPairs {
   public static final String SERIALIZED_NAME_FROM_CURRENCY = "from_currency";
   @SerializedName(SERIALIZED_NAME_FROM_CURRENCY)

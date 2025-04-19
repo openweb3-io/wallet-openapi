@@ -58,8 +58,8 @@ public class CurrenciesApi {
 
     /**
      * Build call for v1CurrenciesList
-     * @param cursor  (optional)
-     * @param limit  (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param rated  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -74,7 +74,7 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrenciesListCall(String cursor, Integer limit, Boolean rated, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1CurrenciesListCall(Integer limit, String cursor, Boolean rated, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -117,10 +117,15 @@ public class CurrenciesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1CurrenciesListValidateBeforeCall(String cursor, Integer limit, Boolean rated, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1CurrenciesListValidateBeforeCall(Integer limit, String cursor, Boolean rated, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'limit' is set
+        if (limit == null) {
+            throw new ApiException("Missing the required parameter 'limit' when calling v1CurrenciesList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = v1CurrenciesListCall(cursor, limit, rated, _callback);
+        okhttp3.Call localVarCall = v1CurrenciesListCall(limit, cursor, rated, _callback);
         return localVarCall;
 
     }
@@ -128,8 +133,8 @@ public class CurrenciesApi {
     /**
      * List currencies
      * Retrieve a list of all available currencies.
-     * @param cursor  (optional)
-     * @param limit  (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param rated  (optional)
      * @return CursorPageCurrency
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -143,16 +148,16 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageCurrency v1CurrenciesList(String cursor, Integer limit, Boolean rated) throws ApiException {
-        ApiResponse<CursorPageCurrency> localVarResp = v1CurrenciesListWithHttpInfo(cursor, limit, rated);
+    public CursorPageCurrency v1CurrenciesList(Integer limit, String cursor, Boolean rated) throws ApiException {
+        ApiResponse<CursorPageCurrency> localVarResp = v1CurrenciesListWithHttpInfo(limit, cursor, rated);
         return localVarResp.getData();
     }
 
     /**
      * List currencies
      * Retrieve a list of all available currencies.
-     * @param cursor  (optional)
-     * @param limit  (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param rated  (optional)
      * @return ApiResponse&lt;CursorPageCurrency&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -166,8 +171,8 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageCurrency> v1CurrenciesListWithHttpInfo(String cursor, Integer limit, Boolean rated) throws ApiException {
-        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(cursor, limit, rated, null);
+    public ApiResponse<CursorPageCurrency> v1CurrenciesListWithHttpInfo(Integer limit, String cursor, Boolean rated) throws ApiException {
+        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(limit, cursor, rated, null);
         Type localVarReturnType = new TypeToken<CursorPageCurrency>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -175,8 +180,8 @@ public class CurrenciesApi {
     /**
      * List currencies (asynchronously)
      * Retrieve a list of all available currencies.
-     * @param cursor  (optional)
-     * @param limit  (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param rated  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -191,9 +196,9 @@ public class CurrenciesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrenciesListAsync(String cursor, Integer limit, Boolean rated, final ApiCallback<CursorPageCurrency> _callback) throws ApiException {
+    public okhttp3.Call v1CurrenciesListAsync(Integer limit, String cursor, Boolean rated, final ApiCallback<CursorPageCurrency> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(cursor, limit, rated, _callback);
+        okhttp3.Call localVarCall = v1CurrenciesListValidateBeforeCall(limit, cursor, rated, _callback);
         Type localVarReturnType = new TypeToken<CursorPageCurrency>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

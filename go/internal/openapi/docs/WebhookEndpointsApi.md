@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## V1WebhooksCreate
 
-> Endpoint V1WebhooksCreate(ctx).CreateEndpoint(createEndpoint).Execute()
+> Endpoint V1WebhooksCreate(ctx).Request(request).Execute()
 
 Create webhook endpoint
 
@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    createEndpoint := *openapiclient.NewCreateEndpoint([]string{"FilterTypes_example"}, "Url_example") // CreateEndpoint | Request body
+    request := *openapiclient.NewCreateEndpoint([]string{"FilterTypes_example"}, "Url_example") // CreateEndpoint | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksCreate(context.Background()).CreateEndpoint(createEndpoint).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksCreate(context.Background()).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiV1WebhooksCreateRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createEndpoint** | [**CreateEndpoint**](CreateEndpoint.md) | Request body | 
+ **request** | [**CreateEndpoint**](CreateEndpoint.md) | Request body | 
 
 ### Return type
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksList
 
-> CursorPageEndpoint V1WebhooksList(ctx).Cursor(cursor).Limit(limit).Execute()
+> CursorPageEndpoint V1WebhooksList(ctx).Limit(limit).Cursor(cursor).Execute()
 
 List webhook endpoints
 
@@ -169,12 +169,12 @@ import (
 )
 
 func main() {
-    cursor := "cursor_example" // string |  (optional)
-    limit := int32(56) // int32 |  (optional)
+    limit := int32(56) // int32 | The number of items to return per page.
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksList(context.Background()).Cursor(cursor).Limit(limit).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksList(context.Background()).Limit(limit).Cursor(cursor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -195,8 +195,8 @@ Other parameters are passed through a pointer to a apiV1WebhooksListRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **string** |  | 
- **limit** | **int32** |  | 
+ **limit** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | The cursor to use for pagination. | 
 
 ### Return type
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksUpdate
 
-> Endpoint V1WebhooksUpdate(ctx, endpointId).UpdateEndpoint(updateEndpoint).Execute()
+> Endpoint V1WebhooksUpdate(ctx, endpointId).Request(request).Execute()
 
 Update webhook endpoint
 
@@ -308,11 +308,11 @@ import (
 
 func main() {
     endpointId := "endpointId_example" // string | Endpoint ID
-    updateEndpoint := *openapiclient.NewUpdateEndpoint([]string{"FilterTypes_example"}) // UpdateEndpoint | Request body
+    request := *openapiclient.NewUpdateEndpoint([]string{"FilterTypes_example"}) // UpdateEndpoint | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksUpdate(context.Background(), endpointId).UpdateEndpoint(updateEndpoint).Execute()
+    resp, r, err := api_client.WebhookEndpointsApi.V1WebhooksUpdate(context.Background(), endpointId).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointsApi.V1WebhooksUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,7 +338,7 @@ Other parameters are passed through a pointer to a apiV1WebhooksUpdateRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateEndpoint** | [**UpdateEndpoint**](UpdateEndpoint.md) | Request body | 
+ **request** | [**UpdateEndpoint**](UpdateEndpoint.md) | Request body | 
 
 ### Return type
 

@@ -14,7 +14,7 @@ public final class WebhookEventsAPI {
 	// list
 	public CursorPageWebhookEvent list(final ListWebhookEventOptions options) throws ApiException {
 		try {
-			return api.v1WebhooksEventsList(options.getCursor(), options.getEventTypes(), options.getLimit());
+			return api.v1WebhooksEventsList(options.getLimit(), options.getCursor(), options.getEventTypes());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

@@ -30,11 +30,11 @@ type WalletsApiService service
 type ApiV1WalletsCreateRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
-	createWalletRequest *CreateWalletRequest
+	request *CreateWalletRequest
 }
 
-func (r ApiV1WalletsCreateRequest) CreateWalletRequest(createWalletRequest CreateWalletRequest) ApiV1WalletsCreateRequest {
-	r.createWalletRequest = &createWalletRequest
+func (r ApiV1WalletsCreateRequest) Request(request CreateWalletRequest) ApiV1WalletsCreateRequest {
+	r.request = &request
 	return r
 }
 
@@ -79,8 +79,8 @@ func (a *WalletsApiService) V1WalletsCreateExecute(r ApiV1WalletsCreateRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.createWalletRequest == nil {
-		return localVarReturnValue, nil, reportError("createWalletRequest is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (a *WalletsApiService) V1WalletsCreateExecute(r ApiV1WalletsCreateRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createWalletRequest
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -209,16 +209,16 @@ func (a *WalletsApiService) V1WalletsCreateExecute(r ApiV1WalletsCreateRequest) 
 type ApiV1WalletsListRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
-	cursor *string
 	limit *int32
+	cursor *string
 }
 
-func (r ApiV1WalletsListRequest) Cursor(cursor string) ApiV1WalletsListRequest {
-	r.cursor = &cursor
-	return r
-}
 func (r ApiV1WalletsListRequest) Limit(limit int32) ApiV1WalletsListRequest {
 	r.limit = &limit
+	return r
+}
+func (r ApiV1WalletsListRequest) Cursor(cursor string) ApiV1WalletsListRequest {
+	r.cursor = &cursor
 	return r
 }
 
@@ -263,13 +263,20 @@ func (a *WalletsApiService) V1WalletsListExecute(r ApiV1WalletsListRequest) (Cur
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
 
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -395,16 +402,16 @@ type ApiV1WalletsListAccountsRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
 	walletId string
-	cursor *string
 	limit *int32
+	cursor *string
 }
 
-func (r ApiV1WalletsListAccountsRequest) Cursor(cursor string) ApiV1WalletsListAccountsRequest {
-	r.cursor = &cursor
-	return r
-}
 func (r ApiV1WalletsListAccountsRequest) Limit(limit int32) ApiV1WalletsListAccountsRequest {
 	r.limit = &limit
+	return r
+}
+func (r ApiV1WalletsListAccountsRequest) Cursor(cursor string) ApiV1WalletsListAccountsRequest {
+	r.cursor = &cursor
 	return r
 }
 
@@ -452,13 +459,20 @@ func (a *WalletsApiService) V1WalletsListAccountsExecute(r ApiV1WalletsListAccou
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
 
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -757,11 +771,11 @@ type ApiV1WalletsUpdateRequest struct {
 	ctx _context.Context
 	ApiService *WalletsApiService
 	walletId string
-	updateWalletRequest *UpdateWalletRequest
+	request *UpdateWalletRequest
 }
 
-func (r ApiV1WalletsUpdateRequest) UpdateWalletRequest(updateWalletRequest UpdateWalletRequest) ApiV1WalletsUpdateRequest {
-	r.updateWalletRequest = &updateWalletRequest
+func (r ApiV1WalletsUpdateRequest) Request(request UpdateWalletRequest) ApiV1WalletsUpdateRequest {
+	r.request = &request
 	return r
 }
 
@@ -809,8 +823,8 @@ func (a *WalletsApiService) V1WalletsUpdateExecute(r ApiV1WalletsUpdateRequest) 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.updateWalletRequest == nil {
-		return localVarReturnValue, nil, reportError("updateWalletRequest is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -831,7 +845,7 @@ func (a *WalletsApiService) V1WalletsUpdateExecute(r ApiV1WalletsUpdateRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateWalletRequest
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

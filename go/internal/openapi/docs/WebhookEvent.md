@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EventType** | **string** | The type of the webhook event | 
 **Id** | **string** | The id of the webhook event | 
-**Payload** | **map[string]interface{}** | The payload of the webhook event | 
+**Payload** | **map[string]map[string]interface{}** | The payload of the webhook event | 
 **Timestamp** | **string** | The timestamp of the webhook event | 
 
 ## Methods
 
 ### NewWebhookEvent
 
-`func NewWebhookEvent(eventType string, id string, payload map[string]interface{}, timestamp string, ) *WebhookEvent`
+`func NewWebhookEvent(eventType string, id string, payload map[string]map[string]interface{}, timestamp string, ) *WebhookEvent`
 
 NewWebhookEvent instantiates a new WebhookEvent object
 This constructor will assign default values to properties that have it defined,
@@ -70,20 +70,20 @@ SetId sets Id field to given value.
 
 ### GetPayload
 
-`func (o *WebhookEvent) GetPayload() map[string]interface{}`
+`func (o *WebhookEvent) GetPayload() map[string]map[string]interface{}`
 
 GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### GetPayloadOk
 
-`func (o *WebhookEvent) GetPayloadOk() (*map[string]interface{}, bool)`
+`func (o *WebhookEvent) GetPayloadOk() (*map[string]map[string]interface{}, bool)`
 
 GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPayload
 
-`func (o *WebhookEvent) SetPayload(v map[string]interface{})`
+`func (o *WebhookEvent) SetPayload(v map[string]map[string]interface{})`
 
 SetPayload sets Payload field to given value.
 

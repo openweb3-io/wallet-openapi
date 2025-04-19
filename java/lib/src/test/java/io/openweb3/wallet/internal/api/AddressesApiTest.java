@@ -44,12 +44,12 @@ public class AddressesApiTest {
      */
     @Test
     public void v1AddressesListTest() throws ApiException {
+        Integer limit = null;
         String currency = null;
         String cursor = null;
-        Integer limit = null;
         String type = null;
         String walletId = null;
-        CursorPageAddress response = api.v1AddressesList(currency, cursor, limit, type, walletId);
+        CursorPageAddress response = api.v1AddressesList(limit, currency, cursor, type, walletId);
 
         // TODO: test validations
     }
@@ -83,11 +83,11 @@ public class AddressesApiTest {
     @Test
     public void v1WalletsListDepositAddressesTest() throws ApiException {
         String walletId = null;
+        Integer limit = null;
         String currency = null;
         String cursor = null;
-        Integer limit = null;
         String network = null;
-        CursorPageAddress response = api.v1WalletsListDepositAddresses(walletId, currency, cursor, limit, network);
+        CursorPageAddress response = api.v1WalletsListDepositAddresses(walletId, limit, currency, cursor, network);
 
         // TODO: test validations
     }

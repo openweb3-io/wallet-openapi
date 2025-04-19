@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="v1SweepAddress"></a>
 # **v1SweepAddress**
-> SweepAddressResponse v1SweepAddress(address, sweepAddressRequest)
+> SweepAddressResponse v1SweepAddress(address, request)
 
 Sweep address
 
@@ -44,9 +44,9 @@ public class Example {
 
     SweepFundsApi apiInstance = new SweepFundsApi(defaultClient);
     String address = "address_example"; // String | Address that funds will be swept from
-    SweepAddressRequest sweepAddressRequest = new SweepAddressRequest(); // SweepAddressRequest | Request
+    SweepAddressRequest request = new SweepAddressRequest(); // SweepAddressRequest | Request
     try {
-      SweepAddressResponse result = apiInstance.v1SweepAddress(address, sweepAddressRequest);
+      SweepAddressResponse result = apiInstance.v1SweepAddress(address, request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SweepFundsApi#v1SweepAddress");
@@ -64,7 +64,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **address** | **String**| Address that funds will be swept from |
- **sweepAddressRequest** | [**SweepAddressRequest**](SweepAddressRequest.md)| Request |
+ **request** | [**SweepAddressRequest**](SweepAddressRequest.md)| Request |
 
 ### Return type
 

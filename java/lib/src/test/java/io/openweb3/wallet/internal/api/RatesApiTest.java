@@ -63,8 +63,8 @@ public class RatesApiTest {
      */
     @Test
     public void v1RatesListTest() throws ApiException {
-        GetRatesRequest getRatesRequest = null;
-        GetRatesResponse response = api.v1RatesList(getRatesRequest);
+        GetRatesRequest request = null;
+        GetRatesResponse response = api.v1RatesList(request);
 
         // TODO: test validations
     }

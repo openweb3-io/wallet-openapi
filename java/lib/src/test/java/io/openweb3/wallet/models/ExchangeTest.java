@@ -42,6 +42,14 @@ public class ExchangeTest {
     }
 
     /**
+     * Test the property 'createdAt'
+     */
+    @Test
+    public void createdAtTest() {
+        // TODO: test createdAt
+    }
+
+    /**
      * Test the property 'feeAmount'
      */
     @Test
@@ -55,6 +63,14 @@ public class ExchangeTest {
     @Test
     public void feeCurrencyTest() {
         // TODO: test feeCurrency
+    }
+
+    /**
+     * Test the property 'fiatCurrency'
+     */
+    @Test
+    public void fiatCurrencyTest() {
+        // TODO: test fiatCurrency
     }
 
     /**
@@ -90,6 +106,14 @@ public class ExchangeTest {
     }
 
     /**
+     * Test the property 'status'
+     */
+    @Test
+    public void statusTest() {
+        // TODO: test status
+    }
+
+    /**
      * Test the property 'toAmount'
      */
     @Test
@@ -111,6 +135,22 @@ public class ExchangeTest {
     @Test
     public void ttlTest() {
         // TODO: test ttl
+    }
+
+    /**
+     * Test the property 'updatedAt'
+     */
+    @Test
+    public void updatedAtTest() {
+        // TODO: test updatedAt
+    }
+
+    /**
+     * Test the property 'walletId'
+     */
+    @Test
+    public void walletIdTest() {
+        // TODO: test walletId
     }
 
 }

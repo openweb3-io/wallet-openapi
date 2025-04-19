@@ -61,7 +61,7 @@ public class WalletsApi {
 
     /**
      * Build call for v1WalletsCreate
-     * @param createWalletRequest Request body (required)
+     * @param request Request body (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -75,8 +75,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsCreateCall(CreateWalletRequest createWalletRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = createWalletRequest;
+    public okhttp3.Call v1WalletsCreateCall(CreateWalletRequest request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = request;
 
         // create path and map variables
         String localVarPath = "/api/v1/wallets";
@@ -106,15 +106,15 @@ public class WalletsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WalletsCreateValidateBeforeCall(CreateWalletRequest createWalletRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1WalletsCreateValidateBeforeCall(CreateWalletRequest request, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'createWalletRequest' is set
-        if (createWalletRequest == null) {
-            throw new ApiException("Missing the required parameter 'createWalletRequest' when calling v1WalletsCreate(Async)");
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling v1WalletsCreate(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1WalletsCreateCall(createWalletRequest, _callback);
+        okhttp3.Call localVarCall = v1WalletsCreateCall(request, _callback);
         return localVarCall;
 
     }
@@ -122,7 +122,7 @@ public class WalletsApi {
     /**
      * Create wallet
      * Create a Wallet
-     * @param createWalletRequest Request body (required)
+     * @param request Request body (required)
      * @return Wallet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -135,15 +135,15 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public Wallet v1WalletsCreate(CreateWalletRequest createWalletRequest) throws ApiException {
-        ApiResponse<Wallet> localVarResp = v1WalletsCreateWithHttpInfo(createWalletRequest);
+    public Wallet v1WalletsCreate(CreateWalletRequest request) throws ApiException {
+        ApiResponse<Wallet> localVarResp = v1WalletsCreateWithHttpInfo(request);
         return localVarResp.getData();
     }
 
     /**
      * Create wallet
      * Create a Wallet
-     * @param createWalletRequest Request body (required)
+     * @param request Request body (required)
      * @return ApiResponse&lt;Wallet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -156,8 +156,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Wallet> v1WalletsCreateWithHttpInfo(CreateWalletRequest createWalletRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1WalletsCreateValidateBeforeCall(createWalletRequest, null);
+    public ApiResponse<Wallet> v1WalletsCreateWithHttpInfo(CreateWalletRequest request) throws ApiException {
+        okhttp3.Call localVarCall = v1WalletsCreateValidateBeforeCall(request, null);
         Type localVarReturnType = new TypeToken<Wallet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -165,7 +165,7 @@ public class WalletsApi {
     /**
      * Create wallet (asynchronously)
      * Create a Wallet
-     * @param createWalletRequest Request body (required)
+     * @param request Request body (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -179,17 +179,17 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsCreateAsync(CreateWalletRequest createWalletRequest, final ApiCallback<Wallet> _callback) throws ApiException {
+    public okhttp3.Call v1WalletsCreateAsync(CreateWalletRequest request, final ApiCallback<Wallet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WalletsCreateValidateBeforeCall(createWalletRequest, _callback);
+        okhttp3.Call localVarCall = v1WalletsCreateValidateBeforeCall(request, _callback);
         Type localVarReturnType = new TypeToken<Wallet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1WalletsList
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -203,7 +203,7 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsListCall(String cursor, Integer limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1WalletsListCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -242,10 +242,15 @@ public class WalletsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WalletsListValidateBeforeCall(String cursor, Integer limit, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1WalletsListValidateBeforeCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'limit' is set
+        if (limit == null) {
+            throw new ApiException("Missing the required parameter 'limit' when calling v1WalletsList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = v1WalletsListCall(cursor, limit, _callback);
+        okhttp3.Call localVarCall = v1WalletsListCall(limit, cursor, _callback);
         return localVarCall;
 
     }
@@ -253,8 +258,8 @@ public class WalletsApi {
     /**
      * List wallets
      * List all wallets
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return CursorPageWallet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -267,16 +272,16 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageWallet v1WalletsList(String cursor, Integer limit) throws ApiException {
-        ApiResponse<CursorPageWallet> localVarResp = v1WalletsListWithHttpInfo(cursor, limit);
+    public CursorPageWallet v1WalletsList(Integer limit, String cursor) throws ApiException {
+        ApiResponse<CursorPageWallet> localVarResp = v1WalletsListWithHttpInfo(limit, cursor);
         return localVarResp.getData();
     }
 
     /**
      * List wallets
      * List all wallets
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return ApiResponse&lt;CursorPageWallet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -289,8 +294,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageWallet> v1WalletsListWithHttpInfo(String cursor, Integer limit) throws ApiException {
-        okhttp3.Call localVarCall = v1WalletsListValidateBeforeCall(cursor, limit, null);
+    public ApiResponse<CursorPageWallet> v1WalletsListWithHttpInfo(Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = v1WalletsListValidateBeforeCall(limit, cursor, null);
         Type localVarReturnType = new TypeToken<CursorPageWallet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -298,8 +303,8 @@ public class WalletsApi {
     /**
      * List wallets (asynchronously)
      * List all wallets
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -313,9 +318,9 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsListAsync(String cursor, Integer limit, final ApiCallback<CursorPageWallet> _callback) throws ApiException {
+    public okhttp3.Call v1WalletsListAsync(Integer limit, String cursor, final ApiCallback<CursorPageWallet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WalletsListValidateBeforeCall(cursor, limit, _callback);
+        okhttp3.Call localVarCall = v1WalletsListValidateBeforeCall(limit, cursor, _callback);
         Type localVarReturnType = new TypeToken<CursorPageWallet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -323,8 +328,8 @@ public class WalletsApi {
     /**
      * Build call for v1WalletsListAccounts
      * @param walletId Wallet ID (required)
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -338,7 +343,7 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsListAccountsCall(String walletId, String cursor, Integer limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1WalletsListAccountsCall(String walletId, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -378,15 +383,20 @@ public class WalletsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WalletsListAccountsValidateBeforeCall(String walletId, String cursor, Integer limit, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1WalletsListAccountsValidateBeforeCall(String walletId, Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'walletId' is set
         if (walletId == null) {
             throw new ApiException("Missing the required parameter 'walletId' when calling v1WalletsListAccounts(Async)");
         }
         
+        // verify the required parameter 'limit' is set
+        if (limit == null) {
+            throw new ApiException("Missing the required parameter 'limit' when calling v1WalletsListAccounts(Async)");
+        }
+        
 
-        okhttp3.Call localVarCall = v1WalletsListAccountsCall(walletId, cursor, limit, _callback);
+        okhttp3.Call localVarCall = v1WalletsListAccountsCall(walletId, limit, cursor, _callback);
         return localVarCall;
 
     }
@@ -395,8 +405,8 @@ public class WalletsApi {
      * List wallet accounts
      * List wallet accounts
      * @param walletId Wallet ID (required)
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return CursorPageAccount
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -409,8 +419,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageAccount v1WalletsListAccounts(String walletId, String cursor, Integer limit) throws ApiException {
-        ApiResponse<CursorPageAccount> localVarResp = v1WalletsListAccountsWithHttpInfo(walletId, cursor, limit);
+    public CursorPageAccount v1WalletsListAccounts(String walletId, Integer limit, String cursor) throws ApiException {
+        ApiResponse<CursorPageAccount> localVarResp = v1WalletsListAccountsWithHttpInfo(walletId, limit, cursor);
         return localVarResp.getData();
     }
 
@@ -418,8 +428,8 @@ public class WalletsApi {
      * List wallet accounts
      * List wallet accounts
      * @param walletId Wallet ID (required)
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return ApiResponse&lt;CursorPageAccount&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -432,8 +442,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageAccount> v1WalletsListAccountsWithHttpInfo(String walletId, String cursor, Integer limit) throws ApiException {
-        okhttp3.Call localVarCall = v1WalletsListAccountsValidateBeforeCall(walletId, cursor, limit, null);
+    public ApiResponse<CursorPageAccount> v1WalletsListAccountsWithHttpInfo(String walletId, Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = v1WalletsListAccountsValidateBeforeCall(walletId, limit, cursor, null);
         Type localVarReturnType = new TypeToken<CursorPageAccount>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -442,8 +452,8 @@ public class WalletsApi {
      * List wallet accounts (asynchronously)
      * List wallet accounts
      * @param walletId Wallet ID (required)
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -457,9 +467,9 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsListAccountsAsync(String walletId, String cursor, Integer limit, final ApiCallback<CursorPageAccount> _callback) throws ApiException {
+    public okhttp3.Call v1WalletsListAccountsAsync(String walletId, Integer limit, String cursor, final ApiCallback<CursorPageAccount> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WalletsListAccountsValidateBeforeCall(walletId, cursor, limit, _callback);
+        okhttp3.Call localVarCall = v1WalletsListAccountsValidateBeforeCall(walletId, limit, cursor, _callback);
         Type localVarReturnType = new TypeToken<CursorPageAccount>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -595,7 +605,7 @@ public class WalletsApi {
     /**
      * Build call for v1WalletsUpdate
      * @param walletId Wallet ID (required)
-     * @param updateWalletRequest Request body (required)
+     * @param request Request body (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -609,8 +619,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsUpdateCall(String walletId, UpdateWalletRequest updateWalletRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = updateWalletRequest;
+    public okhttp3.Call v1WalletsUpdateCall(String walletId, UpdateWalletRequest request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = request;
 
         // create path and map variables
         String localVarPath = "/api/v1/wallets/{walletId}"
@@ -641,20 +651,20 @@ public class WalletsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WalletsUpdateValidateBeforeCall(String walletId, UpdateWalletRequest updateWalletRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1WalletsUpdateValidateBeforeCall(String walletId, UpdateWalletRequest request, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'walletId' is set
         if (walletId == null) {
             throw new ApiException("Missing the required parameter 'walletId' when calling v1WalletsUpdate(Async)");
         }
         
-        // verify the required parameter 'updateWalletRequest' is set
-        if (updateWalletRequest == null) {
-            throw new ApiException("Missing the required parameter 'updateWalletRequest' when calling v1WalletsUpdate(Async)");
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling v1WalletsUpdate(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1WalletsUpdateCall(walletId, updateWalletRequest, _callback);
+        okhttp3.Call localVarCall = v1WalletsUpdateCall(walletId, request, _callback);
         return localVarCall;
 
     }
@@ -663,7 +673,7 @@ public class WalletsApi {
      * Update wallet
      * Update a Wallet
      * @param walletId Wallet ID (required)
-     * @param updateWalletRequest Request body (required)
+     * @param request Request body (required)
      * @return Wallet
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -676,8 +686,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public Wallet v1WalletsUpdate(String walletId, UpdateWalletRequest updateWalletRequest) throws ApiException {
-        ApiResponse<Wallet> localVarResp = v1WalletsUpdateWithHttpInfo(walletId, updateWalletRequest);
+    public Wallet v1WalletsUpdate(String walletId, UpdateWalletRequest request) throws ApiException {
+        ApiResponse<Wallet> localVarResp = v1WalletsUpdateWithHttpInfo(walletId, request);
         return localVarResp.getData();
     }
 
@@ -685,7 +695,7 @@ public class WalletsApi {
      * Update wallet
      * Update a Wallet
      * @param walletId Wallet ID (required)
-     * @param updateWalletRequest Request body (required)
+     * @param request Request body (required)
      * @return ApiResponse&lt;Wallet&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -698,8 +708,8 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Wallet> v1WalletsUpdateWithHttpInfo(String walletId, UpdateWalletRequest updateWalletRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1WalletsUpdateValidateBeforeCall(walletId, updateWalletRequest, null);
+    public ApiResponse<Wallet> v1WalletsUpdateWithHttpInfo(String walletId, UpdateWalletRequest request) throws ApiException {
+        okhttp3.Call localVarCall = v1WalletsUpdateValidateBeforeCall(walletId, request, null);
         Type localVarReturnType = new TypeToken<Wallet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -708,7 +718,7 @@ public class WalletsApi {
      * Update wallet (asynchronously)
      * Update a Wallet
      * @param walletId Wallet ID (required)
-     * @param updateWalletRequest Request body (required)
+     * @param request Request body (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -722,9 +732,9 @@ public class WalletsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsUpdateAsync(String walletId, UpdateWalletRequest updateWalletRequest, final ApiCallback<Wallet> _callback) throws ApiException {
+    public okhttp3.Call v1WalletsUpdateAsync(String walletId, UpdateWalletRequest request, final ApiCallback<Wallet> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WalletsUpdateValidateBeforeCall(walletId, updateWalletRequest, _callback);
+        okhttp3.Call localVarCall = v1WalletsUpdateValidateBeforeCall(walletId, request, _callback);
         Type localVarReturnType = new TypeToken<Wallet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

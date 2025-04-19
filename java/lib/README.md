@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2025-02-19T02:07:19.461414+08:00[Asia/Shanghai]
+  - Build date: 2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 
@@ -98,13 +98,13 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     AddressesApi apiInstance = new AddressesApi(defaultClient);
+    Integer limit = 56; // Integer | The number of items to return per page.
     String currency = "currency_example"; // String | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).
     String cursor = "cursor_example"; // String | The cursor to use for pagination.
-    Integer limit = 56; // Integer | The number of records to return default: 20
     String type = "type_example"; // String | The type of address to retrieve.
     String walletId = "walletId_example"; // String | Unique system generated identifier of the wallet
     try {
-      CursorPageAddress result = apiInstance.v1AddressesList(currency, cursor, limit, type, walletId);
+      CursorPageAddress result = apiInstance.v1AddressesList(limit, currency, cursor, type, walletId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AddressesApi#v1AddressesList");
@@ -131,6 +131,7 @@ Class | Method | HTTP request | Description
 *CurrenciesApi* | [**v1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1CurrenciesRetrieve) | **GET** /api/v1/currencies/{code} | Get Currency
 *ExchangesApi* | [**v1ExchangesCreate**](docs/ExchangesApi.md#v1ExchangesCreate) | **POST** /api/v1/exchanges | create exchange
 *ExchangesApi* | [**v1ExchangesCurrencyPairs**](docs/ExchangesApi.md#v1ExchangesCurrencyPairs) | **GET** /api/v1/exchanges/currency_pairs | list currency pairs
+*ExchangesApi* | [**v1ExchangesCurrencyQuota**](docs/ExchangesApi.md#v1ExchangesCurrencyQuota) | **GET** /api/v1/exchanges/currency_pair_quota | currency pair quota
 *ExchangesApi* | [**v1ExchangesList**](docs/ExchangesApi.md#v1ExchangesList) | **GET** /api/v1/exchanges | list exchanges
 *ExchangesApi* | [**v1ExchangesRetrieve**](docs/ExchangesApi.md#v1ExchangesRetrieve) | **GET** /api/v1/exchanges/{exchangeId} | retrieve exchange
 *ExchangesApi* | [**v1ExchangesSubmit**](docs/ExchangesApi.md#v1ExchangesSubmit) | **POST** /api/v1/exchanges/{exchangeId}/submit | submit exchange
@@ -138,6 +139,7 @@ Class | Method | HTTP request | Description
 *RatesApi* | [**v1RatesEstimate**](docs/RatesApi.md#v1RatesEstimate) | **GET** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**v1RatesList**](docs/RatesApi.md#v1RatesList) | **POST** /api/v1/rates | List rates
 *SweepFundsApi* | [**v1SweepAddress**](docs/SweepFundsApi.md#v1SweepAddress) | **POST** /api/v1/sweep/address/{address} | Sweep address
+*TransactionsApi* | [**v1TransactionsEstimateFee**](docs/TransactionsApi.md#v1TransactionsEstimateFee) | **POST** /api/v1/transactions/estimate_fee | EstimateFee
 *TransactionsApi* | [**v1TransactionsList**](docs/TransactionsApi.md#v1TransactionsList) | **GET** /api/v1/transactions | List transactions
 *TransactionsApi* | [**v1TransactionsRetrieve**](docs/TransactionsApi.md#v1TransactionsRetrieve) | **GET** /api/v1/transactions/{transactionId} | Get transaction
 *TransactionsApi* | [**v1TransactionsTransfer**](docs/TransactionsApi.md#v1TransactionsTransfer) | **POST** /api/v1/transactions/transfer | Transfer(internal)
@@ -184,11 +186,14 @@ Class | Method | HTTP request | Description
  - [DeleteWebhookEndpointResponse](docs/DeleteWebhookEndpointResponse.md)
  - [Endpoint](docs/Endpoint.md)
  - [Error](docs/Error.md)
+ - [EstimateFeeRequest](docs/EstimateFeeRequest.md)
+ - [EstimateFeeResponse](docs/EstimateFeeResponse.md)
  - [EstimateResponse](docs/EstimateResponse.md)
  - [EventType](docs/EventType.md)
  - [Exchange](docs/Exchange.md)
  - [ExchangeCurrencyPairs](docs/ExchangeCurrencyPairs.md)
  - [ExchangeSubmitResponse](docs/ExchangeSubmitResponse.md)
+ - [GetCurrencyPairQuotaResponse](docs/GetCurrencyPairQuotaResponse.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [ListExchangeCurrencyPairsResponse](docs/ListExchangeCurrencyPairsResponse.md)

@@ -69,14 +69,6 @@ public class EndpointTest {
     }
 
     /**
-     * Test the property 'filter'
-     */
-    @Test
-    public void filterTest() {
-        // TODO: test filter
-    }
-
-    /**
      * Test the property 'filterTypes'
      */
     @Test

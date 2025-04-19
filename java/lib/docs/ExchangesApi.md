@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**v1ExchangesCreate**](ExchangesApi.md#v1ExchangesCreate) | **POST** /api/v1/exchanges | create exchange
 [**v1ExchangesCurrencyPairs**](ExchangesApi.md#v1ExchangesCurrencyPairs) | **GET** /api/v1/exchanges/currency_pairs | list currency pairs
+[**v1ExchangesCurrencyQuota**](ExchangesApi.md#v1ExchangesCurrencyQuota) | **GET** /api/v1/exchanges/currency_pair_quota | currency pair quota
 [**v1ExchangesList**](ExchangesApi.md#v1ExchangesList) | **GET** /api/v1/exchanges | list exchanges
 [**v1ExchangesRetrieve**](ExchangesApi.md#v1ExchangesRetrieve) | **GET** /api/v1/exchanges/{exchangeId} | retrieve exchange
 [**v1ExchangesSubmit**](ExchangesApi.md#v1ExchangesSubmit) | **POST** /api/v1/exchanges/{exchangeId}/submit | submit exchange
@@ -13,7 +14,7 @@ Method | HTTP request | Description
 
 <a name="v1ExchangesCreate"></a>
 # **v1ExchangesCreate**
-> Exchange v1ExchangesCreate(createExchange)
+> Exchange v1ExchangesCreate(request)
 
 create exchange
 
@@ -41,9 +42,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     ExchangesApi apiInstance = new ExchangesApi(defaultClient);
-    CreateExchange createExchange = new CreateExchange(); // CreateExchange | CreateExchange
+    CreateExchange request = new CreateExchange(); // CreateExchange | CreateExchange
     try {
-      Exchange result = apiInstance.v1ExchangesCreate(createExchange);
+      Exchange result = apiInstance.v1ExchangesCreate(request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ExchangesApi#v1ExchangesCreate");
@@ -60,7 +61,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createExchange** | [**CreateExchange**](CreateExchange.md)| CreateExchange |
+ **request** | [**CreateExchange**](CreateExchange.md)| CreateExchange |
 
 ### Return type
 
@@ -153,6 +154,81 @@ This endpoint does not need any parameter.
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
+<a name="v1ExchangesCurrencyQuota"></a>
+# **v1ExchangesCurrencyQuota**
+> GetCurrencyPairQuotaResponse v1ExchangesCurrencyQuota(fromCurrency, toCurrency)
+
+currency pair quota
+
+get currency pair quota
+
+### Example
+```java
+// Import classes:
+import io.openweb3.wallet.internal.ApiClient;
+import io.openweb3.wallet.internal.ApiException;
+import io.openweb3.wallet.internal.Configuration;
+import io.openweb3.wallet.internal.auth.*;
+import io.openweb3.wallet.internal.models.*;
+import io.openweb3.wallet.internal.api.ExchangesApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure API key authorization: ApiKeyAuth
+    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+    ApiKeyAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //ApiKeyAuth.setApiKeyPrefix("Token");
+
+    ExchangesApi apiInstance = new ExchangesApi(defaultClient);
+    String fromCurrency = "fromCurrency_example"; // String | 
+    String toCurrency = "toCurrency_example"; // String | 
+    try {
+      GetCurrencyPairQuotaResponse result = apiInstance.v1ExchangesCurrencyQuota(fromCurrency, toCurrency);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ExchangesApi#v1ExchangesCurrencyQuota");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fromCurrency** | **String**|  |
+ **toCurrency** | **String**|  |
+
+### Return type
+
+[**GetCurrencyPairQuotaResponse**](GetCurrencyPairQuotaResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**404** | Not Found |  -  |
+**500** | Internal Server Error |  -  |
+
 <a name="v1ExchangesList"></a>
 # **v1ExchangesList**
 > CursorPageExchange v1ExchangesList(limit, walletId, cursor)
@@ -183,9 +259,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     ExchangesApi apiInstance = new ExchangesApi(defaultClient);
-    Integer limit = 56; // Integer | The limit
+    Integer limit = 56; // Integer | The number of items to return per page.
     String walletId = "walletId_example"; // String | The wallet id
-    String cursor = "cursor_example"; // String | The cursor
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     try {
       CursorPageExchange result = apiInstance.v1ExchangesList(limit, walletId, cursor);
       System.out.println(result);
@@ -204,9 +280,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Integer**| The limit |
+ **limit** | **Integer**| The number of items to return per page. |
  **walletId** | **String**| The wallet id |
- **cursor** | **String**| The cursor | [optional]
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
 
 ### Return type
 

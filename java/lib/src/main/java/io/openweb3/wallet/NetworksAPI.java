@@ -13,7 +13,7 @@ public final class NetworksAPI {
 
 	public CursorPageChainNetwork list(final ListNetworkOptions options) throws ApiException {
 		try {
-			return api.v1NetworksList(options.getCursor(), options.getLimit());
+			return api.v1NetworksList(options.getLimit(), options.getCursor() );
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

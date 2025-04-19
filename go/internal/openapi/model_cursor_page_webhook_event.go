@@ -16,9 +16,13 @@ import (
 
 // CursorPageWebhookEvent struct for CursorPageWebhookEvent
 type CursorPageWebhookEvent struct {
+	// Whether there are more items available in the next page.
 	HasNext bool `json:"has_next"`
+	// List of items in the current page.
 	Items []WebhookEvent `json:"items"`
+	// The cursor to use for fetching the next page of items.
 	NextCursor *string `json:"next_cursor,omitempty"`
+	// The cursor to use for fetching the previous page of items.
 	PrevCursor *string `json:"prev_cursor,omitempty"`
 }
 

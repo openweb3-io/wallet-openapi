@@ -18,6 +18,8 @@ import io.openweb3.wallet.models.CreateExchange;
 import io.openweb3.wallet.models.CursorPageExchange;
 import io.openweb3.wallet.models.Error;
 import io.openweb3.wallet.models.Exchange;
+import io.openweb3.wallet.models.ExchangeSubmitResponse;
+import io.openweb3.wallet.models.GetCurrencyPairQuotaResponse;
 import io.openweb3.wallet.models.ListExchangeCurrencyPairsResponse;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -46,8 +48,8 @@ public class ExchangesApiTest {
      */
     @Test
     public void v1ExchangesCreateTest() throws ApiException {
-        CreateExchange createExchange = null;
-        Exchange response = api.v1ExchangesCreate(createExchange);
+        CreateExchange request = null;
+        Exchange response = api.v1ExchangesCreate(request);
 
         // TODO: test validations
     }
@@ -63,6 +65,23 @@ public class ExchangesApiTest {
     @Test
     public void v1ExchangesCurrencyPairsTest() throws ApiException {
         ListExchangeCurrencyPairsResponse response = api.v1ExchangesCurrencyPairs();
+
+        // TODO: test validations
+    }
+    
+    /**
+     * currency pair quota
+     *
+     * get currency pair quota
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1ExchangesCurrencyQuotaTest() throws ApiException {
+        String fromCurrency = null;
+        String toCurrency = null;
+        GetCurrencyPairQuotaResponse response = api.v1ExchangesCurrencyQuota(fromCurrency, toCurrency);
 
         // TODO: test validations
     }
@@ -95,7 +114,8 @@ public class ExchangesApiTest {
      */
     @Test
     public void v1ExchangesRetrieveTest() throws ApiException {
-        Exchange response = api.v1ExchangesRetrieve();
+        String exchangeId = null;
+        Exchange response = api.v1ExchangesRetrieve(exchangeId);
 
         // TODO: test validations
     }
@@ -110,7 +130,8 @@ public class ExchangesApiTest {
      */
     @Test
     public void v1ExchangesSubmitTest() throws ApiException {
-        Exchange response = api.v1ExchangesSubmit();
+        String exchangeId = null;
+        ExchangeSubmitResponse response = api.v1ExchangesSubmit(exchangeId);
 
         // TODO: test validations
     }

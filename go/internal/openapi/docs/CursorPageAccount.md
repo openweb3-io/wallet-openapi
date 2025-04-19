@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasNext** | **bool** |  | 
-**Items** | [**[]Account**](Account.md) |  | 
-**NextCursor** | Pointer to **string** |  | [optional] 
-**PrevCursor** | Pointer to **string** |  | [optional] 
+**HasNext** | **bool** | Whether there are more items available in the next page. | 
+**Items** | [**[]Account**](Account.md) | List of items in the current page. | 
+**NextCursor** | Pointer to **string** | The cursor to use for fetching the next page of items. | [optional] 
+**PrevCursor** | Pointer to **string** | The cursor to use for fetching the previous page of items. | [optional] 
 
 ## Methods
 

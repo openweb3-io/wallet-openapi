@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * EstimateResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-19T02:07:19.461414+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
 public class EstimateResponse {
   public static final String SERIALIZED_NAME_BASE_AMOUNT = "base_amount";
   @SerializedName(SERIALIZED_NAME_BASE_AMOUNT)

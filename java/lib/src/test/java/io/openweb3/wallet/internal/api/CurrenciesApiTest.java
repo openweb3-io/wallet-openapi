@@ -44,10 +44,10 @@ public class CurrenciesApiTest {
      */
     @Test
     public void v1CurrenciesListTest() throws ApiException {
-        String cursor = null;
         Integer limit = null;
+        String cursor = null;
         Boolean rated = null;
-        CursorPageCurrency response = api.v1CurrenciesList(cursor, limit, rated);
+        CursorPageCurrency response = api.v1CurrenciesList(limit, cursor, rated);
 
         // TODO: test validations
     }

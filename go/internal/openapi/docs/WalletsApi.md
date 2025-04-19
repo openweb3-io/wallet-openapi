@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## V1WalletsCreate
 
-> Wallet V1WalletsCreate(ctx).CreateWalletRequest(createWalletRequest).Execute()
+> Wallet V1WalletsCreate(ctx).Request(request).Execute()
 
 Create wallet
 
@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    createWalletRequest := *openapiclient.NewCreateWalletRequest("Name_example") // CreateWalletRequest | Request body
+    request := *openapiclient.NewCreateWalletRequest("Name_example") // CreateWalletRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsCreate(context.Background()).CreateWalletRequest(createWalletRequest).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsCreate(context.Background()).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiV1WalletsCreateRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createWalletRequest** | [**CreateWalletRequest**](CreateWalletRequest.md) | Request body | 
+ **request** | [**CreateWalletRequest**](CreateWalletRequest.md) | Request body | 
 
 ### Return type
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsList
 
-> CursorPageWallet V1WalletsList(ctx).Cursor(cursor).Limit(limit).Execute()
+> CursorPageWallet V1WalletsList(ctx).Limit(limit).Cursor(cursor).Execute()
 
 List wallets
 
@@ -99,12 +99,12 @@ import (
 )
 
 func main() {
-    cursor := "cursor_example" // string | Cursor (optional)
-    limit := int32(56) // int32 | Limit (optional)
+    limit := int32(56) // int32 | The number of items to return per page.
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsList(context.Background()).Cursor(cursor).Limit(limit).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsList(context.Background()).Limit(limit).Cursor(cursor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,8 +125,8 @@ Other parameters are passed through a pointer to a apiV1WalletsListRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **string** | Cursor | 
- **limit** | **int32** | Limit | 
+ **limit** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | The cursor to use for pagination. | 
 
 ### Return type
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsListAccounts
 
-> CursorPageAccount V1WalletsListAccounts(ctx, walletId).Cursor(cursor).Limit(limit).Execute()
+> CursorPageAccount V1WalletsListAccounts(ctx, walletId).Limit(limit).Cursor(cursor).Execute()
 
 List wallet accounts
 
@@ -168,12 +168,12 @@ import (
 
 func main() {
     walletId := "walletId_example" // string | Wallet ID
-    cursor := "cursor_example" // string | Cursor (optional)
-    limit := int32(56) // int32 | Limit (optional)
+    limit := int32(56) // int32 | The number of items to return per page.
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsListAccounts(context.Background(), walletId).Cursor(cursor).Limit(limit).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsListAccounts(context.Background(), walletId).Limit(limit).Cursor(cursor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsListAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,8 +199,8 @@ Other parameters are passed through a pointer to a apiV1WalletsListAccountsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cursor** | **string** | Cursor | 
- **limit** | **int32** | Limit | 
+ **limit** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | The cursor to use for pagination. | 
 
 ### Return type
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsUpdate
 
-> Wallet V1WalletsUpdate(ctx, walletId).UpdateWalletRequest(updateWalletRequest).Execute()
+> Wallet V1WalletsUpdate(ctx, walletId).Request(request).Execute()
 
 Update wallet
 
@@ -312,11 +312,11 @@ import (
 
 func main() {
     walletId := "walletId_example" // string | Wallet ID
-    updateWalletRequest := *openapiclient.NewUpdateWalletRequest() // UpdateWalletRequest | Request body
+    request := *openapiclient.NewUpdateWalletRequest() // UpdateWalletRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WalletsApi.V1WalletsUpdate(context.Background(), walletId).UpdateWalletRequest(updateWalletRequest).Execute()
+    resp, r, err := api_client.WalletsApi.V1WalletsUpdate(context.Background(), walletId).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WalletsApi.V1WalletsUpdate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -342,7 +342,7 @@ Other parameters are passed through a pointer to a apiV1WalletsUpdateRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateWalletRequest** | [**UpdateWalletRequest**](UpdateWalletRequest.md) | Request body | 
+ **request** | [**UpdateWalletRequest**](UpdateWalletRequest.md) | Request body | 
 
 ### Return type
 

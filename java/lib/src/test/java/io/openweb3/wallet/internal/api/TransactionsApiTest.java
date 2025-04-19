@@ -20,6 +20,8 @@ import io.openweb3.wallet.models.CreateWithdrawReply;
 import io.openweb3.wallet.models.CreateWithdrawRequest;
 import io.openweb3.wallet.models.CursorPageTransaction;
 import io.openweb3.wallet.models.Error;
+import io.openweb3.wallet.models.EstimateFeeRequest;
+import io.openweb3.wallet.models.EstimateFeeResponse;
 import io.openweb3.wallet.models.Transaction;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -39,6 +41,22 @@ public class TransactionsApiTest {
 
     
     /**
+     * EstimateFee
+     *
+     * estimate fee of the withdraw
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1TransactionsEstimateFeeTest() throws ApiException {
+        EstimateFeeRequest request = null;
+        EstimateFeeResponse response = api.v1TransactionsEstimateFee(request);
+
+        // TODO: test validations
+    }
+    
+    /**
      * List transactions
      *
      * List transactions
@@ -48,16 +66,16 @@ public class TransactionsApiTest {
      */
     @Test
     public void v1TransactionsListTest() throws ApiException {
+        Integer limit = null;
         String currency = null;
         String cursor = null;
         String direction = null;
-        Integer limit = null;
+        String gateway = null;
         String network = null;
         String status = null;
         String txhash = null;
         String walletId = null;
-        String gateway = null;
-        CursorPageTransaction response = api.v1TransactionsList(currency, cursor, direction, gateway, limit, network, status, txhash, walletId);
+        CursorPageTransaction response = api.v1TransactionsList(limit, currency, cursor, direction, gateway, network, status, txhash, walletId);
 
         // TODO: test validations
     }
@@ -88,8 +106,8 @@ public class TransactionsApiTest {
      */
     @Test
     public void v1TransactionsTransferTest() throws ApiException {
-        CreateTransferRequest createTransferRequest = null;
-        CreateTransferResponse response = api.v1TransactionsTransfer(createTransferRequest);
+        CreateTransferRequest request = null;
+        CreateTransferResponse response = api.v1TransactionsTransfer(request);
 
         // TODO: test validations
     }
@@ -104,8 +122,8 @@ public class TransactionsApiTest {
      */
     @Test
     public void v1TransactionsWithdrawTest() throws ApiException {
-        CreateWithdrawRequest createWithdrawRequest = null;
-        CreateWithdrawReply response = api.v1TransactionsWithdraw(createWithdrawRequest);
+        CreateWithdrawRequest request = null;
+        CreateWithdrawReply response = api.v1TransactionsWithdraw(request);
 
         // TODO: test validations
     }

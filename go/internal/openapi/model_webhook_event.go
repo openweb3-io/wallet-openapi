@@ -21,7 +21,7 @@ type WebhookEvent struct {
 	// The id of the webhook event
 	Id string `json:"id"`
 	// The payload of the webhook event
-	Payload map[string]interface{} `json:"payload"`
+	Payload map[string]map[string]interface{} `json:"payload"`
 	// The timestamp of the webhook event
 	Timestamp string `json:"timestamp"`
 }
@@ -30,7 +30,7 @@ type WebhookEvent struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWebhookEvent(eventType string, id string, payload map[string]interface{}, timestamp string) *WebhookEvent {
+func NewWebhookEvent(eventType string, id string, payload map[string]map[string]interface{}, timestamp string) *WebhookEvent {
 	this := WebhookEvent{}
 	this.EventType = eventType
 	this.Id = id
@@ -96,9 +96,9 @@ func (o *WebhookEvent) SetId(v string) {
 }
 
 // GetPayload returns the Payload field value
-func (o *WebhookEvent) GetPayload() map[string]interface{} {
+func (o *WebhookEvent) GetPayload() map[string]map[string]interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret map[string]map[string]interface{}
 		return ret
 	}
 
@@ -107,7 +107,7 @@ func (o *WebhookEvent) GetPayload() map[string]interface{} {
 
 // GetPayloadOk returns a tuple with the Payload field value
 // and a boolean to check if the value has been set.
-func (o *WebhookEvent) GetPayloadOk() (*map[string]interface{}, bool) {
+func (o *WebhookEvent) GetPayloadOk() (*map[string]map[string]interface{}, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -115,7 +115,7 @@ func (o *WebhookEvent) GetPayloadOk() (*map[string]interface{}, bool) {
 }
 
 // SetPayload sets field value
-func (o *WebhookEvent) SetPayload(v map[string]interface{}) {
+func (o *WebhookEvent) SetPayload(v map[string]map[string]interface{}) {
 	o.Payload = v
 }
 

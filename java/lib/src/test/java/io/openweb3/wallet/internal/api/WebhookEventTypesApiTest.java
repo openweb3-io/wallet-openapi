@@ -42,7 +42,7 @@ public class WebhookEventTypesApiTest {
      *          if the Api call fails
      */
     @Test
-    public void v1WebhooksEventTypesListTest() throws ApiException {
+    public void v1WebhooksEventtypesListTest() throws ApiException {
         List<EventType> response = api.v1WebhooksEventtypesList();
 
         // TODO: test validations

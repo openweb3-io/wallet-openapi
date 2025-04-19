@@ -41,6 +41,14 @@ public class CreateExchangeTest {
     }
 
     /**
+     * Test the property 'fiatCurrency'
+     */
+    @Test
+    public void fiatCurrencyTest() {
+        // TODO: test fiatCurrency
+    }
+
+    /**
      * Test the property 'fromAmount'
      */
     @Test

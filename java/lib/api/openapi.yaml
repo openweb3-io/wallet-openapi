@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.1
 info:
   contact: {}
   description: This is a custody wallet service openapi server.
@@ -14,45 +14,33 @@ paths:
       parameters:
       - description: The code of currency used in the transaction (e.g., TON, USDT,
           USD, EUR, etc.).
-        explode: true
         in: query
         name: currency
-        required: false
         schema:
           type: string
-        style: form
       - description: The cursor to use for pagination.
-        explode: true
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - description: 'The number of records to return default: 20'
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       - description: The type of address to retrieve.
-        explode: true
         in: query
         name: type
-        required: false
         schema:
           type: string
-        style: form
       - description: Unique system generated identifier of the wallet
-        explode: true
         in: query
         name: walletId
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -96,27 +84,23 @@ paths:
       description: Retrieve a list of all available currencies.
       operationId: v1.currencies.list
       parameters:
-      - explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
-      - explode: true
-        in: query
+      - in: query
         name: rated
-        required: false
         schema:
           type: boolean
-        style: form
       responses:
         "200":
           content:
@@ -161,13 +145,11 @@ paths:
       operationId: v1.currencies.retrieve
       parameters:
       - description: Currency code
-        explode: false
         in: path
         name: code
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -211,30 +193,25 @@ paths:
       description: list exchanges
       operationId: v1.exchanges.list
       parameters:
-      - description: The cursor
-        explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - description: The limit
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
         required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       - description: The wallet id
-        explode: true
         in: query
         name: wallet_id
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -318,7 +295,60 @@ paths:
       summary: create exchange
       tags:
       - exchanges
+      x-codegen-request-body-name: request
       x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/exchanges/currency_pair_quota:
+    get:
+      description: get currency pair quota
+      operationId: v1.exchanges.currency_quota
+      parameters:
+      - in: query
+        name: from_currency
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: to_currency
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCurrencyPairQuotaResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: currency pair quota
+      tags:
+      - exchanges
       x-accepts: application/json
   /api/v1/exchanges/currency_pairs:
     get:
@@ -367,13 +397,11 @@ paths:
       operationId: v1.exchanges.retrieve
       parameters:
       - description: Exchange ID
-        explode: false
         in: path
         name: exchangeId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -417,13 +445,11 @@ paths:
       operationId: v1.exchanges.submit
       parameters:
       - description: Exchange ID
-        explode: false
         in: path
         name: exchangeId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -466,22 +492,19 @@ paths:
       description: List networks
       operationId: v1.networks.list
       parameters:
-      - description: Cursor
-        explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - description: Limit
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -568,6 +591,7 @@ paths:
       summary: List rates
       tags:
       - rates
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/rates/estimate:
@@ -576,33 +600,27 @@ paths:
       operationId: v1.rates.estimate
       parameters:
       - description: The amount of the base currency you want to convert
-        explode: true
         in: query
         name: base_amount
         required: true
         schema:
           type: string
-        style: form
       - description: The currency code of the base currency that you want to convert
           from
-        explode: true
         in: query
         name: base_currency
         required: true
         schema:
           minLength: 1
           type: string
-        style: form
       - description: The currency code of the target currency that you want to convert
           to
-        explode: true
         in: query
         name: to_currency
         required: true
         schema:
           minLength: 1
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -647,13 +665,11 @@ paths:
       operationId: v1.sweep.address
       parameters:
       - description: Address that funds will be swept from
-        explode: false
         in: path
         name: address
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -698,6 +714,7 @@ paths:
       summary: Sweep address
       tags:
       - sweep funds
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/transactions:
@@ -706,64 +723,50 @@ paths:
       operationId: v1.transactions.list
       parameters:
       - description: The type of currency involved in the transaction.
-        explode: true
         in: query
         name: currency
-        required: false
         schema:
           type: string
-        style: form
-      - description: A cursor value for pagination purposes.
-        explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
       - description: The direction of the transaction (e.g., incoming or outgoing).
-        explode: true
         in: query
         name: direction
-        required: false
         schema:
           enum:
           - OUT
           - IN
           type: string
-        style: form
+          x-enum-varnames:
+          - TransactionDirectionOut
+          - TransactionDirectionIn
         x-enum-varnames:
         - TransactionDirectionOut
         - TransactionDirectionIn
       - description: The payment gateway or platform used to process the transaction.
-        explode: true
         in: query
         name: gateway
-        required: false
         schema:
           type: string
-        style: form
-      - description: 'The number of records to return default: 20'
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       - description: The blockchain network on which the transaction takes place.
-        explode: true
         in: query
         name: network
-        required: false
         schema:
           type: string
-        style: form
       - description: The status of the transaction.
-        explode: true
         in: query
         name: status
-        required: false
         schema:
           enum:
           - PROCESSING
@@ -771,7 +774,11 @@ paths:
           - FAILED
           - SUCCEED
           type: string
-        style: form
+          x-enum-varnames:
+          - TransactionStatusProcessing
+          - TransactionStatusCanceled
+          - TransactionStatusFailed
+          - TransactionStatusSucceed
         x-enum-varnames:
         - TransactionStatusProcessing
         - TransactionStatusCanceled
@@ -779,21 +786,15 @@ paths:
         - TransactionStatusSucceed
       - description: The transaction hash, which uniquely identifies a transaction
           on the blockchain.
-        explode: true
         in: query
         name: txhash
-        required: false
         schema:
           type: string
-        style: form
       - description: Unique system generated identifier of the wallet
-        explode: true
         in: query
         name: wallet_id
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -831,6 +832,56 @@ paths:
       summary: List transactions
       tags:
       - transactions
+      x-accepts: application/json
+  /api/v1/transactions/estimate_fee:
+    post:
+      description: estimate fee of the withdraw
+      operationId: v1.transactions.estimateFee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateFeeRequest'
+        description: estimate fee request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateFeeResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: EstimateFee
+      tags:
+      - transactions
+      x-codegen-request-body-name: request
+      x-contentType: application/json
       x-accepts: application/json
   /api/v1/transactions/transfer:
     post:
@@ -880,6 +931,7 @@ paths:
       summary: Transfer(internal)
       tags:
       - transactions
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/transactions/withdraw:
@@ -926,10 +978,10 @@ paths:
           description: Internal Server Error
       security:
       - ApiKeyAuth: []
-      - SignatureAuth: []
       summary: Withdraw
       tags:
       - transactions
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/transactions/{transactionId}:
@@ -938,13 +990,11 @@ paths:
       operationId: v1.transactions.retrieve
       parameters:
       - description: Transaction ID
-        explode: false
         in: path
         name: transactionId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -988,22 +1038,19 @@ paths:
       description: List all wallets
       operationId: v1.wallets.list
       parameters:
-      - description: Cursor
-        explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - description: Limit
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1089,6 +1136,7 @@ paths:
       summary: Create wallet
       tags:
       - wallets
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/wallets/{walletId}:
@@ -1097,13 +1145,11 @@ paths:
       operationId: v1.wallets.retrieve
       parameters:
       - description: Wallet ID
-        explode: false
         in: path
         name: walletId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1147,13 +1193,11 @@ paths:
       operationId: v1.wallets.update
       parameters:
       - description: Wallet ID
-        explode: false
         in: path
         name: walletId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -1198,6 +1242,7 @@ paths:
       summary: Update wallet
       tags:
       - wallets
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/wallets/{walletId}/accounts:
@@ -1206,29 +1251,24 @@ paths:
       operationId: v1.wallets.listAccounts
       parameters:
       - description: Wallet ID
-        explode: false
         in: path
         name: walletId
         required: true
         schema:
           type: string
-        style: simple
-      - description: Cursor
-        explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - description: Limit
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1273,31 +1313,25 @@ paths:
       operationId: v1.wallets.getDepositAddress
       parameters:
       - description: Wallet ID
-        explode: false
         in: path
         name: walletId
         required: true
         schema:
           type: string
-        style: simple
       - description: The code of currency used in the transaction (e.g., TON, USDT,
           USD, EUR, etc.).
-        explode: true
         in: query
         name: currency
         required: true
         schema:
           type: string
-        style: form
       - description: chain network, if not specified, the default network of the currency
           will be used.
-        explode: true
         in: query
         name: network
         required: true
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -1342,47 +1376,36 @@ paths:
       operationId: v1.wallets.listDepositAddresses
       parameters:
       - description: Wallet ID
-        explode: false
         in: path
         name: walletId
         required: true
         schema:
           type: string
-        style: simple
       - description: The code of currency used in the transaction (e.g., TON, USDT,
           USD, EUR, etc.).
-        explode: true
         in: query
         name: currency
-        required: false
         schema:
           type: string
-        style: form
-      - description: Cursor
-        explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - description: Limit, default is 20
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       - description: chain network, if not specified, the default network of the currency
           will be used.
-        explode: true
         in: query
         name: network
-        required: false
         schema:
           type: string
-        style: form
       responses:
         "200":
           content:
@@ -1426,20 +1449,19 @@ paths:
       description: List webhook endpoints
       operationId: v1.webhooks.list
       parameters:
-      - explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
-      - explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1501,6 +1523,7 @@ paths:
       summary: Create webhook endpoint
       tags:
       - webhook endpoints
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/webhook/endpoints/{endpointId}:
@@ -1509,13 +1532,11 @@ paths:
       operationId: v1.webhooks.delete
       parameters:
       - description: Endpoint ID
-        explode: false
         in: path
         name: endpointId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1547,13 +1568,11 @@ paths:
       operationId: v1.webhooks.retrieve
       parameters:
       - description: Endpoint ID
-        explode: false
         in: path
         name: endpointId
         required: true
         schema:
           type: string
-        style: simple
       responses:
         "200":
           content:
@@ -1591,13 +1610,11 @@ paths:
       operationId: v1.webhooks.update
       parameters:
       - description: Endpoint ID
-        explode: false
         in: path
         name: endpointId
         required: true
         schema:
           type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -1618,6 +1635,7 @@ paths:
       summary: Update webhook endpoint
       tags:
       - webhook endpoints
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/webhook/event_types:
@@ -1657,32 +1675,28 @@ paths:
       description: List webhook events
       operationId: v1.webhooks.events.list
       parameters:
-      - description: The cursor of the webhook event
-        explode: true
+      - description: The cursor to use for pagination.
         in: query
         name: cursor
-        required: false
         schema:
           type: string
-        style: form
       - description: The type of the webhook event
         explode: false
         in: query
         name: event_types
-        required: false
         schema:
           items:
             type: string
           type: array
         style: form
-      - description: The limit of the webhook event
-        explode: true
+      - description: The number of items to return per page.
         in: query
         name: limit
-        required: false
+        required: true
         schema:
+          maximum: 100
+          minimum: 1
           type: integer
-        style: form
       responses:
         "200":
           content:
@@ -1745,6 +1759,7 @@ paths:
       summary: Resend webhook event
       tags:
       - webhook events
+      x-codegen-request-body-name: request
       x-contentType: application/json
       x-accepts: application/json
 components:
@@ -1838,7 +1853,7 @@ components:
           key: headers
         uid: uid
         metadata:
-          key: ""
+          key: '{}'
         description: description
         disabled: true
         filter_types:
@@ -1863,7 +1878,8 @@ components:
           description: The headers of the webhook endpoint
           type: object
         metadata:
-          additionalProperties: {}
+          additionalProperties:
+            type: object
           description: The metadata of the webhook endpoint
           type: object
         uid:
@@ -2293,14 +2309,18 @@ components:
           id: id
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Account'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2320,14 +2340,18 @@ components:
           network: network
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Address'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2357,14 +2381,18 @@ components:
           network: network
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/ChainNetwork'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2498,14 +2526,18 @@ components:
           max_fee: max_fee
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Currency'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2521,7 +2553,7 @@ components:
             key: headers
           uid: uid
           metadata:
-            key: ""
+            key: '{}'
           created_at: created_at
           description: description
           disabled: true
@@ -2534,7 +2566,7 @@ components:
             key: headers
           uid: uid
           metadata:
-            key: ""
+            key: '{}'
           created_at: created_at
           description: description
           disabled: true
@@ -2545,14 +2577,18 @@ components:
           url: url
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Endpoint'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2594,14 +2630,18 @@ components:
           to_currency: to_currency
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Exchange'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2625,8 +2665,8 @@ components:
           id: id
           from_address: from_address
           gateway: gateway
-          direction: ""
-          status: ""
+          direction: '{}'
+          status: '{}'
         - amount: amount
           fee_currency: fee_currency
           created_at: created_at
@@ -2639,18 +2679,22 @@ components:
           id: id
           from_address: from_address
           gateway: gateway
-          direction: ""
-          status: ""
+          direction: '{}'
+          status: '{}'
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Transaction'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2672,14 +2716,18 @@ components:
           id: id
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Wallet'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2693,24 +2741,28 @@ components:
         items:
         - event_type: event_type
           payload:
-            key: ""
+            key: '{}'
           id: id
           timestamp: timestamp
         - event_type: event_type
           payload:
-            key: ""
+            key: '{}'
           id: id
           timestamp: timestamp
       properties:
         has_next:
+          description: Whether there are more items available in the next page.
           type: boolean
         items:
+          description: List of items in the current page.
           items:
             $ref: '#/components/schemas/WebhookEvent'
           type: array
         next_cursor:
+          description: The cursor to use for fetching the next page of items.
           type: string
         prev_cursor:
+          description: The cursor to use for fetching the previous page of items.
           type: string
       required:
       - has_next
@@ -2732,7 +2784,7 @@ components:
           key: headers
         uid: uid
         metadata:
-          key: ""
+          key: '{}'
         created_at: created_at
         description: description
         disabled: true
@@ -2765,7 +2817,8 @@ components:
           description: The id of the webhook endpoint
           type: string
         metadata:
-          additionalProperties: {}
+          additionalProperties:
+            type: object
           description: The metadata of the webhook endpoint
           type: object
         uid:
@@ -2793,6 +2846,50 @@ components:
       required:
       - code
       - msg
+      type: object
+    EstimateFeeRequest:
+      example:
+        amount: amount
+        wallet_id: wallet_id
+        currency: currency
+        to_address: to_address
+        network: network
+      properties:
+        amount:
+          description: The amount of currency to be withdrawn
+          type: string
+        currency:
+          description: The code of currency to be withdrawn.
+          type: string
+        network:
+          description: The network of the currency to be withdrawn.
+          type: string
+        to_address:
+          description: The recipient address where the withdrawn funds will be sent.
+            This is usually a wallet address specific to the chosen network.
+          type: string
+        wallet_id:
+          description: The ID of the wallet from which the withdrawal will be made.
+          type: string
+      required:
+      - amount
+      - currency
+      - network
+      - to_address
+      - wallet_id
+      type: object
+    EstimateFeeResponse:
+      example:
+        fee_amount: fee_amount
+        fee_currency: fee_currency
+      properties:
+        fee_amount:
+          type: string
+        fee_currency:
+          type: string
+      required:
+      - fee_amount
+      - fee_currency
       type: object
     EstimateResponse:
       example:
@@ -2946,6 +3043,39 @@ components:
           description: The exchange id
           type: string
       type: object
+    GetCurrencyPairQuotaResponse:
+      example:
+        to_amount_min: to_amount_min
+        from_currency: from_currency
+        from_amount_min: from_amount_min
+        from_amount_max: from_amount_max
+        to_amount_max: to_amount_max
+        to_currency: to_currency
+      properties:
+        from_amount_max:
+          description: float string
+          type: string
+        from_amount_min:
+          description: float string
+          type: string
+        from_currency:
+          type: string
+        to_amount_max:
+          description: float string
+          type: string
+        to_amount_min:
+          description: float string
+          type: string
+        to_currency:
+          type: string
+      required:
+      - from_amount_max
+      - from_amount_min
+      - from_currency
+      - to_amount_max
+      - to_amount_min
+      - to_currency
+      type: object
     GetRatesRequest:
       example:
         pairs:
@@ -3081,8 +3211,8 @@ components:
         id: id
         from_address: from_address
         gateway: gateway
-        direction: ""
-        status: ""
+        direction: '{}'
+        status: '{}'
       properties:
         amount:
           description: The total amount of money involved in the transaction.
@@ -3103,6 +3233,7 @@ components:
           - $ref: '#/components/schemas/TransactionDirection'
           description: Indicates the flow of the transaction, typically whether it
             is incoming or outgoing.
+          type: object
         fee_amount:
           description: The amount of fee
           type: string
@@ -3125,6 +3256,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/TransactionStatus'
           description: The current status of the transaction.
+          type: object
         to_address:
           description: The address of the recipient.
           type: string
@@ -3173,7 +3305,7 @@ components:
           key: headers
         uid: uid
         metadata:
-          key: ""
+          key: '{}'
         description: description
         disabled: true
         filter_types:
@@ -3198,7 +3330,8 @@ components:
           description: The headers of the webhook endpoint
           type: object
         metadata:
-          additionalProperties: {}
+          additionalProperties:
+            type: object
           description: The metadata of the webhook endpoint
           type: object
         uid:
@@ -3251,7 +3384,7 @@ components:
       example:
         event_type: event_type
         payload:
-          key: ""
+          key: '{}'
         id: id
         timestamp: timestamp
       properties:
@@ -3262,7 +3395,8 @@ components:
           description: The id of the webhook event
           type: string
         payload:
-          additionalProperties: {}
+          additionalProperties:
+            type: object
           description: The payload of the webhook event
           type: object
         timestamp:
@@ -3283,4 +3417,5 @@ components:
       in: header
       name: X-Signature
       type: apiKey
+x-original-swagger-version: "2.0"
 

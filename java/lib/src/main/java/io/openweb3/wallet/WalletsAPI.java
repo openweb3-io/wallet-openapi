@@ -17,7 +17,7 @@ public final class WalletsAPI {
 
 	public CursorPageWallet list(final ListWalletOptions options) throws ApiException {
 		try {
-			return api.v1WalletsList(options.getCursor(), options.getLimit());
+			return api.v1WalletsList(options.getLimit(), options.getCursor());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
@@ -53,7 +53,7 @@ public final class WalletsAPI {
 	// list accounts
 	public CursorPageAccount listAccounts(final String walletId, final ListAccountOptions options) throws ApiException {
 		try {
-			return api.v1WalletsListAccounts(walletId, options.getCursor(), options.getLimit());
+			return api.v1WalletsListAccounts(walletId, options.getLimit(), options.getCursor());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

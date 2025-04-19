@@ -30,11 +30,11 @@ type WebhookEndpointsApiService service
 type ApiV1WebhooksCreateRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointsApiService
-	createEndpoint *CreateEndpoint
+	request *CreateEndpoint
 }
 
-func (r ApiV1WebhooksCreateRequest) CreateEndpoint(createEndpoint CreateEndpoint) ApiV1WebhooksCreateRequest {
-	r.createEndpoint = &createEndpoint
+func (r ApiV1WebhooksCreateRequest) Request(request CreateEndpoint) ApiV1WebhooksCreateRequest {
+	r.request = &request
 	return r
 }
 
@@ -79,8 +79,8 @@ func (a *WebhookEndpointsApiService) V1WebhooksCreateExecute(r ApiV1WebhooksCrea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.createEndpoint == nil {
-		return localVarReturnValue, nil, reportError("createEndpoint is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (a *WebhookEndpointsApiService) V1WebhooksCreateExecute(r ApiV1WebhooksCrea
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createEndpoint
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -342,16 +342,16 @@ func (a *WebhookEndpointsApiService) V1WebhooksDeleteExecute(r ApiV1WebhooksDele
 type ApiV1WebhooksListRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointsApiService
-	cursor *string
 	limit *int32
+	cursor *string
 }
 
-func (r ApiV1WebhooksListRequest) Cursor(cursor string) ApiV1WebhooksListRequest {
-	r.cursor = &cursor
-	return r
-}
 func (r ApiV1WebhooksListRequest) Limit(limit int32) ApiV1WebhooksListRequest {
 	r.limit = &limit
+	return r
+}
+func (r ApiV1WebhooksListRequest) Cursor(cursor string) ApiV1WebhooksListRequest {
+	r.cursor = &cursor
 	return r
 }
 
@@ -396,13 +396,20 @@ func (a *WebhookEndpointsApiService) V1WebhooksListExecute(r ApiV1WebhooksListRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
 
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -671,11 +678,11 @@ type ApiV1WebhooksUpdateRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointsApiService
 	endpointId string
-	updateEndpoint *UpdateEndpoint
+	request *UpdateEndpoint
 }
 
-func (r ApiV1WebhooksUpdateRequest) UpdateEndpoint(updateEndpoint UpdateEndpoint) ApiV1WebhooksUpdateRequest {
-	r.updateEndpoint = &updateEndpoint
+func (r ApiV1WebhooksUpdateRequest) Request(request UpdateEndpoint) ApiV1WebhooksUpdateRequest {
+	r.request = &request
 	return r
 }
 
@@ -723,8 +730,8 @@ func (a *WebhookEndpointsApiService) V1WebhooksUpdateExecute(r ApiV1WebhooksUpda
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.updateEndpoint == nil {
-		return localVarReturnValue, nil, reportError("updateEndpoint is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -745,7 +752,7 @@ func (a *WebhookEndpointsApiService) V1WebhooksUpdateExecute(r ApiV1WebhooksUpda
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateEndpoint
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

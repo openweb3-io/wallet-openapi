@@ -47,8 +47,8 @@ public class WalletsApiTest {
      */
     @Test
     public void v1WalletsCreateTest() throws ApiException {
-        CreateWalletRequest createWalletRequest = null;
-        Wallet response = api.v1WalletsCreate(createWalletRequest);
+        CreateWalletRequest request = null;
+        Wallet response = api.v1WalletsCreate(request);
 
         // TODO: test validations
     }
@@ -63,9 +63,9 @@ public class WalletsApiTest {
      */
     @Test
     public void v1WalletsListTest() throws ApiException {
-        String cursor = null;
         Integer limit = null;
-        CursorPageWallet response = api.v1WalletsList(cursor, limit);
+        String cursor = null;
+        CursorPageWallet response = api.v1WalletsList(limit, cursor);
 
         // TODO: test validations
     }
@@ -81,9 +81,9 @@ public class WalletsApiTest {
     @Test
     public void v1WalletsListAccountsTest() throws ApiException {
         String walletId = null;
-        String cursor = null;
         Integer limit = null;
-        CursorPageAccount response = api.v1WalletsListAccounts(walletId, cursor, limit);
+        String cursor = null;
+        CursorPageAccount response = api.v1WalletsListAccounts(walletId, limit, cursor);
 
         // TODO: test validations
     }
@@ -115,8 +115,8 @@ public class WalletsApiTest {
     @Test
     public void v1WalletsUpdateTest() throws ApiException {
         String walletId = null;
-        UpdateWalletRequest updateWalletRequest = null;
-        Wallet response = api.v1WalletsUpdate(walletId, updateWalletRequest);
+        UpdateWalletRequest request = null;
+        Wallet response = api.v1WalletsUpdate(walletId, request);
 
         // TODO: test validations
     }

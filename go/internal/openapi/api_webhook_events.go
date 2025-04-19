@@ -29,21 +29,21 @@ type WebhookEventsApiService service
 type ApiV1WebhooksEventsListRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEventsApiService
+	limit *int32
 	cursor *string
 	eventTypes *[]string
-	limit *int32
 }
 
+func (r ApiV1WebhooksEventsListRequest) Limit(limit int32) ApiV1WebhooksEventsListRequest {
+	r.limit = &limit
+	return r
+}
 func (r ApiV1WebhooksEventsListRequest) Cursor(cursor string) ApiV1WebhooksEventsListRequest {
 	r.cursor = &cursor
 	return r
 }
 func (r ApiV1WebhooksEventsListRequest) EventTypes(eventTypes []string) ApiV1WebhooksEventsListRequest {
 	r.eventTypes = &eventTypes
-	return r
-}
-func (r ApiV1WebhooksEventsListRequest) Limit(limit int32) ApiV1WebhooksEventsListRequest {
-	r.limit = &limit
 	return r
 }
 
@@ -88,6 +88,15 @@ func (a *WebhookEventsApiService) V1WebhooksEventsListExecute(r ApiV1WebhooksEve
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
 
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
@@ -95,9 +104,7 @@ func (a *WebhookEventsApiService) V1WebhooksEventsListExecute(r ApiV1WebhooksEve
 	if r.eventTypes != nil {
 		localVarQueryParams.Add("event_types", parameterToString(*r.eventTypes, "csv"))
 	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -202,11 +209,11 @@ func (a *WebhookEventsApiService) V1WebhooksEventsListExecute(r ApiV1WebhooksEve
 type ApiV1WebhooksEventsResendRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEventsApiService
-	resendWebhookEventRequest *ResendWebhookEventRequest
+	request *ResendWebhookEventRequest
 }
 
-func (r ApiV1WebhooksEventsResendRequest) ResendWebhookEventRequest(resendWebhookEventRequest ResendWebhookEventRequest) ApiV1WebhooksEventsResendRequest {
-	r.resendWebhookEventRequest = &resendWebhookEventRequest
+func (r ApiV1WebhooksEventsResendRequest) Request(request ResendWebhookEventRequest) ApiV1WebhooksEventsResendRequest {
+	r.request = &request
 	return r
 }
 
@@ -251,8 +258,8 @@ func (a *WebhookEventsApiService) V1WebhooksEventsResendExecute(r ApiV1WebhooksE
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.resendWebhookEventRequest == nil {
-		return localVarReturnValue, nil, reportError("resendWebhookEventRequest is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -273,7 +280,7 @@ func (a *WebhookEventsApiService) V1WebhooksEventsResendExecute(r ApiV1WebhooksE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.resendWebhookEventRequest
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

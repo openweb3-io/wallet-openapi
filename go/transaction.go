@@ -15,6 +15,8 @@ type (
 	WithdrawOut          = openapi.CreateWithdrawReply
 	TransferIn           = openapi.CreateTransferRequest
 	TransferOut          = openapi.CreateTransferResponse
+	EstimateFeeIn        = openapi.EstimateFeeRequest
+	EstimateFeeOut       = openapi.EstimateFeeResponse
 )
 
 type Transaction struct {
@@ -30,11 +32,12 @@ type ListTransactionOptions struct {
 	Txhash    *string
 	Status    *string
 	Cursor    *string
-	Limit     *int32
+	Limit     int32
 }
 
 func (e *Transaction) List(ctx context.Context, options *ListTransactionOptions) (*PageTransactionOut, error) {
 	req := e.api.TransactionsApi.V1TransactionsList(ctx)
+	req = req.Limit(options.Limit)
 	if options.WalletId != nil {
 		req = req.WalletId(*options.WalletId)
 	}
@@ -55,9 +58,6 @@ func (e *Transaction) List(ctx context.Context, options *ListTransactionOptions)
 	}
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
-	}
-	if options.Limit != nil {
-		req = req.Limit(*options.Limit)
 	}
 	if options.Gateway != nil {
 		req = req.Gateway(*options.Gateway)
@@ -81,7 +81,7 @@ func (e *Transaction) Retrieve(ctx context.Context, transactionId string) (*Tran
 
 func (e *Transaction) Withdraw(ctx context.Context, withdrawIn *WithdrawIn) (*WithdrawOut, error) {
 	req := e.api.TransactionsApi.V1TransactionsWithdraw(ctx)
-	req = req.CreateWithdrawRequest(*withdrawIn)
+	req = req.Request(*withdrawIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -91,7 +91,17 @@ func (e *Transaction) Withdraw(ctx context.Context, withdrawIn *WithdrawIn) (*Wi
 
 func (e *Transaction) Transfer(ctx context.Context, transferIn *TransferIn) (*TransferOut, error) {
 	req := e.api.TransactionsApi.V1TransactionsTransfer(ctx)
-	req = req.CreateTransferRequest(*transferIn)
+	req = req.Request(*transferIn)
+	out, res, err := req.Execute()
+	if err != nil {
+		return nil, wrapError(err, res)
+	}
+	return &out, nil
+}
+
+func (e *Transaction) EstimateFee(ctx context.Context, estimateFeeIn *EstimateFeeIn) (*EstimateFeeOut, error) {
+	req := e.api.TransactionsApi.V1TransactionsEstimateFee(ctx)
+	req = req.Request(*estimateFeeIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

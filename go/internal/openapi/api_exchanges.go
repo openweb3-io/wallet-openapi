@@ -30,11 +30,11 @@ type ExchangesApiService service
 type ApiV1ExchangesCreateRequest struct {
 	ctx _context.Context
 	ApiService *ExchangesApiService
-	createExchange *CreateExchange
+	request *CreateExchange
 }
 
-func (r ApiV1ExchangesCreateRequest) CreateExchange(createExchange CreateExchange) ApiV1ExchangesCreateRequest {
-	r.createExchange = &createExchange
+func (r ApiV1ExchangesCreateRequest) Request(request CreateExchange) ApiV1ExchangesCreateRequest {
+	r.request = &request
 	return r
 }
 
@@ -79,8 +79,8 @@ func (a *ExchangesApiService) V1ExchangesCreateExecute(r ApiV1ExchangesCreateReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.createExchange == nil {
-		return localVarReturnValue, nil, reportError("createExchange is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (a *ExchangesApiService) V1ExchangesCreateExecute(r ApiV1ExchangesCreateReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createExchange
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -347,6 +347,179 @@ func (a *ExchangesApiService) V1ExchangesCurrencyPairsExecute(r ApiV1ExchangesCu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiV1ExchangesCurrencyQuotaRequest struct {
+	ctx _context.Context
+	ApiService *ExchangesApiService
+	fromCurrency *string
+	toCurrency *string
+}
+
+func (r ApiV1ExchangesCurrencyQuotaRequest) FromCurrency(fromCurrency string) ApiV1ExchangesCurrencyQuotaRequest {
+	r.fromCurrency = &fromCurrency
+	return r
+}
+func (r ApiV1ExchangesCurrencyQuotaRequest) ToCurrency(toCurrency string) ApiV1ExchangesCurrencyQuotaRequest {
+	r.toCurrency = &toCurrency
+	return r
+}
+
+func (r ApiV1ExchangesCurrencyQuotaRequest) Execute() (GetCurrencyPairQuotaResponse, *_nethttp.Response, error) {
+	return r.ApiService.V1ExchangesCurrencyQuotaExecute(r)
+}
+
+/*
+ * V1ExchangesCurrencyQuota currency pair quota
+ * get currency pair quota
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiV1ExchangesCurrencyQuotaRequest
+ */
+func (a *ExchangesApiService) V1ExchangesCurrencyQuota(ctx _context.Context) ApiV1ExchangesCurrencyQuotaRequest {
+	return ApiV1ExchangesCurrencyQuotaRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return GetCurrencyPairQuotaResponse
+ */
+func (a *ExchangesApiService) V1ExchangesCurrencyQuotaExecute(r ApiV1ExchangesCurrencyQuotaRequest) (GetCurrencyPairQuotaResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  GetCurrencyPairQuotaResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ExchangesApiService.V1ExchangesCurrencyQuota")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/exchanges/currency_pair_quota"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.fromCurrency == nil {
+		return localVarReturnValue, nil, reportError("fromCurrency is required and must be specified")
+	}
+	if r.toCurrency == nil {
+		return localVarReturnValue, nil, reportError("toCurrency is required and must be specified")
+	}
+
+	localVarQueryParams.Add("from_currency", parameterToString(*r.fromCurrency, ""))
+	localVarQueryParams.Add("to_currency", parameterToString(*r.toCurrency, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-Api-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiV1ExchangesListRequest struct {
 	ctx _context.Context
 	ApiService *ExchangesApiService
@@ -411,6 +584,12 @@ func (a *ExchangesApiService) V1ExchangesListExecute(r ApiV1ExchangesListRequest
 	localVarFormParams := _neturl.Values{}
 	if r.limit == nil {
 		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
 	}
 	if r.walletId == nil {
 		return localVarReturnValue, nil, reportError("walletId is required and must be specified")

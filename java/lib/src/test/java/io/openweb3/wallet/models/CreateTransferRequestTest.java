@@ -72,12 +72,4 @@ public class CreateTransferRequestTest {
         // TODO: test to
     }
 
-    /**
-     * Test the property 'walletId'
-     */
-    @Test
-    public void walletIdTest() {
-        // TODO: test walletId
-    }
-
 }

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## V1SweepAddress
 
-> SweepAddressResponse V1SweepAddress(ctx, address).SweepAddressRequest(sweepAddressRequest).Execute()
+> SweepAddressResponse V1SweepAddress(ctx, address).Request(request).Execute()
 
 Sweep address
 
@@ -30,11 +30,11 @@ import (
 
 func main() {
     address := "address_example" // string | Address that funds will be swept from
-    sweepAddressRequest := *openapiclient.NewSweepAddressRequest("Currency_example") // SweepAddressRequest | Request
+    request := *openapiclient.NewSweepAddressRequest("Currency_example") // SweepAddressRequest | Request
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SweepFundsApi.V1SweepAddress(context.Background(), address).SweepAddressRequest(sweepAddressRequest).Execute()
+    resp, r, err := api_client.SweepFundsApi.V1SweepAddress(context.Background(), address).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SweepFundsApi.V1SweepAddress``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiV1SweepAddressRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **sweepAddressRequest** | [**SweepAddressRequest**](SweepAddressRequest.md) | Request | 
+ **request** | [**SweepAddressRequest**](SweepAddressRequest.md) | Request | 
 
 ### Return type
 

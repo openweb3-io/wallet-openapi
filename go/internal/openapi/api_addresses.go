@@ -30,23 +30,23 @@ type AddressesApiService service
 type ApiV1AddressesListRequest struct {
 	ctx _context.Context
 	ApiService *AddressesApiService
+	limit *int32
 	currency *string
 	cursor *string
-	limit *int32
 	type_ *string
 	walletId *string
 }
 
+func (r ApiV1AddressesListRequest) Limit(limit int32) ApiV1AddressesListRequest {
+	r.limit = &limit
+	return r
+}
 func (r ApiV1AddressesListRequest) Currency(currency string) ApiV1AddressesListRequest {
 	r.currency = &currency
 	return r
 }
 func (r ApiV1AddressesListRequest) Cursor(cursor string) ApiV1AddressesListRequest {
 	r.cursor = &cursor
-	return r
-}
-func (r ApiV1AddressesListRequest) Limit(limit int32) ApiV1AddressesListRequest {
-	r.limit = &limit
 	return r
 }
 func (r ApiV1AddressesListRequest) Type_(type_ string) ApiV1AddressesListRequest {
@@ -99,6 +99,15 @@ func (a *AddressesApiService) V1AddressesListExecute(r ApiV1AddressesListRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
 
 	if r.currency != nil {
 		localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
@@ -106,9 +115,7 @@ func (a *AddressesApiService) V1AddressesListExecute(r ApiV1AddressesListRequest
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	if r.type_ != nil {
 		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
 	}
@@ -431,22 +438,22 @@ type ApiV1WalletsListDepositAddressesRequest struct {
 	ctx _context.Context
 	ApiService *AddressesApiService
 	walletId string
+	limit *int32
 	currency *string
 	cursor *string
-	limit *int32
 	network *string
 }
 
+func (r ApiV1WalletsListDepositAddressesRequest) Limit(limit int32) ApiV1WalletsListDepositAddressesRequest {
+	r.limit = &limit
+	return r
+}
 func (r ApiV1WalletsListDepositAddressesRequest) Currency(currency string) ApiV1WalletsListDepositAddressesRequest {
 	r.currency = &currency
 	return r
 }
 func (r ApiV1WalletsListDepositAddressesRequest) Cursor(cursor string) ApiV1WalletsListDepositAddressesRequest {
 	r.cursor = &cursor
-	return r
-}
-func (r ApiV1WalletsListDepositAddressesRequest) Limit(limit int32) ApiV1WalletsListDepositAddressesRequest {
-	r.limit = &limit
 	return r
 }
 func (r ApiV1WalletsListDepositAddressesRequest) Network(network string) ApiV1WalletsListDepositAddressesRequest {
@@ -498,6 +505,15 @@ func (a *AddressesApiService) V1WalletsListDepositAddressesExecute(r ApiV1Wallet
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
 
 	if r.currency != nil {
 		localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
@@ -505,9 +521,7 @@ func (a *AddressesApiService) V1WalletsListDepositAddressesExecute(r ApiV1Wallet
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	if r.network != nil {
 		localVarQueryParams.Add("network", parameterToString(*r.network, ""))
 	}

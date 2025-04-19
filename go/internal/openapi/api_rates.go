@@ -231,11 +231,11 @@ func (a *RatesApiService) V1RatesEstimateExecute(r ApiV1RatesEstimateRequest) (E
 type ApiV1RatesListRequest struct {
 	ctx _context.Context
 	ApiService *RatesApiService
-	getRatesRequest *GetRatesRequest
+	request *GetRatesRequest
 }
 
-func (r ApiV1RatesListRequest) GetRatesRequest(getRatesRequest GetRatesRequest) ApiV1RatesListRequest {
-	r.getRatesRequest = &getRatesRequest
+func (r ApiV1RatesListRequest) Request(request GetRatesRequest) ApiV1RatesListRequest {
+	r.request = &request
 	return r
 }
 
@@ -280,8 +280,8 @@ func (a *RatesApiService) V1RatesListExecute(r ApiV1RatesListRequest) (GetRatesR
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.getRatesRequest == nil {
-		return localVarReturnValue, nil, reportError("getRatesRequest is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -302,7 +302,7 @@ func (a *RatesApiService) V1RatesListExecute(r ApiV1RatesListRequest) (GetRatesR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.getRatesRequest
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 <a name="v1RatesList"></a>
 # **v1RatesList**
-> GetRatesResponse v1RatesList(getRatesRequest)
+> GetRatesResponse v1RatesList(request)
 
 List rates
 
@@ -127,9 +127,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     RatesApi apiInstance = new RatesApi(defaultClient);
-    GetRatesRequest getRatesRequest = new GetRatesRequest(); // GetRatesRequest | Request body
+    GetRatesRequest request = new GetRatesRequest(); // GetRatesRequest | Request body
     try {
-      GetRatesResponse result = apiInstance.v1RatesList(getRatesRequest);
+      GetRatesResponse result = apiInstance.v1RatesList(request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RatesApi#v1RatesList");
@@ -146,7 +146,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **getRatesRequest** | [**GetRatesRequest**](GetRatesRequest.md)| Request body |
+ **request** | [**GetRatesRequest**](GetRatesRequest.md)| Request body |
 
 ### Return type
 

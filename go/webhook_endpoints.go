@@ -19,7 +19,7 @@ type WebhookEndpoint struct {
 
 type ListWebhookOptions struct {
 	Cursor *string
-	Limit  *int32
+	Limit  int32
 }
 
 func (e *WebhookEndpoint) List(ctx context.Context, options *ListWebhookOptions) (*CursorEndpointOut, error) {
@@ -27,10 +27,7 @@ func (e *WebhookEndpoint) List(ctx context.Context, options *ListWebhookOptions)
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
-	if options.Limit != nil {
-		req = req.Limit(*options.Limit)
-	}
-
+	req = req.Limit(options.Limit)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -49,7 +46,7 @@ func (e *WebhookEndpoint) Retrieve(ctx context.Context, endpointId string) (*End
 
 func (e *WebhookEndpoint) Create(ctx context.Context, createEndpointIn *CreateEndpointIn) (*EndpointOut, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhooksCreate(ctx)
-	req = req.CreateEndpoint(*createEndpointIn)
+	req = req.Request(*createEndpointIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -59,7 +56,7 @@ func (e *WebhookEndpoint) Create(ctx context.Context, createEndpointIn *CreateEn
 
 func (e *WebhookEndpoint) Update(ctx context.Context, endpointId string, updateEndpointIn *UpdateEndpointIn) (*EndpointOut, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhooksUpdate(ctx, endpointId)
-	req = req.UpdateEndpoint(*updateEndpointIn)
+	req = req.Request(*updateEndpointIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

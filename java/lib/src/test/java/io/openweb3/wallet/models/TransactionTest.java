@@ -83,6 +83,22 @@ public class TransactionTest {
     }
 
     /**
+     * Test the property 'feeAmount'
+     */
+    @Test
+    public void feeAmountTest() {
+        // TODO: test feeAmount
+    }
+
+    /**
+     * Test the property 'feeCurrency'
+     */
+    @Test
+    public void feeCurrencyTest() {
+        // TODO: test feeCurrency
+    }
+
+    /**
      * Test the property 'fromAddress'
      */
     @Test

@@ -29,16 +29,16 @@ type NetworksApiService service
 type ApiV1NetworksListRequest struct {
 	ctx _context.Context
 	ApiService *NetworksApiService
-	cursor *string
 	limit *int32
+	cursor *string
 }
 
-func (r ApiV1NetworksListRequest) Cursor(cursor string) ApiV1NetworksListRequest {
-	r.cursor = &cursor
-	return r
-}
 func (r ApiV1NetworksListRequest) Limit(limit int32) ApiV1NetworksListRequest {
 	r.limit = &limit
+	return r
+}
+func (r ApiV1NetworksListRequest) Cursor(cursor string) ApiV1NetworksListRequest {
+	r.cursor = &cursor
 	return r
 }
 
@@ -83,13 +83,20 @@ func (a *NetworksApiService) V1NetworksListExecute(r ApiV1NetworksListRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.limit == nil {
+		return localVarReturnValue, nil, reportError("limit is required and must be specified")
+	}
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
+	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
 
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
+	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

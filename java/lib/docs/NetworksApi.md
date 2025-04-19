@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="v1NetworksList"></a>
 # **v1NetworksList**
-> CursorPageChainNetwork v1NetworksList(cursor, limit)
+> CursorPageChainNetwork v1NetworksList(limit, cursor)
 
 List Networks
 
@@ -43,10 +43,10 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     NetworksApi apiInstance = new NetworksApi(defaultClient);
-    String cursor = "cursor_example"; // String | Cursor
-    Integer limit = 56; // Integer | Limit
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     try {
-      CursorPageChainNetwork result = apiInstance.v1NetworksList(cursor, limit);
+      CursorPageChainNetwork result = apiInstance.v1NetworksList(limit, cursor);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling NetworksApi#v1NetworksList");
@@ -63,8 +63,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **String**| Cursor | [optional]
- **limit** | **Integer**| Limit | [optional]
+ **limit** | **Integer**| The number of items to return per page. |
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
 
 ### Return type
 

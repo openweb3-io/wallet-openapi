@@ -1,0 +1,91 @@
+<h1 align="center">
+    <a style="text-decoration: none" href="https://pay.openweb3.io">
+      <img width="120" src="" />
+      <p align="center">Wallet - Custody Wallet Service</p>
+    </a>
+</h1>
+<h2 align="center">
+  <a href="https://wallet.openweb3.io">Website</a> | <a href="https://docs.wallet.openweb3.io">Documentation</a> | <a href="https://pay.openweb3.io/slack">Community Slack</a>
+<h2>
+
+Typescript/Javascript library for interacting with the Wallet API and verifying wallet webhook signatures
+
+![GitHub tag](https://img.shields.io/github/tag/wallet/Wallet.svg)
+[![NPM version](https://img.shields.io/npm/v/wallet.svg)](https://www.npmjs.com/package/wallet)
+
+[![Join our slack](https://img.shields.io/badge/Slack-join%20the%20community-blue?logo=slack&style=social)](https://wallet.openweb3.io/slack/)
+
+# Usage Documentation
+
+You can find general usage documentation at <https://docs.wallet.openweb3.io>. For complete API documentation with code examples for each endpoint in all of our official client libraries head over to our API documentation site at <https://api.wallet.openweb3.io>.
+
+# Language Support
+
+<table style="table-layout:fixed; white-space: nowrap;">
+  <th colspan="2">⚡️ Features ⚡️</th>
+  <tr>
+    <th>Officially Supported</th>
+    <th>✅</th>
+  </tr>
+  <tr>
+    <th>API Support</th>
+    <th>✅</th>
+  </tr>
+  <tr>
+    <th>Signature Verification</th>
+    <th>✅</th>
+  </tr>
+  <tr>
+    <th>Caveats</th>
+    <th>None! 🚀</th>
+  </tr>
+</table>
+
+# Installation
+
+```sh
+npm install @openweb3-io/wallet
+# or
+yarn add @openweb3-io/wallet
+```
+
+# Usage
+
+```js
+import { Wallet } from "@openweb3-io/wallet";
+
+const wallet = new Wallet("API-KEY", "PRIVATE KEY");
+const chains = await wallet.chains.list({ limit: 20 });
+```
+
+# Development
+
+First checkout the [core README](../README.md#development) for details on how to generate our API bindings, then follow the steps below.
+
+## Requirements
+
+- node
+- yarn
+
+## Building the library
+
+```sh
+yarn
+yarn build
+```
+
+## Contributing
+
+Before opening a PR be sure to format your code!
+
+```sh
+yarn lint:fix
+```
+
+## Running Tests
+
+Simply run:
+
+```sh
+yarn test
+```

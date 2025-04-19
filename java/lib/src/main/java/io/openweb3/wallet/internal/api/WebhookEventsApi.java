@@ -59,9 +59,9 @@ public class WebhookEventsApi {
 
     /**
      * Build call for v1WebhooksEventsList
-     * @param cursor The cursor of the webhook event (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param eventTypes The type of the webhook event (optional)
-     * @param limit The limit of the webhook event (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -73,7 +73,7 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhooksEventsListCall(String cursor, List<String> eventTypes, Integer limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1WebhooksEventsListCall(Integer limit, String cursor, List<String> eventTypes, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -116,10 +116,15 @@ public class WebhookEventsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WebhooksEventsListValidateBeforeCall(String cursor, List<String> eventTypes, Integer limit, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1WebhooksEventsListValidateBeforeCall(Integer limit, String cursor, List<String> eventTypes, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'limit' is set
+        if (limit == null) {
+            throw new ApiException("Missing the required parameter 'limit' when calling v1WebhooksEventsList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = v1WebhooksEventsListCall(cursor, eventTypes, limit, _callback);
+        okhttp3.Call localVarCall = v1WebhooksEventsListCall(limit, cursor, eventTypes, _callback);
         return localVarCall;
 
     }
@@ -127,9 +132,9 @@ public class WebhookEventsApi {
     /**
      * List webhook events
      * List webhook events
-     * @param cursor The cursor of the webhook event (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param eventTypes The type of the webhook event (optional)
-     * @param limit The limit of the webhook event (optional)
      * @return CursorPageWebhookEvent
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -140,17 +145,17 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageWebhookEvent v1WebhooksEventsList(String cursor, List<String> eventTypes, Integer limit) throws ApiException {
-        ApiResponse<CursorPageWebhookEvent> localVarResp = v1WebhooksEventsListWithHttpInfo(cursor, eventTypes, limit);
+    public CursorPageWebhookEvent v1WebhooksEventsList(Integer limit, String cursor, List<String> eventTypes) throws ApiException {
+        ApiResponse<CursorPageWebhookEvent> localVarResp = v1WebhooksEventsListWithHttpInfo(limit, cursor, eventTypes);
         return localVarResp.getData();
     }
 
     /**
      * List webhook events
      * List webhook events
-     * @param cursor The cursor of the webhook event (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param eventTypes The type of the webhook event (optional)
-     * @param limit The limit of the webhook event (optional)
      * @return ApiResponse&lt;CursorPageWebhookEvent&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -161,8 +166,8 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageWebhookEvent> v1WebhooksEventsListWithHttpInfo(String cursor, List<String> eventTypes, Integer limit) throws ApiException {
-        okhttp3.Call localVarCall = v1WebhooksEventsListValidateBeforeCall(cursor, eventTypes, limit, null);
+    public ApiResponse<CursorPageWebhookEvent> v1WebhooksEventsListWithHttpInfo(Integer limit, String cursor, List<String> eventTypes) throws ApiException {
+        okhttp3.Call localVarCall = v1WebhooksEventsListValidateBeforeCall(limit, cursor, eventTypes, null);
         Type localVarReturnType = new TypeToken<CursorPageWebhookEvent>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -170,9 +175,9 @@ public class WebhookEventsApi {
     /**
      * List webhook events (asynchronously)
      * List webhook events
-     * @param cursor The cursor of the webhook event (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param eventTypes The type of the webhook event (optional)
-     * @param limit The limit of the webhook event (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -184,16 +189,16 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhooksEventsListAsync(String cursor, List<String> eventTypes, Integer limit, final ApiCallback<CursorPageWebhookEvent> _callback) throws ApiException {
+    public okhttp3.Call v1WebhooksEventsListAsync(Integer limit, String cursor, List<String> eventTypes, final ApiCallback<CursorPageWebhookEvent> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WebhooksEventsListValidateBeforeCall(cursor, eventTypes, limit, _callback);
+        okhttp3.Call localVarCall = v1WebhooksEventsListValidateBeforeCall(limit, cursor, eventTypes, _callback);
         Type localVarReturnType = new TypeToken<CursorPageWebhookEvent>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1WebhooksEventsResend
-     * @param resendWebhookEventRequest The request (required)
+     * @param request The request (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -205,8 +210,8 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhooksEventsResendCall(ResendWebhookEventRequest resendWebhookEventRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = resendWebhookEventRequest;
+    public okhttp3.Call v1WebhooksEventsResendCall(ResendWebhookEventRequest request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = request;
 
         // create path and map variables
         String localVarPath = "/api/v1/webhook/events/resend";
@@ -236,15 +241,15 @@ public class WebhookEventsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WebhooksEventsResendValidateBeforeCall(ResendWebhookEventRequest resendWebhookEventRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1WebhooksEventsResendValidateBeforeCall(ResendWebhookEventRequest request, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'resendWebhookEventRequest' is set
-        if (resendWebhookEventRequest == null) {
-            throw new ApiException("Missing the required parameter 'resendWebhookEventRequest' when calling v1WebhooksEventsResend(Async)");
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling v1WebhooksEventsResend(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1WebhooksEventsResendCall(resendWebhookEventRequest, _callback);
+        okhttp3.Call localVarCall = v1WebhooksEventsResendCall(request, _callback);
         return localVarCall;
 
     }
@@ -252,7 +257,7 @@ public class WebhookEventsApi {
     /**
      * Resend webhook event
      * Resend a webhook event to specific endpoint
-     * @param resendWebhookEventRequest The request (required)
+     * @param request The request (required)
      * @return ResendWebhookEventResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -263,15 +268,15 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ResendWebhookEventResponse v1WebhooksEventsResend(ResendWebhookEventRequest resendWebhookEventRequest) throws ApiException {
-        ApiResponse<ResendWebhookEventResponse> localVarResp = v1WebhooksEventsResendWithHttpInfo(resendWebhookEventRequest);
+    public ResendWebhookEventResponse v1WebhooksEventsResend(ResendWebhookEventRequest request) throws ApiException {
+        ApiResponse<ResendWebhookEventResponse> localVarResp = v1WebhooksEventsResendWithHttpInfo(request);
         return localVarResp.getData();
     }
 
     /**
      * Resend webhook event
      * Resend a webhook event to specific endpoint
-     * @param resendWebhookEventRequest The request (required)
+     * @param request The request (required)
      * @return ApiResponse&lt;ResendWebhookEventResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -282,8 +287,8 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResendWebhookEventResponse> v1WebhooksEventsResendWithHttpInfo(ResendWebhookEventRequest resendWebhookEventRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1WebhooksEventsResendValidateBeforeCall(resendWebhookEventRequest, null);
+    public ApiResponse<ResendWebhookEventResponse> v1WebhooksEventsResendWithHttpInfo(ResendWebhookEventRequest request) throws ApiException {
+        okhttp3.Call localVarCall = v1WebhooksEventsResendValidateBeforeCall(request, null);
         Type localVarReturnType = new TypeToken<ResendWebhookEventResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -291,7 +296,7 @@ public class WebhookEventsApi {
     /**
      * Resend webhook event (asynchronously)
      * Resend a webhook event to specific endpoint
-     * @param resendWebhookEventRequest The request (required)
+     * @param request The request (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -303,9 +308,9 @@ public class WebhookEventsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WebhooksEventsResendAsync(ResendWebhookEventRequest resendWebhookEventRequest, final ApiCallback<ResendWebhookEventResponse> _callback) throws ApiException {
+    public okhttp3.Call v1WebhooksEventsResendAsync(ResendWebhookEventRequest request, final ApiCallback<ResendWebhookEventResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WebhooksEventsResendValidateBeforeCall(resendWebhookEventRequest, _callback);
+        okhttp3.Call localVarCall = v1WebhooksEventsResendValidateBeforeCall(request, _callback);
         Type localVarReturnType = new TypeToken<ResendWebhookEventResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

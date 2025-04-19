@@ -19,22 +19,18 @@ type Exchange struct {
 }
 
 type ListExchangeOptions struct {
-	WalletId *string
+	WalletId string
 	Cursor   *string
-	Limit    *int32
+	Limit    int32
 }
 
 func (e *Exchange) List(ctx context.Context, options *ListExchangeOptions) (*PageExchangeOut, error) {
 	req := e.api.ExchangesApi.V1ExchangesList(ctx)
-	if options.WalletId != nil {
-		req = req.WalletId(*options.WalletId)
-	}
+	req = req.WalletId(options.WalletId)
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
-	if options.Limit != nil {
-		req = req.Limit(*options.Limit)
-	}
+	req = req.Limit(options.Limit)
 
 	out, res, err := req.Execute()
 	if err != nil {
@@ -54,7 +50,7 @@ func (e *Exchange) Retrieve(ctx context.Context, ExchangeId string) (*ExchangeOu
 
 func (e *Exchange) Create(ctx context.Context, createExchangeIn *ExchangeIn) (*ExchangeOut, error) {
 	req := e.api.ExchangesApi.V1ExchangesCreate(ctx)
-	req = req.CreateExchange(*createExchangeIn)
+	req = req.Request(*createExchangeIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

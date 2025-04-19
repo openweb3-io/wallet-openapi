@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## V1RatesList
 
-> GetRatesResponse V1RatesList(ctx).GetRatesRequest(getRatesRequest).Execute()
+> GetRatesResponse V1RatesList(ctx).Request(request).Execute()
 
 List rates
 
@@ -100,11 +100,11 @@ import (
 )
 
 func main() {
-    getRatesRequest := *openapiclient.NewGetRatesRequest([]openapiclient.CurrencyPair{*openapiclient.NewCurrencyPair("BaseCurrency_example", "ToCurrency_example")}) // GetRatesRequest | Request body
+    request := *openapiclient.NewGetRatesRequest([]openapiclient.CurrencyPair{*openapiclient.NewCurrencyPair("BaseCurrency_example", "ToCurrency_example")}) // GetRatesRequest | Request body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RatesApi.V1RatesList(context.Background()).GetRatesRequest(getRatesRequest).Execute()
+    resp, r, err := api_client.RatesApi.V1RatesList(context.Background()).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RatesApi.V1RatesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,7 +125,7 @@ Other parameters are passed through a pointer to a apiV1RatesListRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **getRatesRequest** | [**GetRatesRequest**](GetRatesRequest.md) | Request body | 
+ **request** | [**GetRatesRequest**](GetRatesRequest.md) | Request body | 
 
 ### Return type
 

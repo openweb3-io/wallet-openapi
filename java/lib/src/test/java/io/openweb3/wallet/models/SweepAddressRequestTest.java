@@ -41,14 +41,6 @@ public class SweepAddressRequestTest {
     }
 
     /**
-     * Test the property 'amount'
-     */
-    @Test
-    public void amountTest() {
-        // TODO: test amount
-    }
-
-    /**
      * Test the property 'currency'
      */
     @Test

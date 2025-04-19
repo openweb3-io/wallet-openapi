@@ -58,9 +58,9 @@ public class AddressesApi {
 
     /**
      * Build call for v1AddressesList
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
      * @param cursor The cursor to use for pagination. (optional)
-     * @param limit The number of records to return default: 20 (optional)
      * @param type The type of address to retrieve. (optional)
      * @param walletId Unique system generated identifier of the wallet (optional)
      * @param _callback Callback for upload/download progress
@@ -76,7 +76,7 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1AddressesListCall(String currency, String cursor, Integer limit, String type, String walletId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1AddressesListCall(Integer limit, String currency, String cursor, String type, String walletId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -127,10 +127,15 @@ public class AddressesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1AddressesListValidateBeforeCall(String currency, String cursor, Integer limit, String type, String walletId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1AddressesListValidateBeforeCall(Integer limit, String currency, String cursor, String type, String walletId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'limit' is set
+        if (limit == null) {
+            throw new ApiException("Missing the required parameter 'limit' when calling v1AddressesList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = v1AddressesListCall(currency, cursor, limit, type, walletId, _callback);
+        okhttp3.Call localVarCall = v1AddressesListCall(limit, currency, cursor, type, walletId, _callback);
         return localVarCall;
 
     }
@@ -138,9 +143,9 @@ public class AddressesApi {
     /**
      * List all addresses
      * List of all available addresses.
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
      * @param cursor The cursor to use for pagination. (optional)
-     * @param limit The number of records to return default: 20 (optional)
      * @param type The type of address to retrieve. (optional)
      * @param walletId Unique system generated identifier of the wallet (optional)
      * @return CursorPageAddress
@@ -155,17 +160,17 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageAddress v1AddressesList(String currency, String cursor, Integer limit, String type, String walletId) throws ApiException {
-        ApiResponse<CursorPageAddress> localVarResp = v1AddressesListWithHttpInfo(currency, cursor, limit, type, walletId);
+    public CursorPageAddress v1AddressesList(Integer limit, String currency, String cursor, String type, String walletId) throws ApiException {
+        ApiResponse<CursorPageAddress> localVarResp = v1AddressesListWithHttpInfo(limit, currency, cursor, type, walletId);
         return localVarResp.getData();
     }
 
     /**
      * List all addresses
      * List of all available addresses.
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
      * @param cursor The cursor to use for pagination. (optional)
-     * @param limit The number of records to return default: 20 (optional)
      * @param type The type of address to retrieve. (optional)
      * @param walletId Unique system generated identifier of the wallet (optional)
      * @return ApiResponse&lt;CursorPageAddress&gt;
@@ -180,8 +185,8 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageAddress> v1AddressesListWithHttpInfo(String currency, String cursor, Integer limit, String type, String walletId) throws ApiException {
-        okhttp3.Call localVarCall = v1AddressesListValidateBeforeCall(currency, cursor, limit, type, walletId, null);
+    public ApiResponse<CursorPageAddress> v1AddressesListWithHttpInfo(Integer limit, String currency, String cursor, String type, String walletId) throws ApiException {
+        okhttp3.Call localVarCall = v1AddressesListValidateBeforeCall(limit, currency, cursor, type, walletId, null);
         Type localVarReturnType = new TypeToken<CursorPageAddress>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -189,9 +194,9 @@ public class AddressesApi {
     /**
      * List all addresses (asynchronously)
      * List of all available addresses.
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
      * @param cursor The cursor to use for pagination. (optional)
-     * @param limit The number of records to return default: 20 (optional)
      * @param type The type of address to retrieve. (optional)
      * @param walletId Unique system generated identifier of the wallet (optional)
      * @param _callback The callback to be executed when the API call finishes
@@ -207,9 +212,9 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1AddressesListAsync(String currency, String cursor, Integer limit, String type, String walletId, final ApiCallback<CursorPageAddress> _callback) throws ApiException {
+    public okhttp3.Call v1AddressesListAsync(Integer limit, String currency, String cursor, String type, String walletId, final ApiCallback<CursorPageAddress> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1AddressesListValidateBeforeCall(currency, cursor, limit, type, walletId, _callback);
+        okhttp3.Call localVarCall = v1AddressesListValidateBeforeCall(limit, currency, cursor, type, walletId, _callback);
         Type localVarReturnType = new TypeToken<CursorPageAddress>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -371,9 +376,9 @@ public class AddressesApi {
     /**
      * Build call for v1WalletsListDepositAddresses
      * @param walletId Wallet ID (required)
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
-     * @param cursor Cursor (optional)
-     * @param limit Limit, default is 20 (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param network chain network, if not specified, the default network of the currency will be used. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -388,7 +393,7 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsListDepositAddressesCall(String walletId, String currency, String cursor, Integer limit, String network, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1WalletsListDepositAddressesCall(String walletId, Integer limit, String currency, String cursor, String network, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -436,15 +441,20 @@ public class AddressesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1WalletsListDepositAddressesValidateBeforeCall(String walletId, String currency, String cursor, Integer limit, String network, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1WalletsListDepositAddressesValidateBeforeCall(String walletId, Integer limit, String currency, String cursor, String network, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'walletId' is set
         if (walletId == null) {
             throw new ApiException("Missing the required parameter 'walletId' when calling v1WalletsListDepositAddresses(Async)");
         }
         
+        // verify the required parameter 'limit' is set
+        if (limit == null) {
+            throw new ApiException("Missing the required parameter 'limit' when calling v1WalletsListDepositAddresses(Async)");
+        }
+        
 
-        okhttp3.Call localVarCall = v1WalletsListDepositAddressesCall(walletId, currency, cursor, limit, network, _callback);
+        okhttp3.Call localVarCall = v1WalletsListDepositAddressesCall(walletId, limit, currency, cursor, network, _callback);
         return localVarCall;
 
     }
@@ -453,9 +463,9 @@ public class AddressesApi {
      * List deposit addresses
      * List wallet&#39;s deposit addresses
      * @param walletId Wallet ID (required)
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
-     * @param cursor Cursor (optional)
-     * @param limit Limit, default is 20 (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param network chain network, if not specified, the default network of the currency will be used. (optional)
      * @return CursorPageAddress
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -469,8 +479,8 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageAddress v1WalletsListDepositAddresses(String walletId, String currency, String cursor, Integer limit, String network) throws ApiException {
-        ApiResponse<CursorPageAddress> localVarResp = v1WalletsListDepositAddressesWithHttpInfo(walletId, currency, cursor, limit, network);
+    public CursorPageAddress v1WalletsListDepositAddresses(String walletId, Integer limit, String currency, String cursor, String network) throws ApiException {
+        ApiResponse<CursorPageAddress> localVarResp = v1WalletsListDepositAddressesWithHttpInfo(walletId, limit, currency, cursor, network);
         return localVarResp.getData();
     }
 
@@ -478,9 +488,9 @@ public class AddressesApi {
      * List deposit addresses
      * List wallet&#39;s deposit addresses
      * @param walletId Wallet ID (required)
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
-     * @param cursor Cursor (optional)
-     * @param limit Limit, default is 20 (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param network chain network, if not specified, the default network of the currency will be used. (optional)
      * @return ApiResponse&lt;CursorPageAddress&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -494,8 +504,8 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageAddress> v1WalletsListDepositAddressesWithHttpInfo(String walletId, String currency, String cursor, Integer limit, String network) throws ApiException {
-        okhttp3.Call localVarCall = v1WalletsListDepositAddressesValidateBeforeCall(walletId, currency, cursor, limit, network, null);
+    public ApiResponse<CursorPageAddress> v1WalletsListDepositAddressesWithHttpInfo(String walletId, Integer limit, String currency, String cursor, String network) throws ApiException {
+        okhttp3.Call localVarCall = v1WalletsListDepositAddressesValidateBeforeCall(walletId, limit, currency, cursor, network, null);
         Type localVarReturnType = new TypeToken<CursorPageAddress>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -504,9 +514,9 @@ public class AddressesApi {
      * List deposit addresses (asynchronously)
      * List wallet&#39;s deposit addresses
      * @param walletId Wallet ID (required)
+     * @param limit The number of items to return per page. (required)
      * @param currency The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
-     * @param cursor Cursor (optional)
-     * @param limit Limit, default is 20 (optional)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param network chain network, if not specified, the default network of the currency will be used. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -521,9 +531,9 @@ public class AddressesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1WalletsListDepositAddressesAsync(String walletId, String currency, String cursor, Integer limit, String network, final ApiCallback<CursorPageAddress> _callback) throws ApiException {
+    public okhttp3.Call v1WalletsListDepositAddressesAsync(String walletId, Integer limit, String currency, String cursor, String network, final ApiCallback<CursorPageAddress> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1WalletsListDepositAddressesValidateBeforeCall(walletId, currency, cursor, limit, network, _callback);
+        okhttp3.Call localVarCall = v1WalletsListDepositAddressesValidateBeforeCall(walletId, limit, currency, cursor, network, _callback);
         Type localVarReturnType = new TypeToken<CursorPageAddress>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -13,7 +13,7 @@ public final class WebhookEndpointsAPI {
 
 	public CursorPageEndpoint list(final ListWebhookEndpointOptions options) throws ApiException {
 		try {
-			return api.v1WebhooksList(options.getCursor(), options.getLimit());
+			return api.v1WebhooksList(options.getLimit(), options.getCursor());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

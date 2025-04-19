@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## V1AddressesList
 
-> CursorPageAddress V1AddressesList(ctx).Currency(currency).Cursor(cursor).Limit(limit).Type_(type_).WalletId(walletId).Execute()
+> CursorPageAddress V1AddressesList(ctx).Limit(limit).Currency(currency).Cursor(cursor).Type_(type_).WalletId(walletId).Execute()
 
 List all addresses
 
@@ -31,15 +31,15 @@ import (
 )
 
 func main() {
+    limit := int32(56) // int32 | The number of items to return per page.
     currency := "currency_example" // string | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
     cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
-    limit := int32(56) // int32 | The number of records to return default: 20 (optional)
     type_ := "type__example" // string | The type of address to retrieve. (optional)
     walletId := "walletId_example" // string | Unique system generated identifier of the wallet (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AddressesApi.V1AddressesList(context.Background()).Currency(currency).Cursor(cursor).Limit(limit).Type_(type_).WalletId(walletId).Execute()
+    resp, r, err := api_client.AddressesApi.V1AddressesList(context.Background()).Limit(limit).Currency(currency).Cursor(cursor).Type_(type_).WalletId(walletId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.V1AddressesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,9 +60,9 @@ Other parameters are passed through a pointer to a apiV1AddressesListRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **limit** | **int32** | The number of items to return per page. | 
  **currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
  **cursor** | **string** | The cursor to use for pagination. | 
- **limit** | **int32** | The number of records to return default: 20 | 
  **type_** | **string** | The type of address to retrieve. | 
  **walletId** | **string** | Unique system generated identifier of the wallet | 
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## V1WalletsListDepositAddresses
 
-> CursorPageAddress V1WalletsListDepositAddresses(ctx, walletId).Currency(currency).Cursor(cursor).Limit(limit).Network(network).Execute()
+> CursorPageAddress V1WalletsListDepositAddresses(ctx, walletId).Limit(limit).Currency(currency).Cursor(cursor).Network(network).Execute()
 
 List deposit addresses
 
@@ -180,14 +180,14 @@ import (
 
 func main() {
     walletId := "walletId_example" // string | Wallet ID
+    limit := int32(56) // int32 | The number of items to return per page.
     currency := "currency_example" // string | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). (optional)
-    cursor := "cursor_example" // string | Cursor (optional)
-    limit := int32(56) // int32 | Limit, default is 20 (optional)
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
     network := "network_example" // string | chain network, if not specified, the default network of the currency will be used. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AddressesApi.V1WalletsListDepositAddresses(context.Background(), walletId).Currency(currency).Cursor(cursor).Limit(limit).Network(network).Execute()
+    resp, r, err := api_client.AddressesApi.V1WalletsListDepositAddresses(context.Background(), walletId).Limit(limit).Currency(currency).Cursor(cursor).Network(network).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AddressesApi.V1WalletsListDepositAddresses``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,9 +213,9 @@ Other parameters are passed through a pointer to a apiV1WalletsListDepositAddres
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **limit** | **int32** | The number of items to return per page. | 
  **currency** | **string** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
- **cursor** | **string** | Cursor | 
- **limit** | **int32** | Limit, default is 20 | 
+ **cursor** | **string** | The cursor to use for pagination. | 
  **network** | **string** | chain network, if not specified, the default network of the currency will be used. | 
 
 ### Return type

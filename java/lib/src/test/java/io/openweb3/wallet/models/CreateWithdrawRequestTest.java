@@ -57,6 +57,22 @@ public class CreateWithdrawRequestTest {
     }
 
     /**
+     * Test the property 'fee'
+     */
+    @Test
+    public void feeTest() {
+        // TODO: test fee
+    }
+
+    /**
+     * Test the property 'feeCurrency'
+     */
+    @Test
+    public void feeCurrencyTest() {
+        // TODO: test feeCurrency
+    }
+
+    /**
      * Test the property 'network'
      */
     @Test

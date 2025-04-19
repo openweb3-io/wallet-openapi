@@ -20,7 +20,7 @@ type WebhookEvents struct {
 type ListWebhookEventsOptions struct {
 	EventTypes []string
 	Cursor     *string
-	Limit      *int32
+	Limit      int32
 }
 
 func (e *WebhookEvents) List(ctx context.Context, options *ListWebhookEventsOptions) (*CursorPageWebhookEvent, error) {
@@ -31,9 +31,7 @@ func (e *WebhookEvents) List(ctx context.Context, options *ListWebhookEventsOpti
 	if options.Cursor != nil {
 		req = req.Cursor(*options.Cursor)
 	}
-	if options.Limit != nil {
-		req = req.Limit(*options.Limit)
-	}
+	req = req.Limit(options.Limit)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
@@ -43,7 +41,7 @@ func (e *WebhookEvents) List(ctx context.Context, options *ListWebhookEventsOpti
 
 func (e *WebhookEvents) Resend(ctx context.Context, resendWebhookEventIn *ResendWebhookEventIn) (*ResendWebhookEventOut, error) {
 	req := e.api.WebhookEventsApi.V1WebhooksEventsResend(ctx)
-	req = req.ResendWebhookEventRequest(*resendWebhookEventIn)
+	req = req.Request(*resendWebhookEventIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

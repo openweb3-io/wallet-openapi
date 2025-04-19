@@ -41,11 +41,11 @@ public class CreateTransferResponseTest {
     }
 
     /**
-     * Test the property 'transactionId'
+     * Test the property 'transferId'
      */
     @Test
-    public void transactionIdTest() {
-        // TODO: test transactionId
+    public void transferIdTest() {
+        // TODO: test transferId
     }
 
 }

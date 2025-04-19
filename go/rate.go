@@ -37,7 +37,7 @@ func (e *Rate) Estimate(ctx context.Context, options *EstimateOptions) (*Estimat
 
 func (e *Rate) GetRates(ctx context.Context, getRatesIn *GetRatesIn) (*GetRatesOut, error) {
 	req := e.api.RatesApi.V1RatesList(ctx)
-	req = req.GetRatesRequest(*getRatesIn)
+	req = req.Request(*getRatesIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

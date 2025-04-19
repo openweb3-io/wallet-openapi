@@ -216,7 +216,7 @@ public class RatesApi {
     }
     /**
      * Build call for v1RatesList
-     * @param getRatesRequest Request body (required)
+     * @param request Request body (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -230,8 +230,8 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RatesListCall(GetRatesRequest getRatesRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = getRatesRequest;
+    public okhttp3.Call v1RatesListCall(GetRatesRequest request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = request;
 
         // create path and map variables
         String localVarPath = "/api/v1/rates";
@@ -261,15 +261,15 @@ public class RatesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1RatesListValidateBeforeCall(GetRatesRequest getRatesRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1RatesListValidateBeforeCall(GetRatesRequest request, final ApiCallback _callback) throws ApiException {
         
-        // verify the required parameter 'getRatesRequest' is set
-        if (getRatesRequest == null) {
-            throw new ApiException("Missing the required parameter 'getRatesRequest' when calling v1RatesList(Async)");
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling v1RatesList(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1RatesListCall(getRatesRequest, _callback);
+        okhttp3.Call localVarCall = v1RatesListCall(request, _callback);
         return localVarCall;
 
     }
@@ -277,7 +277,7 @@ public class RatesApi {
     /**
      * List rates
      * Query the latest exchange rates between different currencies.
-     * @param getRatesRequest Request body (required)
+     * @param request Request body (required)
      * @return GetRatesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -290,15 +290,15 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public GetRatesResponse v1RatesList(GetRatesRequest getRatesRequest) throws ApiException {
-        ApiResponse<GetRatesResponse> localVarResp = v1RatesListWithHttpInfo(getRatesRequest);
+    public GetRatesResponse v1RatesList(GetRatesRequest request) throws ApiException {
+        ApiResponse<GetRatesResponse> localVarResp = v1RatesListWithHttpInfo(request);
         return localVarResp.getData();
     }
 
     /**
      * List rates
      * Query the latest exchange rates between different currencies.
-     * @param getRatesRequest Request body (required)
+     * @param request Request body (required)
      * @return ApiResponse&lt;GetRatesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -311,8 +311,8 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetRatesResponse> v1RatesListWithHttpInfo(GetRatesRequest getRatesRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(getRatesRequest, null);
+    public ApiResponse<GetRatesResponse> v1RatesListWithHttpInfo(GetRatesRequest request) throws ApiException {
+        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(request, null);
         Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -320,7 +320,7 @@ public class RatesApi {
     /**
      * List rates (asynchronously)
      * Query the latest exchange rates between different currencies.
-     * @param getRatesRequest Request body (required)
+     * @param request Request body (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -334,9 +334,9 @@ public class RatesApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RatesListAsync(GetRatesRequest getRatesRequest, final ApiCallback<GetRatesResponse> _callback) throws ApiException {
+    public okhttp3.Call v1RatesListAsync(GetRatesRequest request, final ApiCallback<GetRatesResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(getRatesRequest, _callback);
+        okhttp3.Call localVarCall = v1RatesListValidateBeforeCall(request, _callback);
         Type localVarReturnType = new TypeToken<GetRatesResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

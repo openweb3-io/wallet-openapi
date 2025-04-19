@@ -59,7 +59,7 @@ public class SweepFundsApi {
     /**
      * Build call for v1SweepAddress
      * @param address Address that funds will be swept from (required)
-     * @param sweepAddressRequest Request (required)
+     * @param request Request (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -73,8 +73,8 @@ public class SweepFundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1SweepAddressCall(String address, SweepAddressRequest sweepAddressRequest, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = sweepAddressRequest;
+    public okhttp3.Call v1SweepAddressCall(String address, SweepAddressRequest request, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = request;
 
         // create path and map variables
         String localVarPath = "/api/v1/sweep/address/{address}"
@@ -105,20 +105,20 @@ public class SweepFundsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1SweepAddressValidateBeforeCall(String address, SweepAddressRequest sweepAddressRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1SweepAddressValidateBeforeCall(String address, SweepAddressRequest request, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'address' is set
         if (address == null) {
             throw new ApiException("Missing the required parameter 'address' when calling v1SweepAddress(Async)");
         }
         
-        // verify the required parameter 'sweepAddressRequest' is set
-        if (sweepAddressRequest == null) {
-            throw new ApiException("Missing the required parameter 'sweepAddressRequest' when calling v1SweepAddress(Async)");
+        // verify the required parameter 'request' is set
+        if (request == null) {
+            throw new ApiException("Missing the required parameter 'request' when calling v1SweepAddress(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1SweepAddressCall(address, sweepAddressRequest, _callback);
+        okhttp3.Call localVarCall = v1SweepAddressCall(address, request, _callback);
         return localVarCall;
 
     }
@@ -127,7 +127,7 @@ public class SweepFundsApi {
      * Sweep address
      * Sweep funds from a single address
      * @param address Address that funds will be swept from (required)
-     * @param sweepAddressRequest Request (required)
+     * @param request Request (required)
      * @return SweepAddressResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -140,8 +140,8 @@ public class SweepFundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public SweepAddressResponse v1SweepAddress(String address, SweepAddressRequest sweepAddressRequest) throws ApiException {
-        ApiResponse<SweepAddressResponse> localVarResp = v1SweepAddressWithHttpInfo(address, sweepAddressRequest);
+    public SweepAddressResponse v1SweepAddress(String address, SweepAddressRequest request) throws ApiException {
+        ApiResponse<SweepAddressResponse> localVarResp = v1SweepAddressWithHttpInfo(address, request);
         return localVarResp.getData();
     }
 
@@ -149,7 +149,7 @@ public class SweepFundsApi {
      * Sweep address
      * Sweep funds from a single address
      * @param address Address that funds will be swept from (required)
-     * @param sweepAddressRequest Request (required)
+     * @param request Request (required)
      * @return ApiResponse&lt;SweepAddressResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -162,8 +162,8 @@ public class SweepFundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SweepAddressResponse> v1SweepAddressWithHttpInfo(String address, SweepAddressRequest sweepAddressRequest) throws ApiException {
-        okhttp3.Call localVarCall = v1SweepAddressValidateBeforeCall(address, sweepAddressRequest, null);
+    public ApiResponse<SweepAddressResponse> v1SweepAddressWithHttpInfo(String address, SweepAddressRequest request) throws ApiException {
+        okhttp3.Call localVarCall = v1SweepAddressValidateBeforeCall(address, request, null);
         Type localVarReturnType = new TypeToken<SweepAddressResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -172,7 +172,7 @@ public class SweepFundsApi {
      * Sweep address (asynchronously)
      * Sweep funds from a single address
      * @param address Address that funds will be swept from (required)
-     * @param sweepAddressRequest Request (required)
+     * @param request Request (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -186,9 +186,9 @@ public class SweepFundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1SweepAddressAsync(String address, SweepAddressRequest sweepAddressRequest, final ApiCallback<SweepAddressResponse> _callback) throws ApiException {
+    public okhttp3.Call v1SweepAddressAsync(String address, SweepAddressRequest request, final ApiCallback<SweepAddressResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1SweepAddressValidateBeforeCall(address, sweepAddressRequest, _callback);
+        okhttp3.Call localVarCall = v1SweepAddressValidateBeforeCall(address, request, _callback);
         Type localVarReturnType = new TypeToken<SweepAddressResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -17,7 +17,7 @@ type Sweep struct {
 
 func (e *Sweep) SweepAddress(ctx context.Context, address string, sweepAddressIn *SweepAddressIn) (*SweepAddressOut, error) {
 	req := e.api.SweepFundsApi.V1SweepAddress(ctx, address)
-	req = req.SweepAddressRequest(*sweepAddressIn)
+	req = req.Request(*sweepAddressIn)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

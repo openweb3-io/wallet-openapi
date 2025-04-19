@@ -43,9 +43,9 @@ public class NetworksApiTest {
      */
     @Test
     public void v1NetworksListTest() throws ApiException {
-        String cursor = null;
         Integer limit = null;
-        CursorPageChainNetwork response = api.v1NetworksList(cursor, limit);
+        String cursor = null;
+        CursorPageChainNetwork response = api.v1NetworksList(limit, cursor);
 
         // TODO: test validations
     }

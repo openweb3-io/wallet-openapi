@@ -31,11 +31,11 @@ type ApiV1SweepAddressRequest struct {
 	ctx _context.Context
 	ApiService *SweepFundsApiService
 	address string
-	sweepAddressRequest *SweepAddressRequest
+	request *SweepAddressRequest
 }
 
-func (r ApiV1SweepAddressRequest) SweepAddressRequest(sweepAddressRequest SweepAddressRequest) ApiV1SweepAddressRequest {
-	r.sweepAddressRequest = &sweepAddressRequest
+func (r ApiV1SweepAddressRequest) Request(request SweepAddressRequest) ApiV1SweepAddressRequest {
+	r.request = &request
 	return r
 }
 
@@ -83,8 +83,8 @@ func (a *SweepFundsApiService) V1SweepAddressExecute(r ApiV1SweepAddressRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.sweepAddressRequest == nil {
-		return localVarReturnValue, nil, reportError("sweepAddressRequest is required and must be specified")
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -105,7 +105,7 @@ func (a *SweepFundsApiService) V1SweepAddressExecute(r ApiV1SweepAddressRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.sweepAddressRequest
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

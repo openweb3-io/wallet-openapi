@@ -57,8 +57,8 @@ public class NetworksApi {
 
     /**
      * Build call for v1NetworksList
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -72,7 +72,7 @@ public class NetworksApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1NetworksListCall(String cursor, Integer limit, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1NetworksListCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -111,10 +111,15 @@ public class NetworksApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1NetworksListValidateBeforeCall(String cursor, Integer limit, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1NetworksListValidateBeforeCall(Integer limit, String cursor, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'limit' is set
+        if (limit == null) {
+            throw new ApiException("Missing the required parameter 'limit' when calling v1NetworksList(Async)");
+        }
         
 
-        okhttp3.Call localVarCall = v1NetworksListCall(cursor, limit, _callback);
+        okhttp3.Call localVarCall = v1NetworksListCall(limit, cursor, _callback);
         return localVarCall;
 
     }
@@ -122,8 +127,8 @@ public class NetworksApi {
     /**
      * List Networks
      * List networks
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return CursorPageChainNetwork
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -136,16 +141,16 @@ public class NetworksApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CursorPageChainNetwork v1NetworksList(String cursor, Integer limit) throws ApiException {
-        ApiResponse<CursorPageChainNetwork> localVarResp = v1NetworksListWithHttpInfo(cursor, limit);
+    public CursorPageChainNetwork v1NetworksList(Integer limit, String cursor) throws ApiException {
+        ApiResponse<CursorPageChainNetwork> localVarResp = v1NetworksListWithHttpInfo(limit, cursor);
         return localVarResp.getData();
     }
 
     /**
      * List Networks
      * List networks
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return ApiResponse&lt;CursorPageChainNetwork&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -158,8 +163,8 @@ public class NetworksApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CursorPageChainNetwork> v1NetworksListWithHttpInfo(String cursor, Integer limit) throws ApiException {
-        okhttp3.Call localVarCall = v1NetworksListValidateBeforeCall(cursor, limit, null);
+    public ApiResponse<CursorPageChainNetwork> v1NetworksListWithHttpInfo(Integer limit, String cursor) throws ApiException {
+        okhttp3.Call localVarCall = v1NetworksListValidateBeforeCall(limit, cursor, null);
         Type localVarReturnType = new TypeToken<CursorPageChainNetwork>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -167,8 +172,8 @@ public class NetworksApi {
     /**
      * List Networks (asynchronously)
      * List networks
-     * @param cursor Cursor (optional)
-     * @param limit Limit (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -182,9 +187,9 @@ public class NetworksApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1NetworksListAsync(String cursor, Integer limit, final ApiCallback<CursorPageChainNetwork> _callback) throws ApiException {
+    public okhttp3.Call v1NetworksListAsync(Integer limit, String cursor, final ApiCallback<CursorPageChainNetwork> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1NetworksListValidateBeforeCall(cursor, limit, _callback);
+        okhttp3.Call localVarCall = v1NetworksListValidateBeforeCall(limit, cursor, _callback);
         Type localVarReturnType = new TypeToken<CursorPageChainNetwork>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

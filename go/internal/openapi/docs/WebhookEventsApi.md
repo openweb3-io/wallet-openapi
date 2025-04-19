@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## V1WebhooksEventsList
 
-> CursorPageWebhookEvent V1WebhooksEventsList(ctx).Cursor(cursor).EventTypes(eventTypes).Limit(limit).Execute()
+> CursorPageWebhookEvent V1WebhooksEventsList(ctx).Limit(limit).Cursor(cursor).EventTypes(eventTypes).Execute()
 
 List webhook events
 
@@ -30,13 +30,13 @@ import (
 )
 
 func main() {
-    cursor := "cursor_example" // string | The cursor of the webhook event (optional)
+    limit := int32(56) // int32 | The number of items to return per page.
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
     eventTypes := []string{"Inner_example"} // []string | The type of the webhook event (optional)
-    limit := int32(56) // int32 | The limit of the webhook event (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEventsApi.V1WebhooksEventsList(context.Background()).Cursor(cursor).EventTypes(eventTypes).Limit(limit).Execute()
+    resp, r, err := api_client.WebhookEventsApi.V1WebhooksEventsList(context.Background()).Limit(limit).Cursor(cursor).EventTypes(eventTypes).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEventsApi.V1WebhooksEventsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,9 +57,9 @@ Other parameters are passed through a pointer to a apiV1WebhooksEventsListReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **string** | The cursor of the webhook event | 
+ **limit** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | The cursor to use for pagination. | 
  **eventTypes** | **[]string** | The type of the webhook event | 
- **limit** | **int32** | The limit of the webhook event | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## V1WebhooksEventsResend
 
-> ResendWebhookEventResponse V1WebhooksEventsResend(ctx).ResendWebhookEventRequest(resendWebhookEventRequest).Execute()
+> ResendWebhookEventResponse V1WebhooksEventsResend(ctx).Request(request).Execute()
 
 Resend webhook event
 
@@ -100,11 +100,11 @@ import (
 )
 
 func main() {
-    resendWebhookEventRequest := *openapiclient.NewResendWebhookEventRequest("EndpointId_example", "EventId_example") // ResendWebhookEventRequest | The request
+    request := *openapiclient.NewResendWebhookEventRequest("EndpointId_example", "EventId_example") // ResendWebhookEventRequest | The request
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEventsApi.V1WebhooksEventsResend(context.Background()).ResendWebhookEventRequest(resendWebhookEventRequest).Execute()
+    resp, r, err := api_client.WebhookEventsApi.V1WebhooksEventsResend(context.Background()).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEventsApi.V1WebhooksEventsResend``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,7 +125,7 @@ Other parameters are passed through a pointer to a apiV1WebhooksEventsResendRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resendWebhookEventRequest** | [**ResendWebhookEventRequest**](ResendWebhookEventRequest.md) | The request | 
+ **request** | [**ResendWebhookEventRequest**](ResendWebhookEventRequest.md) | The request | 
 
 ### Return type
 

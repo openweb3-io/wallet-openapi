@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**V1TransactionsEstimateFee**](TransactionsApi.md#V1TransactionsEstimateFee) | **Post** /api/v1/transactions/estimate_fee | EstimateFee
 [**V1TransactionsList**](TransactionsApi.md#V1TransactionsList) | **Get** /api/v1/transactions | List transactions
 [**V1TransactionsRetrieve**](TransactionsApi.md#V1TransactionsRetrieve) | **Get** /api/v1/transactions/{transactionId} | Get transaction
 [**V1TransactionsTransfer**](TransactionsApi.md#V1TransactionsTransfer) | **Post** /api/v1/transactions/transfer | Transfer(internal)
@@ -11,9 +12,75 @@ Method | HTTP request | Description
 
 
 
+## V1TransactionsEstimateFee
+
+> EstimateFeeResponse V1TransactionsEstimateFee(ctx).Request(request).Execute()
+
+EstimateFee
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    request := *openapiclient.NewEstimateFeeRequest("Amount_example", "Currency_example", "Network_example", "ToAddress_example", "WalletId_example") // EstimateFeeRequest | estimate fee request
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.TransactionsApi.V1TransactionsEstimateFee(context.Background()).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsEstimateFee``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1TransactionsEstimateFee`: EstimateFeeResponse
+    fmt.Fprintf(os.Stdout, "Response from `TransactionsApi.V1TransactionsEstimateFee`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1TransactionsEstimateFeeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | [**EstimateFeeRequest**](EstimateFeeRequest.md) | estimate fee request | 
+
+### Return type
+
+[**EstimateFeeResponse**](EstimateFeeResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## V1TransactionsList
 
-> CursorPageTransaction V1TransactionsList(ctx).Currency(currency).Cursor(cursor).Direction(direction).Gateway(gateway).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
+> CursorPageTransaction V1TransactionsList(ctx).Limit(limit).Currency(currency).Cursor(cursor).Direction(direction).Gateway(gateway).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
 
 List transactions
 
@@ -32,11 +99,11 @@ import (
 )
 
 func main() {
+    limit := int32(56) // int32 | The number of items to return per page.
     currency := "currency_example" // string | The type of currency involved in the transaction. (optional)
-    cursor := "cursor_example" // string | A cursor value for pagination purposes. (optional)
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
     direction := "direction_example" // string | The direction of the transaction (e.g., incoming or outgoing). (optional)
     gateway := "gateway_example" // string | The payment gateway or platform used to process the transaction. (optional)
-    limit := int32(56) // int32 | The number of records to return default: 20 (optional)
     network := "network_example" // string | The blockchain network on which the transaction takes place. (optional)
     status := "status_example" // string | The status of the transaction. (optional)
     txhash := "txhash_example" // string | The transaction hash, which uniquely identifies a transaction on the blockchain. (optional)
@@ -44,7 +111,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsList(context.Background()).Currency(currency).Cursor(cursor).Direction(direction).Gateway(gateway).Limit(limit).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsList(context.Background()).Limit(limit).Currency(currency).Cursor(cursor).Direction(direction).Gateway(gateway).Network(network).Status(status).Txhash(txhash).WalletId(walletId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,11 +132,11 @@ Other parameters are passed through a pointer to a apiV1TransactionsListRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **limit** | **int32** | The number of items to return per page. | 
  **currency** | **string** | The type of currency involved in the transaction. | 
- **cursor** | **string** | A cursor value for pagination purposes. | 
+ **cursor** | **string** | The cursor to use for pagination. | 
  **direction** | **string** | The direction of the transaction (e.g., incoming or outgoing). | 
  **gateway** | **string** | The payment gateway or platform used to process the transaction. | 
- **limit** | **int32** | The number of records to return default: 20 | 
  **network** | **string** | The blockchain network on which the transaction takes place. | 
  **status** | **string** | The status of the transaction. | 
  **txhash** | **string** | The transaction hash, which uniquely identifies a transaction on the blockchain. | 
@@ -165,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## V1TransactionsTransfer
 
-> CreateTransferResponse V1TransactionsTransfer(ctx).CreateTransferRequest(createTransferRequest).Execute()
+> CreateTransferResponse V1TransactionsTransfer(ctx).Request(request).Execute()
 
 Transfer(internal)
 
@@ -184,11 +251,11 @@ import (
 )
 
 func main() {
-    createTransferRequest := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example") // CreateTransferRequest | Request Body
+    request := *openapiclient.NewCreateTransferRequest("Amount_example", "Currency_example", "From_example", "To_example") // CreateTransferRequest | Request Body
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsTransfer(context.Background()).CreateTransferRequest(createTransferRequest).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsTransfer(context.Background()).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsTransfer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,7 +276,7 @@ Other parameters are passed through a pointer to a apiV1TransactionsTransferRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createTransferRequest** | [**CreateTransferRequest**](CreateTransferRequest.md) | Request Body | 
+ **request** | [**CreateTransferRequest**](CreateTransferRequest.md) | Request Body | 
 
 ### Return type
 
@@ -231,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## V1TransactionsWithdraw
 
-> CreateWithdrawReply V1TransactionsWithdraw(ctx).CreateWithdrawRequest(createWithdrawRequest).Execute()
+> CreateWithdrawReply V1TransactionsWithdraw(ctx).Request(request).Execute()
 
 Withdraw
 
@@ -250,11 +317,11 @@ import (
 )
 
 func main() {
-    createWithdrawRequest := *openapiclient.NewCreateWithdrawRequest("Amount_example", "Currency_example", "Network_example", "ToAddress_example", "WalletId_example") // CreateWithdrawRequest | withdraw
+    request := *openapiclient.NewCreateWithdrawRequest("Amount_example", "Currency_example", "Network_example", "ToAddress_example", "WalletId_example") // CreateWithdrawRequest | withdraw
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TransactionsApi.V1TransactionsWithdraw(context.Background()).CreateWithdrawRequest(createWithdrawRequest).Execute()
+    resp, r, err := api_client.TransactionsApi.V1TransactionsWithdraw(context.Background()).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TransactionsApi.V1TransactionsWithdraw``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +342,7 @@ Other parameters are passed through a pointer to a apiV1TransactionsWithdrawRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createWithdrawRequest** | [**CreateWithdrawRequest**](CreateWithdrawRequest.md) | withdraw | 
+ **request** | [**CreateWithdrawRequest**](CreateWithdrawRequest.md) | withdraw | 
 
 ### Return type
 
@@ -283,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

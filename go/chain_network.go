@@ -17,7 +17,7 @@ type ChainNetwork struct {
 
 type ListChainNetworkOptions struct {
 	Cursor *string
-	Limit  *int32
+	Limit  int32
 }
 
 func (e *ChainNetwork) List(ctx context.Context, options *ListChainNetworkOptions) (*CursorPageChainNetworkOut, error) {
@@ -26,9 +26,7 @@ func (e *ChainNetwork) List(ctx context.Context, options *ListChainNetworkOption
 		if options.Cursor != nil {
 			req = req.Cursor(*options.Cursor)
 		}
-		if options.Limit != nil {
-			req = req.Limit(*options.Limit)
-		}
+		req = req.Limit(options.Limit)
 	}
 	out, res, err := req.Execute()
 	if err != nil {

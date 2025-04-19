@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **FilterTypes** | **[]string** | The filter event types of the webhook endpoint | 
 **Headers** | Pointer to **map[string]string** | The headers of the webhook endpoint | [optional] 
 **Id** | **string** | The id of the webhook endpoint | 
-**Metadata** | Pointer to **map[string]interface{}** | The metadata of the webhook endpoint | [optional] 
+**Metadata** | Pointer to **map[string]map[string]interface{}** | The metadata of the webhook endpoint | [optional] 
 **Uid** | Pointer to **string** | The uid of the webhook endpoint | [optional] 
 **Url** | **string** | The url of the webhook endpoint | 
 
@@ -160,20 +160,20 @@ SetId sets Id field to given value.
 
 ### GetMetadata
 
-`func (o *Endpoint) GetMetadata() map[string]interface{}`
+`func (o *Endpoint) GetMetadata() map[string]map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *Endpoint) GetMetadataOk() (*map[string]interface{}, bool)`
+`func (o *Endpoint) GetMetadataOk() (*map[string]map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *Endpoint) SetMetadata(v map[string]interface{})`
+`func (o *Endpoint) SetMetadata(v map[string]map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 

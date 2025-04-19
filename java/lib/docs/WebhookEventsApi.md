@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="v1WebhooksEventsList"></a>
 # **v1WebhooksEventsList**
-> CursorPageWebhookEvent v1WebhooksEventsList(cursor, eventTypes, limit)
+> CursorPageWebhookEvent v1WebhooksEventsList(limit, cursor, eventTypes)
 
 List webhook events
 
@@ -44,11 +44,11 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
-    String cursor = "cursor_example"; // String | The cursor of the webhook event
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     List<String> eventTypes = Arrays.asList(); // List<String> | The type of the webhook event
-    Integer limit = 56; // Integer | The limit of the webhook event
     try {
-      CursorPageWebhookEvent result = apiInstance.v1WebhooksEventsList(cursor, eventTypes, limit);
+      CursorPageWebhookEvent result = apiInstance.v1WebhooksEventsList(limit, cursor, eventTypes);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEventsApi#v1WebhooksEventsList");
@@ -65,9 +65,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **String**| The cursor of the webhook event | [optional]
+ **limit** | **Integer**| The number of items to return per page. |
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
  **eventTypes** | [**List&lt;String&gt;**](String.md)| The type of the webhook event | [optional]
- **limit** | **Integer**| The limit of the webhook event | [optional]
 
 ### Return type
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 <a name="v1WebhooksEventsResend"></a>
 # **v1WebhooksEventsResend**
-> ResendWebhookEventResponse v1WebhooksEventsResend(resendWebhookEventRequest)
+> ResendWebhookEventResponse v1WebhooksEventsResend(request)
 
 Resend webhook event
 
@@ -125,9 +125,9 @@ public class Example {
     //SignatureAuth.setApiKeyPrefix("Token");
 
     WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
-    ResendWebhookEventRequest resendWebhookEventRequest = new ResendWebhookEventRequest(); // ResendWebhookEventRequest | The request
+    ResendWebhookEventRequest request = new ResendWebhookEventRequest(); // ResendWebhookEventRequest | The request
     try {
-      ResendWebhookEventResponse result = apiInstance.v1WebhooksEventsResend(resendWebhookEventRequest);
+      ResendWebhookEventResponse result = apiInstance.v1WebhooksEventsResend(request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEventsApi#v1WebhooksEventsResend");
@@ -144,7 +144,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resendWebhookEventRequest** | [**ResendWebhookEventRequest**](ResendWebhookEventRequest.md)| The request |
+ **request** | [**ResendWebhookEventRequest**](ResendWebhookEventRequest.md)| The request |
 
 ### Return type
 

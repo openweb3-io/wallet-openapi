@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**V1ExchangesCreate**](ExchangesApi.md#V1ExchangesCreate) | **Post** /api/v1/exchanges | create exchange
 [**V1ExchangesCurrencyPairs**](ExchangesApi.md#V1ExchangesCurrencyPairs) | **Get** /api/v1/exchanges/currency_pairs | list currency pairs
+[**V1ExchangesCurrencyQuota**](ExchangesApi.md#V1ExchangesCurrencyQuota) | **Get** /api/v1/exchanges/currency_pair_quota | currency pair quota
 [**V1ExchangesList**](ExchangesApi.md#V1ExchangesList) | **Get** /api/v1/exchanges | list exchanges
 [**V1ExchangesRetrieve**](ExchangesApi.md#V1ExchangesRetrieve) | **Get** /api/v1/exchanges/{exchangeId} | retrieve exchange
 [**V1ExchangesSubmit**](ExchangesApi.md#V1ExchangesSubmit) | **Post** /api/v1/exchanges/{exchangeId}/submit | submit exchange
@@ -14,7 +15,7 @@ Method | HTTP request | Description
 
 ## V1ExchangesCreate
 
-> Exchange V1ExchangesCreate(ctx).CreateExchange(createExchange).Execute()
+> Exchange V1ExchangesCreate(ctx).Request(request).Execute()
 
 create exchange
 
@@ -33,11 +34,11 @@ import (
 )
 
 func main() {
-    createExchange := *openapiclient.NewCreateExchange("FiatCurrency_example", "FromAmount_example", "FromCurrency_example", "ToCurrency_example", "WalletId_example") // CreateExchange | CreateExchange
+    request := *openapiclient.NewCreateExchange("FiatCurrency_example", "FromAmount_example", "FromCurrency_example", "ToCurrency_example", "WalletId_example") // CreateExchange | CreateExchange
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ExchangesApi.V1ExchangesCreate(context.Background()).CreateExchange(createExchange).Execute()
+    resp, r, err := api_client.ExchangesApi.V1ExchangesCreate(context.Background()).Request(request).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ExchangesApi.V1ExchangesCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +59,7 @@ Other parameters are passed through a pointer to a apiV1ExchangesCreateRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createExchange** | [**CreateExchange**](CreateExchange.md) | CreateExchange | 
+ **request** | [**CreateExchange**](CreateExchange.md) | CreateExchange | 
 
 ### Return type
 
@@ -139,6 +140,74 @@ Other parameters are passed through a pointer to a apiV1ExchangesCurrencyPairsRe
 [[Back to README]](../README.md)
 
 
+## V1ExchangesCurrencyQuota
+
+> GetCurrencyPairQuotaResponse V1ExchangesCurrencyQuota(ctx).FromCurrency(fromCurrency).ToCurrency(toCurrency).Execute()
+
+currency pair quota
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    fromCurrency := "fromCurrency_example" // string | 
+    toCurrency := "toCurrency_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ExchangesApi.V1ExchangesCurrencyQuota(context.Background()).FromCurrency(fromCurrency).ToCurrency(toCurrency).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ExchangesApi.V1ExchangesCurrencyQuota``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1ExchangesCurrencyQuota`: GetCurrencyPairQuotaResponse
+    fmt.Fprintf(os.Stdout, "Response from `ExchangesApi.V1ExchangesCurrencyQuota`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1ExchangesCurrencyQuotaRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fromCurrency** | **string** |  | 
+ **toCurrency** | **string** |  | 
+
+### Return type
+
+[**GetCurrencyPairQuotaResponse**](GetCurrencyPairQuotaResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## V1ExchangesList
 
 > CursorPageExchange V1ExchangesList(ctx).Limit(limit).WalletId(walletId).Cursor(cursor).Execute()
@@ -160,9 +229,9 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 | The limit
+    limit := int32(56) // int32 | The number of items to return per page.
     walletId := "walletId_example" // string | The wallet id
-    cursor := "cursor_example" // string | The cursor (optional)
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -187,9 +256,9 @@ Other parameters are passed through a pointer to a apiV1ExchangesListRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** | The limit | 
+ **limit** | **int32** | The number of items to return per page. | 
  **walletId** | **string** | The wallet id | 
- **cursor** | **string** | The cursor | 
+ **cursor** | **string** | The cursor to use for pagination. | 
 
 ### Return type
 

@@ -85,6 +85,7 @@ Class | Method | HTTP request | Description
 *CurrenciesApi* | [**V1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1currenciesretrieve) | **Get** /api/v1/currencies/{code} | Get Currency
 *ExchangesApi* | [**V1ExchangesCreate**](docs/ExchangesApi.md#v1exchangescreate) | **Post** /api/v1/exchanges | create exchange
 *ExchangesApi* | [**V1ExchangesCurrencyPairs**](docs/ExchangesApi.md#v1exchangescurrencypairs) | **Get** /api/v1/exchanges/currency_pairs | list currency pairs
+*ExchangesApi* | [**V1ExchangesCurrencyQuota**](docs/ExchangesApi.md#v1exchangescurrencyquota) | **Get** /api/v1/exchanges/currency_pair_quota | currency pair quota
 *ExchangesApi* | [**V1ExchangesList**](docs/ExchangesApi.md#v1exchangeslist) | **Get** /api/v1/exchanges | list exchanges
 *ExchangesApi* | [**V1ExchangesRetrieve**](docs/ExchangesApi.md#v1exchangesretrieve) | **Get** /api/v1/exchanges/{exchangeId} | retrieve exchange
 *ExchangesApi* | [**V1ExchangesSubmit**](docs/ExchangesApi.md#v1exchangessubmit) | **Post** /api/v1/exchanges/{exchangeId}/submit | submit exchange
@@ -92,6 +93,7 @@ Class | Method | HTTP request | Description
 *RatesApi* | [**V1RatesEstimate**](docs/RatesApi.md#v1ratesestimate) | **Get** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/rates | List rates
 *SweepFundsApi* | [**V1SweepAddress**](docs/SweepFundsApi.md#v1sweepaddress) | **Post** /api/v1/sweep/address/{address} | Sweep address
+*TransactionsApi* | [**V1TransactionsEstimateFee**](docs/TransactionsApi.md#v1transactionsestimatefee) | **Post** /api/v1/transactions/estimate_fee | EstimateFee
 *TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/transactions | List transactions
 *TransactionsApi* | [**V1TransactionsRetrieve**](docs/TransactionsApi.md#v1transactionsretrieve) | **Get** /api/v1/transactions/{transactionId} | Get transaction
 *TransactionsApi* | [**V1TransactionsTransfer**](docs/TransactionsApi.md#v1transactionstransfer) | **Post** /api/v1/transactions/transfer | Transfer(internal)
@@ -138,11 +140,14 @@ Class | Method | HTTP request | Description
  - [DeleteWebhookEndpointResponse](docs/DeleteWebhookEndpointResponse.md)
  - [Endpoint](docs/Endpoint.md)
  - [Error](docs/Error.md)
+ - [EstimateFeeRequest](docs/EstimateFeeRequest.md)
+ - [EstimateFeeResponse](docs/EstimateFeeResponse.md)
  - [EstimateResponse](docs/EstimateResponse.md)
  - [EventType](docs/EventType.md)
  - [Exchange](docs/Exchange.md)
  - [ExchangeCurrencyPairs](docs/ExchangeCurrencyPairs.md)
  - [ExchangeSubmitResponse](docs/ExchangeSubmitResponse.md)
+ - [GetCurrencyPairQuotaResponse](docs/GetCurrencyPairQuotaResponse.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
  - [ListExchangeCurrencyPairsResponse](docs/ListExchangeCurrencyPairsResponse.md)

@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * CursorPageWebhookEvent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-02-19T02:07:19.461414+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
 public class CursorPageWebhookEvent {
   public static final String SERIALIZED_NAME_HAS_NEXT = "has_next";
   @SerializedName(SERIALIZED_NAME_HAS_NEXT)
@@ -56,10 +56,10 @@ public class CursorPageWebhookEvent {
   }
 
    /**
-   * Get hasNext
+   * Whether there are more items available in the next page.
    * @return hasNext
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Whether there are more items available in the next page.")
 
   public Boolean getHasNext() {
     return hasNext;
@@ -83,10 +83,10 @@ public class CursorPageWebhookEvent {
   }
 
    /**
-   * Get items
+   * List of items in the current page.
    * @return items
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "List of items in the current page.")
 
   public List<WebhookEvent> getItems() {
     return items;
@@ -105,11 +105,11 @@ public class CursorPageWebhookEvent {
   }
 
    /**
-   * Get nextCursor
+   * The cursor to use for fetching the next page of items.
    * @return nextCursor
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The cursor to use for fetching the next page of items.")
 
   public String getNextCursor() {
     return nextCursor;
@@ -128,11 +128,11 @@ public class CursorPageWebhookEvent {
   }
 
    /**
-   * Get prevCursor
+   * The cursor to use for fetching the previous page of items.
    * @return prevCursor
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The cursor to use for fetching the previous page of items.")
 
   public String getPrevCursor() {
     return prevCursor;

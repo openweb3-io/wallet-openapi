@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## V1NetworksList
 
-> CursorPageChainNetwork V1NetworksList(ctx).Cursor(cursor).Limit(limit).Execute()
+> CursorPageChainNetwork V1NetworksList(ctx).Limit(limit).Cursor(cursor).Execute()
 
 List Networks
 
@@ -29,12 +29,12 @@ import (
 )
 
 func main() {
-    cursor := "cursor_example" // string | Cursor (optional)
-    limit := int32(56) // int32 | Limit (optional)
+    limit := int32(56) // int32 | The number of items to return per page.
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.NetworksApi.V1NetworksList(context.Background()).Cursor(cursor).Limit(limit).Execute()
+    resp, r, err := api_client.NetworksApi.V1NetworksList(context.Background()).Limit(limit).Cursor(cursor).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `NetworksApi.V1NetworksList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,8 +55,8 @@ Other parameters are passed through a pointer to a apiV1NetworksListRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cursor** | **string** | Cursor | 
- **limit** | **int32** | Limit | 
+ **limit** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | The cursor to use for pagination. | 
 
 ### Return type
 

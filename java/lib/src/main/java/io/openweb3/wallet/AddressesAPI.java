@@ -5,7 +5,6 @@ import io.openweb3.wallet.internal.api.AddressesApi;
 import io.openweb3.wallet.models.Address;
 import io.openweb3.wallet.models.CursorPageAddress;
 
-
 public final class AddressesAPI {
 	private final AddressesApi api;
 
@@ -14,7 +13,8 @@ public final class AddressesAPI {
 	}
 
 	// get deposit address
-	public Address getDepositAddress(final String walletId, final GetDepositAddressOptions options) throws ApiException {
+	public Address getDepositAddress(final String walletId, final GetDepositAddressOptions options)
+			throws ApiException {
 		try {
 			return api.v1WalletsGetDepositAddress(walletId, options.getCurrency(), options.getNetwork());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
@@ -23,9 +23,11 @@ public final class AddressesAPI {
 	}
 
 	// list deposit addresses
-	public CursorPageAddress listDepositAddresses(final String walletId, final ListDepositAddressOptions options) throws ApiException {
+	public CursorPageAddress listDepositAddresses(final String walletId, final ListDepositAddressOptions options)
+			throws ApiException {
 		try {
-			return api.v1WalletsListDepositAddresses(walletId, options.getCurrency(), options.getCursor(), options.getLimit(), options.getNetwork());
+			return api.v1WalletsListDepositAddresses(walletId, options.getLimit(),  options.getCurrency(), options.getCursor(),
+					options.getNetwork());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
@@ -34,7 +36,8 @@ public final class AddressesAPI {
 	// list all addresses
 	public CursorPageAddress listAddresses(final ListAddressOptions options) throws ApiException {
 		try {
-			return api.v1AddressesList(options.getCurrency(), options.getCursor(), options.getLimit(), options.getType(), options.getWalletId());
+			return api.v1AddressesList( options.getLimit(),options.getCurrency(), options.getCursor(),
+					options.getType(), options.getWalletId());
 		} catch (io.openweb3.wallet.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

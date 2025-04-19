@@ -25,7 +25,7 @@ type CreateEndpoint struct {
 	// The headers of the webhook endpoint
 	Headers *map[string]string `json:"headers,omitempty"`
 	// The metadata of the webhook endpoint
-	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *map[string]map[string]interface{} `json:"metadata,omitempty"`
 	// The uid of the webhook endpoint
 	Uid *string `json:"uid,omitempty"`
 	// The url of the webhook endpoint
@@ -172,9 +172,9 @@ func (o *CreateEndpoint) SetHeaders(v map[string]string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *CreateEndpoint) GetMetadata() map[string]interface{} {
+func (o *CreateEndpoint) GetMetadata() map[string]map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret map[string]interface{}
+		var ret map[string]map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -182,7 +182,7 @@ func (o *CreateEndpoint) GetMetadata() map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateEndpoint) GetMetadataOk() (*map[string]interface{}, bool) {
+func (o *CreateEndpoint) GetMetadataOk() (*map[string]map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -198,8 +198,8 @@ func (o *CreateEndpoint) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *CreateEndpoint) SetMetadata(v map[string]interface{}) {
+// SetMetadata gets a reference to the given map[string]map[string]interface{} and assigns it to the Metadata field.
+func (o *CreateEndpoint) SetMetadata(v map[string]map[string]interface{}) {
 	o.Metadata = &v
 }
 

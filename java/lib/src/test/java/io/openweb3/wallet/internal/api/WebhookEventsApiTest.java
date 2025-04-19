@@ -45,10 +45,10 @@ public class WebhookEventsApiTest {
      */
     @Test
     public void v1WebhooksEventsListTest() throws ApiException {
-        String cursor = null;
-        List<String> eventType = null;
         Integer limit = null;
-        CursorPageWebhookEvent response = api.v1WebhooksEventsList(cursor, eventType, limit);
+        String cursor = null;
+        List<String> eventTypes = null;
+        CursorPageWebhookEvent response = api.v1WebhooksEventsList(limit, cursor, eventTypes);
 
         // TODO: test validations
     }
@@ -63,8 +63,8 @@ public class WebhookEventsApiTest {
      */
     @Test
     public void v1WebhooksEventsResendTest() throws ApiException {
-        ResendWebhookEventRequest resendWebhookEventRequest = null;
-        ResendWebhookEventResponse response = api.v1WebhooksEventsResend(resendWebhookEventRequest);
+        ResendWebhookEventRequest request = null;
+        ResendWebhookEventResponse response = api.v1WebhooksEventsResend(request);
 
         // TODO: test validations
     }
