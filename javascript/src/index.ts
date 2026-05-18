@@ -50,12 +50,13 @@ export * from "./openapi/apis/exception";
 import * as nacl from "tweetnacl";
 import sha256 from "fast-sha256";
 import { encode as encodeUTF8 } from "@stablelib/utf8";
+import * as crypto from "crypto";
 
 const VERSION = "0.1.1";
 
 class UserAgentMiddleware implements Middleware {
   public pre(context: RequestContext): Promise<RequestContext> {
-    context.setHeaderParam("User-Agent", `walletpay-libs/${VERSION}/javascript`);
+    context.setHeaderParam("User-Agent", `wallet-libs/${VERSION}/javascript`);
     return Promise.resolve(context);
   }
 
@@ -88,7 +89,7 @@ function signEd25519(data: string, secret: string): string {
 }
 
 class SignatureMiddleware implements Middleware {
-  public constructor(private readonly secret: string) { }
+  public constructor(private readonly secret: string) {}
 
   public pre(context: RequestContext): Promise<RequestContext> {
     const timestamp = new Date().getTime().toString();
@@ -436,7 +437,6 @@ export class WebhookClient {
 
   public async verify(payload: string, signature: string): Promise<boolean> {
     try {
-      const crypto = require("crypto");
       const key = crypto.createPublicKey(this.publicKey);
       const verify = crypto.createVerify("SHA256");
       verify.update(payload);
