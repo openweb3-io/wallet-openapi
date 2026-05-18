@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CurrencyNetwork
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]")
 public class CurrencyNetwork {
   public static final String SERIALIZED_NAME_CAN_DEPOSIT = "can_deposit";
   @SerializedName(SERIALIZED_NAME_CAN_DEPOSIT)
@@ -48,6 +48,10 @@ public class CurrencyNetwork {
   public static final String SERIALIZED_NAME_CONTRACT_ADDRESS = "contract_address";
   @SerializedName(SERIALIZED_NAME_CONTRACT_ADDRESS)
   private String contractAddress;
+
+  public static final String SERIALIZED_NAME_DISABLED = "disabled";
+  @SerializedName(SERIALIZED_NAME_DISABLED)
+  private Boolean disabled;
 
   public static final String SERIALIZED_NAME_FEE = "fee";
   @SerializedName(SERIALIZED_NAME_FEE)
@@ -221,6 +225,28 @@ public class CurrencyNetwork {
   }
 
 
+  public CurrencyNetwork disabled(Boolean disabled) {
+    
+    this.disabled = disabled;
+    return this;
+  }
+
+   /**
+   * Indicates if the currency network is disabled
+   * @return disabled
+  **/
+  @ApiModelProperty(required = true, value = "Indicates if the currency network is disabled")
+
+  public Boolean getDisabled() {
+    return disabled;
+  }
+
+
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
+  }
+
+
   public CurrencyNetwork fee(String fee) {
     
     this.fee = fee;
@@ -338,10 +364,10 @@ public class CurrencyNetwork {
   }
 
    /**
-   * Maximum amount for a single on-chain withdrawal
+   * Maximum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)
    * @return maxWithdrawAmount
   **/
-  @ApiModelProperty(required = true, value = "Maximum amount for a single on-chain withdrawal")
+  @ApiModelProperty(required = true, value = "Maximum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)")
 
   public String getMaxWithdrawAmount() {
     return maxWithdrawAmount;
@@ -360,11 +386,11 @@ public class CurrencyNetwork {
   }
 
    /**
-   * Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address
+   * Minimum amount for collection in nano units (multiply by 10^decimals), i.e., the minimum amount to aggregate small balances to a single address
    * @return minCollectAmount
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address")
+  @ApiModelProperty(value = "Minimum amount for collection in nano units (multiply by 10^decimals), i.e., the minimum amount to aggregate small balances to a single address")
 
   public String getMinCollectAmount() {
     return minCollectAmount;
@@ -405,10 +431,10 @@ public class CurrencyNetwork {
   }
 
    /**
-   * Minimum amount for a single deposit
+   * Minimum amount for a single deposit in nano units (multiply by 10^decimals)
    * @return minDepositAmount
   **/
-  @ApiModelProperty(required = true, value = "Minimum amount for a single deposit")
+  @ApiModelProperty(required = true, value = "Minimum amount for a single deposit in nano units (multiply by 10^decimals)")
 
   public String getMinDepositAmount() {
     return minDepositAmount;
@@ -471,10 +497,10 @@ public class CurrencyNetwork {
   }
 
    /**
-   * Minimum amount for a single on-chain withdrawal
+   * Minimum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)
    * @return minWithdrawAmount
   **/
-  @ApiModelProperty(required = true, value = "Minimum amount for a single on-chain withdrawal")
+  @ApiModelProperty(required = true, value = "Minimum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)")
 
   public String getMinWithdrawAmount() {
     return minWithdrawAmount;
@@ -566,6 +592,7 @@ public class CurrencyNetwork {
         Objects.equals(this.canWithdraw, currencyNetwork.canWithdraw) &&
         Objects.equals(this.code, currencyNetwork.code) &&
         Objects.equals(this.contractAddress, currencyNetwork.contractAddress) &&
+        Objects.equals(this.disabled, currencyNetwork.disabled) &&
         Objects.equals(this.fee, currencyNetwork.fee) &&
         Objects.equals(this.feeCurrency, currencyNetwork.feeCurrency) &&
         Objects.equals(this.id, currencyNetwork.id) &&
@@ -585,7 +612,7 @@ public class CurrencyNetwork {
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, fee, feeCurrency, id, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
+    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, disabled, fee, feeCurrency, id, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
   }
 
   @Override
@@ -597,6 +624,7 @@ public class CurrencyNetwork {
     sb.append("    canWithdraw: ").append(toIndentedString(canWithdraw)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    contractAddress: ").append(toIndentedString(contractAddress)).append("\n");
+    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
     sb.append("    feeCurrency: ").append(toIndentedString(feeCurrency)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");

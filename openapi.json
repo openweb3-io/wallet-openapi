@@ -132,42 +132,10 @@
             ],
             "type": "object"
         },
-        "CreateExchange": {
-            "properties": {
-                "fiat_currency": {
-                    "description": "The currency code of fiat currency, e.g.: USD",
-                    "type": "string"
-                },
-                "from_amount": {
-                    "description": "The amount of the source currency to be exchange, e.g.: 100000",
-                    "type": "string"
-                },
-                "from_currency": {
-                    "description": "The currency code of source currency, e.g.: TON",
-                    "type": "string"
-                },
-                "to_currency": {
-                    "description": "The currency code of target currency, e.g.: USDT",
-                    "type": "string"
-                },
-                "wallet_id": {
-                    "description": "The wallet id",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "fiat_currency",
-                "from_amount",
-                "from_currency",
-                "to_currency",
-                "wallet_id"
-            ],
-            "type": "object"
-        },
         "CreateTransferRequest": {
             "properties": {
                 "amount": {
-                    "description": "The amount of currency to be transferred",
+                    "description": "The amount of currency to be transferred in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "currency": {
@@ -177,6 +145,14 @@
                 "from": {
                     "description": "The ID of the wallet from which the transfer will be made",
                     "type": "string"
+                },
+                "metadata": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Optional metadata for storing extra info",
+                    "type": "object",
+                    "x-nullable": true
                 },
                 "to": {
                     "description": "The ID of the wallet to which the transfer will be made",
@@ -232,7 +208,7 @@
         "CreateWithdrawRequest": {
             "properties": {
                 "amount": {
-                    "description": "The amount of currency to be withdrawn",
+                    "description": "The amount of currency to be withdrawn in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "currency": {
@@ -295,6 +271,10 @@
                     "description": "Decimal precision",
                     "type": "integer"
                 },
+                "disabled": {
+                    "description": "Indicates if the currency is disabled",
+                    "type": "boolean"
+                },
                 "logo": {
                     "description": "Currency logo URL",
                     "type": "string"
@@ -308,11 +288,11 @@
                     "type": "string"
                 },
                 "max_withdraw_amount": {
-                    "description": "Maximum withdraw amount per transaction",
+                    "description": "Maximum withdraw amount per transaction in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "min_deposit_amount": {
-                    "description": "Minimum deposit amount per transaction",
+                    "description": "Minimum deposit amount per transaction in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "min_fee": {
@@ -323,8 +303,12 @@
                     "description": "Minimum fee for contract addresses",
                     "type": "string"
                 },
+                "min_transfer_amount": {
+                    "description": "Minimum transfer amount per transaction in nano units (multiply by 10^decimals)",
+                    "type": "string"
+                },
                 "min_withdraw_amount": {
-                    "description": "Minimum withdraw amount per transaction",
+                    "description": "Minimum withdraw amount per transaction in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "name": {
@@ -361,6 +345,7 @@
                 "can_withdraw",
                 "code",
                 "decimals",
+                "disabled",
                 "logo",
                 "max_fee",
                 "max_fee_for_ct_addr",
@@ -368,6 +353,7 @@
                 "min_deposit_amount",
                 "min_fee",
                 "min_fee_for_ct_addr",
+                "min_transfer_amount",
                 "min_withdraw_amount",
                 "name",
                 "need_memo",
@@ -400,6 +386,10 @@
                     "description": "Contract address for tokens based on smart contracts, such as ERC-20",
                     "type": "string"
                 },
+                "disabled": {
+                    "description": "Indicates if the currency network is disabled",
+                    "type": "boolean"
+                },
                 "fee": {
                     "description": "Transaction fee",
                     "type": "string"
@@ -420,11 +410,11 @@
                     "type": "string"
                 },
                 "max_withdraw_amount": {
-                    "description": "Maximum amount for a single on-chain withdrawal",
+                    "description": "Maximum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "min_collect_amount": {
-                    "description": "Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address",
+                    "description": "Minimum amount for collection in nano units (multiply by 10^decimals), i.e., the minimum amount to aggregate small balances to a single address",
                     "type": "string"
                 },
                 "min_confirmations": {
@@ -432,7 +422,7 @@
                     "type": "integer"
                 },
                 "min_deposit_amount": {
-                    "description": "Minimum amount for a single deposit",
+                    "description": "Minimum amount for a single deposit in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "min_fee": {
@@ -444,7 +434,7 @@
                     "type": "string"
                 },
                 "min_withdraw_amount": {
-                    "description": "Minimum amount for a single on-chain withdrawal",
+                    "description": "Minimum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "name": {
@@ -465,6 +455,7 @@
                 "can_transfer",
                 "can_withdraw",
                 "code",
+                "disabled",
                 "fee",
                 "fee_currency",
                 "id",
@@ -625,34 +616,6 @@
                     "description": "List of items in the current page.",
                     "items": {
                         "$ref": "#/definitions/Endpoint"
-                    },
-                    "type": "array"
-                },
-                "next_cursor": {
-                    "description": "The cursor to use for fetching the next page of items.",
-                    "type": "string"
-                },
-                "prev_cursor": {
-                    "description": "The cursor to use for fetching the previous page of items.",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "has_next",
-                "items"
-            ],
-            "type": "object"
-        },
-        "CursorPage-Exchange": {
-            "properties": {
-                "has_next": {
-                    "description": "Whether there are more items available in the next page.",
-                    "type": "boolean"
-                },
-                "items": {
-                    "description": "List of items in the current page.",
-                    "items": {
-                        "$ref": "#/definitions/Exchange"
                     },
                     "type": "array"
                 },
@@ -843,7 +806,7 @@
         "EstimateFeeRequest": {
             "properties": {
                 "amount": {
-                    "description": "The amount of currency to be withdrawn",
+                    "description": "The amount of currency to be withdrawn in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "currency": {
@@ -875,6 +838,7 @@
         "EstimateFeeResponse": {
             "properties": {
                 "fee_amount": {
+                    "description": "The fee amount in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "fee_currency": {
@@ -890,7 +854,7 @@
         "EstimateResponse": {
             "properties": {
                 "base_amount": {
-                    "description": "The amount of the base currency you want to convert",
+                    "description": "The amount of the base currency you want to convert in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "base_currency": {
@@ -902,7 +866,7 @@
                     "type": "number"
                 },
                 "to_amount": {
-                    "description": "The amount of the target currency you will receive after the conversion",
+                    "description": "The amount of the target currency you will receive after the conversion in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "to_currency": {
@@ -936,143 +900,6 @@
             ],
             "type": "object"
         },
-        "Exchange": {
-            "properties": {
-                "created_at": {
-                    "description": "The create time",
-                    "type": "string"
-                },
-                "fee_amount": {
-                    "description": "The amount of the fee charged for this exchange, denominated in the `fee_currency`",
-                    "type": "string"
-                },
-                "fee_currency": {
-                    "description": "The currency in which the fee is denominated. For example, 'TON'.",
-                    "type": "string"
-                },
-                "fiat_currency": {
-                    "description": "The currency code of fiat currency, e.g.: USD",
-                    "type": "string"
-                },
-                "from_amount": {
-                    "description": "The amount of the source currency being sent. For example, 0.1 TON.",
-                    "type": "string"
-                },
-                "from_currency": {
-                    "description": "The currency being sent. In this case, it is 'TON'.",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "A unique identifier for the exchange.",
-                    "type": "string"
-                },
-                "rate": {
-                    "description": "The exchange rate applied during the exchange. For example, the rate is 7.11116.",
-                    "type": "number"
-                },
-                "status": {
-                    "description": "The status of the exchange. For example, 'SUCCESS'.",
-                    "type": "string"
-                },
-                "to_amount": {
-                    "description": "The amount of the target currency received. For example, 0.711116 USDT.",
-                    "type": "string"
-                },
-                "to_currency": {
-                    "description": "The currency being received. In this case, it is 'USDT'.",
-                    "type": "string"
-                },
-                "ttl": {
-                    "description": "The validity period for the exchange",
-                    "type": "integer"
-                },
-                "updated_at": {
-                    "description": "The update time",
-                    "type": "string"
-                },
-                "wallet_id": {
-                    "description": "The walletID that the exchange belong to",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "created_at",
-                "fee_amount",
-                "fee_currency",
-                "fiat_currency",
-                "from_amount",
-                "from_currency",
-                "id",
-                "rate",
-                "status",
-                "to_amount",
-                "to_currency",
-                "ttl",
-                "updated_at",
-                "wallet_id"
-            ],
-            "type": "object"
-        },
-        "ExchangeCurrencyPairs": {
-            "properties": {
-                "from_currency": {
-                    "description": "The currency code of source currency, e.g.: TON",
-                    "type": "string"
-                },
-                "to_currencies": {
-                    "description": "The currency code list of target currency, e.g.: USDT",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                }
-            },
-            "type": "object"
-        },
-        "ExchangeSubmitResponse": {
-            "properties": {
-                "exchange_id": {
-                    "description": "The exchange id",
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "GetCurrencyPairQuotaResponse": {
-            "properties": {
-                "from_amount_max": {
-                    "description": "float string",
-                    "type": "string"
-                },
-                "from_amount_min": {
-                    "description": "float string",
-                    "type": "string"
-                },
-                "from_currency": {
-                    "type": "string"
-                },
-                "to_amount_max": {
-                    "description": "float string",
-                    "type": "string"
-                },
-                "to_amount_min": {
-                    "description": "float string",
-                    "type": "string"
-                },
-                "to_currency": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "from_amount_max",
-                "from_amount_min",
-                "from_currency",
-                "to_amount_max",
-                "to_amount_min",
-                "to_currency"
-            ],
-            "type": "object"
-        },
         "GetRatesRequest": {
             "properties": {
                 "pairs": {
@@ -1101,18 +928,6 @@
             "required": [
                 "rates"
             ],
-            "type": "object"
-        },
-        "ListExchangeCurrencyPairsResponse": {
-            "properties": {
-                "items": {
-                    "description": "The list of currency pairs",
-                    "items": {
-                        "$ref": "#/definitions/ExchangeCurrencyPairs"
-                    },
-                    "type": "array"
-                }
-            },
             "type": "object"
         },
         "Rate": {
@@ -1160,34 +975,10 @@
             ],
             "type": "object"
         },
-        "SweepAddressRequest": {
-            "properties": {
-                "currency": {
-                    "description": "currency to be swept",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "currency"
-            ],
-            "type": "object"
-        },
-        "SweepAddressResponse": {
-            "properties": {
-                "tx_id": {
-                    "description": "transaction id",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "tx_id"
-            ],
-            "type": "object"
-        },
         "Transaction": {
             "properties": {
                 "amount": {
-                    "description": "The total amount of money involved in the transaction.",
+                    "description": "The total amount of money involved in the transaction in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "avatar": {
@@ -1211,7 +1002,7 @@
                     "description": "Indicates the flow of the transaction, typically whether it is incoming or outgoing."
                 },
                 "fee_amount": {
-                    "description": "The amount of fee",
+                    "description": "The amount of fee in nano units (multiply by 10^decimals)",
                     "type": "string"
                 },
                 "fee_currency": {
@@ -1416,9 +1207,6 @@
     "paths": {
         "/api/v1/addresses": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List of all available addresses.",
                 "operationId": "v1.addresses.list",
                 "parameters": [
@@ -1507,9 +1295,6 @@
         },
         "/api/v1/currencies": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "Retrieve a list of all available currencies.",
                 "operationId": "v1.currencies.list",
                 "parameters": [
@@ -1585,9 +1370,6 @@
         },
         "/api/v1/currencies/{code}": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "Get currency info by currency code",
                 "operationId": "v1.currencies.retrieve",
                 "parameters": [
@@ -1648,394 +1430,8 @@
                 ]
             }
         },
-        "/api/v1/exchanges": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "description": "list exchanges",
-                "operationId": "v1.exchanges.list",
-                "parameters": [
-                    {
-                        "description": "The cursor to use for pagination.",
-                        "in": "query",
-                        "name": "cursor",
-                        "type": "string"
-                    },
-                    {
-                        "description": "The number of items to return per page.",
-                        "in": "query",
-                        "maximum": 100,
-                        "minimum": 1,
-                        "name": "limit",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "The wallet id",
-                        "in": "query",
-                        "name": "wallet_id",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/CursorPage-Exchange"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "summary": "list exchanges",
-                "tags": [
-                    "exchanges"
-                ]
-            },
-            "post": {
-                "consumes": [
-                    "application/json"
-                ],
-                "description": "Create a new exchange",
-                "operationId": "v1.exchanges.create",
-                "parameters": [
-                    {
-                        "description": "CreateExchange",
-                        "in": "body",
-                        "name": "request",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/CreateExchange"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Exchange"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "summary": "create exchange",
-                "tags": [
-                    "exchanges"
-                ]
-            }
-        },
-        "/api/v1/exchanges/currency_pair_quota": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "description": "get currency pair quota",
-                "operationId": "v1.exchanges.currency_quota",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "from_currency",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "to_currency",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/GetCurrencyPairQuotaResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "summary": "currency pair quota",
-                "tags": [
-                    "exchanges"
-                ]
-            }
-        },
-        "/api/v1/exchanges/currency_pairs": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "description": "list currency pairs",
-                "operationId": "v1.exchanges.currency_pairs",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ListExchangeCurrencyPairsResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "summary": "list currency pairs",
-                "tags": [
-                    "exchanges"
-                ]
-            }
-        },
-        "/api/v1/exchanges/{exchangeId}": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "description": "retrieve a specified exchange",
-                "operationId": "v1.exchanges.retrieve",
-                "parameters": [
-                    {
-                        "description": "Exchange ID",
-                        "in": "path",
-                        "name": "exchangeId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Exchange"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "summary": "retrieve exchange",
-                "tags": [
-                    "exchanges"
-                ]
-            }
-        },
-        "/api/v1/exchanges/{exchangeId}/submit": {
-            "post": {
-                "consumes": [
-                    "application/json"
-                ],
-                "description": "submit a exchange",
-                "operationId": "v1.exchanges.submit",
-                "parameters": [
-                    {
-                        "description": "Exchange ID",
-                        "in": "path",
-                        "name": "exchangeId",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ExchangeSubmitResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "summary": "submit exchange",
-                "tags": [
-                    "exchanges"
-                ]
-            }
-        },
         "/api/v1/networks": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List networks",
                 "operationId": "v1.networks.list",
                 "parameters": [
@@ -2173,14 +1569,11 @@
         },
         "/api/v1/rates/estimate": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "Estimates currency exchange amounts.",
                 "operationId": "v1.rates.estimate",
                 "parameters": [
                     {
-                        "description": "The amount of the base currency you want to convert",
+                        "description": "The amount of the base currency you want to convert in nano units (multiply by 10^decimals)",
                         "in": "query",
                         "name": "base_amount",
                         "required": true,
@@ -2252,85 +1645,8 @@
                 ]
             }
         },
-        "/api/v1/sweep/address/{address}": {
-            "post": {
-                "consumes": [
-                    "application/json"
-                ],
-                "description": "Sweep funds from a single address",
-                "operationId": "v1.sweep.address",
-                "parameters": [
-                    {
-                        "description": "Address that funds will be swept from",
-                        "in": "path",
-                        "name": "address",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "description": "Request",
-                        "in": "body",
-                        "name": "request",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/SweepAddressRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/SweepAddressResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    },
-                    {
-                        "SignatureAuth": []
-                    }
-                ],
-                "summary": "Sweep address",
-                "tags": [
-                    "sweep funds"
-                ]
-            }
-        },
         "/api/v1/transactions": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List transactions",
                 "operationId": "v1.transactions.list",
                 "parameters": [
@@ -2658,9 +1974,6 @@
         },
         "/api/v1/transactions/{transactionId}": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "Get a transaction by ID",
                 "operationId": "v1.transactions.retrieve",
                 "parameters": [
@@ -2723,9 +2036,6 @@
         },
         "/api/v1/wallets": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List all wallets",
                 "operationId": "v1.wallets.list",
                 "parameters": [
@@ -2861,9 +2171,6 @@
         },
         "/api/v1/wallets/{walletId}": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "Get a wallet by ID",
                 "operationId": "v1.wallets.retrieve",
                 "parameters": [
@@ -2998,9 +2305,6 @@
         },
         "/api/v1/wallets/{walletId}/accounts": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List wallet accounts",
                 "operationId": "v1.wallets.listAccounts",
                 "parameters": [
@@ -3078,9 +2382,6 @@
         },
         "/api/v1/wallets/{walletId}/deposit_address": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "Get wallet's deposit address",
                 "operationId": "v1.wallets.getDepositAddress",
                 "parameters": [
@@ -3157,9 +2458,6 @@
         },
         "/api/v1/wallets/{walletId}/deposit_addresses": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List wallet's deposit addresses",
                 "operationId": "v1.wallets.listDepositAddresses",
                 "parameters": [
@@ -3249,9 +2547,6 @@
         },
         "/api/v1/webhook/endpoints": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List webhook endpoints",
                 "operationId": "v1.webhooks.list",
                 "parameters": [
@@ -3414,9 +2709,6 @@
                 ]
             },
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "Get specific webhook endpoint",
                 "operationId": "v1.webhooks.retrieve",
                 "parameters": [
@@ -3521,9 +2813,6 @@
         },
         "/api/v1/webhook/event_types": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List all webhook event types",
                 "operationId": "v1.webhooks.eventtypes.list",
                 "produces": [
@@ -3568,9 +2857,6 @@
         },
         "/api/v1/webhook/events": {
             "get": {
-                "consumes": [
-                    "application/json"
-                ],
                 "description": "List webhook events",
                 "operationId": "v1.webhooks.events.list",
                 "parameters": [
@@ -3697,11 +2983,6 @@
         "ApiKeyAuth": {
             "in": "header",
             "name": "X-Api-Key",
-            "type": "apiKey"
-        },
-        "SignatureAuth": {
-            "in": "header",
-            "name": "X-Signature",
             "type": "apiKey"
         }
     },

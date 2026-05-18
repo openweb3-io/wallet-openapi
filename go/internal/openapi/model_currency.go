@@ -28,21 +28,25 @@ type Currency struct {
 	ContractAddress *string `json:"contract_address,omitempty"`
 	// Decimal precision
 	Decimals int32 `json:"decimals"`
+	// Indicates if the currency is disabled
+	Disabled bool `json:"disabled"`
 	// Currency logo URL
 	Logo string `json:"logo"`
 	// Maximum fee
 	MaxFee string `json:"max_fee"`
 	// Maximum fee for contract addresses
 	MaxFeeForCtAddr string `json:"max_fee_for_ct_addr"`
-	// Maximum withdraw amount per transaction
+	// Maximum withdraw amount per transaction in nano units (multiply by 10^decimals)
 	MaxWithdrawAmount string `json:"max_withdraw_amount"`
-	// Minimum deposit amount per transaction
+	// Minimum deposit amount per transaction in nano units (multiply by 10^decimals)
 	MinDepositAmount string `json:"min_deposit_amount"`
 	// Minimum fee
 	MinFee string `json:"min_fee"`
 	// Minimum fee for contract addresses
 	MinFeeForCtAddr string `json:"min_fee_for_ct_addr"`
-	// Minimum withdraw amount per transaction
+	// Minimum transfer amount per transaction in nano units (multiply by 10^decimals)
+	MinTransferAmount string `json:"min_transfer_amount"`
+	// Minimum withdraw amount per transaction in nano units (multiply by 10^decimals)
 	MinWithdrawAmount string `json:"min_withdraw_amount"`
 	// Currency name
 	Name string `json:"name"`
@@ -62,13 +66,14 @@ type Currency struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, networks []CurrencyNetwork, precision int32, rated bool, symbol string) *Currency {
+func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minTransferAmount string, minWithdrawAmount string, name string, needMemo bool, networks []CurrencyNetwork, precision int32, rated bool, symbol string) *Currency {
 	this := Currency{}
 	this.CanDeposit = canDeposit
 	this.CanTransfer = canTransfer
 	this.CanWithdraw = canWithdraw
 	this.Code = code
 	this.Decimals = decimals
+	this.Disabled = disabled
 	this.Logo = logo
 	this.MaxFee = maxFee
 	this.MaxFeeForCtAddr = maxFeeForCtAddr
@@ -76,6 +81,7 @@ func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code strin
 	this.MinDepositAmount = minDepositAmount
 	this.MinFee = minFee
 	this.MinFeeForCtAddr = minFeeForCtAddr
+	this.MinTransferAmount = minTransferAmount
 	this.MinWithdrawAmount = minWithdrawAmount
 	this.Name = name
 	this.NeedMemo = needMemo
@@ -246,6 +252,30 @@ func (o *Currency) SetDecimals(v int32) {
 	o.Decimals = v
 }
 
+// GetDisabled returns the Disabled field value
+func (o *Currency) GetDisabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value
+// and a boolean to check if the value has been set.
+func (o *Currency) GetDisabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Disabled, true
+}
+
+// SetDisabled sets field value
+func (o *Currency) SetDisabled(v bool) {
+	o.Disabled = v
+}
+
 // GetLogo returns the Logo field value
 func (o *Currency) GetLogo() string {
 	if o == nil {
@@ -412,6 +442,30 @@ func (o *Currency) GetMinFeeForCtAddrOk() (*string, bool) {
 // SetMinFeeForCtAddr sets field value
 func (o *Currency) SetMinFeeForCtAddr(v string) {
 	o.MinFeeForCtAddr = v
+}
+
+// GetMinTransferAmount returns the MinTransferAmount field value
+func (o *Currency) GetMinTransferAmount() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MinTransferAmount
+}
+
+// GetMinTransferAmountOk returns a tuple with the MinTransferAmount field value
+// and a boolean to check if the value has been set.
+func (o *Currency) GetMinTransferAmountOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MinTransferAmount, true
+}
+
+// SetMinTransferAmount sets field value
+func (o *Currency) SetMinTransferAmount(v string) {
+	o.MinTransferAmount = v
 }
 
 // GetMinWithdrawAmount returns the MinWithdrawAmount field value
@@ -603,6 +657,9 @@ func (o Currency) MarshalJSON() ([]byte, error) {
 		toSerialize["decimals"] = o.Decimals
 	}
 	if true {
+		toSerialize["disabled"] = o.Disabled
+	}
+	if true {
 		toSerialize["logo"] = o.Logo
 	}
 	if true {
@@ -622,6 +679,9 @@ func (o Currency) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["min_fee_for_ct_addr"] = o.MinFeeForCtAddr
+	}
+	if true {
+		toSerialize["min_transfer_amount"] = o.MinTransferAmount
 	}
 	if true {
 		toSerialize["min_withdraw_amount"] = o.MinWithdrawAmount

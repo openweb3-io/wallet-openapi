@@ -3,10 +3,8 @@
 README.md
 apis/AddressesApi.ts
 apis/CurrenciesApi.ts
-apis/ExchangesApi.ts
 apis/NetworksApi.ts
 apis/RatesApi.ts
-apis/SweepFundsApi.ts
 apis/TransactionsApi.ts
 apis/WalletsApi.ts
 apis/WebhookEndpointsApi.ts
@@ -25,7 +23,6 @@ models/Account.ts
 models/Address.ts
 models/ChainNetwork.ts
 models/CreateEndpoint.ts
-models/CreateExchange.ts
 models/CreateTransferRequest.ts
 models/CreateTransferResponse.ts
 models/CreateWalletRequest.ts
@@ -39,7 +36,6 @@ models/CursorPageAddress.ts
 models/CursorPageChainNetwork.ts
 models/CursorPageCurrency.ts
 models/CursorPageEndpoint.ts
-models/CursorPageExchange.ts
 models/CursorPageTransaction.ts
 models/CursorPageWallet.ts
 models/CursorPageWebhookEvent.ts
@@ -49,20 +45,13 @@ models/EstimateFeeRequest.ts
 models/EstimateFeeResponse.ts
 models/EstimateResponse.ts
 models/EventType.ts
-models/Exchange.ts
-models/ExchangeCurrencyPairs.ts
-models/ExchangeSubmitResponse.ts
-models/GetCurrencyPairQuotaResponse.ts
 models/GetRatesRequest.ts
 models/GetRatesResponse.ts
-models/ListExchangeCurrencyPairsResponse.ts
 models/ModelError.ts
 models/ObjectSerializer.ts
 models/Rate.ts
 models/ResendWebhookEventRequest.ts
 models/ResendWebhookEventResponse.ts
-models/SweepAddressRequest.ts
-models/SweepAddressResponse.ts
 models/Transaction.ts
 models/TransactionDirection.ts
 models/TransactionStatus.ts

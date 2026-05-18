@@ -6,7 +6,6 @@ import { Account } from '../models/Account';
 import { Address } from '../models/Address';
 import { ChainNetwork } from '../models/ChainNetwork';
 import { CreateEndpoint } from '../models/CreateEndpoint';
-import { CreateExchange } from '../models/CreateExchange';
 import { CreateTransferRequest } from '../models/CreateTransferRequest';
 import { CreateTransferResponse } from '../models/CreateTransferResponse';
 import { CreateWalletRequest } from '../models/CreateWalletRequest';
@@ -20,7 +19,6 @@ import { CursorPageAddress } from '../models/CursorPageAddress';
 import { CursorPageChainNetwork } from '../models/CursorPageChainNetwork';
 import { CursorPageCurrency } from '../models/CursorPageCurrency';
 import { CursorPageEndpoint } from '../models/CursorPageEndpoint';
-import { CursorPageExchange } from '../models/CursorPageExchange';
 import { CursorPageTransaction } from '../models/CursorPageTransaction';
 import { CursorPageWallet } from '../models/CursorPageWallet';
 import { CursorPageWebhookEvent } from '../models/CursorPageWebhookEvent';
@@ -30,19 +28,12 @@ import { EstimateFeeRequest } from '../models/EstimateFeeRequest';
 import { EstimateFeeResponse } from '../models/EstimateFeeResponse';
 import { EstimateResponse } from '../models/EstimateResponse';
 import { EventType } from '../models/EventType';
-import { Exchange } from '../models/Exchange';
-import { ExchangeCurrencyPairs } from '../models/ExchangeCurrencyPairs';
-import { ExchangeSubmitResponse } from '../models/ExchangeSubmitResponse';
-import { GetCurrencyPairQuotaResponse } from '../models/GetCurrencyPairQuotaResponse';
 import { GetRatesRequest } from '../models/GetRatesRequest';
 import { GetRatesResponse } from '../models/GetRatesResponse';
-import { ListExchangeCurrencyPairsResponse } from '../models/ListExchangeCurrencyPairsResponse';
 import { ModelError } from '../models/ModelError';
 import { Rate } from '../models/Rate';
 import { ResendWebhookEventRequest } from '../models/ResendWebhookEventRequest';
 import { ResendWebhookEventResponse } from '../models/ResendWebhookEventResponse';
-import { SweepAddressRequest } from '../models/SweepAddressRequest';
-import { SweepAddressResponse } from '../models/SweepAddressResponse';
 import { Transaction } from '../models/Transaction';
 import { TransactionDirection } from '../models/TransactionDirection';
 import { TransactionStatus } from '../models/TransactionStatus';
@@ -237,138 +228,6 @@ export class ObjectCurrenciesApi {
 
 }
 
-import { ObservableExchangesApi } from "./ObservableAPI";
-import { ExchangesApiRequestFactory, ExchangesApiResponseProcessor} from "../apis/ExchangesApi";
-
-export interface ExchangesApiV1ExchangesCreateRequest {
-    /**
-     * CreateExchange
-     * @type CreateExchange
-     * @memberof ExchangesApiv1ExchangesCreate
-     */
-    request: CreateExchange
-}
-
-export interface ExchangesApiV1ExchangesCurrencyPairsRequest {
-}
-
-export interface ExchangesApiV1ExchangesCurrencyQuotaRequest {
-    /**
-     * 
-     * @type string
-     * @memberof ExchangesApiv1ExchangesCurrencyQuota
-     */
-    fromCurrency: string
-    /**
-     * 
-     * @type string
-     * @memberof ExchangesApiv1ExchangesCurrencyQuota
-     */
-    toCurrency: string
-}
-
-export interface ExchangesApiV1ExchangesListRequest {
-    /**
-     * The number of items to return per page.
-     * @type number
-     * @memberof ExchangesApiv1ExchangesList
-     */
-    limit: number
-    /**
-     * The wallet id
-     * @type string
-     * @memberof ExchangesApiv1ExchangesList
-     */
-    walletId: string
-    /**
-     * The cursor to use for pagination.
-     * @type string
-     * @memberof ExchangesApiv1ExchangesList
-     */
-    cursor?: string
-}
-
-export interface ExchangesApiV1ExchangesRetrieveRequest {
-    /**
-     * Exchange ID
-     * @type string
-     * @memberof ExchangesApiv1ExchangesRetrieve
-     */
-    exchangeId: string
-}
-
-export interface ExchangesApiV1ExchangesSubmitRequest {
-    /**
-     * Exchange ID
-     * @type string
-     * @memberof ExchangesApiv1ExchangesSubmit
-     */
-    exchangeId: string
-}
-
-export class ObjectExchangesApi {
-    private api: ObservableExchangesApi
-
-    public constructor(configuration: Configuration, requestFactory?: ExchangesApiRequestFactory, responseProcessor?: ExchangesApiResponseProcessor) {
-        this.api = new ObservableExchangesApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Create a new exchange
-     * create exchange
-     * @param param the request object
-     */
-    public v1ExchangesCreate(param: ExchangesApiV1ExchangesCreateRequest, options?: Configuration): Promise<Exchange> {
-        return this.api.v1ExchangesCreate(param.request,  options).toPromise();
-    }
-
-    /**
-     * list currency pairs
-     * list currency pairs
-     * @param param the request object
-     */
-    public v1ExchangesCurrencyPairs(param: ExchangesApiV1ExchangesCurrencyPairsRequest, options?: Configuration): Promise<ListExchangeCurrencyPairsResponse> {
-        return this.api.v1ExchangesCurrencyPairs( options).toPromise();
-    }
-
-    /**
-     * get currency pair quota
-     * currency pair quota
-     * @param param the request object
-     */
-    public v1ExchangesCurrencyQuota(param: ExchangesApiV1ExchangesCurrencyQuotaRequest, options?: Configuration): Promise<GetCurrencyPairQuotaResponse> {
-        return this.api.v1ExchangesCurrencyQuota(param.fromCurrency, param.toCurrency,  options).toPromise();
-    }
-
-    /**
-     * list exchanges
-     * list exchanges
-     * @param param the request object
-     */
-    public v1ExchangesList(param: ExchangesApiV1ExchangesListRequest, options?: Configuration): Promise<CursorPageExchange> {
-        return this.api.v1ExchangesList(param.limit, param.walletId, param.cursor,  options).toPromise();
-    }
-
-    /**
-     * retrieve a specified exchange
-     * retrieve exchange
-     * @param param the request object
-     */
-    public v1ExchangesRetrieve(param: ExchangesApiV1ExchangesRetrieveRequest, options?: Configuration): Promise<Exchange> {
-        return this.api.v1ExchangesRetrieve(param.exchangeId,  options).toPromise();
-    }
-
-    /**
-     * submit a exchange
-     * submit exchange
-     * @param param the request object
-     */
-    public v1ExchangesSubmit(param: ExchangesApiV1ExchangesSubmitRequest, options?: Configuration): Promise<ExchangeSubmitResponse> {
-        return this.api.v1ExchangesSubmit(param.exchangeId,  options).toPromise();
-    }
-
-}
-
 import { ObservableNetworksApi } from "./ObservableAPI";
 import { NetworksApiRequestFactory, NetworksApiResponseProcessor} from "../apis/NetworksApi";
 
@@ -410,7 +269,7 @@ import { RatesApiRequestFactory, RatesApiResponseProcessor} from "../apis/RatesA
 
 export interface RatesApiV1RatesEstimateRequest {
     /**
-     * The amount of the base currency you want to convert
+     * The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
      * @type string
      * @memberof RatesApiv1RatesEstimate
      */
@@ -461,42 +320,6 @@ export class ObjectRatesApi {
      */
     public v1RatesList(param: RatesApiV1RatesListRequest, options?: Configuration): Promise<GetRatesResponse> {
         return this.api.v1RatesList(param.request,  options).toPromise();
-    }
-
-}
-
-import { ObservableSweepFundsApi } from "./ObservableAPI";
-import { SweepFundsApiRequestFactory, SweepFundsApiResponseProcessor} from "../apis/SweepFundsApi";
-
-export interface SweepFundsApiV1SweepAddressRequest {
-    /**
-     * Address that funds will be swept from
-     * @type string
-     * @memberof SweepFundsApiv1SweepAddress
-     */
-    address: string
-    /**
-     * Request
-     * @type SweepAddressRequest
-     * @memberof SweepFundsApiv1SweepAddress
-     */
-    request: SweepAddressRequest
-}
-
-export class ObjectSweepFundsApi {
-    private api: ObservableSweepFundsApi
-
-    public constructor(configuration: Configuration, requestFactory?: SweepFundsApiRequestFactory, responseProcessor?: SweepFundsApiResponseProcessor) {
-        this.api = new ObservableSweepFundsApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Sweep funds from a single address
-     * Sweep address
-     * @param param the request object
-     */
-    public v1SweepAddress(param: SweepFundsApiV1SweepAddressRequest, options?: Configuration): Promise<SweepAddressResponse> {
-        return this.api.v1SweepAddress(param.address, param.request,  options).toPromise();
     }
 
 }

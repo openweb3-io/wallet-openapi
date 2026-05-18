@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * Transaction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]")
 public class Transaction {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -95,10 +95,10 @@ public class Transaction {
   }
 
    /**
-   * The total amount of money involved in the transaction.
+   * The total amount of money involved in the transaction in nano units (multiply by 10^decimals)
    * @return amount
   **/
-  @ApiModelProperty(required = true, value = "The total amount of money involved in the transaction.")
+  @ApiModelProperty(required = true, value = "The total amount of money involved in the transaction in nano units (multiply by 10^decimals)")
 
   public String getAmount() {
     return amount;
@@ -205,10 +205,10 @@ public class Transaction {
   }
 
    /**
-   * The amount of fee
+   * The amount of fee in nano units (multiply by 10^decimals)
    * @return feeAmount
   **/
-  @ApiModelProperty(required = true, value = "The amount of fee")
+  @ApiModelProperty(required = true, value = "The amount of fee in nano units (multiply by 10^decimals)")
 
   public String getFeeAmount() {
     return feeAmount;

@@ -15,27 +15,19 @@ import {
   WebhookEndpointsApi,
   CreateEndpoint,
   Endpoint,
+  UpdateEndpoint,
   WebhookEventsApi,
   WebhookEventTypesApi,
-  SweepFundsApi,
-  ExchangesApi,
   CursorPageEndpoint,
   RatesApi,
   GetRatesRequest,
   GetRatesResponse,
   EstimateResponse,
   CursorPageChainNetwork,
-  SweepAddressRequest,
-  SweepAddressResponse,
   EventType,
   CursorPageWebhookEvent,
   ResendWebhookEventResponse,
   ResendWebhookEventRequest,
-  CursorPageExchange,
-  Exchange,
-  CreateExchange,
-  ExchangeSubmitResponse,
-  ListExchangeCurrencyPairsResponse,
   CursorPageAddress,
   Address,
   CursorPageTransaction,
@@ -54,8 +46,10 @@ import {
 } from "./openapi/index";
 export * from "./openapi/models/all";
 export * from "./openapi/apis/exception";
-import { createHash, createVerify, constants } from "crypto";
+
 import * as nacl from "tweetnacl";
+import sha256 from "fast-sha256";
+import { encode as encodeUTF8 } from "@stablelib/utf8";
 
 const VERSION = "0.1.1";
 
@@ -70,18 +64,31 @@ class UserAgentMiddleware implements Middleware {
   }
 }
 
+function hexToBytes(hex: string): Uint8Array {
+  const bytes = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < hex.length; i += 2) {
+    bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
+  }
+  return bytes;
+}
+
+function bytesToHex(bytes: Uint8Array): string {
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 function signEd25519(data: string, secret: string): string {
-  const hash = createHash("sha256");
-  hash.update(Buffer.from(data, "utf-8"));
-  const hashBuffer = hash.digest();
-  const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(secret, "hex"));
-  const signedData = nacl.sign.detached(hashBuffer, keyPair.secretKey);
-  const sign = Buffer.from(signedData).toString("hex");
-  return sign;
+  const dataBytes = encodeUTF8(data);
+  const hashBytes = sha256(dataBytes);
+  const seed = hexToBytes(secret);
+  const keyPair = nacl.sign.keyPair.fromSeed(seed);
+  const signedData = nacl.sign.detached(hashBytes, keyPair.secretKey);
+  return bytesToHex(signedData);
 }
 
 class SignatureMiddleware implements Middleware {
-  public constructor(private readonly secret: string) {}
+  public constructor(private readonly secret: string) { }
 
   public pre(context: RequestContext): Promise<RequestContext> {
     const timestamp = new Date().getTime().toString();
@@ -129,8 +136,6 @@ export class ApiClient {
   public readonly webhookEndpoints: Endpoints;
   public readonly webhookEventTypes: WebhookEventTypes;
   public readonly webhookEvents: WebhookEvents;
-  public readonly sweeps: Sweeps;
-  public readonly exchanges: Exchanges;
 
   public constructor(apiKey: string, secret: string, options?: ApiClientOptions) {
     const baseUrl: string = options?.serverUrl ?? "https://api.wallet.openweb3.io";
@@ -155,8 +160,6 @@ export class ApiClient {
     this.webhookEndpoints = new Endpoints(config);
     this.webhookEventTypes = new WebhookEventTypes(config);
     this.webhookEvents = new WebhookEvents(config);
-    this.sweeps = new Sweeps(config);
-    this.exchanges = new Exchanges(config);
   }
 }
 
@@ -242,6 +245,13 @@ class Endpoints {
 
   public async list(options: EndpointListOptions): Promise<CursorPageEndpoint> {
     return await this.api.v1WebhooksList({ ...options });
+  }
+
+  public async update(
+    endpointId: string,
+    updateEndpoint: UpdateEndpoint
+  ): Promise<Endpoint> {
+    return await this.api.v1WebhooksUpdate({ endpointId, request: updateEndpoint });
   }
 }
 
@@ -332,53 +342,6 @@ class WebhookEvents {
     resendWebhookEventRequest: ResendWebhookEventRequest
   ): Promise<ResendWebhookEventResponse> {
     return await this.api.v1WebhooksEventsResend({ request: resendWebhookEventRequest });
-  }
-}
-
-class Sweeps {
-  private readonly api: SweepFundsApi;
-
-  public constructor(config: Configuration) {
-    this.api = new SweepFundsApi(config);
-  }
-
-  public async sweepAddress(
-    address: string,
-    sweepAddressRequest: SweepAddressRequest
-  ): Promise<SweepAddressResponse> {
-    return await this.api.v1SweepAddress({ address, request: sweepAddressRequest });
-  }
-}
-
-export interface ExchangeListOptions extends CursorListOptions {
-  walletId: string;
-}
-
-class Exchanges {
-  private readonly api: ExchangesApi;
-
-  public constructor(config: Configuration) {
-    this.api = new ExchangesApi(config);
-  }
-
-  public async list(options: ExchangeListOptions): Promise<CursorPageExchange> {
-    return await this.api.v1ExchangesList({ ...options });
-  }
-
-  public async retrieve(exchangeId: string): Promise<Exchange> {
-    return await this.api.v1ExchangesRetrieve({ exchangeId });
-  }
-
-  public async create(createExchange: CreateExchange): Promise<Exchange> {
-    return await this.api.v1ExchangesCreate({ request: createExchange });
-  }
-
-  public async submit(exchangeId: string): Promise<ExchangeSubmitResponse> {
-    return await this.api.v1ExchangesSubmit({ exchangeId });
-  }
-
-  public async listCurrencyPairs(): Promise<ListExchangeCurrencyPairsResponse> {
-    return await this.api.v1ExchangesCurrencyPairs({});
   }
 }
 
@@ -473,24 +436,12 @@ export class WebhookClient {
 
   public async verify(payload: string, signature: string): Promise<boolean> {
     try {
-      // convert payload to buffer
-      const payloadBuffer = Buffer.from(payload);
-      // convert signature to buffer
-      const signatureBuffer = Buffer.from(signature, "base64");
-      // create verify object, using pkcs#1 format public key
-      const verify = createVerify("sha256");
-      verify.update(payloadBuffer);
-
-      // verify signature
-      const isValid = verify.verify(
-        {
-          key: this.publicKey,
-          padding: constants.RSA_PKCS1_PADDING,
-        },
-        signatureBuffer
-      );
-
-      return isValid;
+      const crypto = require("crypto");
+      const key = crypto.createPublicKey(this.publicKey);
+      const verify = crypto.createVerify("SHA256");
+      verify.update(payload);
+      verify.end();
+      return verify.verify(key, signature, "base64");
     } catch (error) {
       console.error("verify signature error:", error);
       return false;

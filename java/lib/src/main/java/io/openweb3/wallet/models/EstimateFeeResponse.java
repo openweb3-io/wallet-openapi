@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * EstimateFeeResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]")
 public class EstimateFeeResponse {
   public static final String SERIALIZED_NAME_FEE_AMOUNT = "fee_amount";
   @SerializedName(SERIALIZED_NAME_FEE_AMOUNT)
@@ -45,10 +45,10 @@ public class EstimateFeeResponse {
   }
 
    /**
-   * Get feeAmount
+   * The fee amount in nano units (multiply by 10^decimals)
    * @return feeAmount
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The fee amount in nano units (multiply by 10^decimals)")
 
   public String getFeeAmount() {
     return feeAmount;

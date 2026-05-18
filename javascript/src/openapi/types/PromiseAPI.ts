@@ -6,7 +6,6 @@ import { Account } from '../models/Account';
 import { Address } from '../models/Address';
 import { ChainNetwork } from '../models/ChainNetwork';
 import { CreateEndpoint } from '../models/CreateEndpoint';
-import { CreateExchange } from '../models/CreateExchange';
 import { CreateTransferRequest } from '../models/CreateTransferRequest';
 import { CreateTransferResponse } from '../models/CreateTransferResponse';
 import { CreateWalletRequest } from '../models/CreateWalletRequest';
@@ -20,7 +19,6 @@ import { CursorPageAddress } from '../models/CursorPageAddress';
 import { CursorPageChainNetwork } from '../models/CursorPageChainNetwork';
 import { CursorPageCurrency } from '../models/CursorPageCurrency';
 import { CursorPageEndpoint } from '../models/CursorPageEndpoint';
-import { CursorPageExchange } from '../models/CursorPageExchange';
 import { CursorPageTransaction } from '../models/CursorPageTransaction';
 import { CursorPageWallet } from '../models/CursorPageWallet';
 import { CursorPageWebhookEvent } from '../models/CursorPageWebhookEvent';
@@ -30,19 +28,12 @@ import { EstimateFeeRequest } from '../models/EstimateFeeRequest';
 import { EstimateFeeResponse } from '../models/EstimateFeeResponse';
 import { EstimateResponse } from '../models/EstimateResponse';
 import { EventType } from '../models/EventType';
-import { Exchange } from '../models/Exchange';
-import { ExchangeCurrencyPairs } from '../models/ExchangeCurrencyPairs';
-import { ExchangeSubmitResponse } from '../models/ExchangeSubmitResponse';
-import { GetCurrencyPairQuotaResponse } from '../models/GetCurrencyPairQuotaResponse';
 import { GetRatesRequest } from '../models/GetRatesRequest';
 import { GetRatesResponse } from '../models/GetRatesResponse';
-import { ListExchangeCurrencyPairsResponse } from '../models/ListExchangeCurrencyPairsResponse';
 import { ModelError } from '../models/ModelError';
 import { Rate } from '../models/Rate';
 import { ResendWebhookEventRequest } from '../models/ResendWebhookEventRequest';
 import { ResendWebhookEventResponse } from '../models/ResendWebhookEventResponse';
-import { SweepAddressRequest } from '../models/SweepAddressRequest';
-import { SweepAddressResponse } from '../models/SweepAddressResponse';
 import { Transaction } from '../models/Transaction';
 import { TransactionDirection } from '../models/TransactionDirection';
 import { TransactionStatus } from '../models/TransactionStatus';
@@ -150,87 +141,6 @@ export class PromiseCurrenciesApi {
 
 
 
-import { ObservableExchangesApi } from './ObservableAPI';
-
-import { ExchangesApiRequestFactory, ExchangesApiResponseProcessor} from "../apis/ExchangesApi";
-export class PromiseExchangesApi {
-    private api: ObservableExchangesApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ExchangesApiRequestFactory,
-        responseProcessor?: ExchangesApiResponseProcessor
-    ) {
-        this.api = new ObservableExchangesApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Create a new exchange
-     * create exchange
-     * @param request CreateExchange
-     */
-    public v1ExchangesCreate(request: CreateExchange, _options?: Configuration): Promise<Exchange> {
-        const result = this.api.v1ExchangesCreate(request, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * list currency pairs
-     * list currency pairs
-     */
-    public v1ExchangesCurrencyPairs(_options?: Configuration): Promise<ListExchangeCurrencyPairsResponse> {
-        const result = this.api.v1ExchangesCurrencyPairs(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * get currency pair quota
-     * currency pair quota
-     * @param fromCurrency 
-     * @param toCurrency 
-     */
-    public v1ExchangesCurrencyQuota(fromCurrency: string, toCurrency: string, _options?: Configuration): Promise<GetCurrencyPairQuotaResponse> {
-        const result = this.api.v1ExchangesCurrencyQuota(fromCurrency, toCurrency, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * list exchanges
-     * list exchanges
-     * @param limit The number of items to return per page.
-     * @param walletId The wallet id
-     * @param cursor The cursor to use for pagination.
-     */
-    public v1ExchangesList(limit: number, walletId: string, cursor?: string, _options?: Configuration): Promise<CursorPageExchange> {
-        const result = this.api.v1ExchangesList(limit, walletId, cursor, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * retrieve a specified exchange
-     * retrieve exchange
-     * @param exchangeId Exchange ID
-     */
-    public v1ExchangesRetrieve(exchangeId: string, _options?: Configuration): Promise<Exchange> {
-        const result = this.api.v1ExchangesRetrieve(exchangeId, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * submit a exchange
-     * submit exchange
-     * @param exchangeId Exchange ID
-     */
-    public v1ExchangesSubmit(exchangeId: string, _options?: Configuration): Promise<ExchangeSubmitResponse> {
-        const result = this.api.v1ExchangesSubmit(exchangeId, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
 import { ObservableNetworksApi } from './ObservableAPI';
 
 import { NetworksApiRequestFactory, NetworksApiResponseProcessor} from "../apis/NetworksApi";
@@ -278,7 +188,7 @@ export class PromiseRatesApi {
     /**
      * Estimates currency exchange amounts.
      * Estimates
-     * @param baseAmount The amount of the base currency you want to convert
+     * @param baseAmount The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
      * @param baseCurrency The currency code of the base currency that you want to convert from
      * @param toCurrency The currency code of the target currency that you want to convert to
      */
@@ -294,36 +204,6 @@ export class PromiseRatesApi {
      */
     public v1RatesList(request: GetRatesRequest, _options?: Configuration): Promise<GetRatesResponse> {
         const result = this.api.v1RatesList(request, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableSweepFundsApi } from './ObservableAPI';
-
-import { SweepFundsApiRequestFactory, SweepFundsApiResponseProcessor} from "../apis/SweepFundsApi";
-export class PromiseSweepFundsApi {
-    private api: ObservableSweepFundsApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: SweepFundsApiRequestFactory,
-        responseProcessor?: SweepFundsApiResponseProcessor
-    ) {
-        this.api = new ObservableSweepFundsApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Sweep funds from a single address
-     * Sweep address
-     * @param address Address that funds will be swept from
-     * @param request Request
-     */
-    public v1SweepAddress(address: string, request: SweepAddressRequest, _options?: Configuration): Promise<SweepAddressResponse> {
-        const result = this.api.v1SweepAddress(address, request, _options);
         return result.toPromise();
     }
 

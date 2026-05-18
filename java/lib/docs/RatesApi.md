@@ -37,14 +37,8 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     RatesApi apiInstance = new RatesApi(defaultClient);
-    String baseAmount = "baseAmount_example"; // String | The amount of the base currency you want to convert
+    String baseAmount = "baseAmount_example"; // String | The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
     String baseCurrency = "baseCurrency_example"; // String | The currency code of the base currency that you want to convert from
     String toCurrency = "toCurrency_example"; // String | The currency code of the target currency that you want to convert to
     try {
@@ -65,7 +59,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **baseAmount** | **String**| The amount of the base currency you want to convert |
+ **baseAmount** | **String**| The amount of the base currency you want to convert in nano units (multiply by 10^decimals) |
  **baseCurrency** | **String**| The currency code of the base currency that you want to convert from |
  **toCurrency** | **String**| The currency code of the target currency that you want to convert to |
 
@@ -75,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -120,12 +114,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     RatesApi apiInstance = new RatesApi(defaultClient);
     GetRatesRequest request = new GetRatesRequest(); // GetRatesRequest | Request body
     try {
@@ -154,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

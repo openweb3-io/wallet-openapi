@@ -16,7 +16,7 @@ import (
 
 // Transaction struct for Transaction
 type Transaction struct {
-	// The total amount of money involved in the transaction.
+	// The total amount of money involved in the transaction in nano units (multiply by 10^decimals)
 	Amount string `json:"amount"`
 	// A URL or path to an avatar image associated with the transaction, often used to visually represent the transaction's source or recipient.
 	Avatar string `json:"avatar"`
@@ -26,7 +26,7 @@ type Transaction struct {
 	Currency string `json:"currency"`
 	// Indicates the flow of the transaction, typically whether it is incoming or outgoing.
 	Direction TransactionDirection `json:"direction"`
-	// The amount of fee
+	// The amount of fee in nano units (multiply by 10^decimals)
 	FeeAmount string `json:"fee_amount"`
 	// The currency of fee
 	FeeCurrency string `json:"fee_currency"`

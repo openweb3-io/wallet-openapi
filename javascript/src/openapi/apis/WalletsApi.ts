@@ -62,10 +62,6 @@ export class WalletsApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = _config.authMethods["SignatureAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }
@@ -111,10 +107,6 @@ export class WalletsApiRequestFactory extends BaseAPIRequestFactory {
         let authMethod = null;
         // Apply auth methods
         authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = _config.authMethods["SignatureAuth"]
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
@@ -174,10 +166,6 @@ export class WalletsApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = _config.authMethods["SignatureAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }
@@ -216,10 +204,6 @@ export class WalletsApiRequestFactory extends BaseAPIRequestFactory {
         let authMethod = null;
         // Apply auth methods
         authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = _config.authMethods["SignatureAuth"]
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
@@ -277,10 +261,6 @@ export class WalletsApiRequestFactory extends BaseAPIRequestFactory {
         let authMethod = null;
         // Apply auth methods
         authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = _config.authMethods["SignatureAuth"]
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }

@@ -23,11 +23,14 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * CreateTransferRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]")
 public class CreateTransferRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -41,6 +44,10 @@ public class CreateTransferRequest {
   @SerializedName(SERIALIZED_NAME_FROM)
   private String from;
 
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
+
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
   private String to;
@@ -53,10 +60,10 @@ public class CreateTransferRequest {
   }
 
    /**
-   * The amount of currency to be transferred
+   * The amount of currency to be transferred in nano units (multiply by 10^decimals)
    * @return amount
   **/
-  @ApiModelProperty(required = true, value = "The amount of currency to be transferred")
+  @ApiModelProperty(required = true, value = "The amount of currency to be transferred in nano units (multiply by 10^decimals)")
 
   public String getAmount() {
     return amount;
@@ -112,6 +119,37 @@ public class CreateTransferRequest {
   }
 
 
+  public CreateTransferRequest metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public CreateTransferRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Optional metadata for storing extra info
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional metadata for storing extra info")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
+  }
+
+
   public CreateTransferRequest to(String to) {
     
     this.to = to;
@@ -146,12 +184,13 @@ public class CreateTransferRequest {
     return Objects.equals(this.amount, createTransferRequest.amount) &&
         Objects.equals(this.currency, createTransferRequest.currency) &&
         Objects.equals(this.from, createTransferRequest.from) &&
+        Objects.equals(this.metadata, createTransferRequest.metadata) &&
         Objects.equals(this.to, createTransferRequest.to);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, from, to);
+    return Objects.hash(amount, currency, from, metadata, to);
   }
 
   @Override
@@ -161,6 +200,7 @@ public class CreateTransferRequest {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("}");
     return sb.toString();

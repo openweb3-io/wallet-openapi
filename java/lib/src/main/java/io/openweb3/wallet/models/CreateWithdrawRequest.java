@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CreateWithdrawRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]")
 public class CreateWithdrawRequest {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -65,10 +65,10 @@ public class CreateWithdrawRequest {
   }
 
    /**
-   * The amount of currency to be withdrawn
+   * The amount of currency to be withdrawn in nano units (multiply by 10^decimals)
    * @return amount
   **/
-  @ApiModelProperty(required = true, value = "The amount of currency to be withdrawn")
+  @ApiModelProperty(required = true, value = "The amount of currency to be withdrawn in nano units (multiply by 10^decimals)")
 
   public String getAmount() {
     return amount;

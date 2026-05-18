@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FeeAmount** | **string** |  | 
+**FeeAmount** | **string** | The fee amount in nano units (multiply by 10^decimals) | 
 **FeeCurrency** | **string** |  | 
 
 ## Methods

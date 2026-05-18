@@ -36,12 +36,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     WebhookEventTypesApi apiInstance = new WebhookEventTypesApi(defaultClient);
     try {
       List<EventType> result = apiInstance.v1WebhooksEventtypesList();
@@ -66,7 +60,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

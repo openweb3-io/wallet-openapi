@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **string** | The amount of currency to be withdrawn | 
+**Amount** | **string** | The amount of currency to be withdrawn in nano units (multiply by 10^decimals) | 
 **Currency** | **string** | The code of currency to be withdrawn. | 
 **Fee** | Pointer to **string** | The fee of the withdrawal | [optional] 
 **FeeCurrency** | Pointer to **string** | The currency of fee | [optional] 

@@ -16,7 +16,7 @@ import (
 
 // CreateWithdrawRequest struct for CreateWithdrawRequest
 type CreateWithdrawRequest struct {
-	// The amount of currency to be withdrawn
+	// The amount of currency to be withdrawn in nano units (multiply by 10^decimals)
 	Amount string `json:"amount"`
 	// The code of currency to be withdrawn.
 	Currency string `json:"currency"`

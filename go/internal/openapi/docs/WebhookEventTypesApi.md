@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiV1WebhooksEventtypesListRe
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

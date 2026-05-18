@@ -185,298 +185,6 @@ paths:
       summary: Get Currency
       tags:
       - currencies
-  /api/v1/exchanges:
-    get:
-      description: list exchanges
-      operationId: v1.exchanges.list
-      parameters:
-      - description: The cursor to use for pagination.
-        in: query
-        name: cursor
-        schema:
-          type: string
-      - description: The number of items to return per page.
-        in: query
-        name: limit
-        required: true
-        schema:
-          maximum: 100
-          minimum: 1
-          type: integer
-      - description: The wallet id
-        in: query
-        name: wallet_id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CursorPage-Exchange'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: list exchanges
-      tags:
-      - exchanges
-    post:
-      description: Create a new exchange
-      operationId: v1.exchanges.create
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateExchange'
-        description: CreateExchange
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Exchange'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: create exchange
-      tags:
-      - exchanges
-      x-codegen-request-body-name: request
-  /api/v1/exchanges/currency_pair_quota:
-    get:
-      description: get currency pair quota
-      operationId: v1.exchanges.currency_quota
-      parameters:
-      - in: query
-        name: from_currency
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: to_currency
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetCurrencyPairQuotaResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: currency pair quota
-      tags:
-      - exchanges
-  /api/v1/exchanges/currency_pairs:
-    get:
-      description: list currency pairs
-      operationId: v1.exchanges.currency_pairs
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListExchangeCurrencyPairsResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: list currency pairs
-      tags:
-      - exchanges
-  /api/v1/exchanges/{exchangeId}:
-    get:
-      description: retrieve a specified exchange
-      operationId: v1.exchanges.retrieve
-      parameters:
-      - description: Exchange ID
-        in: path
-        name: exchangeId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Exchange'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: retrieve exchange
-      tags:
-      - exchanges
-  /api/v1/exchanges/{exchangeId}/submit:
-    post:
-      description: submit a exchange
-      operationId: v1.exchanges.submit
-      parameters:
-      - description: Exchange ID
-        in: path
-        name: exchangeId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExchangeSubmitResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: submit exchange
-      tags:
-      - exchanges
   /api/v1/networks:
     get:
       description: List networks
@@ -586,7 +294,8 @@ paths:
       description: Estimates currency exchange amounts.
       operationId: v1.rates.estimate
       parameters:
-      - description: The amount of the base currency you want to convert
+      - description: The amount of the base currency you want to convert in nano units
+          (multiply by 10^decimals)
         in: query
         name: base_amount
         required: true
@@ -645,62 +354,6 @@ paths:
       summary: Estimates
       tags:
       - rates
-  /api/v1/sweep/address/{address}:
-    post:
-      description: Sweep funds from a single address
-      operationId: v1.sweep.address
-      parameters:
-      - description: Address that funds will be swept from
-        in: path
-        name: address
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SweepAddressRequest'
-        description: Request
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SweepAddressResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Bad Request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      - SignatureAuth: []
-      summary: Sweep address
-      tags:
-      - sweep funds
-      x-codegen-request-body-name: request
   /api/v1/transactions:
     get:
       description: List transactions
@@ -1848,45 +1501,18 @@ components:
       - filter_types
       - url
       type: object
-    CreateExchange:
-      example:
-        wallet_id: wallet_id
-        from_currency: from_currency
-        from_amount: from_amount
-        fiat_currency: fiat_currency
-        to_currency: to_currency
-      properties:
-        fiat_currency:
-          description: 'The currency code of fiat currency, e.g.: USD'
-          type: string
-        from_amount:
-          description: 'The amount of the source currency to be exchange, e.g.: 100000'
-          type: string
-        from_currency:
-          description: 'The currency code of source currency, e.g.: TON'
-          type: string
-        to_currency:
-          description: 'The currency code of target currency, e.g.: USDT'
-          type: string
-        wallet_id:
-          description: The wallet id
-          type: string
-      required:
-      - fiat_currency
-      - from_amount
-      - from_currency
-      - to_currency
-      - wallet_id
-      type: object
     CreateTransferRequest:
       example:
         amount: amount
+        metadata:
+          key: metadata
         currency: currency
         from: from
         to: to
       properties:
         amount:
-          description: The amount of currency to be transferred
+          description: The amount of currency to be transferred in nano units (multiply
+            by 10^decimals)
           type: string
         currency:
           description: The code of currency to be transferred
@@ -1894,6 +1520,12 @@ components:
         from:
           description: The ID of the wallet from which the transfer will be made
           type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Optional metadata for storing extra info
+          nullable: true
+          type: object
         to:
           description: The ID of the wallet to which the transfer will be made
           type: string
@@ -1946,7 +1578,8 @@ components:
         network: network
       properties:
         amount:
-          description: The amount of currency to be withdrawn
+          description: The amount of currency to be withdrawn in nano units (multiply
+            by 10^decimals)
           type: string
         currency:
           description: The code of currency to be withdrawn.
@@ -1979,6 +1612,7 @@ components:
         symbol: symbol
         code: code
         need_memo: true
+        min_transfer_amount: min_transfer_amount
         precision: 1
         can_deposit: true
         contract_address: contract_address
@@ -1998,6 +1632,7 @@ components:
           min_fee: min_fee
           name: name
           can_withdraw: true
+          disabled: true
           id: id
           can_transfer: true
           min_deposit_amount: min_deposit_amount
@@ -2018,6 +1653,7 @@ components:
           min_fee: min_fee
           name: name
           can_withdraw: true
+          disabled: true
           id: id
           can_transfer: true
           min_deposit_amount: min_deposit_amount
@@ -2033,6 +1669,7 @@ components:
         name: name
         logo: logo
         can_withdraw: true
+        disabled: true
         can_transfer: true
         min_deposit_amount: min_deposit_amount
         max_fee: max_fee
@@ -2055,6 +1692,9 @@ components:
         decimals:
           description: Decimal precision
           type: integer
+        disabled:
+          description: Indicates if the currency is disabled
+          type: boolean
         logo:
           description: Currency logo URL
           type: string
@@ -2065,10 +1705,12 @@ components:
           description: Maximum fee for contract addresses
           type: string
         max_withdraw_amount:
-          description: Maximum withdraw amount per transaction
+          description: Maximum withdraw amount per transaction in nano units (multiply
+            by 10^decimals)
           type: string
         min_deposit_amount:
-          description: Minimum deposit amount per transaction
+          description: Minimum deposit amount per transaction in nano units (multiply
+            by 10^decimals)
           type: string
         min_fee:
           description: Minimum fee
@@ -2076,8 +1718,13 @@ components:
         min_fee_for_ct_addr:
           description: Minimum fee for contract addresses
           type: string
+        min_transfer_amount:
+          description: Minimum transfer amount per transaction in nano units (multiply
+            by 10^decimals)
+          type: string
         min_withdraw_amount:
-          description: Minimum withdraw amount per transaction
+          description: Minimum withdraw amount per transaction in nano units (multiply
+            by 10^decimals)
           type: string
         name:
           description: Currency name
@@ -2105,6 +1752,7 @@ components:
       - can_withdraw
       - code
       - decimals
+      - disabled
       - logo
       - max_fee
       - max_fee_for_ct_addr
@@ -2112,6 +1760,7 @@ components:
       - min_deposit_amount
       - min_fee
       - min_fee_for_ct_addr
+      - min_transfer_amount
       - min_withdraw_amount
       - name
       - need_memo
@@ -2137,6 +1786,7 @@ components:
         min_fee: min_fee
         name: name
         can_withdraw: true
+        disabled: true
         id: id
         can_transfer: true
         min_deposit_amount: min_deposit_amount
@@ -2159,6 +1809,9 @@ components:
           description: Contract address for tokens based on smart contracts, such
             as ERC-20
           type: string
+        disabled:
+          description: Indicates if the currency network is disabled
+          type: boolean
         fee:
           description: Transaction fee
           type: string
@@ -2174,18 +1827,20 @@ components:
           description: Maximum transaction fee for contract addresses
           type: string
         max_withdraw_amount:
-          description: Maximum amount for a single on-chain withdrawal
+          description: Maximum amount for a single on-chain withdrawal in nano units
+            (multiply by 10^decimals)
           type: string
         min_collect_amount:
-          description: Minimum amount for collection, i.e., the minimum amount to
-            aggregate small balances to a single address
+          description: Minimum amount for collection in nano units (multiply by 10^decimals),
+            i.e., the minimum amount to aggregate small balances to a single address
           type: string
         min_confirmations:
           description: Minimum number of confirmations required, indicating the number
             of block confirmations needed for a transaction to be considered valid
           type: integer
         min_deposit_amount:
-          description: Minimum amount for a single deposit
+          description: Minimum amount for a single deposit in nano units (multiply
+            by 10^decimals)
           type: string
         min_fee:
           description: Minimum transaction fee
@@ -2194,7 +1849,8 @@ components:
           description: Minimum transaction fee for contract addresses
           type: string
         min_withdraw_amount:
-          description: Minimum amount for a single on-chain withdrawal
+          description: Minimum amount for a single on-chain withdrawal in nano units
+            (multiply by 10^decimals)
           type: string
         name:
           description: Name of the currency, e.g., Bitcoin, Ethereum, etc.
@@ -2211,6 +1867,7 @@ components:
       - can_transfer
       - can_withdraw
       - code
+      - disabled
       - fee
       - fee_currency
       - id
@@ -2363,6 +2020,7 @@ components:
         - symbol: symbol
           code: code
           need_memo: true
+          min_transfer_amount: min_transfer_amount
           precision: 1
           can_deposit: true
           contract_address: contract_address
@@ -2382,6 +2040,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -2402,6 +2061,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -2417,12 +2077,14 @@ components:
           name: name
           logo: logo
           can_withdraw: true
+          disabled: true
           can_transfer: true
           min_deposit_amount: min_deposit_amount
           max_fee: max_fee
         - symbol: symbol
           code: code
           need_memo: true
+          min_transfer_amount: min_transfer_amount
           precision: 1
           can_deposit: true
           contract_address: contract_address
@@ -2442,6 +2104,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -2462,6 +2125,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -2477,6 +2141,7 @@ components:
           name: name
           logo: logo
           can_withdraw: true
+          disabled: true
           can_transfer: true
           min_deposit_amount: min_deposit_amount
           max_fee: max_fee
@@ -2539,59 +2204,6 @@ components:
           description: List of items in the current page.
           items:
             $ref: '#/components/schemas/Endpoint'
-          type: array
-        next_cursor:
-          description: The cursor to use for fetching the next page of items.
-          type: string
-        prev_cursor:
-          description: The cursor to use for fetching the previous page of items.
-          type: string
-      required:
-      - has_next
-      - items
-      type: object
-    CursorPage-Exchange:
-      example:
-        prev_cursor: prev_cursor
-        next_cursor: next_cursor
-        has_next: true
-        items:
-        - fee_currency: fee_currency
-          from_amount: from_amount
-          created_at: created_at
-          fiat_currency: fiat_currency
-          ttl: 6
-          fee_amount: fee_amount
-          wallet_id: wallet_id
-          to_amount: to_amount
-          updated_at: updated_at
-          rate: 0.8008281904610115
-          from_currency: from_currency
-          id: id
-          status: status
-          to_currency: to_currency
-        - fee_currency: fee_currency
-          from_amount: from_amount
-          created_at: created_at
-          fiat_currency: fiat_currency
-          ttl: 6
-          fee_amount: fee_amount
-          wallet_id: wallet_id
-          to_amount: to_amount
-          updated_at: updated_at
-          rate: 0.8008281904610115
-          from_currency: from_currency
-          id: id
-          status: status
-          to_currency: to_currency
-      properties:
-        has_next:
-          description: Whether there are more items available in the next page.
-          type: boolean
-        items:
-          description: List of items in the current page.
-          items:
-            $ref: '#/components/schemas/Exchange'
           type: array
         next_cursor:
           description: The cursor to use for fetching the next page of items.
@@ -2812,7 +2424,8 @@ components:
         network: network
       properties:
         amount:
-          description: The amount of currency to be withdrawn
+          description: The amount of currency to be withdrawn in nano units (multiply
+            by 10^decimals)
           type: string
         currency:
           description: The code of currency to be withdrawn.
@@ -2840,6 +2453,7 @@ components:
         fee_currency: fee_currency
       properties:
         fee_amount:
+          description: The fee amount in nano units (multiply by 10^decimals)
           type: string
         fee_currency:
           type: string
@@ -2856,7 +2470,8 @@ components:
         to_currency: to_currency
       properties:
         base_amount:
-          description: The amount of the base currency you want to convert
+          description: The amount of the base currency you want to convert in nano
+            units (multiply by 10^decimals)
           type: string
         base_currency:
           description: The currency code of the base currency that you want to convert
@@ -2867,7 +2482,7 @@ components:
           type: number
         to_amount:
           description: The amount of the target currency you will receive after the
-            conversion
+            conversion in nano units (multiply by 10^decimals)
           type: string
         to_currency:
           description: The currency code of the target currency that you want to convert
@@ -2894,143 +2509,6 @@ components:
       required:
       - description
       - eventType
-      type: object
-    Exchange:
-      example:
-        fee_currency: fee_currency
-        from_amount: from_amount
-        created_at: created_at
-        fiat_currency: fiat_currency
-        ttl: 6
-        fee_amount: fee_amount
-        wallet_id: wallet_id
-        to_amount: to_amount
-        updated_at: updated_at
-        rate: 0.8008281904610115
-        from_currency: from_currency
-        id: id
-        status: status
-        to_currency: to_currency
-      properties:
-        created_at:
-          description: The create time
-          type: string
-        fee_amount:
-          description: The amount of the fee charged for this exchange, denominated
-            in the `fee_currency`
-          type: string
-        fee_currency:
-          description: The currency in which the fee is denominated. For example,
-            'TON'.
-          type: string
-        fiat_currency:
-          description: 'The currency code of fiat currency, e.g.: USD'
-          type: string
-        from_amount:
-          description: The amount of the source currency being sent. For example,
-            0.1 TON.
-          type: string
-        from_currency:
-          description: The currency being sent. In this case, it is 'TON'.
-          type: string
-        id:
-          description: A unique identifier for the exchange.
-          type: string
-        rate:
-          description: The exchange rate applied during the exchange. For example,
-            the rate is 7.11116.
-          type: number
-        status:
-          description: The status of the exchange. For example, 'SUCCESS'.
-          type: string
-        to_amount:
-          description: The amount of the target currency received. For example, 0.711116
-            USDT.
-          type: string
-        to_currency:
-          description: The currency being received. In this case, it is 'USDT'.
-          type: string
-        ttl:
-          description: The validity period for the exchange
-          type: integer
-        updated_at:
-          description: The update time
-          type: string
-        wallet_id:
-          description: The walletID that the exchange belong to
-          type: string
-      required:
-      - created_at
-      - fee_amount
-      - fee_currency
-      - fiat_currency
-      - from_amount
-      - from_currency
-      - id
-      - rate
-      - status
-      - to_amount
-      - to_currency
-      - ttl
-      - updated_at
-      - wallet_id
-      type: object
-    ExchangeCurrencyPairs:
-      example:
-        to_currencies:
-        - to_currencies
-        - to_currencies
-        from_currency: from_currency
-      properties:
-        from_currency:
-          description: 'The currency code of source currency, e.g.: TON'
-          type: string
-        to_currencies:
-          description: 'The currency code list of target currency, e.g.: USDT'
-          items:
-            type: string
-          type: array
-      type: object
-    ExchangeSubmitResponse:
-      example:
-        exchange_id: exchange_id
-      properties:
-        exchange_id:
-          description: The exchange id
-          type: string
-      type: object
-    GetCurrencyPairQuotaResponse:
-      example:
-        to_amount_min: to_amount_min
-        from_currency: from_currency
-        from_amount_min: from_amount_min
-        from_amount_max: from_amount_max
-        to_amount_max: to_amount_max
-        to_currency: to_currency
-      properties:
-        from_amount_max:
-          description: float string
-          type: string
-        from_amount_min:
-          description: float string
-          type: string
-        from_currency:
-          type: string
-        to_amount_max:
-          description: float string
-          type: string
-        to_amount_min:
-          description: float string
-          type: string
-        to_currency:
-          type: string
-      required:
-      - from_amount_max
-      - from_amount_min
-      - from_currency
-      - to_amount_max
-      - to_amount_min
-      - to_currency
       type: object
     GetRatesRequest:
       example:
@@ -3074,24 +2552,6 @@ components:
       required:
       - rates
       type: object
-    ListExchangeCurrencyPairsResponse:
-      example:
-        items:
-        - to_currencies:
-          - to_currencies
-          - to_currencies
-          from_currency: from_currency
-        - to_currencies:
-          - to_currencies
-          - to_currencies
-          from_currency: from_currency
-      properties:
-        items:
-          description: The list of currency pairs
-          items:
-            $ref: '#/components/schemas/ExchangeCurrencyPairs'
-          type: array
-      type: object
     Rate:
       example:
         rate: 0.8008281904610115
@@ -3133,26 +2593,6 @@ components:
       required:
       - success
       type: object
-    SweepAddressRequest:
-      example:
-        currency: currency
-      properties:
-        currency:
-          description: currency to be swept
-          type: string
-      required:
-      - currency
-      type: object
-    SweepAddressResponse:
-      example:
-        tx_id: tx_id
-      properties:
-        tx_id:
-          description: transaction id
-          type: string
-      required:
-      - tx_id
-      type: object
     Transaction:
       example:
         amount: amount
@@ -3171,7 +2611,8 @@ components:
         status: '{}'
       properties:
         amount:
-          description: The total amount of money involved in the transaction.
+          description: The total amount of money involved in the transaction in nano
+            units (multiply by 10^decimals)
           type: string
         avatar:
           description: A URL or path to an avatar image associated with the transaction,
@@ -3191,7 +2632,7 @@ components:
             is incoming or outgoing.
           type: object
         fee_amount:
-          description: The amount of fee
+          description: The amount of fee in nano units (multiply by 10^decimals)
           type: string
         fee_currency:
           description: The currency of fee
@@ -3368,9 +2809,5 @@ components:
     ApiKeyAuth:
       in: header
       name: X-Api-Key
-      type: apiKey
-    SignatureAuth:
-      in: header
-      name: X-Signature
       type: apiKey
 x-original-swagger-version: "2.0"

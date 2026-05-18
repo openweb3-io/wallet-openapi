@@ -7,7 +7,6 @@ import { Account } from '../models/Account';
 import { Address } from '../models/Address';
 import { ChainNetwork } from '../models/ChainNetwork';
 import { CreateEndpoint } from '../models/CreateEndpoint';
-import { CreateExchange } from '../models/CreateExchange';
 import { CreateTransferRequest } from '../models/CreateTransferRequest';
 import { CreateTransferResponse } from '../models/CreateTransferResponse';
 import { CreateWalletRequest } from '../models/CreateWalletRequest';
@@ -21,7 +20,6 @@ import { CursorPageAddress } from '../models/CursorPageAddress';
 import { CursorPageChainNetwork } from '../models/CursorPageChainNetwork';
 import { CursorPageCurrency } from '../models/CursorPageCurrency';
 import { CursorPageEndpoint } from '../models/CursorPageEndpoint';
-import { CursorPageExchange } from '../models/CursorPageExchange';
 import { CursorPageTransaction } from '../models/CursorPageTransaction';
 import { CursorPageWallet } from '../models/CursorPageWallet';
 import { CursorPageWebhookEvent } from '../models/CursorPageWebhookEvent';
@@ -31,19 +29,12 @@ import { EstimateFeeRequest } from '../models/EstimateFeeRequest';
 import { EstimateFeeResponse } from '../models/EstimateFeeResponse';
 import { EstimateResponse } from '../models/EstimateResponse';
 import { EventType } from '../models/EventType';
-import { Exchange } from '../models/Exchange';
-import { ExchangeCurrencyPairs } from '../models/ExchangeCurrencyPairs';
-import { ExchangeSubmitResponse } from '../models/ExchangeSubmitResponse';
-import { GetCurrencyPairQuotaResponse } from '../models/GetCurrencyPairQuotaResponse';
 import { GetRatesRequest } from '../models/GetRatesRequest';
 import { GetRatesResponse } from '../models/GetRatesResponse';
-import { ListExchangeCurrencyPairsResponse } from '../models/ListExchangeCurrencyPairsResponse';
 import { ModelError } from '../models/ModelError';
 import { Rate } from '../models/Rate';
 import { ResendWebhookEventRequest } from '../models/ResendWebhookEventRequest';
 import { ResendWebhookEventResponse } from '../models/ResendWebhookEventResponse';
-import { SweepAddressRequest } from '../models/SweepAddressRequest';
-import { SweepAddressResponse } from '../models/SweepAddressResponse';
 import { Transaction } from '../models/Transaction';
 import { TransactionDirection } from '../models/TransactionDirection';
 import { TransactionStatus } from '../models/TransactionStatus';
@@ -220,170 +211,6 @@ export class ObservableCurrenciesApi {
  
 }
 
-import { ExchangesApiRequestFactory, ExchangesApiResponseProcessor} from "../apis/ExchangesApi";
-export class ObservableExchangesApi {
-    private requestFactory: ExchangesApiRequestFactory;
-    private responseProcessor: ExchangesApiResponseProcessor;
-    private configuration: Configuration;
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ExchangesApiRequestFactory,
-        responseProcessor?: ExchangesApiResponseProcessor
-    ) {
-        this.configuration = configuration;
-        this.requestFactory = requestFactory || new ExchangesApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new ExchangesApiResponseProcessor();
-    }
-
-    /**
-     * Create a new exchange
-     * create exchange
-     * @param request CreateExchange
-     */
-    public v1ExchangesCreate(request: CreateExchange, _options?: Configuration): Observable<Exchange> {
-        const requestContextPromise = this.requestFactory.v1ExchangesCreate(request, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1ExchangesCreate(rsp)));
-            }));
-    }
- 
-    /**
-     * list currency pairs
-     * list currency pairs
-     */
-    public v1ExchangesCurrencyPairs(_options?: Configuration): Observable<ListExchangeCurrencyPairsResponse> {
-        const requestContextPromise = this.requestFactory.v1ExchangesCurrencyPairs(_options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1ExchangesCurrencyPairs(rsp)));
-            }));
-    }
- 
-    /**
-     * get currency pair quota
-     * currency pair quota
-     * @param fromCurrency 
-     * @param toCurrency 
-     */
-    public v1ExchangesCurrencyQuota(fromCurrency: string, toCurrency: string, _options?: Configuration): Observable<GetCurrencyPairQuotaResponse> {
-        const requestContextPromise = this.requestFactory.v1ExchangesCurrencyQuota(fromCurrency, toCurrency, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1ExchangesCurrencyQuota(rsp)));
-            }));
-    }
- 
-    /**
-     * list exchanges
-     * list exchanges
-     * @param limit The number of items to return per page.
-     * @param walletId The wallet id
-     * @param cursor The cursor to use for pagination.
-     */
-    public v1ExchangesList(limit: number, walletId: string, cursor?: string, _options?: Configuration): Observable<CursorPageExchange> {
-        const requestContextPromise = this.requestFactory.v1ExchangesList(limit, walletId, cursor, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1ExchangesList(rsp)));
-            }));
-    }
- 
-    /**
-     * retrieve a specified exchange
-     * retrieve exchange
-     * @param exchangeId Exchange ID
-     */
-    public v1ExchangesRetrieve(exchangeId: string, _options?: Configuration): Observable<Exchange> {
-        const requestContextPromise = this.requestFactory.v1ExchangesRetrieve(exchangeId, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1ExchangesRetrieve(rsp)));
-            }));
-    }
- 
-    /**
-     * submit a exchange
-     * submit exchange
-     * @param exchangeId Exchange ID
-     */
-    public v1ExchangesSubmit(exchangeId: string, _options?: Configuration): Observable<ExchangeSubmitResponse> {
-        const requestContextPromise = this.requestFactory.v1ExchangesSubmit(exchangeId, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1ExchangesSubmit(rsp)));
-            }));
-    }
- 
-}
-
 import { NetworksApiRequestFactory, NetworksApiResponseProcessor} from "../apis/NetworksApi";
 export class ObservableNetworksApi {
     private requestFactory: NetworksApiRequestFactory;
@@ -446,7 +273,7 @@ export class ObservableRatesApi {
     /**
      * Estimates currency exchange amounts.
      * Estimates
-     * @param baseAmount The amount of the base currency you want to convert
+     * @param baseAmount The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
      * @param baseCurrency The currency code of the base currency that you want to convert from
      * @param toCurrency The currency code of the target currency that you want to convert to
      */
@@ -490,49 +317,6 @@ export class ObservableRatesApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RatesList(rsp)));
-            }));
-    }
- 
-}
-
-import { SweepFundsApiRequestFactory, SweepFundsApiResponseProcessor} from "../apis/SweepFundsApi";
-export class ObservableSweepFundsApi {
-    private requestFactory: SweepFundsApiRequestFactory;
-    private responseProcessor: SweepFundsApiResponseProcessor;
-    private configuration: Configuration;
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: SweepFundsApiRequestFactory,
-        responseProcessor?: SweepFundsApiResponseProcessor
-    ) {
-        this.configuration = configuration;
-        this.requestFactory = requestFactory || new SweepFundsApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new SweepFundsApiResponseProcessor();
-    }
-
-    /**
-     * Sweep funds from a single address
-     * Sweep address
-     * @param address Address that funds will be swept from
-     * @param request Request
-     */
-    public v1SweepAddress(address: string, request: SweepAddressRequest, _options?: Configuration): Observable<SweepAddressResponse> {
-        const requestContextPromise = this.requestFactory.v1SweepAddress(address, request, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1SweepAddress(rsp)));
             }));
     }
  

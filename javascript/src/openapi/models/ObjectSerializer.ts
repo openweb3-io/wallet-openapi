@@ -2,7 +2,6 @@ export * from './Account';
 export * from './Address';
 export * from './ChainNetwork';
 export * from './CreateEndpoint';
-export * from './CreateExchange';
 export * from './CreateTransferRequest';
 export * from './CreateTransferResponse';
 export * from './CreateWalletRequest';
@@ -16,7 +15,6 @@ export * from './CursorPageAddress';
 export * from './CursorPageChainNetwork';
 export * from './CursorPageCurrency';
 export * from './CursorPageEndpoint';
-export * from './CursorPageExchange';
 export * from './CursorPageTransaction';
 export * from './CursorPageWallet';
 export * from './CursorPageWebhookEvent';
@@ -26,19 +24,12 @@ export * from './EstimateFeeRequest';
 export * from './EstimateFeeResponse';
 export * from './EstimateResponse';
 export * from './EventType';
-export * from './Exchange';
-export * from './ExchangeCurrencyPairs';
-export * from './ExchangeSubmitResponse';
-export * from './GetCurrencyPairQuotaResponse';
 export * from './GetRatesRequest';
 export * from './GetRatesResponse';
-export * from './ListExchangeCurrencyPairsResponse';
 export * from './ModelError';
 export * from './Rate';
 export * from './ResendWebhookEventRequest';
 export * from './ResendWebhookEventResponse';
-export * from './SweepAddressRequest';
-export * from './SweepAddressResponse';
 export * from './Transaction';
 export * from './TransactionDirection';
 export * from './TransactionStatus';
@@ -51,7 +42,6 @@ import { Account } from './Account';
 import { Address } from './Address';
 import { ChainNetwork } from './ChainNetwork';
 import { CreateEndpoint } from './CreateEndpoint';
-import { CreateExchange } from './CreateExchange';
 import { CreateTransferRequest } from './CreateTransferRequest';
 import { CreateTransferResponse } from './CreateTransferResponse';
 import { CreateWalletRequest } from './CreateWalletRequest';
@@ -65,7 +55,6 @@ import { CursorPageAddress } from './CursorPageAddress';
 import { CursorPageChainNetwork } from './CursorPageChainNetwork';
 import { CursorPageCurrency } from './CursorPageCurrency';
 import { CursorPageEndpoint } from './CursorPageEndpoint';
-import { CursorPageExchange } from './CursorPageExchange';
 import { CursorPageTransaction } from './CursorPageTransaction';
 import { CursorPageWallet } from './CursorPageWallet';
 import { CursorPageWebhookEvent } from './CursorPageWebhookEvent';
@@ -75,19 +64,12 @@ import { EstimateFeeRequest } from './EstimateFeeRequest';
 import { EstimateFeeResponse } from './EstimateFeeResponse';
 import { EstimateResponse } from './EstimateResponse';
 import { EventType } from './EventType';
-import { Exchange } from './Exchange';
-import { ExchangeCurrencyPairs } from './ExchangeCurrencyPairs';
-import { ExchangeSubmitResponse } from './ExchangeSubmitResponse';
-import { GetCurrencyPairQuotaResponse } from './GetCurrencyPairQuotaResponse';
 import { GetRatesRequest } from './GetRatesRequest';
 import { GetRatesResponse } from './GetRatesResponse';
-import { ListExchangeCurrencyPairsResponse } from './ListExchangeCurrencyPairsResponse';
 import { ModelError } from './ModelError';
 import { Rate } from './Rate';
 import { ResendWebhookEventRequest } from './ResendWebhookEventRequest';
 import { ResendWebhookEventResponse } from './ResendWebhookEventResponse';
-import { SweepAddressRequest } from './SweepAddressRequest';
-import { SweepAddressResponse } from './SweepAddressResponse';
 import { Transaction } from './Transaction';
 import { TransactionDirection } from './TransactionDirection';
 import { TransactionStatus } from './TransactionStatus';
@@ -124,7 +106,6 @@ let typeMap: {[index: string]: any} = {
     "Address": Address,
     "ChainNetwork": ChainNetwork,
     "CreateEndpoint": CreateEndpoint,
-    "CreateExchange": CreateExchange,
     "CreateTransferRequest": CreateTransferRequest,
     "CreateTransferResponse": CreateTransferResponse,
     "CreateWalletRequest": CreateWalletRequest,
@@ -138,7 +119,6 @@ let typeMap: {[index: string]: any} = {
     "CursorPageChainNetwork": CursorPageChainNetwork,
     "CursorPageCurrency": CursorPageCurrency,
     "CursorPageEndpoint": CursorPageEndpoint,
-    "CursorPageExchange": CursorPageExchange,
     "CursorPageTransaction": CursorPageTransaction,
     "CursorPageWallet": CursorPageWallet,
     "CursorPageWebhookEvent": CursorPageWebhookEvent,
@@ -148,19 +128,12 @@ let typeMap: {[index: string]: any} = {
     "EstimateFeeResponse": EstimateFeeResponse,
     "EstimateResponse": EstimateResponse,
     "EventType": EventType,
-    "Exchange": Exchange,
-    "ExchangeCurrencyPairs": ExchangeCurrencyPairs,
-    "ExchangeSubmitResponse": ExchangeSubmitResponse,
-    "GetCurrencyPairQuotaResponse": GetCurrencyPairQuotaResponse,
     "GetRatesRequest": GetRatesRequest,
     "GetRatesResponse": GetRatesResponse,
-    "ListExchangeCurrencyPairsResponse": ListExchangeCurrencyPairsResponse,
     "ModelError": ModelError,
     "Rate": Rate,
     "ResendWebhookEventRequest": ResendWebhookEventRequest,
     "ResendWebhookEventResponse": ResendWebhookEventResponse,
-    "SweepAddressRequest": SweepAddressRequest,
-    "SweepAddressResponse": SweepAddressResponse,
     "Transaction": Transaction,
     "UpdateEndpoint": UpdateEndpoint,
     "UpdateWalletRequest": UpdateWalletRequest,

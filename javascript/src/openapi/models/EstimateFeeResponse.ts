@@ -13,6 +13,9 @@
 import { HttpFile } from '../http/http';
 
 export class EstimateFeeResponse {
+    /**
+    * The fee amount in nano units (multiply by 10^decimals)
+    */
     'feeAmount': string;
     'feeCurrency': string;
 

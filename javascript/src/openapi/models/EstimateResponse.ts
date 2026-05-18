@@ -14,7 +14,7 @@ import { HttpFile } from '../http/http';
 
 export class EstimateResponse {
     /**
-    * The amount of the base currency you want to convert
+    * The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
     */
     'baseAmount': string;
     /**
@@ -26,7 +26,7 @@ export class EstimateResponse {
     */
     'rate': number;
     /**
-    * The amount of the target currency you will receive after the conversion
+    * The amount of the target currency you will receive after the conversion in nano units (multiply by 10^decimals)
     */
     'toAmount': string;
     /**

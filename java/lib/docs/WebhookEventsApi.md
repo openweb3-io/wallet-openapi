@@ -37,12 +37,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
     Integer limit = 56; // Integer | The number of items to return per page.
     String cursor = "cursor_example"; // String | The cursor to use for pagination.
@@ -75,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -118,12 +112,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
     ResendWebhookEventRequest request = new ResendWebhookEventRequest(); // ResendWebhookEventRequest | The request
     try {
@@ -152,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

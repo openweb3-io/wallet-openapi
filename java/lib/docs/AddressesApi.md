@@ -38,12 +38,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     AddressesApi apiInstance = new AddressesApi(defaultClient);
     Integer limit = 56; // Integer | The number of items to return per page.
     String currency = "currency_example"; // String | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).
@@ -80,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -125,12 +119,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     AddressesApi apiInstance = new AddressesApi(defaultClient);
     String walletId = "walletId_example"; // String | Wallet ID
     String currency = "currency_example"; // String | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).
@@ -163,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -208,12 +196,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     AddressesApi apiInstance = new AddressesApi(defaultClient);
     String walletId = "walletId_example"; // String | Wallet ID
     Integer limit = 56; // Integer | The number of items to return per page.
@@ -250,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

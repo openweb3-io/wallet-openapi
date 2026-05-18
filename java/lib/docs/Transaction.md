@@ -7,12 +7,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **String** | The total amount of money involved in the transaction. | 
+**amount** | **String** | The total amount of money involved in the transaction in nano units (multiply by 10^decimals) | 
 **avatar** | **String** | A URL or path to an avatar image associated with the transaction, often used to visually represent the transaction&#39;s source or recipient. | 
 **createdAt** | **String** | The date and time when the transaction was created. | 
 **currency** | **String** | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.). | 
 **direction** | [**TransactionDirection**](TransactionDirection.md) | Indicates the flow of the transaction, typically whether it is incoming or outgoing. | 
-**feeAmount** | **String** | The amount of fee | 
+**feeAmount** | **String** | The amount of fee in nano units (multiply by 10^decimals) | 
 **feeCurrency** | **String** | The currency of fee | 
 **fromAddress** | **String** | The address of the sender. | 
 **gateway** | **String** | The payment gateway or platform used to process the transaction. | 

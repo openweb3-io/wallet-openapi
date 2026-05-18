@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **String** | The amount of currency to be withdrawn | 
+**amount** | **String** | The amount of currency to be withdrawn in nano units (multiply by 10^decimals) | 
 **currency** | **String** | The code of currency to be withdrawn. | 
 **fee** | **String** | The fee of the withdrawal |  [optional]
 **feeCurrency** | **String** | The currency of fee |  [optional]

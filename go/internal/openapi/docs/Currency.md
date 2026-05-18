@@ -10,14 +10,16 @@ Name | Type | Description | Notes
 **Code** | **string** | Currency code identifier | 
 **ContractAddress** | Pointer to **string** | Contract address (for token contracts, if applicable) | [optional] 
 **Decimals** | **int32** | Decimal precision | 
+**Disabled** | **bool** | Indicates if the currency is disabled | 
 **Logo** | **string** | Currency logo URL | 
 **MaxFee** | **string** | Maximum fee | 
 **MaxFeeForCtAddr** | **string** | Maximum fee for contract addresses | 
-**MaxWithdrawAmount** | **string** | Maximum withdraw amount per transaction | 
-**MinDepositAmount** | **string** | Minimum deposit amount per transaction | 
+**MaxWithdrawAmount** | **string** | Maximum withdraw amount per transaction in nano units (multiply by 10^decimals) | 
+**MinDepositAmount** | **string** | Minimum deposit amount per transaction in nano units (multiply by 10^decimals) | 
 **MinFee** | **string** | Minimum fee | 
 **MinFeeForCtAddr** | **string** | Minimum fee for contract addresses | 
-**MinWithdrawAmount** | **string** | Minimum withdraw amount per transaction | 
+**MinTransferAmount** | **string** | Minimum transfer amount per transaction in nano units (multiply by 10^decimals) | 
+**MinWithdrawAmount** | **string** | Minimum withdraw amount per transaction in nano units (multiply by 10^decimals) | 
 **Name** | **string** | Currency name | 
 **NeedMemo** | **bool** | Does it require a memo/note for transactions | 
 **Networks** | [**[]CurrencyNetwork**](CurrencyNetwork.md) | Networks information | 
@@ -29,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewCurrency
 
-`func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, networks []CurrencyNetwork, precision int32, rated bool, symbol string, ) *Currency`
+`func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minTransferAmount string, minWithdrawAmount string, name string, needMemo bool, networks []CurrencyNetwork, precision int32, rated bool, symbol string, ) *Currency`
 
 NewCurrency instantiates a new Currency object
 This constructor will assign default values to properties that have it defined,
@@ -167,6 +169,26 @@ and a boolean to check if the value has been set.
 `func (o *Currency) SetDecimals(v int32)`
 
 SetDecimals sets Decimals field to given value.
+
+
+### GetDisabled
+
+`func (o *Currency) GetDisabled() bool`
+
+GetDisabled returns the Disabled field if non-nil, zero value otherwise.
+
+### GetDisabledOk
+
+`func (o *Currency) GetDisabledOk() (*bool, bool)`
+
+GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabled
+
+`func (o *Currency) SetDisabled(v bool)`
+
+SetDisabled sets Disabled field to given value.
 
 
 ### GetLogo
@@ -307,6 +329,26 @@ and a boolean to check if the value has been set.
 `func (o *Currency) SetMinFeeForCtAddr(v string)`
 
 SetMinFeeForCtAddr sets MinFeeForCtAddr field to given value.
+
+
+### GetMinTransferAmount
+
+`func (o *Currency) GetMinTransferAmount() string`
+
+GetMinTransferAmount returns the MinTransferAmount field if non-nil, zero value otherwise.
+
+### GetMinTransferAmountOk
+
+`func (o *Currency) GetMinTransferAmountOk() (*string, bool)`
+
+GetMinTransferAmountOk returns a tuple with the MinTransferAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinTransferAmount
+
+`func (o *Currency) SetMinTransferAmount(v string)`
+
+SetMinTransferAmount sets MinTransferAmount field to given value.
 
 
 ### GetMinWithdrawAmount

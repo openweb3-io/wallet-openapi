@@ -39,6 +39,10 @@ export class Currency {
     */
     'decimals': number;
     /**
+    * Indicates if the currency is disabled
+    */
+    'disabled': boolean;
+    /**
     * Currency logo URL
     */
     'logo': string;
@@ -51,11 +55,11 @@ export class Currency {
     */
     'maxFeeForCtAddr': string;
     /**
-    * Maximum withdraw amount per transaction
+    * Maximum withdraw amount per transaction in nano units (multiply by 10^decimals)
     */
     'maxWithdrawAmount': string;
     /**
-    * Minimum deposit amount per transaction
+    * Minimum deposit amount per transaction in nano units (multiply by 10^decimals)
     */
     'minDepositAmount': string;
     /**
@@ -67,7 +71,11 @@ export class Currency {
     */
     'minFeeForCtAddr': string;
     /**
-    * Minimum withdraw amount per transaction
+    * Minimum transfer amount per transaction in nano units (multiply by 10^decimals)
+    */
+    'minTransferAmount': string;
+    /**
+    * Minimum withdraw amount per transaction in nano units (multiply by 10^decimals)
     */
     'minWithdrawAmount': string;
     /**
@@ -135,6 +143,12 @@ export class Currency {
             "format": ""
         },
         {
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
+            "format": ""
+        },
+        {
             "name": "logo",
             "baseName": "logo",
             "type": "string",
@@ -173,6 +187,12 @@ export class Currency {
         {
             "name": "minFeeForCtAddr",
             "baseName": "min_fee_for_ct_addr",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "minTransferAmount",
+            "baseName": "min_transfer_amount",
             "type": "string",
             "format": ""
         },

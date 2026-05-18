@@ -16,12 +16,14 @@ import (
 
 // CreateTransferRequest struct for CreateTransferRequest
 type CreateTransferRequest struct {
-	// The amount of currency to be transferred
+	// The amount of currency to be transferred in nano units (multiply by 10^decimals)
 	Amount string `json:"amount"`
 	// The code of currency to be transferred
 	Currency string `json:"currency"`
 	// The ID of the wallet from which the transfer will be made
 	From string `json:"from"`
+	// Optional metadata for storing extra info
+	Metadata map[string]string `json:"metadata,omitempty"`
 	// The ID of the wallet to which the transfer will be made
 	To string `json:"to"`
 }
@@ -119,6 +121,39 @@ func (o *CreateTransferRequest) SetFrom(v string) {
 	o.From = v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateTransferRequest) GetMetadata() map[string]string {
+	if o == nil  {
+		var ret map[string]string
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateTransferRequest) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return &o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *CreateTransferRequest) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *CreateTransferRequest) SetMetadata(v map[string]string) {
+	o.Metadata = v
+}
+
 // GetTo returns the To field value
 func (o *CreateTransferRequest) GetTo() string {
 	if o == nil {
@@ -153,6 +188,9 @@ func (o CreateTransferRequest) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["from"] = o.From
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if true {
 		toSerialize["to"] = o.To

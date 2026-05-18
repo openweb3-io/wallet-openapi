@@ -83,16 +83,9 @@ Class | Method | HTTP request | Description
 *AddressesApi* | [**V1WalletsListDepositAddresses**](docs/AddressesApi.md#v1walletslistdepositaddresses) | **Get** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
 *CurrenciesApi* | [**V1CurrenciesList**](docs/CurrenciesApi.md#v1currencieslist) | **Get** /api/v1/currencies | List currencies
 *CurrenciesApi* | [**V1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1currenciesretrieve) | **Get** /api/v1/currencies/{code} | Get Currency
-*ExchangesApi* | [**V1ExchangesCreate**](docs/ExchangesApi.md#v1exchangescreate) | **Post** /api/v1/exchanges | create exchange
-*ExchangesApi* | [**V1ExchangesCurrencyPairs**](docs/ExchangesApi.md#v1exchangescurrencypairs) | **Get** /api/v1/exchanges/currency_pairs | list currency pairs
-*ExchangesApi* | [**V1ExchangesCurrencyQuota**](docs/ExchangesApi.md#v1exchangescurrencyquota) | **Get** /api/v1/exchanges/currency_pair_quota | currency pair quota
-*ExchangesApi* | [**V1ExchangesList**](docs/ExchangesApi.md#v1exchangeslist) | **Get** /api/v1/exchanges | list exchanges
-*ExchangesApi* | [**V1ExchangesRetrieve**](docs/ExchangesApi.md#v1exchangesretrieve) | **Get** /api/v1/exchanges/{exchangeId} | retrieve exchange
-*ExchangesApi* | [**V1ExchangesSubmit**](docs/ExchangesApi.md#v1exchangessubmit) | **Post** /api/v1/exchanges/{exchangeId}/submit | submit exchange
 *NetworksApi* | [**V1NetworksList**](docs/NetworksApi.md#v1networkslist) | **Get** /api/v1/networks | List Networks
 *RatesApi* | [**V1RatesEstimate**](docs/RatesApi.md#v1ratesestimate) | **Get** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**V1RatesList**](docs/RatesApi.md#v1rateslist) | **Post** /api/v1/rates | List rates
-*SweepFundsApi* | [**V1SweepAddress**](docs/SweepFundsApi.md#v1sweepaddress) | **Post** /api/v1/sweep/address/{address} | Sweep address
 *TransactionsApi* | [**V1TransactionsEstimateFee**](docs/TransactionsApi.md#v1transactionsestimatefee) | **Post** /api/v1/transactions/estimate_fee | EstimateFee
 *TransactionsApi* | [**V1TransactionsList**](docs/TransactionsApi.md#v1transactionslist) | **Get** /api/v1/transactions | List transactions
 *TransactionsApi* | [**V1TransactionsRetrieve**](docs/TransactionsApi.md#v1transactionsretrieve) | **Get** /api/v1/transactions/{transactionId} | Get transaction
@@ -119,7 +112,6 @@ Class | Method | HTTP request | Description
  - [Address](docs/Address.md)
  - [ChainNetwork](docs/ChainNetwork.md)
  - [CreateEndpoint](docs/CreateEndpoint.md)
- - [CreateExchange](docs/CreateExchange.md)
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
  - [CreateWalletRequest](docs/CreateWalletRequest.md)
@@ -133,7 +125,6 @@ Class | Method | HTTP request | Description
  - [CursorPageChainNetwork](docs/CursorPageChainNetwork.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
- - [CursorPageExchange](docs/CursorPageExchange.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)
  - [CursorPageWallet](docs/CursorPageWallet.md)
  - [CursorPageWebhookEvent](docs/CursorPageWebhookEvent.md)
@@ -144,18 +135,11 @@ Class | Method | HTTP request | Description
  - [EstimateFeeResponse](docs/EstimateFeeResponse.md)
  - [EstimateResponse](docs/EstimateResponse.md)
  - [EventType](docs/EventType.md)
- - [Exchange](docs/Exchange.md)
- - [ExchangeCurrencyPairs](docs/ExchangeCurrencyPairs.md)
- - [ExchangeSubmitResponse](docs/ExchangeSubmitResponse.md)
- - [GetCurrencyPairQuotaResponse](docs/GetCurrencyPairQuotaResponse.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
- - [ListExchangeCurrencyPairsResponse](docs/ListExchangeCurrencyPairsResponse.md)
  - [Rate](docs/Rate.md)
  - [ResendWebhookEventRequest](docs/ResendWebhookEventRequest.md)
  - [ResendWebhookEventResponse](docs/ResendWebhookEventResponse.md)
- - [SweepAddressRequest](docs/SweepAddressRequest.md)
- - [SweepAddressResponse](docs/SweepAddressResponse.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)
@@ -176,15 +160,6 @@ Class | Method | HTTP request | Description
 - **Location**: HTTP header
 
 Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-Api-Key and passed in as the auth context for each request.
-
-
-### SignatureAuth
-
-- **Type**: API key
-- **API key parameter name**: X-Signature
-- **Location**: HTTP header
-
-Note, each API key must be added to a map of `map[string]APIKey` where the key is: X-Signature and passed in as the auth context for each request.
 
 
 ## Documentation for Utility Methods

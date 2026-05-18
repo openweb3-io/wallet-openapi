@@ -30,7 +30,7 @@ import (
 )
 
 func main() {
-    baseAmount := "baseAmount_example" // string | The amount of the base currency you want to convert
+    baseAmount := "baseAmount_example" // string | The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
     baseCurrency := "baseCurrency_example" // string | The currency code of the base currency that you want to convert from
     toCurrency := "toCurrency_example" // string | The currency code of the target currency that you want to convert to
 
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiV1RatesEstimateRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **baseAmount** | **string** | The amount of the base currency you want to convert | 
+ **baseAmount** | **string** | The amount of the base currency you want to convert in nano units (multiply by 10^decimals) | 
  **baseCurrency** | **string** | The currency code of the base currency that you want to convert from | 
  **toCurrency** | **string** | The currency code of the target currency that you want to convert to | 
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

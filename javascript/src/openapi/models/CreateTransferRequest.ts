@@ -14,7 +14,7 @@ import { HttpFile } from '../http/http';
 
 export class CreateTransferRequest {
     /**
-    * The amount of currency to be transferred
+    * The amount of currency to be transferred in nano units (multiply by 10^decimals)
     */
     'amount': string;
     /**
@@ -25,6 +25,10 @@ export class CreateTransferRequest {
     * The ID of the wallet from which the transfer will be made
     */
     'from': string;
+    /**
+    * Optional metadata for storing extra info
+    */
+    'metadata'?: { [key: string]: string; };
     /**
     * The ID of the wallet to which the transfer will be made
     */
@@ -49,6 +53,12 @@ export class CreateTransferRequest {
             "name": "from",
             "baseName": "from",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {

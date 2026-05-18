@@ -113,12 +113,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     TransactionsApi apiInstance = new TransactionsApi(defaultClient);
     Integer limit = 56; // Integer | The number of items to return per page.
     String currency = "currency_example"; // String | The type of currency involved in the transaction.
@@ -163,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -208,12 +202,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     TransactionsApi apiInstance = new TransactionsApi(defaultClient);
     String transactionId = "transactionId_example"; // String | Transaction ID
     try {
@@ -242,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -287,12 +275,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     TransactionsApi apiInstance = new TransactionsApi(defaultClient);
     CreateTransferRequest request = new CreateTransferRequest(); // CreateTransferRequest | Request Body
     try {
@@ -321,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [SignatureAuth](../README.md#SignatureAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

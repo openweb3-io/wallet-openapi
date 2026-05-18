@@ -16,7 +16,7 @@ import { HttpFile } from '../http/http';
 
 export class Transaction {
     /**
-    * The total amount of money involved in the transaction.
+    * The total amount of money involved in the transaction in nano units (multiply by 10^decimals)
     */
     'amount': string;
     /**
@@ -36,7 +36,7 @@ export class Transaction {
     */
     'direction': TransactionDirection;
     /**
-    * The amount of fee
+    * The amount of fee in nano units (multiply by 10^decimals)
     */
     'feeAmount': string;
     /**

@@ -16,6 +16,7 @@ import (
 
 // EstimateFeeResponse struct for EstimateFeeResponse
 type EstimateFeeResponse struct {
+	// The fee amount in nano units (multiply by 10^decimals)
 	FeeAmount string `json:"fee_amount"`
 	FeeCurrency string `json:"fee_currency"`
 }

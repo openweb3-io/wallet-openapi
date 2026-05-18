@@ -9,18 +9,19 @@ Name | Type | Description | Notes
 **CanWithdraw** | **bool** | Indicates if on-chain withdrawals are allowed | 
 **Code** | **string** | Currency code | 
 **ContractAddress** | Pointer to **string** | Contract address for tokens based on smart contracts, such as ERC-20 | [optional] 
+**Disabled** | **bool** | Indicates if the currency network is disabled | 
 **Fee** | **string** | Transaction fee | 
 **FeeCurrency** | **string** | Transaction fee currency | 
 **Id** | **string** |  | 
 **MaxFee** | **string** | Maximum transaction fee | 
 **MaxFeeForCtAddr** | **string** | Maximum transaction fee for contract addresses | 
-**MaxWithdrawAmount** | **string** | Maximum amount for a single on-chain withdrawal | 
-**MinCollectAmount** | Pointer to **string** | Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address | [optional] 
+**MaxWithdrawAmount** | **string** | Maximum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals) | 
+**MinCollectAmount** | Pointer to **string** | Minimum amount for collection in nano units (multiply by 10^decimals), i.e., the minimum amount to aggregate small balances to a single address | [optional] 
 **MinConfirmations** | **int32** | Minimum number of confirmations required, indicating the number of block confirmations needed for a transaction to be considered valid | 
-**MinDepositAmount** | **string** | Minimum amount for a single deposit | 
+**MinDepositAmount** | **string** | Minimum amount for a single deposit in nano units (multiply by 10^decimals) | 
 **MinFee** | **string** | Minimum transaction fee | 
 **MinFeeForCtAddr** | **string** | Minimum transaction fee for contract addresses | 
-**MinWithdrawAmount** | **string** | Minimum amount for a single on-chain withdrawal | 
+**MinWithdrawAmount** | **string** | Minimum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals) | 
 **Name** | **string** | Name of the currency, e.g., Bitcoin, Ethereum, etc. | 
 **NeedMemo** | **bool** | Indicates if additional Memo information is required, as needed by some currencies or exchanges | 
 **Network** | **string** | Associated network, e.g., Bitcoin, Ethereum, etc. | 
@@ -29,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewCurrencyNetwork
 
-`func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, fee string, feeCurrency string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string, ) *CurrencyNetwork`
+`func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, disabled bool, fee string, feeCurrency string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string, ) *CurrencyNetwork`
 
 NewCurrencyNetwork instantiates a new CurrencyNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -148,6 +149,26 @@ SetContractAddress sets ContractAddress field to given value.
 `func (o *CurrencyNetwork) HasContractAddress() bool`
 
 HasContractAddress returns a boolean if a field has been set.
+
+### GetDisabled
+
+`func (o *CurrencyNetwork) GetDisabled() bool`
+
+GetDisabled returns the Disabled field if non-nil, zero value otherwise.
+
+### GetDisabledOk
+
+`func (o *CurrencyNetwork) GetDisabledOk() (*bool, bool)`
+
+GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabled
+
+`func (o *CurrencyNetwork) SetDisabled(v bool)`
+
+SetDisabled sets Disabled field to given value.
+
 
 ### GetFee
 

@@ -18,7 +18,7 @@ export class RatesApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Estimates currency exchange amounts.
      * Estimates
-     * @param baseAmount The amount of the base currency you want to convert
+     * @param baseAmount The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
      * @param baseCurrency The currency code of the base currency that you want to convert from
      * @param toCurrency The currency code of the target currency that you want to convert to
      */
@@ -74,10 +74,6 @@ export class RatesApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = _config.authMethods["SignatureAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }
@@ -124,10 +120,6 @@ export class RatesApiRequestFactory extends BaseAPIRequestFactory {
         let authMethod = null;
         // Apply auth methods
         authMethod = _config.authMethods["ApiKeyAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
-        authMethod = _config.authMethods["SignatureAuth"]
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }

@@ -16,13 +16,13 @@ import (
 
 // EstimateResponse struct for EstimateResponse
 type EstimateResponse struct {
-	// The amount of the base currency you want to convert
+	// The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
 	BaseAmount string `json:"base_amount"`
 	// The currency code of the base currency that you want to convert from
 	BaseCurrency string `json:"base_currency"`
 	// The exchange rate from the base currency to the target currency
 	Rate float32 `json:"rate"`
-	// The amount of the target currency you will receive after the conversion
+	// The amount of the target currency you will receive after the conversion in nano units (multiply by 10^decimals)
 	ToAmount string `json:"to_amount"`
 	// The currency code of the target currency that you want to convert to
 	ToCurrency string `json:"to_currency"`

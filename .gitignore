@@ -4,6 +4,7 @@ vendor
 node_modules
 examples
 
+.yarn
 .vscode
 .DS_Store
 
@@ -18,3 +19,5 @@ examples
 *.p8
 *.p12
 *.p8
+
+AGENTS.md

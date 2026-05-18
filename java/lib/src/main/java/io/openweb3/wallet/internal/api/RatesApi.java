@@ -59,7 +59,7 @@ public class RatesApi {
 
     /**
      * Build call for v1RatesEstimate
-     * @param baseAmount The amount of the base currency you want to convert (required)
+     * @param baseAmount The amount of the base currency you want to convert in nano units (multiply by 10^decimals) (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
      * @param _callback Callback for upload/download progress
@@ -113,7 +113,7 @@ public class RatesApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth", "SignatureAuth" };
+        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -144,7 +144,7 @@ public class RatesApi {
     /**
      * Estimates
      * Estimates currency exchange amounts.
-     * @param baseAmount The amount of the base currency you want to convert (required)
+     * @param baseAmount The amount of the base currency you want to convert in nano units (multiply by 10^decimals) (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
      * @return EstimateResponse
@@ -167,7 +167,7 @@ public class RatesApi {
     /**
      * Estimates
      * Estimates currency exchange amounts.
-     * @param baseAmount The amount of the base currency you want to convert (required)
+     * @param baseAmount The amount of the base currency you want to convert in nano units (multiply by 10^decimals) (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
      * @return ApiResponse&lt;EstimateResponse&gt;
@@ -191,7 +191,7 @@ public class RatesApi {
     /**
      * Estimates (asynchronously)
      * Estimates currency exchange amounts.
-     * @param baseAmount The amount of the base currency you want to convert (required)
+     * @param baseAmount The amount of the base currency you want to convert in nano units (multiply by 10^decimals) (required)
      * @param baseCurrency The currency code of the base currency that you want to convert from (required)
      * @param toCurrency The currency code of the target currency that you want to convert to (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -256,7 +256,7 @@ public class RatesApi {
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[] { "ApiKeyAuth", "SignatureAuth" };
+        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
         return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 

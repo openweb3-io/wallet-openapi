@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseAmount** | **string** | The amount of the base currency you want to convert | 
+**BaseAmount** | **string** | The amount of the base currency you want to convert in nano units (multiply by 10^decimals) | 
 **BaseCurrency** | **string** | The currency code of the base currency that you want to convert from | 
 **Rate** | **float32** | The exchange rate from the base currency to the target currency | 
-**ToAmount** | **string** | The amount of the target currency you will receive after the conversion | 
+**ToAmount** | **string** | The amount of the target currency you will receive after the conversion in nano units (multiply by 10^decimals) | 
 **ToCurrency** | **string** | The currency code of the target currency that you want to convert to | 
 
 ## Methods

@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **string** | The amount of currency to be transferred | 
+**Amount** | **string** | The amount of currency to be transferred in nano units (multiply by 10^decimals) | 
 **Currency** | **string** | The code of currency to be transferred | 
 **From** | **string** | The ID of the wallet from which the transfer will be made | 
+**Metadata** | Pointer to **map[string]string** | Optional metadata for storing extra info | [optional] 
 **To** | **string** | The ID of the wallet to which the transfer will be made | 
 
 ## Methods
@@ -88,6 +89,41 @@ and a boolean to check if the value has been set.
 SetFrom sets From field to given value.
 
 
+### GetMetadata
+
+`func (o *CreateTransferRequest) GetMetadata() map[string]string`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *CreateTransferRequest) GetMetadataOk() (*map[string]string, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *CreateTransferRequest) SetMetadata(v map[string]string)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *CreateTransferRequest) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *CreateTransferRequest) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *CreateTransferRequest) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetTo
 
 `func (o *CreateTransferRequest) GetTo() string`

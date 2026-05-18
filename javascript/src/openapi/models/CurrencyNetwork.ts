@@ -34,6 +34,10 @@ export class CurrencyNetwork {
     */
     'contractAddress'?: string;
     /**
+    * Indicates if the currency network is disabled
+    */
+    'disabled': boolean;
+    /**
     * Transaction fee
     */
     'fee': string;
@@ -51,11 +55,11 @@ export class CurrencyNetwork {
     */
     'maxFeeForCtAddr': string;
     /**
-    * Maximum amount for a single on-chain withdrawal
+    * Maximum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)
     */
     'maxWithdrawAmount': string;
     /**
-    * Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address
+    * Minimum amount for collection in nano units (multiply by 10^decimals), i.e., the minimum amount to aggregate small balances to a single address
     */
     'minCollectAmount'?: string;
     /**
@@ -63,7 +67,7 @@ export class CurrencyNetwork {
     */
     'minConfirmations': number;
     /**
-    * Minimum amount for a single deposit
+    * Minimum amount for a single deposit in nano units (multiply by 10^decimals)
     */
     'minDepositAmount': string;
     /**
@@ -75,7 +79,7 @@ export class CurrencyNetwork {
     */
     'minFeeForCtAddr': string;
     /**
-    * Minimum amount for a single on-chain withdrawal
+    * Minimum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)
     */
     'minWithdrawAmount': string;
     /**
@@ -122,6 +126,12 @@ export class CurrencyNetwork {
             "name": "contractAddress",
             "baseName": "contract_address",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
             "format": ""
         },
         {

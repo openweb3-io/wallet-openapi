@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Currency
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]")
 public class Currency {
   public static final String SERIALIZED_NAME_CAN_DEPOSIT = "can_deposit";
   @SerializedName(SERIALIZED_NAME_CAN_DEPOSIT)
@@ -55,6 +55,10 @@ public class Currency {
   public static final String SERIALIZED_NAME_DECIMALS = "decimals";
   @SerializedName(SERIALIZED_NAME_DECIMALS)
   private Integer decimals;
+
+  public static final String SERIALIZED_NAME_DISABLED = "disabled";
+  @SerializedName(SERIALIZED_NAME_DISABLED)
+  private Boolean disabled;
 
   public static final String SERIALIZED_NAME_LOGO = "logo";
   @SerializedName(SERIALIZED_NAME_LOGO)
@@ -83,6 +87,10 @@ public class Currency {
   public static final String SERIALIZED_NAME_MIN_FEE_FOR_CT_ADDR = "min_fee_for_ct_addr";
   @SerializedName(SERIALIZED_NAME_MIN_FEE_FOR_CT_ADDR)
   private String minFeeForCtAddr;
+
+  public static final String SERIALIZED_NAME_MIN_TRANSFER_AMOUNT = "min_transfer_amount";
+  @SerializedName(SERIALIZED_NAME_MIN_TRANSFER_AMOUNT)
+  private String minTransferAmount;
 
   public static final String SERIALIZED_NAME_MIN_WITHDRAW_AMOUNT = "min_withdraw_amount";
   @SerializedName(SERIALIZED_NAME_MIN_WITHDRAW_AMOUNT)
@@ -246,6 +254,28 @@ public class Currency {
   }
 
 
+  public Currency disabled(Boolean disabled) {
+    
+    this.disabled = disabled;
+    return this;
+  }
+
+   /**
+   * Indicates if the currency is disabled
+   * @return disabled
+  **/
+  @ApiModelProperty(required = true, value = "Indicates if the currency is disabled")
+
+  public Boolean getDisabled() {
+    return disabled;
+  }
+
+
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
+  }
+
+
   public Currency logo(String logo) {
     
     this.logo = logo;
@@ -319,10 +349,10 @@ public class Currency {
   }
 
    /**
-   * Maximum withdraw amount per transaction
+   * Maximum withdraw amount per transaction in nano units (multiply by 10^decimals)
    * @return maxWithdrawAmount
   **/
-  @ApiModelProperty(required = true, value = "Maximum withdraw amount per transaction")
+  @ApiModelProperty(required = true, value = "Maximum withdraw amount per transaction in nano units (multiply by 10^decimals)")
 
   public String getMaxWithdrawAmount() {
     return maxWithdrawAmount;
@@ -341,10 +371,10 @@ public class Currency {
   }
 
    /**
-   * Minimum deposit amount per transaction
+   * Minimum deposit amount per transaction in nano units (multiply by 10^decimals)
    * @return minDepositAmount
   **/
-  @ApiModelProperty(required = true, value = "Minimum deposit amount per transaction")
+  @ApiModelProperty(required = true, value = "Minimum deposit amount per transaction in nano units (multiply by 10^decimals)")
 
   public String getMinDepositAmount() {
     return minDepositAmount;
@@ -400,6 +430,28 @@ public class Currency {
   }
 
 
+  public Currency minTransferAmount(String minTransferAmount) {
+    
+    this.minTransferAmount = minTransferAmount;
+    return this;
+  }
+
+   /**
+   * Minimum transfer amount per transaction in nano units (multiply by 10^decimals)
+   * @return minTransferAmount
+  **/
+  @ApiModelProperty(required = true, value = "Minimum transfer amount per transaction in nano units (multiply by 10^decimals)")
+
+  public String getMinTransferAmount() {
+    return minTransferAmount;
+  }
+
+
+  public void setMinTransferAmount(String minTransferAmount) {
+    this.minTransferAmount = minTransferAmount;
+  }
+
+
   public Currency minWithdrawAmount(String minWithdrawAmount) {
     
     this.minWithdrawAmount = minWithdrawAmount;
@@ -407,10 +459,10 @@ public class Currency {
   }
 
    /**
-   * Minimum withdraw amount per transaction
+   * Minimum withdraw amount per transaction in nano units (multiply by 10^decimals)
    * @return minWithdrawAmount
   **/
-  @ApiModelProperty(required = true, value = "Minimum withdraw amount per transaction")
+  @ApiModelProperty(required = true, value = "Minimum withdraw amount per transaction in nano units (multiply by 10^decimals)")
 
   public String getMinWithdrawAmount() {
     return minWithdrawAmount;
@@ -574,6 +626,7 @@ public class Currency {
         Objects.equals(this.code, currency.code) &&
         Objects.equals(this.contractAddress, currency.contractAddress) &&
         Objects.equals(this.decimals, currency.decimals) &&
+        Objects.equals(this.disabled, currency.disabled) &&
         Objects.equals(this.logo, currency.logo) &&
         Objects.equals(this.maxFee, currency.maxFee) &&
         Objects.equals(this.maxFeeForCtAddr, currency.maxFeeForCtAddr) &&
@@ -581,6 +634,7 @@ public class Currency {
         Objects.equals(this.minDepositAmount, currency.minDepositAmount) &&
         Objects.equals(this.minFee, currency.minFee) &&
         Objects.equals(this.minFeeForCtAddr, currency.minFeeForCtAddr) &&
+        Objects.equals(this.minTransferAmount, currency.minTransferAmount) &&
         Objects.equals(this.minWithdrawAmount, currency.minWithdrawAmount) &&
         Objects.equals(this.name, currency.name) &&
         Objects.equals(this.needMemo, currency.needMemo) &&
@@ -592,7 +646,7 @@ public class Currency {
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, decimals, logo, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, networks, precision, rated, symbol);
+    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, decimals, disabled, logo, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minDepositAmount, minFee, minFeeForCtAddr, minTransferAmount, minWithdrawAmount, name, needMemo, networks, precision, rated, symbol);
   }
 
   @Override
@@ -605,6 +659,7 @@ public class Currency {
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    contractAddress: ").append(toIndentedString(contractAddress)).append("\n");
     sb.append("    decimals: ").append(toIndentedString(decimals)).append("\n");
+    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    logo: ").append(toIndentedString(logo)).append("\n");
     sb.append("    maxFee: ").append(toIndentedString(maxFee)).append("\n");
     sb.append("    maxFeeForCtAddr: ").append(toIndentedString(maxFeeForCtAddr)).append("\n");
@@ -612,6 +667,7 @@ public class Currency {
     sb.append("    minDepositAmount: ").append(toIndentedString(minDepositAmount)).append("\n");
     sb.append("    minFee: ").append(toIndentedString(minFee)).append("\n");
     sb.append("    minFeeForCtAddr: ").append(toIndentedString(minFeeForCtAddr)).append("\n");
+    sb.append("    minTransferAmount: ").append(toIndentedString(minTransferAmount)).append("\n");
     sb.append("    minWithdrawAmount: ").append(toIndentedString(minWithdrawAmount)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    needMemo: ").append(toIndentedString(needMemo)).append("\n");

@@ -2,7 +2,7 @@
 
 Wallet OpenAPI Documentation
 - API version: 1.0
-  - Build date: 2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]
+  - Build date: 2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]
 
 This is a custody wallet service openapi server.
 
@@ -91,12 +91,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: SignatureAuth
-    ApiKeyAuth SignatureAuth = (ApiKeyAuth) defaultClient.getAuthentication("SignatureAuth");
-    SignatureAuth.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //SignatureAuth.setApiKeyPrefix("Token");
-
     AddressesApi apiInstance = new AddressesApi(defaultClient);
     Integer limit = 56; // Integer | The number of items to return per page.
     String currency = "currency_example"; // String | The code of currency used in the transaction (e.g., TON, USDT, USD, EUR, etc.).
@@ -129,16 +123,9 @@ Class | Method | HTTP request | Description
 *AddressesApi* | [**v1WalletsListDepositAddresses**](docs/AddressesApi.md#v1WalletsListDepositAddresses) | **GET** /api/v1/wallets/{walletId}/deposit_addresses | List deposit addresses
 *CurrenciesApi* | [**v1CurrenciesList**](docs/CurrenciesApi.md#v1CurrenciesList) | **GET** /api/v1/currencies | List currencies
 *CurrenciesApi* | [**v1CurrenciesRetrieve**](docs/CurrenciesApi.md#v1CurrenciesRetrieve) | **GET** /api/v1/currencies/{code} | Get Currency
-*ExchangesApi* | [**v1ExchangesCreate**](docs/ExchangesApi.md#v1ExchangesCreate) | **POST** /api/v1/exchanges | create exchange
-*ExchangesApi* | [**v1ExchangesCurrencyPairs**](docs/ExchangesApi.md#v1ExchangesCurrencyPairs) | **GET** /api/v1/exchanges/currency_pairs | list currency pairs
-*ExchangesApi* | [**v1ExchangesCurrencyQuota**](docs/ExchangesApi.md#v1ExchangesCurrencyQuota) | **GET** /api/v1/exchanges/currency_pair_quota | currency pair quota
-*ExchangesApi* | [**v1ExchangesList**](docs/ExchangesApi.md#v1ExchangesList) | **GET** /api/v1/exchanges | list exchanges
-*ExchangesApi* | [**v1ExchangesRetrieve**](docs/ExchangesApi.md#v1ExchangesRetrieve) | **GET** /api/v1/exchanges/{exchangeId} | retrieve exchange
-*ExchangesApi* | [**v1ExchangesSubmit**](docs/ExchangesApi.md#v1ExchangesSubmit) | **POST** /api/v1/exchanges/{exchangeId}/submit | submit exchange
 *NetworksApi* | [**v1NetworksList**](docs/NetworksApi.md#v1NetworksList) | **GET** /api/v1/networks | List Networks
 *RatesApi* | [**v1RatesEstimate**](docs/RatesApi.md#v1RatesEstimate) | **GET** /api/v1/rates/estimate | Estimates
 *RatesApi* | [**v1RatesList**](docs/RatesApi.md#v1RatesList) | **POST** /api/v1/rates | List rates
-*SweepFundsApi* | [**v1SweepAddress**](docs/SweepFundsApi.md#v1SweepAddress) | **POST** /api/v1/sweep/address/{address} | Sweep address
 *TransactionsApi* | [**v1TransactionsEstimateFee**](docs/TransactionsApi.md#v1TransactionsEstimateFee) | **POST** /api/v1/transactions/estimate_fee | EstimateFee
 *TransactionsApi* | [**v1TransactionsList**](docs/TransactionsApi.md#v1TransactionsList) | **GET** /api/v1/transactions | List transactions
 *TransactionsApi* | [**v1TransactionsRetrieve**](docs/TransactionsApi.md#v1TransactionsRetrieve) | **GET** /api/v1/transactions/{transactionId} | Get transaction
@@ -165,7 +152,6 @@ Class | Method | HTTP request | Description
  - [Address](docs/Address.md)
  - [ChainNetwork](docs/ChainNetwork.md)
  - [CreateEndpoint](docs/CreateEndpoint.md)
- - [CreateExchange](docs/CreateExchange.md)
  - [CreateTransferRequest](docs/CreateTransferRequest.md)
  - [CreateTransferResponse](docs/CreateTransferResponse.md)
  - [CreateWalletRequest](docs/CreateWalletRequest.md)
@@ -179,7 +165,6 @@ Class | Method | HTTP request | Description
  - [CursorPageChainNetwork](docs/CursorPageChainNetwork.md)
  - [CursorPageCurrency](docs/CursorPageCurrency.md)
  - [CursorPageEndpoint](docs/CursorPageEndpoint.md)
- - [CursorPageExchange](docs/CursorPageExchange.md)
  - [CursorPageTransaction](docs/CursorPageTransaction.md)
  - [CursorPageWallet](docs/CursorPageWallet.md)
  - [CursorPageWebhookEvent](docs/CursorPageWebhookEvent.md)
@@ -190,18 +175,11 @@ Class | Method | HTTP request | Description
  - [EstimateFeeResponse](docs/EstimateFeeResponse.md)
  - [EstimateResponse](docs/EstimateResponse.md)
  - [EventType](docs/EventType.md)
- - [Exchange](docs/Exchange.md)
- - [ExchangeCurrencyPairs](docs/ExchangeCurrencyPairs.md)
- - [ExchangeSubmitResponse](docs/ExchangeSubmitResponse.md)
- - [GetCurrencyPairQuotaResponse](docs/GetCurrencyPairQuotaResponse.md)
  - [GetRatesRequest](docs/GetRatesRequest.md)
  - [GetRatesResponse](docs/GetRatesResponse.md)
- - [ListExchangeCurrencyPairsResponse](docs/ListExchangeCurrencyPairsResponse.md)
  - [Rate](docs/Rate.md)
  - [ResendWebhookEventRequest](docs/ResendWebhookEventRequest.md)
  - [ResendWebhookEventResponse](docs/ResendWebhookEventResponse.md)
- - [SweepAddressRequest](docs/SweepAddressRequest.md)
- - [SweepAddressResponse](docs/SweepAddressResponse.md)
  - [Transaction](docs/Transaction.md)
  - [TransactionDirection](docs/TransactionDirection.md)
  - [TransactionStatus](docs/TransactionStatus.md)
@@ -218,12 +196,6 @@ Authentication schemes defined for the API:
 
 - **Type**: API key
 - **API key parameter name**: X-Api-Key
-- **Location**: HTTP header
-
-### SignatureAuth
-
-- **Type**: API key
-- **API key parameter name**: X-Signature
 - **Location**: HTTP header
 
 

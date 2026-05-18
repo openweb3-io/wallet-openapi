@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * EstimateResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-19T20:40:23.812121+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T16:51:12.120273+08:00[Asia/Shanghai]")
 public class EstimateResponse {
   public static final String SERIALIZED_NAME_BASE_AMOUNT = "base_amount";
   @SerializedName(SERIALIZED_NAME_BASE_AMOUNT)
@@ -58,10 +58,10 @@ public class EstimateResponse {
   }
 
    /**
-   * The amount of the base currency you want to convert
+   * The amount of the base currency you want to convert in nano units (multiply by 10^decimals)
    * @return baseAmount
   **/
-  @ApiModelProperty(required = true, value = "The amount of the base currency you want to convert")
+  @ApiModelProperty(required = true, value = "The amount of the base currency you want to convert in nano units (multiply by 10^decimals)")
 
   public String getBaseAmount() {
     return baseAmount;
@@ -124,10 +124,10 @@ public class EstimateResponse {
   }
 
    /**
-   * The amount of the target currency you will receive after the conversion
+   * The amount of the target currency you will receive after the conversion in nano units (multiply by 10^decimals)
    * @return toAmount
   **/
-  @ApiModelProperty(required = true, value = "The amount of the target currency you will receive after the conversion")
+  @ApiModelProperty(required = true, value = "The amount of the target currency you will receive after the conversion in nano units (multiply by 10^decimals)")
 
   public String getToAmount() {
     return toAmount;

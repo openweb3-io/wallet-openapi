@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **String** | The amount of currency to be withdrawn | 
+**amount** | **String** | The amount of currency to be withdrawn in nano units (multiply by 10^decimals) | 
 **currency** | **String** | The code of currency to be withdrawn. | 
 **network** | **String** | The network of the currency to be withdrawn. | 
 **toAddress** | **String** | The recipient address where the withdrawn funds will be sent. This is usually a wallet address specific to the chosen network. | 

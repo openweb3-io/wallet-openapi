@@ -57,10 +57,6 @@ export class NetworksApiRequestFactory extends BaseAPIRequestFactory {
         if (authMethod) {
             await authMethod.applySecurityAuthentication(requestContext);
         }
-        authMethod = _config.authMethods["SignatureAuth"]
-        if (authMethod) {
-            await authMethod.applySecurityAuthentication(requestContext);
-        }
 
         return requestContext;
     }

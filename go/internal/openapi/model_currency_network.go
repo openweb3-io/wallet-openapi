@@ -26,6 +26,8 @@ type CurrencyNetwork struct {
 	Code string `json:"code"`
 	// Contract address for tokens based on smart contracts, such as ERC-20
 	ContractAddress *string `json:"contract_address,omitempty"`
+	// Indicates if the currency network is disabled
+	Disabled bool `json:"disabled"`
 	// Transaction fee
 	Fee string `json:"fee"`
 	// Transaction fee currency
@@ -35,19 +37,19 @@ type CurrencyNetwork struct {
 	MaxFee string `json:"max_fee"`
 	// Maximum transaction fee for contract addresses
 	MaxFeeForCtAddr string `json:"max_fee_for_ct_addr"`
-	// Maximum amount for a single on-chain withdrawal
+	// Maximum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)
 	MaxWithdrawAmount string `json:"max_withdraw_amount"`
-	// Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address
+	// Minimum amount for collection in nano units (multiply by 10^decimals), i.e., the minimum amount to aggregate small balances to a single address
 	MinCollectAmount *string `json:"min_collect_amount,omitempty"`
 	// Minimum number of confirmations required, indicating the number of block confirmations needed for a transaction to be considered valid
 	MinConfirmations int32 `json:"min_confirmations"`
-	// Minimum amount for a single deposit
+	// Minimum amount for a single deposit in nano units (multiply by 10^decimals)
 	MinDepositAmount string `json:"min_deposit_amount"`
 	// Minimum transaction fee
 	MinFee string `json:"min_fee"`
 	// Minimum transaction fee for contract addresses
 	MinFeeForCtAddr string `json:"min_fee_for_ct_addr"`
-	// Minimum amount for a single on-chain withdrawal
+	// Minimum amount for a single on-chain withdrawal in nano units (multiply by 10^decimals)
 	MinWithdrawAmount string `json:"min_withdraw_amount"`
 	// Name of the currency, e.g., Bitcoin, Ethereum, etc.
 	Name string `json:"name"`
@@ -61,12 +63,13 @@ type CurrencyNetwork struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, fee string, feeCurrency string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string) *CurrencyNetwork {
+func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, disabled bool, fee string, feeCurrency string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string) *CurrencyNetwork {
 	this := CurrencyNetwork{}
 	this.CanDeposit = canDeposit
 	this.CanTransfer = canTransfer
 	this.CanWithdraw = canWithdraw
 	this.Code = code
+	this.Disabled = disabled
 	this.Fee = fee
 	this.FeeCurrency = feeCurrency
 	this.Id = id
@@ -218,6 +221,30 @@ func (o *CurrencyNetwork) HasContractAddress() bool {
 // SetContractAddress gets a reference to the given string and assigns it to the ContractAddress field.
 func (o *CurrencyNetwork) SetContractAddress(v string) {
 	o.ContractAddress = &v
+}
+
+// GetDisabled returns the Disabled field value
+func (o *CurrencyNetwork) GetDisabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value
+// and a boolean to check if the value has been set.
+func (o *CurrencyNetwork) GetDisabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Disabled, true
+}
+
+// SetDisabled sets field value
+func (o *CurrencyNetwork) SetDisabled(v bool) {
+	o.Disabled = v
 }
 
 // GetFee returns the Fee field value
@@ -604,6 +631,9 @@ func (o CurrencyNetwork) MarshalJSON() ([]byte, error) {
 	}
 	if o.ContractAddress != nil {
 		toSerialize["contract_address"] = o.ContractAddress
+	}
+	if true {
+		toSerialize["disabled"] = o.Disabled
 	}
 	if true {
 		toSerialize["fee"] = o.Fee

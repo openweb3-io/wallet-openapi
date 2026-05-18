@@ -14,7 +14,7 @@ import { HttpFile } from '../http/http';
 
 export class EstimateFeeRequest {
     /**
-    * The amount of currency to be withdrawn
+    * The amount of currency to be withdrawn in nano units (multiply by 10^decimals)
     */
     'amount': string;
     /**
